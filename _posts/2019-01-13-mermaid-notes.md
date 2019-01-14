@@ -73,7 +73,6 @@ image:
 	end
 ```
 子图demo
-{% mermaid %}
 	graph TB
 		c1-->a2
 		subgraph one
@@ -85,4 +84,3 @@ image:
 		subgraph three
 		c1-->c2
 		end
-{% endmermaid %}
