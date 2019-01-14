@@ -129,6 +129,29 @@
 <article class="hentry">
   <header>
     
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-01-14T00:00:00+08:00"><a href="http://localhost:4000/jekyll-github-pages/">January 14, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/jekyll-github-pages/" rel="bookmark" title="Jekyll Github Pages" itemprop="url">Jekyll Github Pages</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
       <div class="entry-image-index">
         <a href="http://localhost:4000/vim-plugin-previm/" title="Previm -- a vim plugin preview the markdown file"><img src="http://localhost:4000/images/abstract-6.jpg" alt="Previm -- a vim plugin preview the markdown file"></a>
       </div><!-- /.entry-image -->
@@ -237,7 +260,7 @@ Reading time ~1 minute
   <header>
     
       <div class="entry-image-index">
-        <a href="http://localhost:4000/mermaid-notes/" title="An Introduction to Mermiad"><img src="http://localhost:4000/images/abstract-6.jpg" alt="An Introduction to Mermiad"></a>
+        <a href="http://localhost:4000/mermaid-notes/" title="A breif introduction to Mermiad"><img src="http://localhost:4000/images/abstract-6.jpg" alt="A breif introduction to Mermiad"></a>
       </div><!-- /.entry-image -->
     
     <div class="entry-meta">
@@ -251,7 +274,7 @@ Reading time ~1 minute
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/mermaid-notes/" rel="bookmark" title="An Introduction to Mermiad" itemprop="url">An Introduction to Mermiad</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/mermaid-notes/" rel="bookmark" title="A breif introduction to Mermiad" itemprop="url">A breif introduction to Mermiad</a></h1>
     
   </header>
   <div class="entry-content">
@@ -270,16 +293,41 @@ Reading time ~1 minute
       <li>LR  - left right  从左到右</li>
     </ul>
   </li>
-  <li>node 节点类型
-    <pre><code class="language-mermaid">  graph LR
-      node
-      id[text in the box]
-      id1(text in the round edges box)
-      id2((text in the circle))
-      id3&gt;text in the label]
-      id4{text in the rhombus box}
-</code></pre>
+  <li>
+    <p>node 节点类型</p>
   </li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	graph LR
+		node
+		id[text in the box]
+		id1(text in the round edges box)
+		id2((text in the circle))
+		id3&gt;text in the label]
+		id4{text in the rhombus box}
+		node --&gt; id1
+		id1 --&gt; id2
+		id2 --&gt; id3 
+		id3 --&gt; id4
+		node --&gt; id
+</code></pre></div></div>
+<script src="/assets/js/vendor/mermaid.min.js"></script>
+<div class="mermaid">
+	graph LR
+		node
+		id[text in the box]
+		id1(text in the round edges box)
+		id2((text in the circle))
+		id3&gt;text in the label]
+		id4{text in the rhombus box}
+		node --&gt; id1
+		id1 --&gt; id2
+		id2 --&gt; id3 
+		id3 --&gt; id4
+		node --&gt; id
+</div>
+
+<ul>
   <li>
     <p>link 线条类型</p>
 
@@ -299,7 +347,8 @@ Reading time ~1 minute
       <li>N3 ==&gt;|text|N4</li>
     </ul>
   </li>
-  <li>特殊字符
+  <li>
+    <p>特殊字符</p>
     <ul>
       <li>如果想输出特殊字符，比如( [ 等, 要用<strong>双引号</strong></li>
       <li>Node[“this is (txxt)”]  用双引号把内容包起来，这样就能输出括号等特殊字符了。</li>
@@ -308,7 +357,9 @@ Reading time ~1 minute
   </li>
 </ul>
 
-<pre><code class="language-mermaid">	graph LR
+<script src="/assets/js/vendor/mermaid.min.js"></script>
+<div class="mermaid">
+	graph LR
 		A --&gt; B
 		A --- B
 		C --text in the link --- B 
@@ -320,7 +371,7 @@ Reading time ~1 minute
 		N1 ==&gt;|text| N3
 		Node["dd#quot\;"]
 		Node1["#quot;A dec char:#9829;"]
-</code></pre>
+</div>
 <ul>
   <li>subgraphs 子图</li>
 </ul>
@@ -329,20 +380,79 @@ Reading time ~1 minute
 		graph definition
 	end
 </code></pre></div></div>
-<p>子图demo
-<script src="/assets/js/mermaid.min.js"></script>&lt;div class="mermaid"&gt;
-	graph TB
-		c1–&gt;a2
+<p>子图demo</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	graph TB
+		c1--&gt;a2
 		subgraph one
-		a1–&gt;a2
+		a1--&gt;a2
 		end
 		subgraph two
-		b1–&gt;b2
+		b1--&gt;b2
 		end
 		subgraph three
-		c1–&gt;c2
+		c1--&gt;c2
 		end
-&lt;/div&gt;</p>
+</code></pre></div></div>
+
+<script src="/assets/js/vendor/mermaid.min.js"></script>
+<div class="mermaid">
+	graph TB
+		c1--&gt;a2
+		subgraph one
+		a1--&gt;a2
+		end
+		subgraph two
+		b1--&gt;b2
+		end
+		subgraph three
+		c1--&gt;c2
+		end
+</div>
+
+<ul>
+  <li>node和link的样式
+    <ul>
+      <li>link没有id，所以按照我们定义的顺序来标识link,第一个为0</li>
+      <li>node节点的大小，可以通过width和height来设置
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>graph LR
+  id1(Start)--&gt;id2(Stop)
+  style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:100px,height:50px
+  style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
+  linkStyle 1 stroke:#ff3,stroke-width:4px;
+</code></pre></div>        </div>
+        <script src="/assets/js/vendor/mermaid.min.js"></script>
+        <div class="mermaid">
+  graph LR
+  id1(Start)--&gt;id2(Stop)
+  style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
+  style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
+  linkStyle 0 stroke:#ff3,stroke-width:4px;
+</div>
+      </li>
+    </ul>
+  </li>
+</ul>
+<p>&lt;/div&gt;</p>
+
+<h3 id="如何把mermaid集成到jekyll中">如何把mermaid集成到jekyll中。</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>download mermaid.min.js and mermaid.min.js.map to /assets/js/vendor/
+https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js
+https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js.map
+then edit the _config.yml
+plugins:
+	...
+	- jekyll-mermaid
+mermaid:
+	src: /assets/js/vendor/mermaid.min.js
+
+bundle install
+jekyll build
+
+
+插件的文档(https://github.com/jasonbellamy/jekyll-mermaid)有些问题，没有更上jekyll的更新,也是在这里踩坑了。
+</code></pre></div></div>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->

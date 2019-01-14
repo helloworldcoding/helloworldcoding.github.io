@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "An Introduction to Mermiad"
+title: "A breif introduction to Mermiad"
 description: "write code to make some beautiful flowcharts"
 tags: [flowcharts,Meriad,UML,viso]
 image:
@@ -20,7 +20,8 @@ image:
 	* LR  - left right  从左到右
 
 * node 节点类型
-```mermaid
+
+```
 	graph LR
 		node
 		id[text in the box]
@@ -28,7 +29,26 @@ image:
 		id2((text in the circle))
 		id3>text in the label]
 		id4{text in the rhombus box}
+		node --> id1
+		id1 --> id2
+		id2 --> id3 
+		id3 --> id4
+		node --> id
 ```
+{% mermaid %}
+	graph LR
+		node
+		id[text in the box]
+		id1(text in the round edges box)
+		id2((text in the circle))
+		id3>text in the label]
+		id4{text in the rhombus box}
+		node --> id1
+		id1 --> id2
+		id2 --> id3 
+		id3 --> id4
+		node --> id
+{% endmermaid %}
 
 * link 线条类型
 
@@ -51,7 +71,7 @@ image:
 	* Node["this is (txxt)"]  用双引号把内容包起来，这样就能输出括号等特殊字符了。
 	* 同时双引号内的html实体会被转义输出,如#quot;会转义为" #9829;会转义为一个心形
 
-```mermaid
+{% mermaid %}
 	graph LR
 		A --> B
 		A --- B
@@ -64,7 +84,7 @@ image:
 		N1 ==>|text| N3
 		Node["dd#quot\;"]
 		Node1["#quot;A dec char:#9829;"]
-```
+{% endmermaid %}
 * subgraphs 子图
 
 ```
@@ -73,6 +93,8 @@ image:
 	end
 ```
 子图demo
+
+```
 	graph TB
 		c1-->a2
 		subgraph one
@@ -84,3 +106,56 @@ image:
 		subgraph three
 		c1-->c2
 		end
+```
+
+{% mermaid %}
+	graph TB
+		c1-->a2
+		subgraph one
+		a1-->a2
+		end
+		subgraph two
+		b1-->b2
+		end
+		subgraph three
+		c1-->c2
+		end
+{% endmermaid %}
+
+
+* node和link的样式
+	* link没有id，所以按照我们定义的顺序来标识link,第一个为0
+	* node节点的大小，可以通过width和height来设置
+```
+graph LR
+	id1(Start)-->id2(Stop)
+	style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:100px,height:50px
+	style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
+	linkStyle 1 stroke:#ff3,stroke-width:4px;
+```
+{% mermaid %}
+	graph LR
+	    id1(Start)-->id2(Stop)
+	    style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
+		style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
+		linkStyle 0 stroke:#ff3,stroke-width:4px;
+{% endmermaid %}
+
+
+###  如何把mermaid集成到jekyll中。
+	
+	download mermaid.min.js and mermaid.min.js.map to /assets/js/vendor/
+	https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js
+	https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js.map
+	then edit the _config.yml
+	plugins:
+		...
+		- jekyll-mermaid
+	mermaid:
+		src: /assets/js/vendor/mermaid.min.js
+
+	bundle install
+	jekyll build
+
+	
+	插件的文档(https://github.com/jasonbellamy/jekyll-mermaid)有些问题，没有更上jekyll的更新,也是在这里踩坑了。
