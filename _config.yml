@@ -44,7 +44,6 @@ plugins:
   - jekyll-paginate
   - jekyll-gist
   - jekyll-feed
-  - jekyll-mermaid
 sass:
   sass_dir: _sass
   style: compressed
@@ -62,8 +61,6 @@ kramdown:
   toc_levels: 1..6
   enable_coderay: false
 
-mermaid:
-    src: "/assets/js/vendor/mermaid.min.js"
 
 include: 
   - .htaccess

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-15T18:09:14+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">use jekyll to generate github pages</title><link href="http://localhost:4000/jekyll-github-pages/" rel="alternate" type="text/html" title="use jekyll to generate github pages" /><published>2019-01-14T00:00:00+08:00</published><updated>2019-01-14T00:00:00+08:00</updated><id>http://localhost:4000/jekyll-github-pages</id><content type="html" xml:base="http://localhost:4000/jekyll-github-pages/">&lt;div class=&quot;mermaid&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-15T19:34:51+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">use jekyll to generate github pages</title><link href="http://localhost:4000/jekyll-github-pages/" rel="alternate" type="text/html" title="use jekyll to generate github pages" /><published>2019-01-14T00:00:00+08:00</published><updated>2019-01-14T00:00:00+08:00</updated><id>http://localhost:4000/jekyll-github-pages</id><content type="html" xml:base="http://localhost:4000/jekyll-github-pages/">&lt;div class=&quot;mermaid&quot;&gt;
 	graph LR
 		node
 		id[text in the box]
@@ -20,6 +20,35 @@
 		style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
 		linkStyle 0 stroke:#ff3,stroke-width:4px;
 
+&lt;/div&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+graph TB
+    c1--&amp;gt;a2
+    subgraph one
+    a1--&amp;gt;a2
+    end
+    subgraph two
+    b1--&amp;gt;b2
+    end
+    subgraph three
+    c1--&amp;gt;c2
+    end
+
+&lt;/div&gt;
+
+&lt;script src=&quot;/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;
+&lt;div class=&quot;mermaid&quot;&gt;
+sequenceDiagram
+    Alice-&amp;gt;&amp;gt;Bob: Hello Bob, how are you?
+    alt is sick
+        Bob-&amp;gt;&amp;gt;Alice: Not so good :(
+    else is well
+        Bob-&amp;gt;&amp;gt;Alice: Feeling fresh like a daisy
+    end
+    opt Extra response
+        Bob-&amp;gt;&amp;gt;Alice: Thanks for asking
+    end
 &lt;/div&gt;</content><author><name></name></author><category term="jekyll" /><category term="github pages" /><summary type="html">graph LR node id[text in the box] id1(text in the round edges box) id2((text in the circle)) id3&amp;gt;text in the label] id4{text in the rhombus box} node --&amp;gt; id1 id1 --&amp;gt; id2 id2 --&amp;gt; id3 id3 --&amp;gt; id4 node --&amp;gt; id</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/abstract-6.jpg" /></entry><entry><title type="html">A breif introduction to Mermiad</title><link href="http://localhost:4000/mermaid-notes/" rel="alternate" type="text/html" title="A breif introduction to Mermiad" /><published>2019-01-13T00:00:00+08:00</published><updated>2019-01-13T00:00:00+08:00</updated><id>http://localhost:4000/mermaid-notes</id><content type="html" xml:base="http://localhost:4000/mermaid-notes/">&lt;p&gt;不用点点点,编写一些代码，生成想要的流程图，可以提高工作效率。应该修改代码的效率，远远要高于鼠标点点点。&lt;/p&gt;
 
 &lt;h3 id=&quot;流程图-flowcharts&quot;&gt;流程图 flowcharts&lt;/h3&gt;
@@ -53,7 +82,8 @@
 		id3 --&amp;gt; id4
 		node --&amp;gt; id
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;	graph LR
+&lt;div class=&quot;mermaid&quot;&gt;
+	graph LR
 		node
 		id[text in the box]
 		id1(text in the round edges box)
@@ -65,7 +95,7 @@
 		id2 --&amp;gt; id3 
 		id3 --&amp;gt; id4
 		node --&amp;gt; id
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -97,7 +127,8 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;	graph LR
+&lt;div class=&quot;mermaid&quot;&gt;
+	graph LR
 		A --&amp;gt; B
 		A --- B
 		C --text in the link --- B 
@@ -109,7 +140,8 @@
 		N1 ==&amp;gt;|text| N3
 		Node[&quot;dd#quot\;&quot;]
 		Node1[&quot;#quot;A dec char:#9829;&quot;]
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;ul&gt;
   &lt;li&gt;subgraphs 子图&lt;/li&gt;
 &lt;/ul&gt;
@@ -133,7 +165,8 @@
 		end
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;	graph TB
+&lt;div class=&quot;mermaid&quot;&gt;
+	graph TB
 		c1--&amp;gt;a2
 		subgraph one
 		a1--&amp;gt;a2
@@ -144,7 +177,7 @@
 		subgraph three
 		c1--&amp;gt;c2
 		end
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;ul&gt;
   &lt;li&gt;node和link的样式
@@ -157,35 +190,70 @@
   style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
   linkStyle 1 stroke:#ff3,stroke-width:4px;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
-        &lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;  graph LR
-  id1(Start)--&amp;gt;id2(Stop)
-  style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
-  style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
-  linkStyle 0 stroke:#ff3,stroke-width:4px;
-&lt;/code&gt;&lt;/pre&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;div class=&quot;mermaid&quot;&gt;
+	graph LR
+	    id1(Start)--&amp;gt;id2(Stop)
+	    style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
+		style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
+		linkStyle 0 stroke:#ff3,stroke-width:4px;
+&lt;/div&gt;
+
 &lt;h3 id=&quot;如何把mermaid集成到jekyll中&quot;&gt;如何把mermaid集成到jekyll中。&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;download mermaid.min.js and mermaid.min.js.map to /assets/js/vendor/
-https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js
-https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js.map
-then edit the _config.yml
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;下面的方法在本地可以，但是github不可以&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;插件的文档(https://github.com/jasonbellamy/jekyll-mermaid)有些问题，没有更上jekyll的更新,也是在这里踩坑了。&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;download mermaid.min.js and mermaid.min.js.map to /assets/js/vendor/&lt;/li&gt;
+      &lt;li&gt;https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js&lt;/li&gt;
+      &lt;li&gt;https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js.map&lt;/li&gt;
+      &lt;li&gt;then edit the _config.yml&lt;/li&gt;
+      &lt;li&gt;bundle install&lt;/li&gt;
+      &lt;li&gt;jekyll build
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  _config.yml 修改内容
 plugins:
-	...
-	- jekyll-mermaid
+  ...
+  \- jekyll-mermaid
 mermaid:
-	src: /assets/js/vendor/mermaid.min.js
+  src: /assets/js/vendor/mermaid.min.js
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;把mermaid集成到jekyll之中，不使用插件(github可用)&lt;/p&gt;
 
-bundle install
-jekyll build
+    &lt;ul&gt;
+      &lt;li&gt;download mermaid.min.js and mermaid.min.js.map to /assets/js/vendor/&lt;/li&gt;
+      &lt;li&gt;https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js&lt;/li&gt;
+      &lt;li&gt;https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js.map&lt;/li&gt;
+      &lt;li&gt;在文档中引入mermaid.min.js (或者全局引入用)&lt;/li&gt;
+      &lt;li&gt;
+        &lt;script src=&quot;http://localhost:4000/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在md文档中，编写如下代码就可以实现mermaid流程图,previm也能正常显示&lt;/p&gt;
 
-
-插件的文档(https://github.com/jasonbellamy/jekyll-mermaid)有些问题，没有更上jekyll的更新,也是在这里踩坑了。
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="flowcharts" /><category term="Meriad" /><category term="UML" /><category term="viso" /><summary type="html">不用点点点,编写一些代码，生成想要的流程图，可以提高工作效率。应该修改代码的效率，远远要高于鼠标点点点。</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/abstract-6.jpg" /></entry><entry><title type="html">Previm – a vim plugin preview the markdown file</title><link href="http://localhost:4000/vim-plugin-previm/" rel="alternate" type="text/html" title="Previm -- a vim plugin preview the markdown file" /><published>2019-01-13T00:00:00+08:00</published><updated>2019-01-13T00:00:00+08:00</updated><id>http://localhost:4000/vim-plugin-previm</id><content type="html" xml:base="http://localhost:4000/vim-plugin-previm/">&lt;p&gt;vim下有很多支持markdown文件预览的插件。今天找到了一个很简单而且功能相对强大的vim插件previm。
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;      &amp;lt;div class=&quot;mermaid&quot;&amp;gt;
+          graph TB
+              A[text]
+              ....
+      &amp;lt;/div&amp;gt;
+      或者用一个mermaid的liquid包裹mermaid的代码
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="flowcharts" /><category term="Meriad" /><category term="UML" /><category term="viso" /><summary type="html">不用点点点,编写一些代码，生成想要的流程图，可以提高工作效率。应该修改代码的效率，远远要高于鼠标点点点。</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/abstract-6.jpg" /></entry><entry><title type="html">Previm – a vim plugin preview the markdown file</title><link href="http://localhost:4000/vim-plugin-previm/" rel="alternate" type="text/html" title="Previm -- a vim plugin preview the markdown file" /><published>2019-01-13T00:00:00+08:00</published><updated>2019-01-13T00:00:00+08:00</updated><id>http://localhost:4000/vim-plugin-previm</id><content type="html" xml:base="http://localhost:4000/vim-plugin-previm/">&lt;p&gt;vim下有很多支持markdown文件预览的插件。今天找到了一个很简单而且功能相对强大的vim插件previm。
 是一个日本开发者的开源项目(https://github.com/previm/previm/blob/master/README-en.mkd)
 需要依赖的library和插件很少。准确说预览reStructuredText文档需要rst2html的一个python工具外。&lt;/p&gt;
 

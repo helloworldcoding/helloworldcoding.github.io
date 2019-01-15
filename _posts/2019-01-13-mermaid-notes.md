@@ -35,7 +35,7 @@ image:
 		id3 --> id4
 		node --> id
 ```
-```mermaid
+<div class="mermaid">
 	graph LR
 		node
 		id[text in the box]
@@ -48,7 +48,7 @@ image:
 		id2 --> id3 
 		id3 --> id4
 		node --> id
-```
+</div>
 
 * link 线条类型
 
@@ -71,7 +71,7 @@ image:
 	* Node["this is (txxt)"]  用双引号把内容包起来，这样就能输出括号等特殊字符了。
 	* 同时双引号内的html实体会被转义输出,如#quot;会转义为" #9829;会转义为一个心形
 
-```mermaid
+<div class="mermaid">
 	graph LR
 		A --> B
 		A --- B
@@ -84,7 +84,8 @@ image:
 		N1 ==>|text| N3
 		Node["dd#quot\;"]
 		Node1["#quot;A dec char:#9829;"]
-```
+</div>
+
 * subgraphs 子图
 
 ```
@@ -108,7 +109,7 @@ image:
 		end
 ```
 
-```mermaid
+<div class="mermaid">
 	graph TB
 		c1-->a2
 		subgraph one
@@ -120,7 +121,7 @@ image:
 		subgraph three
 		c1-->c2
 		end
-```
+</div>
 
 
 * node和link的样式
@@ -133,29 +134,50 @@ graph LR
 	style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
 	linkStyle 1 stroke:#ff3,stroke-width:4px;
 ```
-```mermaid
+
+<div class="mermaid">
 	graph LR
 	    id1(Start)-->id2(Stop)
 	    style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
 		style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
 		linkStyle 0 stroke:#ff3,stroke-width:4px;
-```
-
+</div>
 
 ###  如何把mermaid集成到jekyll中。
-	
-	download mermaid.min.js and mermaid.min.js.map to /assets/js/vendor/
-	https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js
-	https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js.map
-	then edit the _config.yml
-	plugins:
-		...
-		- jekyll-mermaid
-	mermaid:
-		src: /assets/js/vendor/mermaid.min.js
 
-	bundle install
-	jekyll build
+* 下面的方法在本地可以，但是github不可以
 
+	* 插件的文档(https://github.com/jasonbellamy/jekyll-mermaid)有些问题，没有更上jekyll的更新,也是在这里踩坑了。
+
+	* download mermaid.min.js and mermaid.min.js.map to /assets/js/vendor/
+	* https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js
+	* https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js.map
+	* then edit the _config.yml
+	* bundle install
+	* jekyll build
+```
+	_config.yml 修改内容
+plugins:
+	...
+	\- jekyll-mermaid
+mermaid:
+	src: /assets/js/vendor/mermaid.min.js
+```
+
+* 把mermaid集成到jekyll之中，不使用插件(github可用)
+
+	* download mermaid.min.js and mermaid.min.js.map to /assets/js/vendor/
+	* https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js
+	* https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js.map
+	* 在文档中引入mermaid.min.js (或者全局引入用)
+	* <script src="{{ site.url }}/assets/js/vendor/mermaid.min.js"></script>
+
+* 在md文档中，编写如下代码就可以实现mermaid流程图,previm也能正常显示
+
+			<div class="mermaid">
+				graph TB
+					A[text]
+					....
+			</div>
+			或者用一个mermaid的liquid包裹mermaid的代码
 	
-	插件的文档(https://github.com/jasonbellamy/jekyll-mermaid)有些问题，没有更上jekyll的更新,也是在这里踩坑了。

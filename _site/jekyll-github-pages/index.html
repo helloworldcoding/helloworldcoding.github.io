@@ -160,6 +160,35 @@ Reading time ~1 minute
 
 </div>
 
+<div class="mermaid">
+graph TB
+    c1--&gt;a2
+    subgraph one
+    a1--&gt;a2
+    end
+    subgraph two
+    b1--&gt;b2
+    end
+    subgraph three
+    c1--&gt;c2
+    end
+
+</div>
+
+<script src="/assets/js/vendor/mermaid.min.js"></script>
+<div class="mermaid">
+sequenceDiagram
+    Alice-&gt;&gt;Bob: Hello Bob, how are you?
+    alt is sick
+        Bob-&gt;&gt;Alice: Not so good :(
+    else is well
+        Bob-&gt;&gt;Alice: Feeling fresh like a daisy
+    end
+    opt Extra response
+        Bob-&gt;&gt;Alice: Thanks for asking
+    end
+</div>
+
       <footer class="entry-meta">
         <span class="entry-tags"><a href="http://localhost:4000/tags/#jekyll" title="Pages tagged jekyll" class="tag"><span class="term">jekyll</span></a><a href="http://localhost:4000/tags/#github pages" title="Pages tagged github pages" class="tag"><span class="term">github pages</span></a></span>
         
