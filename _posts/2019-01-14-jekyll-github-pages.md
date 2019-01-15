@@ -9,7 +9,7 @@ image:
 ---
 
 
-<div class="mermaid">
+{% mermaid %}
 	graph LR
 		node
 		id[text in the box]
@@ -22,7 +22,7 @@ image:
 		id2 --> id3 
 		id3 --> id4
 		node --> id
-</div>
+{% endmermaid %}
 
 <div class="mermaid">
 	graph LR
