@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-01-15T20:26:30+08:00</updated><id>/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">use jekyll to generate github pages</title><link href="/jekyll-github-pages/" rel="alternate" type="text/html" title="use jekyll to generate github pages" /><published>2019-01-14T00:00:00+08:00</published><updated>2019-01-14T00:00:00+08:00</updated><id>/jekyll-github-pages</id><content type="html" xml:base="/jekyll-github-pages/">&lt;script src=&quot;/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-15T20:33:41+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">use jekyll to generate github pages</title><link href="http://localhost:4000/jekyll-github-pages/" rel="alternate" type="text/html" title="use jekyll to generate github pages" /><published>2019-01-14T00:00:00+08:00</published><updated>2019-01-14T00:00:00+08:00</updated><id>http://localhost:4000/jekyll-github-pages</id><content type="html" xml:base="http://localhost:4000/jekyll-github-pages/">&lt;script src=&quot;/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;
 &lt;div class=&quot;mermaid&quot;&gt;
 	graph LR
 		node
@@ -50,7 +50,65 @@ sequenceDiagram
     opt Extra response
         Bob-&amp;gt;&amp;gt;Alice: Thanks for asking
     end
-&lt;/div&gt;</content><author><name></name></author><category term="jekyll" /><category term="github pages" /><summary type="html">graph LR node id[text in the box] id1(text in the round edges box) id2((text in the circle)) id3&amp;gt;text in the label] id4{text in the rhombus box} node --&amp;gt; id1 id1 --&amp;gt; id2 id2 --&amp;gt; id3 id3 --&amp;gt; id4 node --&amp;gt; id</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/abstract-6.jpg" /></entry><entry><title type="html">A breif introduction to Mermiad</title><link href="/mermaid-notes/" rel="alternate" type="text/html" title="A breif introduction to Mermiad" /><published>2019-01-13T00:00:00+08:00</published><updated>2019-01-13T00:00:00+08:00</updated><id>/mermaid-notes</id><content type="html" xml:base="/mermaid-notes/">&lt;p&gt;不用点点点,编写一些代码，生成想要的流程图，可以提高工作效率。应该修改代码的效率，远远要高于鼠标点点点。&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;
+&lt;div class=&quot;mermaid&quot;&gt;
+
+	graph LR
+		node
+		id[text in the box]
+		id1(text in the round edges box)
+		id2((text in the circle))
+		id3&amp;gt;text in the label]
+		id4{text in the rhombus box}
+		node --&amp;gt; id1
+		id1 --&amp;gt; id2
+		id2 --&amp;gt; id3 
+		id3 --&amp;gt; id4
+		node --&amp;gt; id
+
+&lt;/div&gt;
+
+&lt;script src=&quot;/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;
+&lt;div class=&quot;mermaid&quot;&gt;
+	graph LR
+		A1 --&amp;gt; B1
+		A2 --- B2
+		C --text in the link --- B3
+		D ---|text_on_link| B4
+		E --&amp;gt;|text| B5
+		F -.-&amp;gt; B6
+		F -.-&amp;gt;|text in line| Te
+		H -.-&amp;gt;|text| Note
+		N1 ==&amp;gt;|text| N3
+		Node[&quot;dd#quot\;&quot;]
+		Node1[&quot;#quot;A dec char:#9829;&quot;]
+		Node === Node1
+&lt;/div&gt;
+&lt;script src=&quot;/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;
+&lt;div class=&quot;mermaid&quot;&gt;
+	graph TB
+		c1--&amp;gt;a2
+		subgraph one
+		a1--&amp;gt;a2
+		end
+		subgraph two
+		b1--&amp;gt;b2
+		end
+		subgraph three
+		c1--&amp;gt;c2
+		end
+&lt;/div&gt;
+
+&lt;script src=&quot;/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;
+&lt;div class=&quot;mermaid&quot;&gt;
+	graph LR
+	    id1(Start)--&amp;gt;id2(Stop)
+	    style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
+		style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
+		linkStyle 0 stroke:#ff3,stroke-width:4px;
+&lt;/div&gt;</content><author><name></name></author><category term="jekyll" /><category term="github pages" /><summary type="html">graph LR node id[text in the box] id1(text in the round edges box) id2((text in the circle)) id3&amp;gt;text in the label] id4{text in the rhombus box} node --&amp;gt; id1 id1 --&amp;gt; id2 id2 --&amp;gt; id3 id3 --&amp;gt; id4 node --&amp;gt; id</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/abstract-6.jpg" /></entry><entry><title type="html">A breif introduction to Mermiad</title><link href="http://localhost:4000/mermaid-notes/" rel="alternate" type="text/html" title="A breif introduction to Mermiad" /><published>2019-01-13T00:00:00+08:00</published><updated>2019-01-13T00:00:00+08:00</updated><id>http://localhost:4000/mermaid-notes</id><content type="html" xml:base="http://localhost:4000/mermaid-notes/">&lt;p&gt;不用点点点,编写一些代码，生成想要的流程图，可以提高工作效率。应该修改代码的效率，远远要高于鼠标点点点。&lt;/p&gt;
 
 &lt;h3 id=&quot;流程图-flowcharts&quot;&gt;流程图 flowcharts&lt;/h3&gt;
 
@@ -187,13 +245,13 @@ mermaid:
       &lt;li&gt;https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js&lt;/li&gt;
       &lt;li&gt;https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js.map&lt;/li&gt;
       &lt;li&gt;在文档中引入mermaid.min.js (或者全局引入用)&lt;/li&gt;
-      &lt;li&gt;&amp;lt;script src=”/assets/js/vendor/mermaid.min.js”&amp;gt;&amp;lt;/script&amp;gt;&lt;/li&gt;
+      &lt;li&gt;&amp;lt;script src=”http://localhost:4000/assets/js/vendor/mermaid.min.js”&amp;gt;&amp;lt;/script&amp;gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;在md文档中，编写如下代码就可以实现mermaid流程图,previm也能正常显示&lt;/p&gt;
 
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;      &amp;lt;div class=&quot;mermaid&quot; &amp;gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;      &amp;lt;div class=&quot;mermid&quot; &amp;gt;
           graph TB
               A[text]
               ....
@@ -204,65 +262,7 @@ mermaid:
   &lt;li&gt;
     &lt;p&gt;如图&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;script src=&quot;/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;
-&lt;div class=&quot;mermaid&quot;&gt;
-
-	graph LR
-		node
-		id[text in the box]
-		id1(text in the round edges box)
-		id2((text in the circle))
-		id3&amp;gt;text in the label]
-		id4{text in the rhombus box}
-		node --&amp;gt; id1
-		id1 --&amp;gt; id2
-		id2 --&amp;gt; id3 
-		id3 --&amp;gt; id4
-		node --&amp;gt; id
-
-&lt;/div&gt;
-
-&lt;script src=&quot;/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;
-&lt;div class=&quot;mermaid&quot;&gt;
-	graph LR
-		A1 --&amp;gt; B1
-		A2 --- B2
-		C --text in the link --- B3
-		D ---|text_on_link| B4
-		E --&amp;gt;|text| B5
-		F -.-&amp;gt; B6
-		F -.-&amp;gt;|text in line| Te
-		H -.-&amp;gt;|text| Note
-		N1 ==&amp;gt;|text| N3
-		Node[&quot;dd#quot\;&quot;]
-		Node1[&quot;#quot;A dec char:#9829;&quot;]
-		Node === Node1
-&lt;/div&gt;
-&lt;script src=&quot;/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;
-&lt;div class=&quot;mermaid&quot;&gt;
-	graph TB
-		c1--&amp;gt;a2
-		subgraph one
-		a1--&amp;gt;a2
-		end
-		subgraph two
-		b1--&amp;gt;b2
-		end
-		subgraph three
-		c1--&amp;gt;c2
-		end
-&lt;/div&gt;
-
-&lt;script src=&quot;/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;
-&lt;div class=&quot;mermaid&quot;&gt;
-	graph LR
-	    id1(Start)--&amp;gt;id2(Stop)
-	    style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
-		style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
-		linkStyle 0 stroke:#ff3,stroke-width:4px;
-&lt;/div&gt;</content><author><name></name></author><category term="flowcharts" /><category term="Meriad" /><category term="UML" /><category term="viso" /><summary type="html">不用点点点,编写一些代码，生成想要的流程图，可以提高工作效率。应该修改代码的效率，远远要高于鼠标点点点。</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/abstract-6.jpg" /></entry><entry><title type="html">Previm – a vim plugin preview the markdown file</title><link href="/vim-plugin-previm/" rel="alternate" type="text/html" title="Previm -- a vim plugin preview the markdown file" /><published>2019-01-13T00:00:00+08:00</published><updated>2019-01-13T00:00:00+08:00</updated><id>/vim-plugin-previm</id><content type="html" xml:base="/vim-plugin-previm/">&lt;p&gt;vim下有很多支持markdown文件预览的插件。今天找到了一个很简单而且功能相对强大的vim插件previm。
+&lt;/ul&gt;</content><author><name></name></author><category term="flowcharts" /><category term="Meriad" /><category term="UML" /><category term="viso" /><summary type="html">不用点点点,编写一些代码，生成想要的流程图，可以提高工作效率。应该修改代码的效率，远远要高于鼠标点点点。</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/abstract-6.jpg" /></entry><entry><title type="html">Previm – a vim plugin preview the markdown file</title><link href="http://localhost:4000/vim-plugin-previm/" rel="alternate" type="text/html" title="Previm -- a vim plugin preview the markdown file" /><published>2019-01-13T00:00:00+08:00</published><updated>2019-01-13T00:00:00+08:00</updated><id>http://localhost:4000/vim-plugin-previm</id><content type="html" xml:base="http://localhost:4000/vim-plugin-previm/">&lt;p&gt;vim下有很多支持markdown文件预览的插件。今天找到了一个很简单而且功能相对强大的vim插件previm。
 是一个日本开发者的开源项目(https://github.com/previm/previm/blob/master/README-en.mkd)
 需要依赖的library和插件很少。准确说预览reStructuredText文档需要rst2html的一个python工具外。&lt;/p&gt;
 
@@ -341,7 +341,7 @@ mermaid:
 
 &lt;figure&gt;
 	&lt;img src=&quot;/images/previm-result.png&quot; alt=&quot;预览效果&quot; /&gt;
-&lt;/figure&gt;</content><author><name></name></author><category term="vim plugin" /><category term="markdown" /><category term="mermaid" /><category term="previm" /><summary type="html">vim下有很多支持markdown文件预览的插件。今天找到了一个很简单而且功能相对强大的vim插件previm。 是一个日本开发者的开源项目(https://github.com/previm/previm/blob/master/README-en.mkd) 需要依赖的library和插件很少。准确说预览reStructuredText文档需要rst2html的一个python工具外。</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/abstract-6.jpg" /></entry><entry><title type="html">A Post with Images</title><link href="/sample-post-images/" rel="alternate" type="text/html" title="A Post with Images" /><published>2013-05-22T00:00:00+08:00</published><updated>2013-05-22T00:00:00+08:00</updated><id>/sample-post-images</id><content type="html" xml:base="/sample-post-images/">&lt;p&gt;Here are some examples of what a post with images might look like. If you want to display two or three images next to each other responsively use &lt;code class=&quot;highlighter-rouge&quot;&gt;figure&lt;/code&gt; with the appropriate &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;. Each instance of &lt;code class=&quot;highlighter-rouge&quot;&gt;figure&lt;/code&gt; is auto-numbered and displayed in the caption.&lt;/p&gt;
+&lt;/figure&gt;</content><author><name></name></author><category term="vim plugin" /><category term="markdown" /><category term="mermaid" /><category term="previm" /><summary type="html">vim下有很多支持markdown文件预览的插件。今天找到了一个很简单而且功能相对强大的vim插件previm。 是一个日本开发者的开源项目(https://github.com/previm/previm/blob/master/README-en.mkd) 需要依赖的library和插件很少。准确说预览reStructuredText文档需要rst2html的一个python工具外。</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/abstract-6.jpg" /></entry><entry><title type="html">A Post with Images</title><link href="http://localhost:4000/sample-post-images/" rel="alternate" type="text/html" title="A Post with Images" /><published>2013-05-22T00:00:00+08:00</published><updated>2013-05-22T00:00:00+08:00</updated><id>http://localhost:4000/sample-post-images</id><content type="html" xml:base="http://localhost:4000/sample-post-images/">&lt;p&gt;Here are some examples of what a post with images might look like. If you want to display two or three images next to each other responsively use &lt;code class=&quot;highlighter-rouge&quot;&gt;figure&lt;/code&gt; with the appropriate &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;. Each instance of &lt;code class=&quot;highlighter-rouge&quot;&gt;figure&lt;/code&gt; is auto-numbered and displayed in the caption.&lt;/p&gt;
 
 &lt;h2 id=&quot;figures-for-images-or-video&quot;&gt;Figures (for images or video)&lt;/h2&gt;
 
