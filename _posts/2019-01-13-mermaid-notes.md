@@ -35,7 +35,7 @@ image:
 		id3 --> id4
 		node --> id
 ```
-{% mermaid %}
+```mermaid
 	graph LR
 		node
 		id[text in the box]
@@ -48,7 +48,7 @@ image:
 		id2 --> id3 
 		id3 --> id4
 		node --> id
-{% endmermaid %}
+```
 
 * link 线条类型
 
@@ -71,7 +71,7 @@ image:
 	* Node["this is (txxt)"]  用双引号把内容包起来，这样就能输出括号等特殊字符了。
 	* 同时双引号内的html实体会被转义输出,如#quot;会转义为" #9829;会转义为一个心形
 
-{% mermaid %}
+```mermaid
 	graph LR
 		A --> B
 		A --- B
@@ -84,7 +84,7 @@ image:
 		N1 ==>|text| N3
 		Node["dd#quot\;"]
 		Node1["#quot;A dec char:#9829;"]
-{% endmermaid %}
+```
 * subgraphs 子图
 
 ```
@@ -108,7 +108,7 @@ image:
 		end
 ```
 
-{% mermaid %}
+```mermaid
 	graph TB
 		c1-->a2
 		subgraph one
@@ -120,7 +120,7 @@ image:
 		subgraph three
 		c1-->c2
 		end
-{% endmermaid %}
+```
 
 
 * node和link的样式
@@ -133,13 +133,13 @@ graph LR
 	style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
 	linkStyle 1 stroke:#ff3,stroke-width:4px;
 ```
-{% mermaid %}
+```mermaid
 	graph LR
 	    id1(Start)-->id2(Stop)
 	    style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
 		style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
 		linkStyle 0 stroke:#ff3,stroke-width:4px;
-{% endmermaid %}
+```
 
 
 ###  如何把mermaid集成到jekyll中。

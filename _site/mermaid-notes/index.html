@@ -169,9 +169,7 @@ Reading time ~1 minute
 		id3 --&gt; id4
 		node --&gt; id
 </code></pre></div></div>
-<script src="/assets/js/vendor/mermaid.min.js"></script>
-<div class="mermaid">
-	graph LR
+<pre><code class="language-mermaid">	graph LR
 		node
 		id[text in the box]
 		id1(text in the round edges box)
@@ -183,7 +181,7 @@ Reading time ~1 minute
 		id2 --&gt; id3 
 		id3 --&gt; id4
 		node --&gt; id
-</div>
+</code></pre>
 
 <ul>
   <li>
@@ -215,9 +213,7 @@ Reading time ~1 minute
   </li>
 </ul>
 
-<script src="/assets/js/vendor/mermaid.min.js"></script>
-<div class="mermaid">
-	graph LR
+<pre><code class="language-mermaid">	graph LR
 		A --&gt; B
 		A --- B
 		C --text in the link --- B 
@@ -229,7 +225,7 @@ Reading time ~1 minute
 		N1 ==&gt;|text| N3
 		Node["dd#quot\;"]
 		Node1["#quot;A dec char:#9829;"]
-</div>
+</code></pre>
 <ul>
   <li>subgraphs 子图</li>
 </ul>
@@ -253,9 +249,7 @@ Reading time ~1 minute
 		end
 </code></pre></div></div>
 
-<script src="/assets/js/vendor/mermaid.min.js"></script>
-<div class="mermaid">
-	graph TB
+<pre><code class="language-mermaid">	graph TB
 		c1--&gt;a2
 		subgraph one
 		a1--&gt;a2
@@ -266,7 +260,7 @@ Reading time ~1 minute
 		subgraph three
 		c1--&gt;c2
 		end
-</div>
+</code></pre>
 
 <ul>
   <li>node和link的样式
@@ -279,19 +273,16 @@ Reading time ~1 minute
   style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
   linkStyle 1 stroke:#ff3,stroke-width:4px;
 </code></pre></div>        </div>
-        <script src="/assets/js/vendor/mermaid.min.js"></script>
-        <div class="mermaid">
-  graph LR
+        <pre><code class="language-mermaid">  graph LR
   id1(Start)--&gt;id2(Stop)
   style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
   style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
   linkStyle 0 stroke:#ff3,stroke-width:4px;
-</div>
+</code></pre>
       </li>
     </ul>
   </li>
 </ul>
-<p>&lt;/div&gt;</p>
 
 <h3 id="如何把mermaid集成到jekyll中">如何把mermaid集成到jekyll中。</h3>
 
@@ -331,8 +322,8 @@ jekyll build
       <a href="http://localhost:4000/sample-post-images/" class="read-more-btn">Read More</a>
     </div><!-- /.read-more-header -->
     <div class="read-more-content">
-      <h3><a href="http://localhost:4000/jekyll-github-pages/" title="Jekyll Github Pages">Jekyll Github Pages</a></h3>
-      <p>&hellip; <a href="http://localhost:4000/jekyll-github-pages/">Continue reading</a></p>
+      <h3><a href="http://localhost:4000/jekyll-github-pages/" title="use jekyll to generate github pages">use jekyll to generate github pages</a></h3>
+      <p>a easy way to build your personal website <a href="http://localhost:4000/jekyll-github-pages/">Continue reading</a></p>
     </div><!-- /.read-more-content -->
   
   <div class="read-more-list">
@@ -361,6 +352,8 @@ jekyll build
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 <script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+<script src="http://localhost:4000/assets/js/vendor/mermaid.min.js"></script>
+
 
 
 

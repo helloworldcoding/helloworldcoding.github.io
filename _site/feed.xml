@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-15T10:55:21+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">Jekyll Github Pages</title><link href="http://localhost:4000/jekyll-github-pages/" rel="alternate" type="text/html" title="Jekyll Github Pages" /><published>2019-01-14T00:00:00+08:00</published><updated>2019-01-14T00:00:00+08:00</updated><id>http://localhost:4000/jekyll-github-pages</id><content type="html" xml:base="http://localhost:4000/jekyll-github-pages/"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">A breif introduction to Mermiad</title><link href="http://localhost:4000/mermaid-notes/" rel="alternate" type="text/html" title="A breif introduction to Mermiad" /><published>2019-01-13T00:00:00+08:00</published><updated>2019-01-13T00:00:00+08:00</updated><id>http://localhost:4000/mermaid-notes</id><content type="html" xml:base="http://localhost:4000/mermaid-notes/">&lt;p&gt;不用点点点,编写一些代码，生成想要的流程图，可以提高工作效率。应该修改代码的效率，远远要高于鼠标点点点。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-15T18:09:14+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">use jekyll to generate github pages</title><link href="http://localhost:4000/jekyll-github-pages/" rel="alternate" type="text/html" title="use jekyll to generate github pages" /><published>2019-01-14T00:00:00+08:00</published><updated>2019-01-14T00:00:00+08:00</updated><id>http://localhost:4000/jekyll-github-pages</id><content type="html" xml:base="http://localhost:4000/jekyll-github-pages/">&lt;div class=&quot;mermaid&quot;&gt;
+	graph LR
+		node
+		id[text in the box]
+		id1(text in the round edges box)
+		id2((text in the circle))
+		id3&amp;gt;text in the label]
+		id4{text in the rhombus box}
+		node --&amp;gt; id1
+		id1 --&amp;gt; id2
+		id2 --&amp;gt; id3 
+		id3 --&amp;gt; id4
+		node --&amp;gt; id
+&lt;/div&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+	graph LR
+	    id1(Start)--&amp;gt;id2(Stop)
+	    style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
+		style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
+		linkStyle 0 stroke:#ff3,stroke-width:4px;
+
+&lt;/div&gt;</content><author><name></name></author><category term="jekyll" /><category term="github pages" /><summary type="html">graph LR node id[text in the box] id1(text in the round edges box) id2((text in the circle)) id3&amp;gt;text in the label] id4{text in the rhombus box} node --&amp;gt; id1 id1 --&amp;gt; id2 id2 --&amp;gt; id3 id3 --&amp;gt; id4 node --&amp;gt; id</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/abstract-6.jpg" /></entry><entry><title type="html">A breif introduction to Mermiad</title><link href="http://localhost:4000/mermaid-notes/" rel="alternate" type="text/html" title="A breif introduction to Mermiad" /><published>2019-01-13T00:00:00+08:00</published><updated>2019-01-13T00:00:00+08:00</updated><id>http://localhost:4000/mermaid-notes</id><content type="html" xml:base="http://localhost:4000/mermaid-notes/">&lt;p&gt;不用点点点,编写一些代码，生成想要的流程图，可以提高工作效率。应该修改代码的效率，远远要高于鼠标点点点。&lt;/p&gt;
 
 &lt;h3 id=&quot;流程图-flowcharts&quot;&gt;流程图 flowcharts&lt;/h3&gt;
 
@@ -31,9 +53,7 @@
 		id3 --&amp;gt; id4
 		node --&amp;gt; id
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;script src=&quot;/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;
-&lt;div class=&quot;mermaid&quot;&gt;
-	graph LR
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;	graph LR
 		node
 		id[text in the box]
 		id1(text in the round edges box)
@@ -45,7 +65,7 @@
 		id2 --&amp;gt; id3 
 		id3 --&amp;gt; id4
 		node --&amp;gt; id
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -77,9 +97,7 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;script src=&quot;/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;
-&lt;div class=&quot;mermaid&quot;&gt;
-	graph LR
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;	graph LR
 		A --&amp;gt; B
 		A --- B
 		C --text in the link --- B 
@@ -91,7 +109,7 @@
 		N1 ==&amp;gt;|text| N3
 		Node[&quot;dd#quot\;&quot;]
 		Node1[&quot;#quot;A dec char:#9829;&quot;]
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
 &lt;ul&gt;
   &lt;li&gt;subgraphs 子图&lt;/li&gt;
 &lt;/ul&gt;
@@ -115,9 +133,7 @@
 		end
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;script src=&quot;/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;
-&lt;div class=&quot;mermaid&quot;&gt;
-	graph TB
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;	graph TB
 		c1--&amp;gt;a2
 		subgraph one
 		a1--&amp;gt;a2
@@ -128,7 +144,7 @@
 		subgraph three
 		c1--&amp;gt;c2
 		end
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
   &lt;li&gt;node和link的样式
@@ -141,19 +157,16 @@
   style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
   linkStyle 1 stroke:#ff3,stroke-width:4px;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
-        &lt;script src=&quot;/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;
-        &lt;div class=&quot;mermaid&quot;&gt;
-  graph LR
+        &lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;  graph LR
   id1(Start)--&amp;gt;id2(Stop)
   style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
   style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
   linkStyle 0 stroke:#ff3,stroke-width:4px;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;如何把mermaid集成到jekyll中&quot;&gt;如何把mermaid集成到jekyll中。&lt;/h3&gt;
 

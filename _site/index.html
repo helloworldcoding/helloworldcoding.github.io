@@ -129,6 +129,10 @@
 <article class="hentry">
   <header>
     
+      <div class="entry-image-index">
+        <a href="http://localhost:4000/jekyll-github-pages/" title="use jekyll to generate github pages"><img src="http://localhost:4000/images/abstract-6.jpg" alt="use jekyll to generate github pages"></a>
+      </div><!-- /.entry-image -->
+    
     <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2019-01-14T00:00:00+08:00"><a href="http://localhost:4000/jekyll-github-pages/">January 14, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
       
@@ -140,11 +144,33 @@ Reading time ~1 minute
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/jekyll-github-pages/" rel="bookmark" title="Jekyll Github Pages" itemprop="url">Jekyll Github Pages</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/jekyll-github-pages/" rel="bookmark" title="use jekyll to generate github pages" itemprop="url">use jekyll to generate github pages</a></h1>
     
   </header>
   <div class="entry-content">
-    
+    <div class="mermaid">
+	graph LR
+		node
+		id[text in the box]
+		id1(text in the round edges box)
+		id2((text in the circle))
+		id3&gt;text in the label]
+		id4{text in the rhombus box}
+		node --&gt; id1
+		id1 --&gt; id2
+		id2 --&gt; id3 
+		id3 --&gt; id4
+		node --&gt; id
+</div>
+
+<div class="mermaid">
+	graph LR
+	    id1(Start)--&gt;id2(Stop)
+	    style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
+		style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
+		linkStyle 0 stroke:#ff3,stroke-width:4px;
+
+</div>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -311,9 +337,7 @@ Reading time ~1 minute
 		id3 --&gt; id4
 		node --&gt; id
 </code></pre></div></div>
-<script src="/assets/js/vendor/mermaid.min.js"></script>
-<div class="mermaid">
-	graph LR
+<pre><code class="language-mermaid">	graph LR
 		node
 		id[text in the box]
 		id1(text in the round edges box)
@@ -325,7 +349,7 @@ Reading time ~1 minute
 		id2 --&gt; id3 
 		id3 --&gt; id4
 		node --&gt; id
-</div>
+</code></pre>
 
 <ul>
   <li>
@@ -357,9 +381,7 @@ Reading time ~1 minute
   </li>
 </ul>
 
-<script src="/assets/js/vendor/mermaid.min.js"></script>
-<div class="mermaid">
-	graph LR
+<pre><code class="language-mermaid">	graph LR
 		A --&gt; B
 		A --- B
 		C --text in the link --- B 
@@ -371,7 +393,7 @@ Reading time ~1 minute
 		N1 ==&gt;|text| N3
 		Node["dd#quot\;"]
 		Node1["#quot;A dec char:#9829;"]
-</div>
+</code></pre>
 <ul>
   <li>subgraphs 子图</li>
 </ul>
@@ -395,9 +417,7 @@ Reading time ~1 minute
 		end
 </code></pre></div></div>
 
-<script src="/assets/js/vendor/mermaid.min.js"></script>
-<div class="mermaid">
-	graph TB
+<pre><code class="language-mermaid">	graph TB
 		c1--&gt;a2
 		subgraph one
 		a1--&gt;a2
@@ -408,7 +428,7 @@ Reading time ~1 minute
 		subgraph three
 		c1--&gt;c2
 		end
-</div>
+</code></pre>
 
 <ul>
   <li>node和link的样式
@@ -421,19 +441,16 @@ Reading time ~1 minute
   style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
   linkStyle 1 stroke:#ff3,stroke-width:4px;
 </code></pre></div>        </div>
-        <script src="/assets/js/vendor/mermaid.min.js"></script>
-        <div class="mermaid">
-  graph LR
+        <pre><code class="language-mermaid">  graph LR
   id1(Start)--&gt;id2(Stop)
   style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
   style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
   linkStyle 0 stroke:#ff3,stroke-width:4px;
-</div>
+</code></pre>
       </li>
     </ul>
   </li>
 </ul>
-<p>&lt;/div&gt;</p>
 
 <h3 id="如何把mermaid集成到jekyll中">如何把mermaid集成到jekyll中。</h3>
 
@@ -586,6 +603,8 @@ Available values: [1..3].</li>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 <script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+<script src="http://localhost:4000/assets/js/vendor/mermaid.min.js"></script>
+
 
 
 
