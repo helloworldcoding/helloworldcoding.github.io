@@ -123,7 +123,7 @@ mermaid:
 
 * 在md文档中，编写如下代码就可以实现mermaid流程图,previm也能正常显示
 
-			<div class="mermaid" >
+			<div class="mermid" >
 				graph TB
 					A[text]
 					....
