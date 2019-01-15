@@ -130,5 +130,4 @@ mermaid:
 			</div>
 			或者用一个mermaid的liquid包裹mermaid的代码
 	
-* 如图
 
