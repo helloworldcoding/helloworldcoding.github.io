@@ -135,7 +135,7 @@
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
         
-Reading time ~2 minutes
+Reading time ~3 minutes
       </span><!-- /.entry-reading-time -->
       
     </div><!-- /.entry-meta -->
@@ -144,7 +144,9 @@ Reading time ~2 minutes
     
   </header>
   <div class="entry-content">
-    <h2 id="小小的一个demo">小小的一个demo</h2>
+    <p>时序图（Sequence Diagram），又名序列图、循序图，是一种UML交互图。它通过描述对象之间发送消息的时间顺序显示多个对象之间的动态协作。它可以表示用例的行为顺序，当执行一个用例行为时，其中的每条消息对应一个类操作或状态机中引起转换的触发事件。</p>
+
+<h2 id="一个小demo">一个小demo</h2>
 <pre><code class="language-mermaid">	sequenceDiagram
 		Alice -&gt;&gt; John: Hi John,nice day, Uh huh?
 		John  --&gt;&gt; Alice: Yeap
@@ -164,19 +166,10 @@ Reading time ~2 minutes
     <ul>
       <li>activate/deactivate [participant] 激活或取消</li>
       <li>--&gt;+  加号激活</li>
-      <li>--&gt;-  减号取消,通过+/-明显比较方便</li>
+      <li>--&gt;-  减号取消,通过+/-明显比较方便(但是，有时候会失效)</li>
     </ul>
   </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>note(便签, Note [right of</td>
-          <td>left of</td>
-          <td>over] [participant])</td>
-        </tr>
-      </tbody>
-    </table>
+  <li>note(便签, Note [right of | left of | over] [participant])
     <ul>
       <li>Note right of John: Foo12345</li>
       <li>Note left of Alice: An note</li>
@@ -286,7 +279,15 @@ Reading time ~2 minutes
   </tbody>
 </table>
 
-<h3 id="微信支付流程">微信支付流程</h3>
+<h3 id="微信jsapi支付流程">微信JSAPI支付流程</h3>
+
+<ul>
+  <li>文档：https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_4</li>
+  <li>
+    <p>官方流程图：</p>
+  </li>
+  <li>用mermaid模仿上图</li>
+</ul>
 
 <pre><code class="language-mermaid">	sequenceDiagram
 		participant User
@@ -308,7 +309,8 @@ Reading time ~2 minutes
 		WPS --&gt;&gt; MB:返回预付单信息(prepay_id)
 		MB -&gt;&gt;+ MB:6.生成JSAPI页面调用的支付参数并签名	
 		deactivate MB
-		MB --&gt;&gt;- WechatApp:返回支付参数(prepay_id.paySign等)
+		MB --&gt;&gt; WechatApp:返回支付参数(prepay_id.paySign等)
+		deactivate WechatApp
 		User -&gt;&gt;+ WechatApp:7.用户点击发起支付
 		WechatApp -&gt;&gt;+ WPS: JSAPI接口请求支付
 		WPS -&gt;&gt;+ WPS:8.检查参数合法性和授权权限
@@ -372,7 +374,8 @@ Reading time ~2 minutes
 		WPS --&gt;&gt; MB:返回预付单信息(prepay_id)
 		MB -&gt;&gt;+ MB:6.生成JSAPI页面调用的支付参数并签名	
 		deactivate MB
-		MB --&gt;&gt;- WechatApp:返回支付参数(prepay_id.paySign等)
+		MB --&gt;&gt; WechatApp:返回支付参数(prepay_id.paySign等)
+		deactivate WechatApp
 		User -&gt;&gt;+ WechatApp:7.用户点击发起支付
 		WechatApp -&gt;&gt;+ WPS: JSAPI接口请求支付
 		WPS -&gt;&gt;+ WPS:8.检查参数合法性和授权权限
@@ -414,6 +417,11 @@ Reading time ~2 minutes
 		deactivate WechatApp
 		deactivate WechatApp
 </div>
+
+<p>回头可以画很多协议的原理图，比如http，tcp等等，先挖一个坑，后续再填上。
+点击查看原文，图的预览效果应该更好一些。</p>
+
+<p>昨日，国内的公司发了三个社交app，多闪、马桶MT、聊天宝。我觉得互联网应该是要去中心化的, 特别是社交类的app，颠覆者，应该是去中心化的产品。</p>
 
 <script src="http://localhost:4000/assets/js/vendor/mermaid.min.js"></script>
 

@@ -5,8 +5,9 @@ tages: [Mermaid,sequence diagrams]
 description: "a sequence diagrams demo"
 ---
 
+时序图（Sequence Diagram），又名序列图、循序图，是一种UML交互图。它通过描述对象之间发送消息的时间顺序显示多个对象之间的动态协作。它可以表示用例的行为顺序，当执行一个用例行为时，其中的每条消息对应一个类操作或状态机中引起转换的触发事件。
 
-## 小小的一个demo
+## 一个小demo
 ```mermaid
 	sequenceDiagram
 		Alice ->> John: Hi John,nice day, Uh huh?
@@ -18,6 +19,7 @@ description: "a sequence diagrams demo"
 		John  -->> Alice: Yeap
 </div>
 
+
 ## 基本概念
 - participant(参与者,先定义的会先现实出来)
 - alice(别名，参与者可以起别名,定义别名后，就只能用别名了,如果混用，会是两个参与者）
@@ -25,8 +27,8 @@ description: "a sequence diagrams demo"
 - activation(激活，可对参与者进行激活和去激活，可以重复进行）
 	- activate/deactivate [participant] 激活或取消
 	- \-\-\>+  加号激活
-	- \-\-\>-  减号取消,通过+/-明显比较方便
-- note(便签, Note [right of | left of | over] [participant])
+	- \-\-\>-  减号取消,通过+/-明显比较方便(但是，有时候会失效)
+- note(便签, Note [right of \| left of \| over] [participant])
 	- Note right of John: Foo12345
 	- Note left of Alice: An note
 	- Note over Alice,John: Cross the world
@@ -109,8 +111,13 @@ sequenceDiagram
 |===
 
 
-### 微信支付流程
+### 微信JSAPI支付流程
 
+* 文档：https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_4
+* 官方流程图：
+
+* 用mermaid模仿上图
+	
 ```mermaid
 	sequenceDiagram
 		participant User
@@ -132,7 +139,8 @@ sequenceDiagram
 		WPS -->> MB:返回预付单信息(prepay_id)
 		MB ->>+ MB:6.生成JSAPI页面调用的支付参数并签名	
 		deactivate MB
-		MB -->>- WechatApp:返回支付参数(prepay_id.paySign等)
+		MB -->> WechatApp:返回支付参数(prepay_id.paySign等)
+		deactivate WechatApp
 		User ->>+ WechatApp:7.用户点击发起支付
 		WechatApp ->>+ WPS: JSAPI接口请求支付
 		WPS ->>+ WPS:8.检查参数合法性和授权权限
@@ -196,7 +204,8 @@ sequenceDiagram
 		WPS -->> MB:返回预付单信息(prepay_id)
 		MB ->>+ MB:6.生成JSAPI页面调用的支付参数并签名	
 		deactivate MB
-		MB -->>- WechatApp:返回支付参数(prepay_id.paySign等)
+		MB -->> WechatApp:返回支付参数(prepay_id.paySign等)
+		deactivate WechatApp
 		User ->>+ WechatApp:7.用户点击发起支付
 		WechatApp ->>+ WPS: JSAPI接口请求支付
 		WPS ->>+ WPS:8.检查参数合法性和授权权限
@@ -241,6 +250,11 @@ sequenceDiagram
 
 
 
+回头可以画很多协议的原理图，比如http，tcp等等，先挖一个坑，后续再填上。
+点击查看原文，图的预览效果应该更好一些。
+
+
+昨日，国内的公司发了三个社交app，多闪、马桶MT、聊天宝。我觉得互联网应该是要去中心化的, 特别是社交类的app，颠覆者，应该是去中心化的产品。
 
 
 
