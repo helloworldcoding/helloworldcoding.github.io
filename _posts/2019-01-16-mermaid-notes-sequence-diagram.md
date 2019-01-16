@@ -116,6 +116,10 @@ sequenceDiagram
 * 文档：https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_4
 * 官方流程图：
 
+<figure>
+	<img src="/images/wechat_pay_uml.png" alt="微信JSAPI支付流程">
+</figure>
+
 * 用mermaid模仿上图
 	
 ```mermaid
