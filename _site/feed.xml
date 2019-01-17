@@ -1,4 +1,84 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-17T10:16:59+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">Sequence diagrams in Mermaid</title><link href="http://localhost:4000/mermaid-notes-sequence-diagram/" rel="alternate" type="text/html" title="Sequence diagrams in Mermaid" /><published>2019-01-16T00:00:00+08:00</published><updated>2019-01-16T00:00:00+08:00</updated><id>http://localhost:4000/mermaid-notes-sequence-diagram</id><content type="html" xml:base="http://localhost:4000/mermaid-notes-sequence-diagram/">&lt;p&gt;时序图（Sequence Diagram），又名序列图、循序图，是一种UML交互图。它通过描述对象之间发送消息的时间顺序显示多个对象之间的动态协作。它可以表示用例的行为顺序，当执行一个用例行为时，其中的每条消息对应一个类操作或状态机中引起转换的触发事件。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-18T00:44:14+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">Vim command mode–Ex(1)</title><link href="http://localhost:4000/vim-command-model_1/" rel="alternate" type="text/html" title="Vim command mode--Ex(1)" /><published>2019-01-17T00:00:00+08:00</published><updated>2019-01-17T00:00:00+08:00</updated><id>http://localhost:4000/vim-command-model_1</id><content type="html" xml:base="http://localhost:4000/vim-command-model_1/">&lt;p&gt;最早，现有ed，ed为ex之父，ex为vi之父，而vi为vim之父 —- The Old Testament of Unix&lt;/p&gt;
+
+&lt;p&gt;这些早期的Unix编辑器，依旧可以在vim中找到它们的影子，他们没有消失，只是换了一个方式存在。&lt;/p&gt;
+
+&lt;p&gt;我打算挖一坑，来說一下命令行模式，来看一下vim身体里流淌着多少它的祖先ex(行编辑器)的血液。&lt;/p&gt;
+
+&lt;p&gt;在普通模式下，按下&lt;code&gt;:&lt;/code&gt;就会进入命令行模式，和shell下的命令行很相似;输入一条命令，然后回车执行。按下&lt;code&gt;Esc&lt;/code&gt;键就可以回到普通模式。这些在命令行模式下执行的命令，又可以称为Ex命令。&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;常见命令&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;用途说明&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;:edit&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;编辑一个文件，editk可以简写为e&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;:write&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;写文件&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;:tabnew&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;创建一个tab&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;:prev/:next&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;当用vim一次打开多个文件(如：vim a.txt b.txt)后，可以用他们来回切换文件&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;:bprev/:bnext&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;当打开多个缓冲区后，可以用他们来回切换缓冲区，不过我习惯&lt;code&gt;ctrl&lt;/code&gt;+6来回切换最近两个缓冲区&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;:[range]delete [x]&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;删除指定范围的行到寄存器[x]中,delete可以简写为d&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;:[range]yank [x]&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;复制指定范围的行到寄存器[x]中,yank可以简写为y&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;:[line]put [x]&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;把寄存器x的内容，粘贴到指定行的后面,put不能简写&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;:[range]copy {address}&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;把指定范围的行复制到{address}指定的行之下,copy可以简写为co或t&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;:[range]move {address}&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;把指定范围的行移动到{address}指定的行之下,move可简写为m&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;:[range]join&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;把指定范围内的行连接起来，成为一行，&lt;code&gt;J&lt;/code&gt;也可以起连接行的作用(当前行和下一行）&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;:[range]normal {commands}&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;对指定范围内的每一行执行普通模式的命令{commands}&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;:[range]substitute/{pattern}/{string}/{flags}&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;把指定范围内的行出现的{pattern}匹配的地方替换为{string}，substitute 可以简写为s(vim的正则替换，我先挖个坑，后面再填上)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;:[range]global/{pattern}/[cmd]&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;把指定范围内的行匹配{pattern}的所有行之下Ex命令{cmd}，这个特性还要进一步挖掘&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;range的写法：
+	- 一个数字如23,34;代表指定的行
+	- 两个数字逗号分割: 2,5  代表从第2到第5行
+	- num,.  从第num行到当前行，比如我们要从第7行删除所有内容，我们先按G,光标会移动到最后一行，然后输入 :7,. d&lt;/p&gt;
+
+&lt;p&gt;总之，Ex命令可以一次执行，多处修改。&lt;/p&gt;</content><author><name></name></author><category term="vim" /><category term="command model" /><category term="Ex" /><summary type="html">最早，现有ed，ed为ex之父，ex为vi之父，而vi为vim之父 —- The Old Testament of Unix</summary></entry><entry><title type="html">Sequence diagrams in Mermaid</title><link href="http://localhost:4000/mermaid-notes-sequence-diagram/" rel="alternate" type="text/html" title="Sequence diagrams in Mermaid" /><published>2019-01-16T00:00:00+08:00</published><updated>2019-01-16T00:00:00+08:00</updated><id>http://localhost:4000/mermaid-notes-sequence-diagram</id><content type="html" xml:base="http://localhost:4000/mermaid-notes-sequence-diagram/">&lt;p&gt;时序图（Sequence Diagram），又名序列图、循序图，是一种UML交互图。它通过描述对象之间发送消息的时间顺序显示多个对象之间的动态协作。它可以表示用例的行为顺序，当执行一个用例行为时，其中的每条消息对应一个类操作或状态机中引起转换的触发事件。&lt;/p&gt;
 
 &lt;h2 id=&quot;一个小demo&quot;&gt;一个小demo&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;	sequenceDiagram
