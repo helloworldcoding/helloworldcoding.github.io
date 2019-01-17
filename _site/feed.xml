@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-16T23:51:10+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">Sequence diagrams in Mermaid</title><link href="http://localhost:4000/mermaid-notes-sequence-diagram/" rel="alternate" type="text/html" title="Sequence diagrams in Mermaid" /><published>2019-01-16T00:00:00+08:00</published><updated>2019-01-16T00:00:00+08:00</updated><id>http://localhost:4000/mermaid-notes-sequence-diagram</id><content type="html" xml:base="http://localhost:4000/mermaid-notes-sequence-diagram/">&lt;p&gt;时序图（Sequence Diagram），又名序列图、循序图，是一种UML交互图。它通过描述对象之间发送消息的时间顺序显示多个对象之间的动态协作。它可以表示用例的行为顺序，当执行一个用例行为时，其中的每条消息对应一个类操作或状态机中引起转换的触发事件。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-17T10:16:59+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">Sequence diagrams in Mermaid</title><link href="http://localhost:4000/mermaid-notes-sequence-diagram/" rel="alternate" type="text/html" title="Sequence diagrams in Mermaid" /><published>2019-01-16T00:00:00+08:00</published><updated>2019-01-16T00:00:00+08:00</updated><id>http://localhost:4000/mermaid-notes-sequence-diagram</id><content type="html" xml:base="http://localhost:4000/mermaid-notes-sequence-diagram/">&lt;p&gt;时序图（Sequence Diagram），又名序列图、循序图，是一种UML交互图。它通过描述对象之间发送消息的时间顺序显示多个对象之间的动态协作。它可以表示用例的行为顺序，当执行一个用例行为时，其中的每条消息对应一个类操作或状态机中引起转换的触发事件。&lt;/p&gt;
 
 &lt;h2 id=&quot;一个小demo&quot;&gt;一个小demo&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;	sequenceDiagram
@@ -157,7 +157,7 @@
 		MB -&amp;gt;&amp;gt; MB:1.生成图文信息链接或二维码
 		MB --&amp;gt;&amp;gt;+ User :展示给用户
 		User-&amp;gt;&amp;gt;+ WechatApp:2.点击链接或扫描二维码在微信浏览器打开商户H5网页
-		WechatApp -&amp;gt;+ MB:网页内请求生成订单
+		WechatApp -&amp;gt;&amp;gt;+ MB:网页内请求生成订单
 		MB -&amp;gt;&amp;gt;+ MB:4.生成商户订单
 		deactivate MB
 		MB -&amp;gt;&amp;gt;+ WPS:5.调用统一下单API

@@ -132,7 +132,7 @@ sequenceDiagram
 		MB ->> MB:1.生成图文信息链接或二维码
 		MB -->>+ User :展示给用户
 		User->>+ WechatApp:2.点击链接或扫描二维码在微信浏览器打开商户H5网页
-		WechatApp ->+ MB:网页内请求生成订单
+		WechatApp ->>+ MB:网页内请求生成订单
 		MB ->>+ MB:4.生成商户订单
 		deactivate MB
 		MB ->>+ WPS:5.调用统一下单API
