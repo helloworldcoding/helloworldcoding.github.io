@@ -1,4 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-18T00:44:14+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">Vim command mode–Ex(1)</title><link href="http://localhost:4000/vim-command-model_1/" rel="alternate" type="text/html" title="Vim command mode--Ex(1)" /><published>2019-01-17T00:00:00+08:00</published><updated>2019-01-17T00:00:00+08:00</updated><id>http://localhost:4000/vim-command-model_1</id><content type="html" xml:base="http://localhost:4000/vim-command-model_1/">&lt;p&gt;最早，现有ed，ed为ex之父，ex为vi之父，而vi为vim之父 —- The Old Testament of Unix&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-18T22:17:50+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">A git branch model</title><link href="http://localhost:4000/git-branch-model/" rel="alternate" type="text/html" title="A git branch model" /><published>2019-01-18T00:00:00+08:00</published><updated>2019-01-18T00:00:00+08:00</updated><id>http://localhost:4000/git-branch-model</id><content type="html" xml:base="http://localhost:4000/git-branch-model/">&lt;div class=&quot;mermaid&quot;&gt;
+	sequenceDiagram
+		participant MasterG2
+		participant Master
+		participant Dev
+		participant Test
+		participant Release
+		participant ReleaseG2
+
+		Note over MasterG2,ReleaseG2:特性分支开发流程 
+		Master -&amp;gt;&amp;gt; Dev:开发拉f分支
+		Dev --&amp;gt;&amp;gt; Dev: 开发自测
+		loop 提测
+			Dev -&amp;gt;&amp;gt; Test:F分支合并到Test分支
+			Note over Test:是否有冲突
+			alt 有冲突
+				Test -&amp;gt;&amp;gt; Dev :先解决冲突，再提测
+			else 没有冲突
+				Note over Test :jenkins构建test环境
+				Note over Test:验证测试环境
+				alt 测试环境验证通过
+					Test -&amp;gt;&amp;gt; Release:F分支合并到Release
+					Note over Release :是否有冲突
+					alt 有冲突
+						Release -&amp;gt;&amp;gt; Test : 先解决冲突
+					else  没有冲突
+						Note over Release :jenkins构建beta g0
+						Note over Release:验证beta g0环境
+					end
+				else 不通过
+					Test -&amp;gt;&amp;gt; Dev:测试环境不通过
+				end
+			end
+		end
+&lt;/div&gt;</content><author><name></name></author><summary type="html">sequenceDiagram participant MasterG2 participant Master participant Dev participant Test participant Release participant ReleaseG2</summary></entry><entry><title type="html">Vim command mode–Ex(1)</title><link href="http://localhost:4000/vim-command-model_1/" rel="alternate" type="text/html" title="Vim command mode--Ex(1)" /><published>2019-01-17T00:00:00+08:00</published><updated>2019-01-17T00:00:00+08:00</updated><id>http://localhost:4000/vim-command-model_1</id><content type="html" xml:base="http://localhost:4000/vim-command-model_1/">&lt;p&gt;最早，现有ed，ed为ex之父，ex为vi之父，而vi为vim之父 —- The Old Testament of Unix&lt;/p&gt;
 
 &lt;p&gt;这些早期的Unix编辑器，依旧可以在vim中找到它们的影子，他们没有消失，只是换了一个方式存在。&lt;/p&gt;
 

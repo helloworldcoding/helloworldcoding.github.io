@@ -130,6 +130,64 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-01-18T00:00:00+08:00"><a href="http://localhost:4000/git-branch-model/">January 18, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/git-branch-model/" rel="bookmark" title="A git branch model" itemprop="url">A git branch model</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <div class="mermaid">
+	sequenceDiagram
+		participant MasterG2
+		participant Master
+		participant Dev
+		participant Test
+		participant Release
+		participant ReleaseG2
+
+		Note over MasterG2,ReleaseG2:特性分支开发流程 
+		Master -&gt;&gt; Dev:开发拉f分支
+		Dev --&gt;&gt; Dev: 开发自测
+		loop 提测
+			Dev -&gt;&gt; Test:F分支合并到Test分支
+			Note over Test:是否有冲突
+			alt 有冲突
+				Test -&gt;&gt; Dev :先解决冲突，再提测
+			else 没有冲突
+				Note over Test :jenkins构建test环境
+				Note over Test:验证测试环境
+				alt 测试环境验证通过
+					Test -&gt;&gt; Release:F分支合并到Release
+					Note over Release :是否有冲突
+					alt 有冲突
+						Release -&gt;&gt; Test : 先解决冲突
+					else  没有冲突
+						Note over Release :jenkins构建beta g0
+						Note over Release:验证beta g0环境
+					end
+				else 不通过
+					Test -&gt;&gt; Dev:测试环境不通过
+				end
+			end
+		end
+</div>
+
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2019-01-17T00:00:00+08:00"><a href="http://localhost:4000/vim-command-model_1/">January 17, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
       
       <span class="entry-reading-time">
@@ -713,113 +771,6 @@ graph TB
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/vim-plugin-previm/" title="Previm -- a vim plugin preview the markdown file"><img src="http://localhost:4000/images/abstract-6.jpg" alt="Previm -- a vim plugin preview the markdown file"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-13T00:00:00+08:00"><a href="http://localhost:4000/vim-plugin-previm/">January 13, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/vim-plugin-previm/" rel="bookmark" title="Previm -- a vim plugin preview the markdown file" itemprop="url">Previm -- a vim plugin preview the markdown file</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>vim下有很多支持markdown文件预览的插件。今天找到了一个很简单而且功能相对强大的vim插件previm。
-是一个日本开发者的开源项目(https://github.com/previm/previm/blob/master/README-en.mkd)
-需要依赖的library和插件很少。准确说预览reStructuredText文档需要rst2html的一个python工具外。</p>
-
-<h3 id="安装previme">安装previme</h3>
-
-<ul>
-  <li>
-    <p>先安装依赖</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  pip install docutils  ## python2.7
-  rst2html --version    ## reStructuredText文档需要这个rst2html工具
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>修改~/.vimrc文件(我用的是vundle管理vim插件), 关于vim插件管理，我先在这里挖个坑，以后再填上</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  call vundle#begin()
-
-  ......
-
-  Plugin 'previm/previm'  " 添加到vundle的调用之间
-
-  ......
-
-  call vundle#end()
-		
-  ......
-			
-  let g:previm_open_cmd = 'google-chrome -a' " 用chrome预览
-  " let g:previm_open_cmd = 'firefox -a'  " 用firefox预览
-  " 为了避免.md被理解为modula2文件，添加以下说明
-  augroup PrevimSettings
-      autocmd!
-      autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-  augroup END
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>一点小改动</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  文档上的previm_open_cmd不合适，需要改成如上
-  :h g:previm_open_cmd 
-  # open by FireFox
-  let g:previm_open_cmd = 'open -a Firefox'
-  # open with Google Chrome
-  let g:previm_open_cmd = 'open -a Google\ Chrome'
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h3 id="使用">使用</h3>
-
-<ul>
-  <li>编辑一个md文档，需要预览文件时，输入:PrevimOpen 打开浏览器预览</li>
-  <li>
-    <p>修改文件后，预览文件会动态更新</p>
-  </li>
-  <li>对mermaid的支持
-    <pre><code class="language-mermaid">sequenceDiagram
-  participant Alice
-  participant Bob
-  Alice-&gt;&gt;John: Hello John, how are you?
-  loop Healthcheck
-      John-&gt;&gt;John: Fight against hypochondria
-  end
-  Note right of John: Rational thoughts&lt;br/&gt;prevail...
-  John--&gt;&gt;Alice: Great!
-  John-&gt;&gt;Bob: How about you?
-  Bob--&gt;&gt;John: Jolly good!
-</code></pre>
-  </li>
-  <li>reStructuredText，编辑后，:PreviewOpen</li>
-</ul>
-
-<h3 id="预览效果图">预览效果图</h3>
-
-<figure>
-	<img src="/images/previm-result.png" alt="预览效果" />
-</figure>
-
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 
 <div class="pagination">
@@ -868,6 +819,19 @@ Reading time ~1 minute
 <script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 <script src="http://localhost:4000/assets/js/scripts.min.js"></script>
 
+
+
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132764148-1"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'UA-132764148-1');
+</script>
 
 
 
