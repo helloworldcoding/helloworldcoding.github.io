@@ -4,16 +4,20 @@ title: "Some Vim skills"
 description: "Some awosome vim skills"
 ---
 
-##### 编辑后，发现需要root权限
-```
-:w ! sudo tee %
-```
-##### 做计算
+#### 编辑后，发现需要root权限
+
+	:w ! sudo tee %
+
+#### 做计算
+
 	insert模式，ctrl+r =3600*24*7
-##### 查看字符ascii码,16进制，8进制
+
+#### 查看字符ascii码,16进制，8进制
+
 	common模式，ga 查看光标下的字符的ascii码	
-##### 插入unicode字符
-##### 大小写转换
+
+#### 插入unicode字符
+#### 大小写转换
 ```
 ~          将光标下的字母改变大小写
 3m~         将光标位置开始的3个字母改变其大小写
