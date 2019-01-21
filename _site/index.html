@@ -130,6 +130,317 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-01-22T00:00:00+08:00"><a href="http://localhost:4000/vim-some-skills/">January 22, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/vim-some-skills/" rel="bookmark" title="Some Vim skills" itemprop="url">Some Vim skills</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <h4 id="编辑后发现需要root权限">编辑后，发现需要root权限</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:w ! sudo tee %
+</code></pre></div></div>
+
+<h4 id="做计算">做计算</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>insert模式，ctrl+r =3600*24*7
+</code></pre></div></div>
+
+<h4 id="查看字符ascii码16进制8进制">查看字符ascii码,16进制，8进制</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>common模式，ga 查看光标下的字符的ascii码	
+</code></pre></div></div>
+
+<h4 id="插入unicode字符">插入unicode字符</h4>
+<h4 id="大小写转换">大小写转换</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~          将光标下的字母改变大小写
+3m~         将光标位置开始的3个字母改变其大小写
+g~~        改变当前行字母的大小写
+U          将可视模式下选择的字母全改成大写字母
+u          将可视模式下选择的字母全改成小写
+gUU        将当前行的字母改成大写
+3gUU       将从光标开始到下面3行字母改成大写
+guu       将当前行的字母全改成小写
+gUw       将光标下的单词改成大写。
+guw       将光标下的单词改成小写。
+</code></pre></div></div>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-01-22T00:00:00+08:00"><a href="http://localhost:4000/php-unit-test-note2/">January 22, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/php-unit-test-note2/" rel="bookmark" title="Dependence and Data Provider in PHPUnit" itemprop="url">Dependence and Data Provider in PHPUnit</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <h3 id="牛人的话翻译后">牛人的话(翻译后)</h3>
+
+<p>Adrian Kuhn et.al:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>写单元测试是一个非常好的做法，帮助开发定位和修复bug，重构代码并作为测试软件的一个单元的文档。
+为了能达到这个效果，单元测试要考虑到程序中所有路径。一个方法或函数通常只覆盖一个特殊的路径。
+然而，一个测试方法并不是一个封闭的，独立的实体。通常在测试方法之间的隐式依赖，就藏在某个测试场景的实现中。
+</code></pre></div></div>
+
+<h3 id="test-dependencies">Test Dependencies</h3>
+
+<ul>
+  <li>producer: 返回值给其他方法使用的方法</li>
+  <li>consumer: 依靠别的方法和它们的返回值的方法</li>
+  <li>一个方法，可以兼顾这个两个角色</li>
+  <li>consumer方法需要在方法注释中标注@depends testFunc</li>
+  <li>一个consumer方法可以一个或多个@depends,当有多个@depends时，@depends的声明顺序就是consumer参数顺序
+    <ul>
+      <li>参数的传递，默认是引用传参</li>
+      <li>@depends clone 就是深复制，传值传参</li>
+      <li>@depends shallowClone 浅复制</li>
+    </ul>
+  </li>
+  <li>consumer方法有多个@depends时，要确保这些producer方法要写在consumer的前面，不然就会出现skip</li>
+</ul>
+
+<p>代码如下：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">use</span> <span class="nx">PHPUnit\Framework\TestCase</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MultipleDependenciesTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
+<span class="p">{</span>
+	<span class="k">public</span> <span class="k">function</span> <span class="nf">testProducerFirst</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertTrue</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+		<span class="k">return</span> <span class="s1">'first'</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="k">public</span> <span class="k">function</span> <span class="nf">testProducerSecond</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertTrue</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+		<span class="k">return</span> <span class="s1">'second'</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="sd">/**
+	 * @depends testProducerFirst
+	 * @depends testProducerSecond
+	 */</span>
+	<span class="k">public</span> <span class="k">function</span> <span class="nf">testConsumer</span><span class="p">(</span><span class="nv">$a</span><span class="p">,</span> <span class="nv">$b</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">'first'</span><span class="p">,</span> <span class="nv">$a</span><span class="p">);</span>
+		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">'second'</span><span class="p">,</span> <span class="nv">$b</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="data-providers">Data Providers</h3>
+
+<ul>
+  <li>某个方法的注释中用 <code>@dataProvider </code>这个特殊注释 标识了某个方法，则这个方法就是data provider
+    <ul>
+      <li>如<code>@dataProvider testFunc</code> testFunc就是data provider</li>
+    </ul>
+  </li>
+  <li>data provider返回值必须要是n维数组(n&gt;=2),或可以迭代的对象(Iterator),并且这个对象每一次迭代都要返回一个数组</li>
+  <li>测试方法的参数可以由一个或多个data provider 提供</li>
+  <li>
+    <p>当测试方法同时有@dataProvider和@depends时，@dataProvider的参数要先于@depends</p>
+  </li>
+  <li>demo</li>
+</ul>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">use</span> <span class="nx">PHPUnit\Framework\TestCase</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">DependencyAndDataProviderComboTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
+<span class="p">{</span>
+	<span class="k">public</span> <span class="k">function</span> <span class="nf">provider</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="k">return</span> <span class="p">[[</span><span class="s1">'provider1'</span><span class="p">],</span> <span class="p">[</span><span class="s1">'provider2'</span><span class="p">]];</span>
+	<span class="p">}</span>
+
+	<span class="k">public</span> <span class="k">function</span> <span class="nf">testProducerFirst</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertTrue</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+		<span class="k">return</span> <span class="s1">'first'</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="k">public</span> <span class="k">function</span> <span class="nf">testProducerSecond</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertTrue</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+		<span class="k">return</span> <span class="s1">'second'</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="sd">/**
+	 * @depends testProducerFirst
+	 * @depends testProducerSecond
+	 * @dataProvider provider
+	 */</span>
+	<span class="k">public</span> <span class="k">function</span> <span class="nf">testConsumer</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span>
+			<span class="p">[</span><span class="s1">'provider1'</span><span class="p">,</span> <span class="s1">'first'</span><span class="p">,</span> <span class="s1">'second'</span><span class="p">],</span>
+			<span class="nb">func_get_args</span><span class="p">()</span>
+			<span class="sd">/**
+			func_get_args()依次是
+			['provider1', 'first', 'second'],
+			['provider2', 'first', 'second']
+			因为 provider迭代了两次，第一次返回['provider1'], 字符串'provider1'就传递给了testConsumer，作为第一个参数，
+			**/</span>
+		<span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-01-20T00:00:00+08:00"><a href="http://localhost:4000/php-unit-test/">January 20, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/php-unit-test/" rel="bookmark" title="PHP unit test demo" itemprop="url">PHP unit test demo</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <h3 id="大牛的话翻译后">大牛的话(翻译后)</h3>
+
+<p>Martin Fowler:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>无论什么时候,当你试着在print或其他debugger表达式里输入内容时，你应该把它写成一个测试用例
+</code></pre></div></div>
+
+<p>单元测试是代码质量的第一道关口。做好了单元测试，有利于尽早发现问题，解决问题。对CI/CD来说也是很重要的一个环节。当然，写单元测试会增加编写代码的工作量，所以一些公司或项目为了赶工期，单元测试就被忽略了，尽管大家都知道这个很重要。出来混，迟早要还的。欠下的，会加倍偿还。特别是随着产品的迭代，这个问题会逐渐凸显出来。</p>
+
+<p>先来說一下php的单元测试,使用的是PHPUnit</p>
+<h3 id="install">Install</h3>
+
+<p>参考文档：https://phpunit.readthedocs.io/en</p>
+
+<p>linux下简单的几个步骤如下</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$wget https://phar.phpunit.de/phpunit-7.5.2.phar
+$chmod +x phpunit-7.5.2.phar
+$sudo mv phpunit-7.5.2.phar /usr/local/bin/phpunit
+$phpunit --version
+PHPUnit 7.5.2 by Sebastian Bergmann and contributors.
+</code></pre></div></div>
+
+<h3 id="小试牛刀">小试牛刀</h3>
+
+<p>创建一个文件比如test.php，内容如下</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">use</span> <span class="nx">PHPUnit\Framework\TestCase</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">StackTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
+<span class="p">{</span>
+	<span class="k">public</span> <span class="k">function</span> <span class="nf">testPushAndPop</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="nv">$stack</span> <span class="o">=</span> <span class="p">[];</span>
+		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$stack</span><span class="p">));</span>
+
+		<span class="nb">array_push</span><span class="p">(</span><span class="nv">$stack</span><span class="p">,</span> <span class="s1">'foo'</span><span class="p">);</span>
+		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">,</span> <span class="nv">$stack</span><span class="p">[</span><span class="nb">count</span><span class="p">(</span><span class="nv">$stack</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$stack</span><span class="p">));</span>
+
+		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">,</span> <span class="nb">array_pop</span><span class="p">(</span><span class="nv">$stack</span><span class="p">));</span>
+		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$stack</span><span class="p">));</span>
+	<span class="p">}</span>
+
+	<span class="sd">/**
+	* @test
+	*/</span>
+	<span class="k">public</span> <span class="k">function</span> <span class="nf">num</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">'1'</span><span class="p">);</span>
+		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>执行测试phpunit ./test.php,返回结果如下</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PHPUnit 7.5.2 by Sebastian Bergmann and contributors.
+
+F.                                                                  2 / 2 (100%)
+
+Time: 183 ms, Memory: 10.00MB
+
+There was 1 failure:
+
+1) StackTest::testPushAndPop
+Failed asserting that 0 is identical to 1.
+
+/home/wm/code/php/phpunit/test.php:16
+
+FAILURES!
+Tests: 2, Assertions: 8, Failures: 1.
+</code></pre></div></div>
+
+<p>测试结果告诉我们，有两个测试方法，有8处断言，有一处失败，失败的原因是断言0和1相等，在代码的第16行。</p>
+
+<p>我们修改16行为: $this-&gt;assertSame(0, count($stack));再执行测试</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PHPUnit 7.5.2 by Sebastian Bergmann and contributors.
+
+..                                                                  2 / 2 (100%)
+
+Time: 205 ms, Memory: 10.00MB
+
+OK (2 tests, 8 assertions)
+</code></pre></div></div>
+
+<p>通过了测试^_^</p>
+
+<h3 id="几点说明">几点说明</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.测试的类应该命名格式为ClassTest,大驼峰，而且以Test结尾,文件名和类名相同（我个人推测）
+2.测试的类要继承PHPUnit\Framework\TestCase(大多数情况下)
+3.测试的方法都要是public,声明一个方法是否是测试方法有如下两个方法
+	- 方法名称的格式：test*
+	- 或则在方法的注释中添加@test,来标识该方法是测试方法,如上
+4.在测试方法里有很多断言方法,如上assertSame(),assertEquals()
+5.出现失败后，就不会继续执行了。
+</code></pre></div></div>
+
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2019-01-18T00:00:00+08:00"><a href="http://localhost:4000/git-branch-model/">January 18, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
       
       <span class="entry-reading-time">
@@ -148,13 +459,13 @@ Reading time ~1 minute
 	sequenceDiagram
 		participant MasterG2
 		participant Master
-		participant Dev
+		participant Dev as F分支
 		participant Test
 		participant Release
 		participant ReleaseG2
 
-		Note over MasterG2,ReleaseG2:特性分支开发流程 
-		Master -&gt;&gt; Dev:开发拉f分支
+		Note over MasterG2,ReleaseG2:特性分支(f分支)开发流程 
+		Master -&gt;&gt;+ Dev:开发拉f分支
 		Dev --&gt;&gt; Dev: 开发自测
 		loop 提测
 			Dev -&gt;&gt; Test:F分支合并到Test分支
@@ -165,16 +476,36 @@ Reading time ~1 minute
 				Note over Test :jenkins构建test环境
 				Note over Test:验证测试环境
 				alt 测试环境验证通过
-					Test -&gt;&gt; Release:F分支合并到Release
-					Note over Release :是否有冲突
-					alt 有冲突
-						Release -&gt;&gt; Test : 先解决冲突
-					else  没有冲突
-						Note over Release :jenkins构建beta g0
-						Note over Release:验证beta g0环境
+					Note over Dev :F分支能否合并到Release分支
+					alt 能合并
+						Dev -&gt;&gt; Release:F分支合并到Release
+						Note over Release :是否有冲突
+						alt 有冲突
+							Release --&gt;&gt; Dev : 开发同学先解决冲突,再次提测
+						else  没有冲突
+							Note over Release :jenkins构建beta g0
+							Note over Release:验证beta g0环境
+							alt beta g0环境验证通过
+								Note over Release : jenkins构建prod g0
+								Note over Release : 验证prod g0
+								alt prod g0验证通过
+									Note over Release: 积累一天后
+									Release -&gt;&gt;- Dev : 删除所有的合并到Relase的F分支
+									Release -&gt;&gt; Master : 合并到Master
+								else prod g0没有验证通过
+									Release --&gt;&gt; Dev: prod g0验证没有通过，排查原因
+								end
+							else
+								Release --&gt;&gt; Dev: beta g0测试不通过, 排查问题
+							end
+						end
+					else F分支不能合并到Release,原因：
+						Note over Dev: 过了14:00
+						Note over Dev: 距离灰度发布不足两天
+						Note over Dev: 灰度发布期间
 					end
-				else 不通过
-					Test -&gt;&gt; Dev:测试环境不通过
+				else 测试环境验证不通过
+					Test --&gt;&gt; Dev:测试环境不通过,排查问题
 				end
 			end
 		end
@@ -287,490 +618,6 @@ Reading time ~1 minute
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-16T00:00:00+08:00"><a href="http://localhost:4000/mermaid-notes-sequence-diagram/">January 16, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~3 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/mermaid-notes-sequence-diagram/" rel="bookmark" title="Sequence diagrams in Mermaid" itemprop="url">Sequence diagrams in Mermaid</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>时序图（Sequence Diagram），又名序列图、循序图，是一种UML交互图。它通过描述对象之间发送消息的时间顺序显示多个对象之间的动态协作。它可以表示用例的行为顺序，当执行一个用例行为时，其中的每条消息对应一个类操作或状态机中引起转换的触发事件。</p>
-
-<h2 id="一个小demo">一个小demo</h2>
-<pre><code class="language-mermaid">	sequenceDiagram
-		Alice -&gt;&gt; John: Hi John,nice day, Uh huh?
-		John  --&gt;&gt; Alice: Yeap
-</code></pre>
-<div class="mermaid">
-	sequenceDiagram
-		Alice -&gt;&gt; John: Hi John,nice day, Uh huh?
-		John  --&gt;&gt; Alice: Yeap
-</div>
-
-<h2 id="基本概念">基本概念</h2>
-<ul>
-  <li>participant(参与者,先定义的会先现实出来)</li>
-  <li>alice(别名，参与者可以起别名,定义别名后，就只能用别名了,如果混用，会是两个参与者）</li>
-  <li>message(消息，[participant][arrow][participant]:Message text)</li>
-  <li>activation(激活，可对参与者进行激活和去激活，可以重复进行）
-    <ul>
-      <li>activate/deactivate [participant] 激活或取消</li>
-      <li>--&gt;+  加号激活</li>
-      <li>--&gt;-  减号取消,通过+/-明显比较方便(但是，有时候会失效)</li>
-    </ul>
-  </li>
-  <li>note(便签, Note [right of | left of | over] [participant])
-    <ul>
-      <li>Note right of John: Foo12345</li>
-      <li>Note left of Alice: An note</li>
-      <li>Note over Alice,John: Cross the world</li>
-    </ul>
-  </li>
-  <li>loop(循环)</li>
-  <li>alt(分支，选择,相当于 if else )</li>
-  <li>opt(可选，相当于 if)
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sequenceDiagram
-  participant John
-  participant A as  Alice
-  A -&gt;&gt; John : Hi,John
-  Note left of John: Foo12345
-  John  --&gt;&gt; A: Alice..I
-  Note right of A : An note
-  activate A
-  A -&gt;&gt;+ John :  1
-  John --&gt;&gt; A : 2
-  deactivate A
-  A -x- John : 3
-  John --x A :4 
-  loop Every 30 seconds
-      John --&gt;&gt; A : heart bits
-      A --&gt;&gt; John : ACK
-  end
-  A -&gt;&gt; John : Are you ok?
-  alt is ok
-      John --&gt;&gt;A: Ok啊
-  else so so 
-      John --&gt;&gt;A: 还活着
-  else
-      John --&gt;&gt;A: 还不错
-  end
-  Note over A, John: Over!
-</code></pre></div>    </div>
-  </li>
-</ul>
-<div class="mermaid">
-	sequenceDiagram
-		participant John
-		participant A as  Alice
-		A -&gt;&gt; John : Hi,John
-		Note left of John: Foo12345
-		John  --&gt;&gt; A: Alice..I
-		Note right of A : An note
-		activate A
-		A -&gt;&gt;+ John :  1
-		John --&gt;&gt; A : 2
-		deactivate A
-		A -x- John : 3
-		John --x A :4 
-		loop Every 30 seconds
-			John --&gt;&gt; A : 还在么？(heart bits)
-			alt is ok
-				A -&gt;&gt; John : 在呢，我还在，莫担心
-			else  没反应
-				John --&gt;&gt; John : Alice is lose,释放他的资源
-			end
-		end
-		A -&gt;&gt; John : Are you ok?
-		alt is ok
-			John --&gt;&gt;A: Ok啊
-		else so so 
-			John --&gt;&gt;A: 还活着
-		else
-			John --&gt;&gt;A: 还不错
-		end
-		opt 心情好
-			A --&gt;&gt; Tom : 出来撸串
-		end
-		Note over A, John: Over!
-</div>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">箭头类型</th>
-      <th style="text-align: left">描述</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">-&gt;</td>
-      <td style="text-align: left">实线无箭头</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">--&gt;</td>
-      <td style="text-align: left">点线无箭头</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">-&gt;&gt;</td>
-      <td style="text-align: left">实线有箭头</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">--&gt;&gt;</td>
-      <td style="text-align: left">点线有箭头</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">-x</td>
-      <td style="text-align: left">实线带叉和箭头</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">--x</td>
-      <td style="text-align: left">点线带叉和箭头</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="微信jsapi支付流程">微信JSAPI支付流程</h3>
-
-<ul>
-  <li>文档：https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_4</li>
-  <li>官方流程图：</li>
-</ul>
-
-<figure>
-	<img src="/images/wechat_pay_uml.png" alt="微信JSAPI支付流程" />
-</figure>
-
-<ul>
-  <li>用mermaid模仿上图</li>
-</ul>
-
-<pre><code class="language-mermaid">	sequenceDiagram
-		participant User
-		participant WechatApp
-		participant MB as MerchantBackend
-		participant WPS as WechatPaySystem
-		
-		MB -&gt;&gt; MB:1.生成图文信息链接或二维码
-		MB --&gt;&gt;+ User :展示给用户
-		User-&gt;&gt;+ WechatApp:2.点击链接或扫描二维码在微信浏览器打开商户H5网页
-		WechatApp -&gt;&gt;+ MB:网页内请求生成订单
-		MB -&gt;&gt;+ MB:4.生成商户订单
-		deactivate MB
-		MB -&gt;&gt;+ WPS:5.调用统一下单API
-		WPS -&gt;&gt;+ WPS:生成预付单
-		deactivate WPS
-		WPS --&gt;&gt; MB:返回预付单信息(prepay_id)
-		deactivate WPS
-		WPS --&gt;&gt; MB:返回预付单信息(prepay_id)
-		MB -&gt;&gt;+ MB:6.生成JSAPI页面调用的支付参数并签名	
-		deactivate MB
-		MB --&gt;&gt; WechatApp:返回支付参数(prepay_id.paySign等)
-		deactivate WechatApp
-		User -&gt;&gt;+ WechatApp:7.用户点击发起支付
-		WechatApp -&gt;&gt;+ WPS: JSAPI接口请求支付
-		WPS -&gt;&gt;+ WPS:8.检查参数合法性和授权权限
-		deactivate MB
-		WPS --&gt;&gt; WechatApp: 返回验证结果，并要求支付授权
-		deactivate WPS
-		WechatApp -&gt;&gt;+ WechatApp:提示输入密码
-		deactivate WechatApp
-		deactivate WechatApp
-		User -&gt;&gt;+ WechatApp:9.确认支付，输入密码
-		WechatApp -&gt;&gt;+ WPS:提交授权
-		WPS -&gt;&gt;+ WPS:验证授权
-		deactivate WPS
-		alt 并行处理
-			WPS -&gt;&gt;+ MB:10.异步通知支付结果			
-		else
-			MB --&gt;&gt; WPS:11.告知微信通知处理结果
-			deactivate MB
-		else
-			WPS --&gt;&gt; WechatApp:12.返回支付结果，并发微信消息提示
-			deactivate WPS
-		end
-		WechatApp --&gt;&gt; User:展示支付信息给用户
-		deactivate User
-		deactivate WechatApp
-		
-		WechatApp -&gt;&gt;+ WechatApp: 微信跳转回商户H5页面
-		activate WechatApp
-		WechatApp -&gt;&gt;+ MB:13.查询商户后台支付结果
-		alt 支付结果
-			else 未收到支付通知
-			MB -&gt;&gt;+ WPS:14.调用查询API，查询支付结果
-			WPS --&gt;&gt; MB:返回支付结果
-			deactivate WPS
-		end
-		MB --&gt;&gt; WechatApp:返回支付结果
-		WechatApp -&gt;&gt;+ WechatApp:15.商户发货及支付后个性化页面提示
-		deactivate WechatApp
-		deactivate WechatApp
-		deactivate WechatApp
-
-</code></pre>
-<div class="mermaid">
-	sequenceDiagram
-		participant User
-		participant WechatApp
-		participant MB as MerchantBackend
-		participant WPS as WechatPaySystem
-		
-		MB -&gt;&gt; MB:1.生成图文信息链接或二维码
-		MB --&gt;&gt;+ User :展示给用户
-		User-&gt;&gt;+ WechatApp:2.点击链接或扫描二维码在微信浏览器打开商户H5网页
-		WechatApp -&gt;+ MB:网页内请求生成订单
-		MB -&gt;&gt;+ MB:4.生成商户订单
-		deactivate MB
-		MB -&gt;&gt;+ WPS:5.调用统一下单API
-		WPS -&gt;&gt;+ WPS:生成预付单
-		deactivate WPS
-		WPS --&gt;&gt; MB:返回预付单信息(prepay_id)
-		deactivate WPS
-		WPS --&gt;&gt; MB:返回预付单信息(prepay_id)
-		MB -&gt;&gt;+ MB:6.生成JSAPI页面调用的支付参数并签名	
-		deactivate MB
-		MB --&gt;&gt; WechatApp:返回支付参数(prepay_id.paySign等)
-		deactivate WechatApp
-		User -&gt;&gt;+ WechatApp:7.用户点击发起支付
-		WechatApp -&gt;&gt;+ WPS: JSAPI接口请求支付
-		WPS -&gt;&gt;+ WPS:8.检查参数合法性和授权权限
-		deactivate MB
-		WPS --&gt;&gt; WechatApp: 返回验证结果，并要求支付授权
-		deactivate WPS
-		WechatApp -&gt;&gt;+ WechatApp:提示输入密码
-		deactivate WechatApp
-		deactivate WechatApp
-		User -&gt;&gt;+ WechatApp:9.确认支付，输入密码
-		WechatApp -&gt;&gt;+ WPS:提交授权
-		WPS -&gt;&gt;+ WPS:验证授权
-		deactivate WPS
-		alt 并行处理
-			WPS -&gt;&gt;+ MB:10.异步通知支付结果			
-		else
-			MB --&gt;&gt; WPS:11.告知微信通知处理结果
-			deactivate MB
-		else
-			WPS --&gt;&gt; WechatApp:12.返回支付结果，并发微信消息提示
-			deactivate WPS
-		end
-		WechatApp --&gt;&gt; User:展示支付信息给用户
-		deactivate User
-		deactivate WechatApp
-		
-		WechatApp -&gt;&gt;+ WechatApp: 微信跳转回商户H5页面
-		activate WechatApp
-		WechatApp -&gt;&gt;+ MB:13.查询商户后台支付结果
-		alt 支付结果
-			else 未收到支付通知
-			MB -&gt;&gt;+ WPS:14.调用查询API，查询支付结果
-			WPS --&gt;&gt; MB:返回支付结果
-			deactivate WPS
-		end
-		MB --&gt;&gt; WechatApp:返回支付结果
-		WechatApp -&gt;&gt;+ WechatApp:15.商户发货及支付后个性化页面提示
-		deactivate WechatApp
-		deactivate WechatApp
-		deactivate WechatApp
-</div>
-
-<p>回头可以画很多协议的原理图，比如http，tcp等等，先挖一个坑，后续再填上。
-点击查看原文，图的预览效果应该更好一些。</p>
-
-<p>昨日，国内的公司发了三个社交app，多闪、马桶MT、聊天宝。我觉得互联网应该是要去中心化的, 特别是社交类的app，颠覆者，应该是去中心化的产品。</p>
-
-<script src="http://localhost:4000/assets/js/vendor/mermaid.min.js"></script>
-
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/mermaid-picture/" title="some picture of mermaid"><img src="http://localhost:4000/images/abstract-5.jpg" alt="some picture of mermaid"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-15T00:00:00+08:00"><a href="http://localhost:4000/mermaid-picture/">January 15, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/mermaid-picture/" rel="bookmark" title="some picture of mermaid" itemprop="url">some picture of mermaid</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <div class="mermaid">
-	graph LR
-	    id1(Start)--&gt;id2(Stop)
-	    style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
-		style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
-		linkStyle 0 stroke:#ff3,stroke-width:4px;
-
-</div>
-
-<div class="mermaid">
-graph TB
-    c1--&gt;a2
-    subgraph one
-    a1--&gt;a2
-    end
-    subgraph two
-    b1--&gt;b2
-    end
-    subgraph three
-    c1--&gt;c2
-    end
-
-</div>
-
-<div class="mermaid">
-	graph LR
-		A1 --&gt; B1
-		A2 --- B2
-		C --text in the link --- B3
-		D ---|text_on_link| B4
-		E --&gt;|text| B5
-		F -.-&gt; B6
-		F -.-&gt;|text in line| Te
-		H -.-&gt;|text| Note
-		N1 ==&gt;|text| N3
-		Node["dd#quot\;"]
-		Node1["#quot;A dec char:#9829;"]
-		Node === Node1
-</div>
-<div class="mermaid">
-	graph TB
-		c1--&gt;a2
-		subgraph one
-		a1--&gt;a2
-		end
-		subgraph two
-		b1--&gt;b2
-		end
-		subgraph three
-		c1--&gt;c2
-		end
-</div>
-<div class="mermaid">
-	graph LR
-	    id1(Start)--&gt;id2(Stop)
-	    style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
-		style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
-		linkStyle 0 stroke:#ff3,stroke-width:4px;
-</div>
-
-<script src="http://localhost:4000/assets/js/vendor/mermaid.min.js"></script>
-
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/jekyll-github-pages/" title="use jekyll to generate github pages"><img src="http://localhost:4000/images/abstract-6.jpg" alt="use jekyll to generate github pages"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-14T00:00:00+08:00"><a href="http://localhost:4000/jekyll-github-pages/">January 14, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/jekyll-github-pages/" rel="bookmark" title="use jekyll to generate github pages" itemprop="url">use jekyll to generate github pages</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <div class="mermaid">
-	graph LR
-	    id1(Start)--&gt;id2(Stop)
-	    style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
-		style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
-		linkStyle 0 stroke:#ff3,stroke-width:4px;
-
-</div>
-
-<div class="mermaid">
-graph TB
-    c1--&gt;a2
-    subgraph one
-    a1--&gt;a2
-    end
-    subgraph two
-    b1--&gt;b2
-    end
-    subgraph three
-    c1--&gt;c2
-    end
-
-</div>
-
-<div class="mermaid">
-	graph LR
-		A1 --&gt; B1
-		A2 --- B2
-		C --text in the link --- B3
-		D ---|text_on_link| B4
-		E --&gt;|text| B5
-		F -.-&gt; B6
-		F -.-&gt;|text in line| Te
-		H -.-&gt;|text| Note
-		N1 ==&gt;|text| N3
-		Node["dd#quot\;"]
-		Node1["#quot;A dec char:#9829;"]
-		Node === Node1
-</div>
-<div class="mermaid">
-	graph TB
-		c1--&gt;a2
-		subgraph one
-		a1--&gt;a2
-		end
-		subgraph two
-		b1--&gt;b2
-		end
-		subgraph three
-		c1--&gt;c2
-		end
-</div>
-<div class="mermaid">
-	graph LR
-	    id1(Start)--&gt;id2(Stop)
-	    style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
-		style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
-		linkStyle 0 stroke:#ff3,stroke-width:4px;
-</div>
-
-<script src="http://localhost:4000/assets/js/vendor/mermaid.min.js"></script>
-
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 
 <div class="pagination">
@@ -791,12 +638,19 @@ graph TB
     
 
     
+      
+        
+        
+        
+        <li><a href="http://localhost:4000/page2/">2</a></li>
+      
+    
 
     
     
 
     
-      <li><a href="http://localhost:4000/page2/">2</a></li>
+      <li><a href="http://localhost:4000/page3/">3</a></li>
     
 
     
