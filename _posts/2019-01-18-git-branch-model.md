@@ -11,7 +11,7 @@ mermaid: 1
 		participant Master
 		participant Dev as F分支
 		participant Bg0
-		participant Bg2
+		participant Bg2 as Bg2/F2
 		participant Test
 		participant Release
 		participant ReleaseG2
@@ -68,22 +68,32 @@ mermaid: 1
 		else prod g0验证不通过
 			Master ->>+ Bg0 : 从Master拉取一个Bg0分支
 			Bg0 -->> Bg0 : 开发自测
-			Bg0 ->> Test : 合并到Test分支，构建测试环境，进行测试
-			alt 成功
-				Bg0 ->> Release: Bg0合并到Release分支，构建beta g0，并验证
-				alt beta g0验证通过
-					Note over Release:构建 prod g0,并验证
-					alt prod g0通过
-						Release ->> Master: 合并到Master分支,删除Bg0分支
-						deactivate Bg0
-					else  失败
-						Release -->> Bg0 : prod g0未通过，排查原因，再提测
+			Bg0 ->> Test : 合并到Test分支
+			alt Bg0合并到Test没有冲突
+				Note over Test:	jenkins 构建测试环境，并验证
+				alt 测试环境验证通过
+					Bg0 ->> Release: Bg0合并到Release分支 
+					alt 合并没有冲突
+						Note over Release :jenkins构建beta g0环境，并验证
+						alt beta g0验证通过
+							Note over Release:构建 prod g0,并验证
+							alt prod g0通过
+								Release ->> Master: 合并到Master分支,删除Bg0分支
+								deactivate Bg0
+							else  失败
+								Release -->> Bg0 : prod g0未通过，排查原因，再提测
+							end
+						else 失败
+							Release -->> Bg0: beta g0未通过，排查原因，再提测	
+						end
+					else Bg0合并Release发生冲突
+						Release -->> Bg0: 解决冲突，重新提测
 					end
-				else 失败
-					Release -->> Bg0: beta g0未通过，排查原因，再提测	
+				else 测试环境验证不通过
+					Test -->> Bg0: 查找原因，重新提测
 				end
-			else 失败
-				Test -->> Bg0: 查找原因，重新提测
+			else Bg0合并到Test有冲突 
+				Test -->> Bg0:解决冲突，重新提测	
 			end
 		end
 
@@ -103,26 +113,30 @@ mermaid: 1
 
 
 
-		Note over MasterG2,ReleaseG2:Bg2分支开发流程(解决线上g2环境的bug)
-		MasterG2 ->>+ Bg2: 拉取Bg2分支	
+		Note over MasterG2,ReleaseG2:Bg2/F2分支开发流程(解决线上g2环境的bug(Bg2分支),或G2环境的需求(F2分支))
+		MasterG2 ->>+ Bg2: 拉取Bg2/F2分支	
 		Bg2 -->> Bg2: 开发自测
 		Bg2 ->> Test: 合并到test分支
 		Note over Test:jenkins构建测试环境，并验证
 		alt 测试环境验证通过
 			Bg2 ->> ReleaseG2 : 合并到ReleaseG2分支
-			Note over ReleaseG2:jenkins构建beta g2环境
-			Note over ReleaseG2:在beta g2环境验证
-			alt beta g2环境验证通过
-				Note over ReleaseG2: jenkins构建prod g2环境
-				alt 解决了prod g2环境的bug
-					ReleaseG2 ->> Release : 合并到Release
-					ReleaseG2 ->> MasterG2: 合并到MasterG2,并删除Bg2分支
-					deactivate Bg2
-				else
-					ReleaseG2 -->> Bg2: 没有解决，查原因，重新提测
-				end 
-			else beta g2环境验证不通过
-				ReleaseG2 -->> Bg2: beta g2验证不通过，查原因，重新提测
+			alt 合并成功，没有冲突
+				Note over ReleaseG2:jenkins构建beta g2环境
+				Note over ReleaseG2:在beta g2环境验证
+				alt beta g2环境验证通过
+					Note over ReleaseG2: jenkins构建prod g2环境
+					alt prod g2验证通过
+						ReleaseG2 ->> Release : 合并到Release
+						ReleaseG2 ->> MasterG2: 合并到MasterG2,并删除Bg2分支
+						deactivate Bg2
+					else
+						ReleaseG2 -->> Bg2: prod g2验证没有通过
+					end 
+				else beta g2环境验证不通过
+					ReleaseG2 -->> Bg2: beta g2验证不通过，查原因，重新提测
+				end
+			else Bg2/F2合并ReleaseG2,发生冲突 
+				ReleaseG2 -->> Bg2:解决冲突，重新接测	
 			end
 		else
 			Test -->> Bg2:测试环境不通过，查原因，重新提测

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-21T18:15:22+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">Dependence and Data Provider in PHPUnit</title><link href="http://localhost:4000/php-unit-test-note2/" rel="alternate" type="text/html" title="Dependence and Data Provider in PHPUnit" /><published>2019-01-22T00:00:00+08:00</published><updated>2019-01-22T00:00:00+08:00</updated><id>http://localhost:4000/php-unit-test-note2</id><content type="html" xml:base="http://localhost:4000/php-unit-test-note2/">&lt;h3 id=&quot;牛人的话翻译后&quot;&gt;牛人的话(翻译后)&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-21T21:30:47+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">Dependence and Data Provider in PHPUnit</title><link href="http://localhost:4000/php-unit-test-note2/" rel="alternate" type="text/html" title="Dependence and Data Provider in PHPUnit" /><published>2019-01-22T00:00:00+08:00</published><updated>2019-01-22T00:00:00+08:00</updated><id>http://localhost:4000/php-unit-test-note2</id><content type="html" xml:base="http://localhost:4000/php-unit-test-note2/">&lt;h3 id=&quot;牛人的话翻译后&quot;&gt;牛人的话(翻译后)&lt;/h3&gt;
 
 &lt;p&gt;Adrian Kuhn et.al:&lt;/p&gt;
 
@@ -245,7 +245,7 @@ OK (2 tests, 8 assertions)
 		participant Master
 		participant Dev as F分支
 		participant Bg0
-		participant Bg2
+		participant Bg2 as Bg2/F2
 		participant Test
 		participant Release
 		participant ReleaseG2
@@ -302,22 +302,32 @@ OK (2 tests, 8 assertions)
 		else prod g0验证不通过
 			Master -&amp;gt;&amp;gt;+ Bg0 : 从Master拉取一个Bg0分支
 			Bg0 --&amp;gt;&amp;gt; Bg0 : 开发自测
-			Bg0 -&amp;gt;&amp;gt; Test : 合并到Test分支，构建测试环境，进行测试
-			alt 成功
-				Bg0 -&amp;gt;&amp;gt; Release: Bg0合并到Release分支，构建beta g0，并验证
-				alt beta g0验证通过
-					Note over Release:构建 prod g0,并验证
-					alt prod g0通过
-						Release -&amp;gt;&amp;gt; Master: 合并到Master分支,删除Bg0分支
-						deactivate Bg0
-					else  失败
-						Release --&amp;gt;&amp;gt; Bg0 : prod g0未通过，排查原因，再提测
+			Bg0 -&amp;gt;&amp;gt; Test : 合并到Test分支
+			alt Bg0合并到Test没有冲突
+				Note over Test:	jenkins 构建测试环境，并验证
+				alt 测试环境验证通过
+					Bg0 -&amp;gt;&amp;gt; Release: Bg0合并到Release分支 
+					alt 合并没有冲突
+						Note over Release :jenkins构建beta g0环境，并验证
+						alt beta g0验证通过
+							Note over Release:构建 prod g0,并验证
+							alt prod g0通过
+								Release -&amp;gt;&amp;gt; Master: 合并到Master分支,删除Bg0分支
+								deactivate Bg0
+							else  失败
+								Release --&amp;gt;&amp;gt; Bg0 : prod g0未通过，排查原因，再提测
+							end
+						else 失败
+							Release --&amp;gt;&amp;gt; Bg0: beta g0未通过，排查原因，再提测	
+						end
+					else Bg0合并Release发生冲突
+						Release --&amp;gt;&amp;gt; Bg0: 解决冲突，重新提测
 					end
-				else 失败
-					Release --&amp;gt;&amp;gt; Bg0: beta g0未通过，排查原因，再提测	
+				else 测试环境验证不通过
+					Test --&amp;gt;&amp;gt; Bg0: 查找原因，重新提测
 				end
-			else 失败
-				Test --&amp;gt;&amp;gt; Bg0: 查找原因，重新提测
+			else Bg0合并到Test有冲突 
+				Test --&amp;gt;&amp;gt; Bg0:解决冲突，重新提测	
 			end
 		end
 
@@ -337,31 +347,35 @@ OK (2 tests, 8 assertions)
 
 
 
-		Note over MasterG2,ReleaseG2:Bg2分支开发流程(解决线上g2环境的bug)
-		MasterG2 -&amp;gt;&amp;gt;+ Bg2: 拉取Bg2分支	
+		Note over MasterG2,ReleaseG2:Bg2/F2分支开发流程(解决线上g2环境的bug(Bg2分支),或G2环境的需求(F2分支))
+		MasterG2 -&amp;gt;&amp;gt;+ Bg2: 拉取Bg2/F2分支	
 		Bg2 --&amp;gt;&amp;gt; Bg2: 开发自测
 		Bg2 -&amp;gt;&amp;gt; Test: 合并到test分支
 		Note over Test:jenkins构建测试环境，并验证
 		alt 测试环境验证通过
 			Bg2 -&amp;gt;&amp;gt; ReleaseG2 : 合并到ReleaseG2分支
-			Note over ReleaseG2:jenkins构建beta g2环境
-			Note over ReleaseG2:在beta g2环境验证
-			alt beta g2环境验证通过
-				Note over ReleaseG2: jenkins构建prod g2环境
-				alt 解决了prod g2环境的bug
-					ReleaseG2 -&amp;gt;&amp;gt; Release : 合并到Release
-					ReleaseG2 -&amp;gt;&amp;gt; MasterG2: 合并到MasterG2,并删除Bg2分支
-					deactivate Bg2
-				else
-					ReleaseG2 --&amp;gt;&amp;gt; Bg2: 没有解决，查原因，重新提测
-				end 
-			else beta g2环境验证不通过
-				ReleaseG2 --&amp;gt;&amp;gt; Bg2: beta g2验证不通过，查原因，重新提测
+			alt 合并成功，没有冲突
+				Note over ReleaseG2:jenkins构建beta g2环境
+				Note over ReleaseG2:在beta g2环境验证
+				alt beta g2环境验证通过
+					Note over ReleaseG2: jenkins构建prod g2环境
+					alt prod g2验证通过
+						ReleaseG2 -&amp;gt;&amp;gt; Release : 合并到Release
+						ReleaseG2 -&amp;gt;&amp;gt; MasterG2: 合并到MasterG2,并删除Bg2分支
+						deactivate Bg2
+					else
+						ReleaseG2 --&amp;gt;&amp;gt; Bg2: prod g2验证没有通过
+					end 
+				else beta g2环境验证不通过
+					ReleaseG2 --&amp;gt;&amp;gt; Bg2: beta g2验证不通过，查原因，重新提测
+				end
+			else Bg2/F2合并ReleaseG2,发生冲突 
+				ReleaseG2 --&amp;gt;&amp;gt; Bg2:解决冲突，重新接测	
 			end
 		else
 			Test --&amp;gt;&amp;gt; Bg2:测试环境不通过，查原因，重新提测
 		end
-&lt;/div&gt;</content><author><name></name></author><summary type="html">sequenceDiagram participant MasterG2 participant Master participant Dev as F分支 participant Bg0 participant Bg2 participant Test participant Release participant ReleaseG2</summary></entry><entry><title type="html">Vim command mode–Ex(1)</title><link href="http://localhost:4000/vim-command-model_1/" rel="alternate" type="text/html" title="Vim command mode--Ex(1)" /><published>2019-01-17T00:00:00+08:00</published><updated>2019-01-17T00:00:00+08:00</updated><id>http://localhost:4000/vim-command-model_1</id><content type="html" xml:base="http://localhost:4000/vim-command-model_1/">&lt;p&gt;最早，现有ed，ed为ex之父，ex为vi之父，而vi为vim之父 —- The Old Testament of Unix&lt;/p&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">sequenceDiagram participant MasterG2 participant Master participant Dev as F分支 participant Bg0 participant Bg2 as Bg2/F2 participant Test participant Release participant ReleaseG2</summary></entry><entry><title type="html">Vim command mode–Ex(1)</title><link href="http://localhost:4000/vim-command-model_1/" rel="alternate" type="text/html" title="Vim command mode--Ex(1)" /><published>2019-01-17T00:00:00+08:00</published><updated>2019-01-17T00:00:00+08:00</updated><id>http://localhost:4000/vim-command-model_1</id><content type="html" xml:base="http://localhost:4000/vim-command-model_1/">&lt;p&gt;最早，现有ed，ed为ex之父，ex为vi之父，而vi为vim之父 —- The Old Testament of Unix&lt;/p&gt;
 
 &lt;p&gt;这些早期的Unix编辑器，依旧可以在vim中找到它们的影子，他们没有消失，只是换了一个方式存在。&lt;/p&gt;
 
