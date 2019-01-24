@@ -36,6 +36,7 @@
 <!-- Webfonts -->
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
+
 <meta http-equiv="cleartype" content="on">
 
 <!-- Load Modernizr -->
@@ -130,6 +131,360 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-01-23T00:00:00+08:00"><a href="http://localhost:4000/vimscript-note-1/">January 23, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~4 minutes
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/vimscript-note-1/" rel="bookmark" title="Vimscript note 1" itemprop="url">Vimscript note 1</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <h3 id="启动vim不加载vimrc">启动vim不加载.vimrc</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim -u NONE -N    -N 就是和vi不兼容
+-u &lt;vimrc&gt;		Use &lt;vimrc&gt; instead of any .vimrc
+-N			Not fully Vi compatible: 'nocompatible' ### 注释 
+
+"  这就是注释,双引号之后的就是注释内容
+但是下面的注释会失效。。
+:map &lt;space&gt; viw " 按下空格键高亮选中一个单词	
+
+所以vim的注释，最好不要行末添加
+</code></pre></div></div>
+
+<h3 id="切换布尔选项">!切换布尔选项</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:set number!   或:set nu!
+</code></pre></div></div>
+
+<h3 id="查看配置的值">?查看配置的值</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:set fileencoding? 返回fileencoding=utf-8
+:set number? 返回 number 或 nonumber
+</code></pre></div></div>
+
+<h3 id="键盘映射">键盘映射</h3>
+
+<ul>
+  <li>
+    <p>normal模式下的简单映射</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  :map - dd   按下 - 就相当于dd，会删除一行
+  也可以用&lt;keyname&gt;来告诉vim一个特殊的按键
+  :map &lt;space&gt; viw  按下空格，vim将高亮选中一个单词
+	
+  :unmap - 取消-的映射
+  :unmap &lt;space&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>nmap 在normal模式下的映射</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  :nmap - ddp
+  取消映射
+  :nunmap -
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>vmap 在visual模式下的映射</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  visual模式下，按下\,会把小写字母变大写
+  :vmap \ U 
+  取消映射
+  :vunmap \
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>imap 在insert模式下的映射</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  在insert模式下，ctrl+d 会删除一行
+  :imap &lt;c-d&gt; &lt;esc&gt;ddi   
+  取消映射
+  :iunmap &lt;c-d&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>映射可能会出现递归调用</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  :nmap - dd
+  :namp \ -
+  在normal模式下，按下\,vim会解释为-,而 -会继续被解析为 dd，最后就是删除了一行
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>非递归映射*noremap</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  :nmap x dd
+  :nnoremap \ x
+  当按下\ 就是x，删除一个字符，vim不会把x再解析为dd
+
+  ** 应该在所有的情况下使用 noremap **
+  " insert mode下jj --&gt; &lt;esc&gt;
+  inoremap jj &lt;esc&gt;
+  noremap/nnoremap , vnoremap, inoremap
+  取消非递归映射(和取消递归映射的方法一样)
+  :unnmap  \
+
+  :map x &lt;nop&gt; 就会让按键x失效
+
+  :nnoremap &lt;buffer&gt; Q x 只在当前缓冲区生效
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="leaders导航键">Leaders(导航键?)</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim默认的leader是\
+
+:let mapleader = "-"  把leader键设置为-
+在配置文件的其他地方，就用&lt;leader&gt;,而不是"-"
+
+local leader 这个leader只用于那些对某类文件(python,html)而设置的映射
+
+:let maplocalleader = "\\"  把loacalleader设置为\,以为\\会转意为\
+如果要设定一个只会用户特定缓冲区的映射，一般会使用 &lt;localleader&gt;,而不是&lt;leader&gt;
+使用&lt;leader&gt;和&lt;localleader&gt;按键就像设置了一种命名空间,用&lt;localleader&gt;来设置本地映射，会防止你爹插件覆盖别人的全局映射
+
+打开vimrc文件
+nnoremap &lt;leader&gt;ev :vsplit $MYVIMRC&lt;cr&gt;
+重新加载vimrc文件
+nnoremap &lt;leader&gt;sv :source $MYVIMRC&lt;cr&gt;
+</code></pre></div></div>
+
+<h3 id="abbreviations">Abbreviations</h3>
+
+<p>在一个abbrevivation后输入一个 non-keyword character后，vim会替换那个abbrevivation
+not-keyword character指的是那些不在iskeyword选项中的字符(iskeyword=@,48-57,_,192-255)</p>
+
+<ul>
+  <li>
+    <p>insert模式下的abbrevivations</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  :iabbrev adn and
+  :iabbrev ture true
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>replace模式下的abbrevivations</p>
+  </li>
+  <li>
+    <p>command模式下的abbrevivations</p>
+  </li>
+</ul>
+
+<h3 id="自动命令">自动命令</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:autocmd BufNewFile * :write  "该命令会在打开一个文件后，自动自动保存
+         ^          ^ ^
+         |          | |
+         |          | 要执行的命令
+         |          | 
+         |          用于事件过滤的"模式pattern" 
+         |           
+         要监听的事件          
+
+:autocmd BufNewFile *.php :write  只会保存php文件
+:autocmd BufWritePre *.html :normal gg=G  在保存html文档之前，先格式化
+多个事件用逗号分隔
+:autocmd BufNewFile,BufRead *.html setlocal nowarp
+vim脚本编程中，一般会同时使用BufRead和BufNewFile
+</code></pre></div></div>
+
+<ul>
+  <li>所有的事件</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Name			triggered by ~
+
+	Reading
+|BufNewFile|		starting to edit a file that doesn't exist
+|BufReadPre|		starting to edit a new buffer, before reading the file
+|BufRead|		starting to edit a new buffer, after reading the file
+|BufReadPost|		starting to edit a new buffer, after reading the file
+|BufReadCmd|		before starting to edit a new buffer |Cmd-event|
+
+|FileReadPre|		before reading a file with a ":read" command
+|FileReadPost|		after reading a file with a ":read" command
+|FileReadCmd|		before reading a file with a ":read" command |Cmd-event|
+
+|FilterReadPre|		before reading a file from a filter command
+|FilterReadPost|	after reading a file from a filter command
+
+|StdinReadPre|		before reading from stdin into the buffer
+|StdinReadPost|		After reading from the stdin into the buffer
+
+	Writing
+|BufWrite|		starting to write the whole buffer to a file
+|BufWritePre|		starting to write the whole buffer to a file
+|BufWritePost|		after writing the whole buffer to a file
+|BufWriteCmd|		before writing the whole buffer to a file |Cmd-event|
+
+|FileWritePre|		starting to write part of a buffer to a file
+|FileWritePost|		after writing part of a buffer to a file
+|FileWriteCmd|		before writing part of a buffer to a file |Cmd-event|
+
+|FileAppendPre|		starting to append to a file
+|FileAppendPost|	after appending to a file
+|FileAppendCmd|		before appending to a file |Cmd-event|
+
+|FilterWritePre|	starting to write a file for a filter command or diff
+|FilterWritePost|	after writing a file for a filter command or diff
+
+	Buffers
+|BufAdd|		just after adding a buffer to the buffer list
+|BufCreate|		just after adding a buffer to the buffer list
+|BufDelete|		before deleting a buffer from the buffer list
+|BufWipeout|		before completely deleting a buffer
+
+|BufFilePre|		before changing the name of the current buffer
+|BufFilePost|		after changing the name of the current buffer
+
+|BufEnter|		after entering a buffer
+|BufLeave|		before leaving to another buffer
+|BufWinEnter|		after a buffer is displayed in a window
+|BufWinLeave|		before a buffer is removed from a window
+
+|BufUnload|		before unloading a buffer
+|BufHidden|		just after a buffer has become hidden
+|BufNew|		just after creating a new buffer
+
+|SwapExists|		detected an existing swap file
+
+	Options
+|FileType|		when the 'filetype' option has been set
+|Syntax|		when the 'syntax' option has been set
+|EncodingChanged|	after the 'encoding' option has been changed
+|TermChanged|		after the value of 'term' has changed
+|OptionSet|		after setting any option
+
+	Startup and exit
+|VimEnter|		after doing all the startup stuff
+|GUIEnter|		after starting the GUI successfully
+|GUIFailed|		after starting the GUI failed
+|TermResponse|		after the terminal response to |t_RV| is received
+
+|QuitPre|		when using `:quit`, before deciding whether to quit
+|VimLeavePre|		before exiting Vim, before writing the viminfo file
+|VimLeave|		before exiting Vim, after writing the viminfo file
+
+	Various
+|FileChangedShell|	Vim notices that a file changed since editing started
+|FileChangedShellPost|	After handling a file changed since editing started
+|FileChangedRO|		before making the first change to a read-only file
+
+|ShellCmdPost|		after executing a shell command
+|ShellFilterPost|	after filtering with a shell command
+
+|CmdUndefined|		a user command is used but it isn't defined
+|FuncUndefined|		a user function is used but it isn't defined
+|SpellFileMissing|	a spell file is used but it can't be found
+|SourcePre|		before sourcing a Vim script
+|SourceCmd|		before sourcing a Vim script |Cmd-event|
+
+|VimResized|		after the Vim window size changed
+|FocusGained|		Vim got input focus
+|FocusLost|		Vim lost input focus
+|CursorHold|		the user doesn't press a key for a while
+|CursorHoldI|		the user doesn't press a key for a while in Insert mode
+|CursorMoved|		the cursor was moved in Normal mode
+|CursorMovedI|		the cursor was moved in Insert mode
+
+|WinNew|		after creating a new window
+|TabNew|		after creating a new tab page
+|TabClosed|		after closing a tab page
+|WinEnter|		after entering another window
+|WinLeave|		before leaving a window
+|TabEnter|		after entering another tab page
+|TabLeave|		before leaving a tab page
+|CmdwinEnter|		after entering the command-line window
+|CmdwinLeave|		before leaving the command-line window
+
+|InsertEnter|		starting Insert mode
+|InsertChange|		when typing &lt;Insert&gt; while in Insert or Replace mode
+|InsertLeave|		when leaving Insert mode
+|InsertCharPre|		when a character was typed in Insert mode, before
+			inserting it
+
+|TextChanged|		after a change was made to the text in Normal mode
+|TextChangedI|		after a change was made to the text in Insert mode
+|TextYankPost|		after text is yanked or deleted
+
+|ColorScheme|		after loading a color scheme
+
+|RemoteReply|		a reply from a server Vim was received
+
+|QuickFixCmdPre|	before a quickfix command is run
+|QuickFixCmdPost|	after a quickfix command is run
+
+|SessionLoadPost|	after loading a session file
+
+|MenuPopup|		just before showing the popup menu
+|CompleteDone|		after Insert mode completion is done
+
+|User|			to be used in combination with ":doautocmd"
+
+
+</code></pre></div></div>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-01-23T00:00:00+08:00"><a href="http://localhost:4000/devops-flow/">January 23, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/devops-flow/" rel="bookmark" title="A devops flow" itemprop="url">A devops flow</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <div class="mermaid">
+graph TB
+	
+	subgraph devops
+		test(("fa:fa-users Test"))
+		dev(("fa:fa-user Dev"))
+		ops(("Ops"))
+		branch("branch")
+
+		dev --&gt;|创建分支| branch
+		branch --&gt;|jenkins| jenkins["jenkins"]
+	end
+	
+	tes1t["fa:fa-camera-retro:5x Camera"]
+
+	jenkins["fa:fa-futbol:fa-5x Iggool"]
+
+     classDef green fill:#9f6,stroke:#333,stroke-width:2px;
+     classDef orange fill:#f96,stroke:#333,stroke-width:4px;
+     class sq,e green
+     class di orange
+
+</div>
+
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2019-01-22T00:00:00+08:00"><a href="http://localhost:4000/vim-some-skills/">January 22, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
       
       <span class="entry-reading-time">
@@ -171,6 +526,18 @@ gUU        将当前行的字母改成大写
 guu       将当前行的字母全改成小写
 gUw       将光标下的单词改成大写。
 guw       将光标下的单词改成小写。
+</code></pre></div></div>
+
+<h4 id="insert-mode-缩进">Insert mode 缩进</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ctrl+t &gt;	
+crtl+d &lt;
+</code></pre></div></div>
+
+<h4 id="的作用">!的作用</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- 切换布尔选项，:set number!
+- 执行shell命令 :! ls
 </code></pre></div></div>
 
   </div><!-- /.entry-content -->
@@ -317,131 +684,7 @@ Reading time ~1 minute
   <header>
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-20T00:00:00+08:00"><a href="http://localhost:4000/php-unit-test/">January 20, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/php-unit-test/" rel="bookmark" title="PHP unit test demo" itemprop="url">PHP unit test demo</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <h3 id="大牛的话翻译后">大牛的话(翻译后)</h3>
-
-<p>Martin Fowler:</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>无论什么时候,当你试着在print或其他debugger表达式里输入内容时，你应该把它写成一个测试用例
-</code></pre></div></div>
-
-<p>单元测试是代码质量的第一道关口。做好了单元测试，有利于尽早发现问题，解决问题。对CI/CD来说也是很重要的一个环节。当然，写单元测试会增加编写代码的工作量，所以一些公司或项目为了赶工期，单元测试就被忽略了，尽管大家都知道这个很重要。出来混，迟早要还的。欠下的，会加倍偿还。特别是随着产品的迭代，这个问题会逐渐凸显出来。</p>
-
-<p>先来說一下php的单元测试,使用的是PHPUnit</p>
-<h3 id="install">Install</h3>
-
-<p>参考文档：https://phpunit.readthedocs.io/en</p>
-
-<p>linux下简单的几个步骤如下</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$wget https://phar.phpunit.de/phpunit-7.5.2.phar
-$chmod +x phpunit-7.5.2.phar
-$sudo mv phpunit-7.5.2.phar /usr/local/bin/phpunit
-$phpunit --version
-PHPUnit 7.5.2 by Sebastian Bergmann and contributors.
-</code></pre></div></div>
-
-<h3 id="小试牛刀">小试牛刀</h3>
-
-<p>创建一个文件比如test.php，内容如下</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
-<span class="k">use</span> <span class="nx">PHPUnit\Framework\TestCase</span><span class="p">;</span>
-
-<span class="k">class</span> <span class="nc">StackTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
-<span class="p">{</span>
-	<span class="k">public</span> <span class="k">function</span> <span class="nf">testPushAndPop</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="nv">$stack</span> <span class="o">=</span> <span class="p">[];</span>
-		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$stack</span><span class="p">));</span>
-
-		<span class="nb">array_push</span><span class="p">(</span><span class="nv">$stack</span><span class="p">,</span> <span class="s1">'foo'</span><span class="p">);</span>
-		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">,</span> <span class="nv">$stack</span><span class="p">[</span><span class="nb">count</span><span class="p">(</span><span class="nv">$stack</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
-		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$stack</span><span class="p">));</span>
-
-		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">,</span> <span class="nb">array_pop</span><span class="p">(</span><span class="nv">$stack</span><span class="p">));</span>
-		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$stack</span><span class="p">));</span>
-	<span class="p">}</span>
-
-	<span class="sd">/**
-	* @test
-	*/</span>
-	<span class="k">public</span> <span class="k">function</span> <span class="nf">num</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">'1'</span><span class="p">);</span>
-		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">);</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>执行测试phpunit ./test.php,返回结果如下</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PHPUnit 7.5.2 by Sebastian Bergmann and contributors.
-
-F.                                                                  2 / 2 (100%)
-
-Time: 183 ms, Memory: 10.00MB
-
-There was 1 failure:
-
-1) StackTest::testPushAndPop
-Failed asserting that 0 is identical to 1.
-
-/home/wm/code/php/phpunit/test.php:16
-
-FAILURES!
-Tests: 2, Assertions: 8, Failures: 1.
-</code></pre></div></div>
-
-<p>测试结果告诉我们，有两个测试方法，有8处断言，有一处失败，失败的原因是断言0和1相等，在代码的第16行。</p>
-
-<p>我们修改16行为: $this-&gt;assertSame(0, count($stack));再执行测试</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PHPUnit 7.5.2 by Sebastian Bergmann and contributors.
-
-..                                                                  2 / 2 (100%)
-
-Time: 205 ms, Memory: 10.00MB
-
-OK (2 tests, 8 assertions)
-</code></pre></div></div>
-
-<p>通过了测试^_^</p>
-
-<h3 id="几点说明">几点说明</h3>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.测试的类应该命名格式为ClassTest,大驼峰，而且以Test结尾,文件名和类名相同（我个人推测）
-2.测试的类要继承PHPUnit\Framework\TestCase(大多数情况下)
-3.测试的方法都要是public,声明一个方法是否是测试方法有如下两个方法
-	- 方法名称的格式：test*
-	- 或则在方法的注释中添加@test,来标识该方法是测试方法,如上
-4.在测试方法里有很多断言方法,如上assertSame(),assertEquals()
-5.出现失败后，就不会继续执行了。
-</code></pre></div></div>
-
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-18T00:00:00+08:00"><a href="http://localhost:4000/git-branch-model/">January 18, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2019-01-22T00:00:00+08:00"><a href="http://localhost:4000/new-git-branch/">January 22, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
@@ -451,7 +694,7 @@ Reading time ~2 minutes
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/git-branch-model/" rel="bookmark" title="A git branch model" itemprop="url">A git branch model</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/new-git-branch/" rel="bookmark" title="The new  git branch model(add G1)" itemprop="url">The new  git branch model(add G1)</a></h1>
     
   </header>
   <div class="entry-content">
@@ -574,14 +817,20 @@ Reading time ~2 minutes
 				Note over ReleaseG2:jenkins构建beta g2环境
 				Note over ReleaseG2:在beta g2环境验证
 				alt beta g2环境验证通过
+					Note over ReleaseG2: jenkins构建prod g1环境
+					Note right of  ReleaseG2: 从G2选取部分租户<br />漂移到prod g1
+					alt prod g1的租户验证通过
+						Note over ReleaseG2: 在prod g1等待	
+					else prod g1租户验证不通过
+						ReleaseG2 --&gt;&gt; Bg2:验证不通过，查原因，重新提测
+					end
+					Note right of  ReleaseG2: 租户在prod g1上<br />过了观察期(如1天)
+					Note right of  ReleaseG2: 把租户全部漂移<br />到prod g1
 					Note over ReleaseG2: jenkins构建prod g2环境
-					alt prod g2验证通过
-						ReleaseG2 -&gt;&gt; Release : 合并到Release
-						ReleaseG2 -&gt;&gt; MasterG2: 合并到MasterG2,并删除Bg2分支
-						deactivate Bg2
-					else
-						ReleaseG2 --&gt;&gt; Bg2: prod g2验证没有通过
-					end 
+					Note right of  ReleaseG2: 把prod g1租户<br />全部漂移到prod g2
+					ReleaseG2 -&gt;&gt; Release : 合并到Release
+					ReleaseG2 -&gt;&gt; MasterG2: 合并到MasterG2<br />并删除Bg2分支
+					deactivate Bg2
 				else beta g2环境验证不通过
 					ReleaseG2 --&gt;&gt; Bg2: beta g2验证不通过，查原因，重新提测
 				end
@@ -593,109 +842,6 @@ Reading time ~2 minutes
 		end
 </div>
 
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-17T00:00:00+08:00"><a href="http://localhost:4000/vim-command-model_1/">January 17, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/vim-command-model_1/" rel="bookmark" title="Vim command mode--Ex(1)" itemprop="url">Vim command mode--Ex(1)</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>最早，现有ed，ed为ex之父，ex为vi之父，而vi为vim之父 —- The Old Testament of Unix</p>
-
-<p>这些早期的Unix编辑器，依旧可以在vim中找到它们的影子，他们没有消失，只是换了一个方式存在。</p>
-
-<p>我打算挖一坑，来說一下命令行模式，来看一下vim身体里流淌着多少它的祖先ex(行编辑器)的血液。</p>
-
-<p>在普通模式下，按下<code>:</code>就会进入命令行模式，和shell下的命令行很相似;输入一条命令，然后回车执行。按下<code>Esc</code>键就可以回到普通模式。这些在命令行模式下执行的命令，又可以称为Ex命令。</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">常见命令</th>
-      <th style="text-align: left">用途说明</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">:edit</td>
-      <td style="text-align: left">编辑一个文件，editk可以简写为e</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">:write</td>
-      <td style="text-align: left">写文件</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">:tabnew</td>
-      <td style="text-align: left">创建一个tab</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">:prev/:next</td>
-      <td style="text-align: left">当用vim一次打开多个文件(如：vim a.txt b.txt)后，可以用他们来回切换文件</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">:bprev/:bnext</td>
-      <td style="text-align: left">当打开多个缓冲区后，可以用他们来回切换缓冲区，不过我习惯<code>ctrl</code>+6来回切换最近两个缓冲区</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">:[range]delete [x]</td>
-      <td style="text-align: left">删除指定范围的行到寄存器[x]中,delete可以简写为d</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">:[range]yank [x]</td>
-      <td style="text-align: left">复制指定范围的行到寄存器[x]中,yank可以简写为y</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">:[line]put [x]</td>
-      <td style="text-align: left">把寄存器x的内容，粘贴到指定行的后面,put不能简写</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">:[range]copy {address}</td>
-      <td style="text-align: left">把指定范围的行复制到{address}指定的行之下,copy可以简写为co或t</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">:[range]move {address}</td>
-      <td style="text-align: left">把指定范围的行移动到{address}指定的行之下,move可简写为m</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">:[range]join</td>
-      <td style="text-align: left">把指定范围内的行连接起来，成为一行，<code>J</code>也可以起连接行的作用(当前行和下一行）</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">:[range]normal {commands}</td>
-      <td style="text-align: left">对指定范围内的每一行执行普通模式的命令{commands}</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">:[range]substitute/{pattern}/{string}/{flags}</td>
-      <td style="text-align: left">把指定范围内的行出现的{pattern}匹配的地方替换为{string}，substitute 可以简写为s(vim的正则替换，我先挖个坑，后面再填上)</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">:[range]global/{pattern}/[cmd]</td>
-      <td style="text-align: left">把指定范围内的行匹配{pattern}的所有行之下Ex命令{cmd}，这个特性还要进一步挖掘</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>range的写法：
-	- 一个数字如23,34;代表指定的行
-	- 两个数字逗号分割: 2,5  代表从第2到第5行
-	- num,.  从第num行到当前行，比如我们要从第7行删除所有内容，我们先按G,光标会移动到最后一行，然后输入 :7,. d</p>
-
-<p>总之，Ex命令可以一次执行，多处修改。</p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->

@@ -7,15 +7,22 @@ comments: false
 modified: 2019-01-12
 ---
 
-Who am I? Where am I ? What am doing now ? 
-If you haven't found what you love, keep looking, don't settle. Keep looking ,don't settle! Keep looking ,don't settle...
 
-## My skills:
+## Basic information
+
+* runningele@gmail.com
+* helloworldcoding
+* Shenzhen/China
+	
+
+## My skills & Hobbies:
 
 * familiar with php,python,javascript,shell,erlang programming language.
-* erlang is the right language.
-* vim is the only text editor.
-* 5km running 
-* badminton
+* Suite is the best.
+* Functional programming is charming.
+* Vim is the only text editor.
+* Running & Badminton & Swimming & Hiking.
+
+
 
 

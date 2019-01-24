@@ -30,3 +30,13 @@ guu       将当前行的字母全改成小写
 gUw       将光标下的单词改成大写。
 guw       将光标下的单词改成小写。
 ```
+
+#### Insert mode 缩进
+	
+	ctrl+t >	
+	crtl+d <
+
+#### !的作用
+	
+	- 切换布尔选项，:set number!
+	- 执行shell命令 :! ls

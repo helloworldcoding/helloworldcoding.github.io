@@ -1,4 +1,453 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-21T21:30:47+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">Dependence and Data Provider in PHPUnit</title><link href="http://localhost:4000/php-unit-test-note2/" rel="alternate" type="text/html" title="Dependence and Data Provider in PHPUnit" /><published>2019-01-22T00:00:00+08:00</published><updated>2019-01-22T00:00:00+08:00</updated><id>http://localhost:4000/php-unit-test-note2</id><content type="html" xml:base="http://localhost:4000/php-unit-test-note2/">&lt;h3 id=&quot;牛人的话翻译后&quot;&gt;牛人的话(翻译后)&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-24T13:21:43+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">A devops flow</title><link href="http://localhost:4000/devops-flow/" rel="alternate" type="text/html" title="A devops flow" /><published>2019-01-23T00:00:00+08:00</published><updated>2019-01-23T00:00:00+08:00</updated><id>http://localhost:4000/devops-flow</id><content type="html" xml:base="http://localhost:4000/devops-flow/">&lt;div class=&quot;mermaid&quot;&gt;
+graph TB
+	
+	subgraph devops
+		test((&quot;fa:fa-users Test&quot;))
+		dev((&quot;fa:fa-user Dev&quot;))
+		ops((&quot;Ops&quot;))
+		branch(&quot;branch&quot;)
+
+		dev --&amp;gt;|创建分支| branch
+		branch --&amp;gt;|jenkins| jenkins[&quot;jenkins&quot;]
+	end
+	
+	tes1t[&quot;fa:fa-camera-retro:5x Camera&quot;]
+
+	jenkins[&quot;fa:fa-futbol:fa-5x Iggool&quot;]
+
+     classDef green fill:#9f6,stroke:#333,stroke-width:2px;
+     classDef orange fill:#f96,stroke:#333,stroke-width:4px;
+     class sq,e green
+     class di orange
+
+&lt;/div&gt;</content><author><name></name></author><summary type="html">graph TB subgraph devops test((&quot;fa:fa-users Test&quot;)) dev((&quot;fa:fa-user Dev&quot;)) ops((&quot;Ops&quot;)) branch(&quot;branch&quot;)</summary></entry><entry><title type="html">Vimscript note 1</title><link href="http://localhost:4000/vimscript-note-1/" rel="alternate" type="text/html" title="Vimscript note 1" /><published>2019-01-23T00:00:00+08:00</published><updated>2019-01-23T00:00:00+08:00</updated><id>http://localhost:4000/vimscript-note-1</id><content type="html" xml:base="http://localhost:4000/vimscript-note-1/">&lt;h3 id=&quot;启动vim不加载vimrc&quot;&gt;启动vim不加载.vimrc&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim -u NONE -N    -N 就是和vi不兼容
+-u &amp;lt;vimrc&amp;gt;		Use &amp;lt;vimrc&amp;gt; instead of any .vimrc
+-N			Not fully Vi compatible: 'nocompatible' ### 注释 
+
+&quot;  这就是注释,双引号之后的就是注释内容
+但是下面的注释会失效。。
+:map &amp;lt;space&amp;gt; viw &quot; 按下空格键高亮选中一个单词	
+
+所以vim的注释，最好不要行末添加
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;切换布尔选项&quot;&gt;!切换布尔选项&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;:set number!   或:set nu!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;查看配置的值&quot;&gt;?查看配置的值&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;:set fileencoding? 返回fileencoding=utf-8
+:set number? 返回 number 或 nonumber
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;键盘映射&quot;&gt;键盘映射&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;normal模式下的简单映射&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  :map - dd   按下 - 就相当于dd，会删除一行
+  也可以用&amp;lt;keyname&amp;gt;来告诉vim一个特殊的按键
+  :map &amp;lt;space&amp;gt; viw  按下空格，vim将高亮选中一个单词
+	
+  :unmap - 取消-的映射
+  :unmap &amp;lt;space&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;nmap 在normal模式下的映射&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  :nmap - ddp
+  取消映射
+  :nunmap -
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;vmap 在visual模式下的映射&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  visual模式下，按下\,会把小写字母变大写
+  :vmap \ U 
+  取消映射
+  :vunmap \
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;imap 在insert模式下的映射&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  在insert模式下，ctrl+d 会删除一行
+  :imap &amp;lt;c-d&amp;gt; &amp;lt;esc&amp;gt;ddi   
+  取消映射
+  :iunmap &amp;lt;c-d&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;映射可能会出现递归调用&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  :nmap - dd
+  :namp \ -
+  在normal模式下，按下\,vim会解释为-,而 -会继续被解析为 dd，最后就是删除了一行
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;非递归映射*noremap&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  :nmap x dd
+  :nnoremap \ x
+  当按下\ 就是x，删除一个字符，vim不会把x再解析为dd
+
+  ** 应该在所有的情况下使用 noremap **
+  &quot; insert mode下jj --&amp;gt; &amp;lt;esc&amp;gt;
+  inoremap jj &amp;lt;esc&amp;gt;
+  noremap/nnoremap , vnoremap, inoremap
+  取消非递归映射(和取消递归映射的方法一样)
+  :unnmap  \
+
+  :map x &amp;lt;nop&amp;gt; 就会让按键x失效
+
+  :nnoremap &amp;lt;buffer&amp;gt; Q x 只在当前缓冲区生效
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;leaders导航键&quot;&gt;Leaders(导航键?)&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim默认的leader是\
+
+:let mapleader = &quot;-&quot;  把leader键设置为-
+在配置文件的其他地方，就用&amp;lt;leader&amp;gt;,而不是&quot;-&quot;
+
+local leader 这个leader只用于那些对某类文件(python,html)而设置的映射
+
+:let maplocalleader = &quot;\\&quot;  把loacalleader设置为\,以为\\会转意为\
+如果要设定一个只会用户特定缓冲区的映射，一般会使用 &amp;lt;localleader&amp;gt;,而不是&amp;lt;leader&amp;gt;
+使用&amp;lt;leader&amp;gt;和&amp;lt;localleader&amp;gt;按键就像设置了一种命名空间,用&amp;lt;localleader&amp;gt;来设置本地映射，会防止你爹插件覆盖别人的全局映射
+
+打开vimrc文件
+nnoremap &amp;lt;leader&amp;gt;ev :vsplit $MYVIMRC&amp;lt;cr&amp;gt;
+重新加载vimrc文件
+nnoremap &amp;lt;leader&amp;gt;sv :source $MYVIMRC&amp;lt;cr&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;abbreviations&quot;&gt;Abbreviations&lt;/h3&gt;
+
+&lt;p&gt;在一个abbrevivation后输入一个 non-keyword character后，vim会替换那个abbrevivation
+not-keyword character指的是那些不在iskeyword选项中的字符(iskeyword=@,48-57,_,192-255)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;insert模式下的abbrevivations&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  :iabbrev adn and
+  :iabbrev ture true
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;replace模式下的abbrevivations&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;command模式下的abbrevivations&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;自动命令&quot;&gt;自动命令&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;:autocmd BufNewFile * :write  &quot;该命令会在打开一个文件后，自动自动保存
+         ^          ^ ^
+         |          | |
+         |          | 要执行的命令
+         |          | 
+         |          用于事件过滤的&quot;模式pattern&quot; 
+         |           
+         要监听的事件          
+
+:autocmd BufNewFile *.php :write  只会保存php文件
+:autocmd BufWritePre *.html :normal gg=G  在保存html文档之前，先格式化
+多个事件用逗号分隔
+:autocmd BufNewFile,BufRead *.html setlocal nowarp
+vim脚本编程中，一般会同时使用BufRead和BufNewFile
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;所有的事件&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Name			triggered by ~
+
+	Reading
+|BufNewFile|		starting to edit a file that doesn't exist
+|BufReadPre|		starting to edit a new buffer, before reading the file
+|BufRead|		starting to edit a new buffer, after reading the file
+|BufReadPost|		starting to edit a new buffer, after reading the file
+|BufReadCmd|		before starting to edit a new buffer |Cmd-event|
+
+|FileReadPre|		before reading a file with a &quot;:read&quot; command
+|FileReadPost|		after reading a file with a &quot;:read&quot; command
+|FileReadCmd|		before reading a file with a &quot;:read&quot; command |Cmd-event|
+
+|FilterReadPre|		before reading a file from a filter command
+|FilterReadPost|	after reading a file from a filter command
+
+|StdinReadPre|		before reading from stdin into the buffer
+|StdinReadPost|		After reading from the stdin into the buffer
+
+	Writing
+|BufWrite|		starting to write the whole buffer to a file
+|BufWritePre|		starting to write the whole buffer to a file
+|BufWritePost|		after writing the whole buffer to a file
+|BufWriteCmd|		before writing the whole buffer to a file |Cmd-event|
+
+|FileWritePre|		starting to write part of a buffer to a file
+|FileWritePost|		after writing part of a buffer to a file
+|FileWriteCmd|		before writing part of a buffer to a file |Cmd-event|
+
+|FileAppendPre|		starting to append to a file
+|FileAppendPost|	after appending to a file
+|FileAppendCmd|		before appending to a file |Cmd-event|
+
+|FilterWritePre|	starting to write a file for a filter command or diff
+|FilterWritePost|	after writing a file for a filter command or diff
+
+	Buffers
+|BufAdd|		just after adding a buffer to the buffer list
+|BufCreate|		just after adding a buffer to the buffer list
+|BufDelete|		before deleting a buffer from the buffer list
+|BufWipeout|		before completely deleting a buffer
+
+|BufFilePre|		before changing the name of the current buffer
+|BufFilePost|		after changing the name of the current buffer
+
+|BufEnter|		after entering a buffer
+|BufLeave|		before leaving to another buffer
+|BufWinEnter|		after a buffer is displayed in a window
+|BufWinLeave|		before a buffer is removed from a window
+
+|BufUnload|		before unloading a buffer
+|BufHidden|		just after a buffer has become hidden
+|BufNew|		just after creating a new buffer
+
+|SwapExists|		detected an existing swap file
+
+	Options
+|FileType|		when the 'filetype' option has been set
+|Syntax|		when the 'syntax' option has been set
+|EncodingChanged|	after the 'encoding' option has been changed
+|TermChanged|		after the value of 'term' has changed
+|OptionSet|		after setting any option
+
+	Startup and exit
+|VimEnter|		after doing all the startup stuff
+|GUIEnter|		after starting the GUI successfully
+|GUIFailed|		after starting the GUI failed
+|TermResponse|		after the terminal response to |t_RV| is received
+
+|QuitPre|		when using `:quit`, before deciding whether to quit
+|VimLeavePre|		before exiting Vim, before writing the viminfo file
+|VimLeave|		before exiting Vim, after writing the viminfo file
+
+	Various
+|FileChangedShell|	Vim notices that a file changed since editing started
+|FileChangedShellPost|	After handling a file changed since editing started
+|FileChangedRO|		before making the first change to a read-only file
+
+|ShellCmdPost|		after executing a shell command
+|ShellFilterPost|	after filtering with a shell command
+
+|CmdUndefined|		a user command is used but it isn't defined
+|FuncUndefined|		a user function is used but it isn't defined
+|SpellFileMissing|	a spell file is used but it can't be found
+|SourcePre|		before sourcing a Vim script
+|SourceCmd|		before sourcing a Vim script |Cmd-event|
+
+|VimResized|		after the Vim window size changed
+|FocusGained|		Vim got input focus
+|FocusLost|		Vim lost input focus
+|CursorHold|		the user doesn't press a key for a while
+|CursorHoldI|		the user doesn't press a key for a while in Insert mode
+|CursorMoved|		the cursor was moved in Normal mode
+|CursorMovedI|		the cursor was moved in Insert mode
+
+|WinNew|		after creating a new window
+|TabNew|		after creating a new tab page
+|TabClosed|		after closing a tab page
+|WinEnter|		after entering another window
+|WinLeave|		before leaving a window
+|TabEnter|		after entering another tab page
+|TabLeave|		before leaving a tab page
+|CmdwinEnter|		after entering the command-line window
+|CmdwinLeave|		before leaving the command-line window
+
+|InsertEnter|		starting Insert mode
+|InsertChange|		when typing &amp;lt;Insert&amp;gt; while in Insert or Replace mode
+|InsertLeave|		when leaving Insert mode
+|InsertCharPre|		when a character was typed in Insert mode, before
+			inserting it
+
+|TextChanged|		after a change was made to the text in Normal mode
+|TextChangedI|		after a change was made to the text in Insert mode
+|TextYankPost|		after text is yanked or deleted
+
+|ColorScheme|		after loading a color scheme
+
+|RemoteReply|		a reply from a server Vim was received
+
+|QuickFixCmdPre|	before a quickfix command is run
+|QuickFixCmdPost|	after a quickfix command is run
+
+|SessionLoadPost|	after loading a session file
+
+|MenuPopup|		just before showing the popup menu
+|CompleteDone|		after Insert mode completion is done
+
+|User|			to be used in combination with &quot;:doautocmd&quot;
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="vim" /><category term="vimscript" /><summary type="html">启动vim不加载.vimrc</summary></entry><entry><title type="html">The new git branch model(add G1)</title><link href="http://localhost:4000/new-git-branch/" rel="alternate" type="text/html" title="The new  git branch model(add G1)" /><published>2019-01-22T00:00:00+08:00</published><updated>2019-01-22T00:00:00+08:00</updated><id>http://localhost:4000/new-git-branch</id><content type="html" xml:base="http://localhost:4000/new-git-branch/">&lt;div class=&quot;mermaid&quot;&gt;
+	sequenceDiagram
+		participant MasterG2
+		participant Master
+		participant Dev as F分支
+		participant Bg0
+		participant Bg2 as Bg2/F2
+		participant Test
+		participant Release
+		participant ReleaseG2
+
+		Note over Master,Release:特性分支(f分支)开发流程 
+		Master -&amp;gt;&amp;gt;+ Dev:开发拉f分支
+		Dev --&amp;gt;&amp;gt; Dev: 开发自测
+		loop 提测
+			Dev -&amp;gt;&amp;gt; Test:F分支合并到Test分支
+			Note over Test:是否有冲突
+			alt 没有有冲突
+				Note over Test :jenkins构建test环境
+				Note over Test:验证测试环境
+				alt 测试环境验证通过
+					Note over Dev :F分支能否合并到Release分支
+					alt 能合并
+						Dev -&amp;gt;&amp;gt; Release:F分支合并到Release
+						Note over Release :是否有冲突
+						alt 没有冲突
+							Note over Release :jenkins构建beta g0
+							Note over Release:验证beta g0环境
+							alt beta g0环境验证通过
+								Note over Release: 积累一天
+								Note over Release : jenkins构建prod g0
+								Note over Release : 验证prod g0
+								alt prod g0验证通过
+									Release -&amp;gt;&amp;gt;- Dev : 删除所有的合并到Relase的F分支
+									Release -&amp;gt;&amp;gt; Master : Release分支合并到Master
+								else prod g0没有验证通过
+									Release --&amp;gt;&amp;gt; Dev: prod g0验证没有通过，排查原因
+								end
+							else
+								Release --&amp;gt;&amp;gt; Dev: beta g0测试不通过, 排查问题
+							end
+						else  有冲突
+							Release --&amp;gt;&amp;gt; Dev : 开发同学先解决冲突,再次提测
+						end
+					else F分支不能合并到Release,原因：
+						Note over Dev: 过了14:00
+						Note over Dev: 距离灰度发布不足两天
+						Note over Dev: 灰度发布期间
+					end
+				else 测试环境验证不通过
+					Test --&amp;gt;&amp;gt; Dev:测试环境不通过,排查问题
+				end
+			else 有冲突
+				Test --&amp;gt;&amp;gt; Dev :先解决冲突，再提测
+			end
+		end
+
+		Note over Master,Release:Bg0分支开发流程(解决线上g0环境的bug)
+		Note over Release: 灰度前后验证prod G0环境
+		alt prod g0环境验证通过
+		else prod g0验证不通过
+			Master -&amp;gt;&amp;gt;+ Bg0 : 从Master拉取一个Bg0分支
+			Bg0 --&amp;gt;&amp;gt; Bg0 : 开发自测
+			Bg0 -&amp;gt;&amp;gt; Test : 合并到Test分支
+			alt Bg0合并到Test没有冲突
+				Note over Test:	jenkins 构建测试环境，并验证
+				alt 测试环境验证通过
+					Bg0 -&amp;gt;&amp;gt; Release: Bg0合并到Release分支 
+					alt 合并没有冲突
+						Note over Release :jenkins构建beta g0环境，并验证
+						alt beta g0验证通过
+							Note over Release:构建 prod g0,并验证
+							alt prod g0通过
+								Release -&amp;gt;&amp;gt; Master: 合并到Master分支,删除Bg0分支
+								deactivate Bg0
+							else  失败
+								Release --&amp;gt;&amp;gt; Bg0 : prod g0未通过，排查原因，再提测
+							end
+						else 失败
+							Release --&amp;gt;&amp;gt; Bg0: beta g0未通过，排查原因，再提测	
+						end
+					else Bg0合并Release发生冲突
+						Release --&amp;gt;&amp;gt; Bg0: 解决冲突，重新提测
+					end
+				else 测试环境验证不通过
+					Test --&amp;gt;&amp;gt; Bg0: 查找原因，重新提测
+				end
+			else Bg0合并到Test有冲突 
+				Test --&amp;gt;&amp;gt; Bg0:解决冲突，重新提测	
+			end
+		end
+
+		Note over MasterG2, ReleaseG2 : 全量发布
+		Note right of ReleaseG2:prod环境全量发布
+		Note over Release,ReleaseG2 :把prod g2的租户漂移到prod g0环境
+		Release -&amp;gt;&amp;gt; ReleaseG2: Release分支合并到RelaseG2
+		Note over ReleaseG2:jenkins构建prod g2环境
+		Note over Release,ReleaseG2 :把大部分prod g0租户漂移回prod g2环境
+
+		Note right of ReleaseG2:beta环境全量发布
+		Note over Release,ReleaseG2 :把beta g2的租户漂移到beta g0环境
+		Note over ReleaseG2:jenkins构建beta g2环境
+		Note over Release,ReleaseG2 :把大部分beta g0租户漂移回beta g2环境
+
+		ReleaseG2 -&amp;gt;&amp;gt; MasterG2 : 全量发布完成，ReleaseG2合并到MasterG2
+
+
+
+		Note over MasterG2,ReleaseG2:Bg2/F2分支开发流程(解决线上g2环境的bug(Bg2分支),或G2环境的需求(F2分支))
+		MasterG2 -&amp;gt;&amp;gt;+ Bg2: 拉取Bg2/F2分支	
+		Bg2 --&amp;gt;&amp;gt; Bg2: 开发自测
+		Bg2 -&amp;gt;&amp;gt; Test: 合并到test分支
+		Note over Test:jenkins构建测试环境，并验证
+		alt 测试环境验证通过
+			Bg2 -&amp;gt;&amp;gt; ReleaseG2 : 合并到ReleaseG2分支
+			alt 合并成功，没有冲突
+				Note over ReleaseG2:jenkins构建beta g2环境
+				Note over ReleaseG2:在beta g2环境验证
+				alt beta g2环境验证通过
+					Note over ReleaseG2: jenkins构建prod g1环境
+					Note right of  ReleaseG2: 从G2选取部分租户&lt;br /&gt;漂移到prod g1
+					alt prod g1的租户验证通过
+						Note over ReleaseG2: 在prod g1等待	
+					else prod g1租户验证不通过
+						ReleaseG2 --&amp;gt;&amp;gt; Bg2:验证不通过，查原因，重新提测
+					end
+					Note right of  ReleaseG2: 租户在prod g1上&lt;br /&gt;过了观察期(如1天)
+					Note right of  ReleaseG2: 把租户全部漂移&lt;br /&gt;到prod g1
+					Note over ReleaseG2: jenkins构建prod g2环境
+					Note right of  ReleaseG2: 把prod g1租户&lt;br /&gt;全部漂移到prod g2
+					ReleaseG2 -&amp;gt;&amp;gt; Release : 合并到Release
+					ReleaseG2 -&amp;gt;&amp;gt; MasterG2: 合并到MasterG2&lt;br /&gt;并删除Bg2分支
+					deactivate Bg2
+				else beta g2环境验证不通过
+					ReleaseG2 --&amp;gt;&amp;gt; Bg2: beta g2验证不通过，查原因，重新提测
+				end
+			else Bg2/F2合并ReleaseG2,发生冲突 
+				ReleaseG2 --&amp;gt;&amp;gt; Bg2:解决冲突，重新接测	
+			end
+		else
+			Test --&amp;gt;&amp;gt; Bg2:测试环境不通过，查原因，重新提测
+		end
+&lt;/div&gt;</content><author><name></name></author><summary type="html">sequenceDiagram participant MasterG2 participant Master participant Dev as F分支 participant Bg0 participant Bg2 as Bg2/F2 participant Test participant Release participant ReleaseG2</summary></entry><entry><title type="html">Dependence and Data Provider in PHPUnit</title><link href="http://localhost:4000/php-unit-test-note2/" rel="alternate" type="text/html" title="Dependence and Data Provider in PHPUnit" /><published>2019-01-22T00:00:00+08:00</published><updated>2019-01-22T00:00:00+08:00</updated><id>http://localhost:4000/php-unit-test-note2</id><content type="html" xml:base="http://localhost:4000/php-unit-test-note2/">&lt;h3 id=&quot;牛人的话翻译后&quot;&gt;牛人的话(翻译后)&lt;/h3&gt;
 
 &lt;p&gt;Adrian Kuhn et.al:&lt;/p&gt;
 
@@ -139,6 +588,18 @@ gUU        将当前行的字母改成大写
 guu       将当前行的字母全改成小写
 gUw       将光标下的单词改成大写。
 guw       将光标下的单词改成小写。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;insert-mode-缩进&quot;&gt;Insert mode 缩进&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ctrl+t &amp;gt;	
+crtl+d &amp;lt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;的作用&quot;&gt;!的作用&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- 切换布尔选项，:set number!
+- 执行shell命令 :! ls
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">编辑后，发现需要root权限</summary></entry><entry><title type="html">PHP unit test demo</title><link href="http://localhost:4000/php-unit-test/" rel="alternate" type="text/html" title="PHP unit test demo" /><published>2019-01-20T00:00:00+08:00</published><updated>2019-01-20T00:00:00+08:00</updated><id>http://localhost:4000/php-unit-test</id><content type="html" xml:base="http://localhost:4000/php-unit-test/">&lt;h3 id=&quot;大牛的话翻译后&quot;&gt;大牛的话(翻译后)&lt;/h3&gt;
 
 &lt;p&gt;Martin Fowler:&lt;/p&gt;
@@ -799,294 +1260,4 @@ graph TB
 		linkStyle 0 stroke:#ff3,stroke-width:4px;
 &lt;/div&gt;
 
-&lt;script src=&quot;http://localhost:4000/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;</content><author><name></name></author><category term="mermaid" /><category term="jekyll" /><category term="github pages" /><summary type="html">graph LR id1(Start)--&amp;gt;id2(Stop) style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5 linkStyle 0 stroke:#ff3,stroke-width:4px;</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/abstract-5.jpg" /></entry><entry><title type="html">use jekyll to generate github pages</title><link href="http://localhost:4000/jekyll-github-pages/" rel="alternate" type="text/html" title="use jekyll to generate github pages" /><published>2019-01-14T00:00:00+08:00</published><updated>2019-01-14T00:00:00+08:00</updated><id>http://localhost:4000/jekyll-github-pages</id><content type="html" xml:base="http://localhost:4000/jekyll-github-pages/">&lt;div class=&quot;mermaid&quot;&gt;
-	graph LR
-	    id1(Start)--&amp;gt;id2(Stop)
-	    style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
-		style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
-		linkStyle 0 stroke:#ff3,stroke-width:4px;
-
-&lt;/div&gt;
-
-&lt;div class=&quot;mermaid&quot;&gt;
-graph TB
-    c1--&amp;gt;a2
-    subgraph one
-    a1--&amp;gt;a2
-    end
-    subgraph two
-    b1--&amp;gt;b2
-    end
-    subgraph three
-    c1--&amp;gt;c2
-    end
-
-&lt;/div&gt;
-
-&lt;div class=&quot;mermaid&quot;&gt;
-	graph LR
-		A1 --&amp;gt; B1
-		A2 --- B2
-		C --text in the link --- B3
-		D ---|text_on_link| B4
-		E --&amp;gt;|text| B5
-		F -.-&amp;gt; B6
-		F -.-&amp;gt;|text in line| Te
-		H -.-&amp;gt;|text| Note
-		N1 ==&amp;gt;|text| N3
-		Node[&quot;dd#quot\;&quot;]
-		Node1[&quot;#quot;A dec char:#9829;&quot;]
-		Node === Node1
-&lt;/div&gt;
-&lt;div class=&quot;mermaid&quot;&gt;
-	graph TB
-		c1--&amp;gt;a2
-		subgraph one
-		a1--&amp;gt;a2
-		end
-		subgraph two
-		b1--&amp;gt;b2
-		end
-		subgraph three
-		c1--&amp;gt;c2
-		end
-&lt;/div&gt;
-&lt;div class=&quot;mermaid&quot;&gt;
-	graph LR
-	    id1(Start)--&amp;gt;id2(Stop)
-	    style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
-		style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
-		linkStyle 0 stroke:#ff3,stroke-width:4px;
-&lt;/div&gt;
-
-&lt;script src=&quot;http://localhost:4000/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;</content><author><name></name></author><category term="jekyll" /><category term="github pages" /><summary type="html">graph LR id1(Start)--&amp;gt;id2(Stop) style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5 linkStyle 0 stroke:#ff3,stroke-width:4px;</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/abstract-6.jpg" /></entry><entry><title type="html">A breif introduction to Mermiad</title><link href="http://localhost:4000/mermaid-notes/" rel="alternate" type="text/html" title="A breif introduction to Mermiad" /><published>2019-01-13T00:00:00+08:00</published><updated>2019-01-13T00:00:00+08:00</updated><id>http://localhost:4000/mermaid-notes</id><content type="html" xml:base="http://localhost:4000/mermaid-notes/">&lt;p&gt;不用点点点,编写一些代码，生成想要的流程图，可以提高工作效率。应该修改代码的效率，远远要高于鼠标点点点。&lt;/p&gt;
-
-&lt;h3 id=&quot;流程图-flowcharts&quot;&gt;流程图 flowcharts&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;graph方向类型&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;TB  - top bottom  从上到下 TD和TB一样&lt;/li&gt;
-      &lt;li&gt;BT  - bottom top  从下到上&lt;/li&gt;
-      &lt;li&gt;RL  - right left  从右到左&lt;/li&gt;
-      &lt;li&gt;LR  - left right  从左到右&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;node 节点类型&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	graph LR
-		node
-		id[text in the box]
-		id1(text in the round edges box)
-		id2((text in the circle))
-		id3&amp;gt;text in the label]
-		id4{text in the rhombus box}
-		node --&amp;gt; id1
-		id1 --&amp;gt; id2
-		id2 --&amp;gt; id3 
-		id3 --&amp;gt; id4
-		node --&amp;gt; id
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;link 线条类型&lt;/p&gt;
-
-    &lt;p&gt;&amp;lt;&amp;gt;左右箭头，|text|在link上加文字， --- 实线，=== 粗线，  -.-点线&lt;/p&gt;
-    &lt;ul&gt;
-      &lt;li&gt;A --&amp;gt; B	带箭头的线条&lt;/li&gt;
-      &lt;li&gt;A --- B	不带箭头，实线&lt;/li&gt;
-      &lt;li&gt;C --text in the link --- B	线条上的文字&lt;/li&gt;
-      &lt;li&gt;D ---|text on the link| B	带文字的线条，同上&lt;/li&gt;
-      &lt;li&gt;E -- text onlink arrow --&amp;gt; B	带箭头的线条，同时线条上有文字&lt;/li&gt;
-      &lt;li&gt;E ---&amp;gt;|text on linkarrwo|B	同上&lt;/li&gt;
-      &lt;li&gt;F -.-&amp;gt; B	点线带箭头&lt;/li&gt;
-      &lt;li&gt;F -.- B	点线,不带箭头&lt;/li&gt;
-      &lt;li&gt;F -.-|text|Note&lt;/li&gt;
-      &lt;li&gt;F -.text.-Note&lt;/li&gt;
-      &lt;li&gt;N1 ==&amp;gt; N2	粗线&lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;N3 ==&amp;gt;|text|N4&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;特殊字符
-        &lt;ul&gt;
-          &lt;li&gt;如果想输出特殊字符，比如( [ 等, 要用&lt;strong&gt;双引号&lt;/strong&gt;&lt;/li&gt;
-          &lt;li&gt;Node[“this is (txxt)”]  用双引号把内容包起来，这样就能输出括号等特殊字符了。&lt;/li&gt;
-          &lt;li&gt;同时双引号内的html实体会被转义输出,如#quot;会转义为” #9829;会转义为一个心形&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;subgraphs 子图&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	subgraph title
-		graph definition
-	end
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;子图demo&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	graph TB
-		c1--&amp;gt;a2
-		subgraph one
-		a1--&amp;gt;a2
-		end
-		subgraph two
-		b1--&amp;gt;b2
-		end
-		subgraph three
-		c1--&amp;gt;c2
-		end
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;node和link的样式
-    &lt;ul&gt;
-      &lt;li&gt;link没有id，所以按照我们定义的顺序来标识link,第一个为0&lt;/li&gt;
-      &lt;li&gt;node节点的大小，可以通过width和height来设置&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;graph LR
-	id1(Start)--&amp;gt;id2(Stop)
-	style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:100px,height:50px
-	style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
-	linkStyle 1 stroke:#ff3,stroke-width:4px;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;如何把mermaid集成到jekyll中&quot;&gt;如何把mermaid集成到jekyll中。&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;下面的方法在本地可以，但是github不可以&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;插件的文档(https://github.com/jasonbellamy/jekyll-mermaid)有些问题，没有更上jekyll的更新,也是在这里踩坑了。&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;download mermaid.min.js and mermaid.min.js.map to /assets/js/vendor/&lt;/li&gt;
-      &lt;li&gt;https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js&lt;/li&gt;
-      &lt;li&gt;https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js.map&lt;/li&gt;
-      &lt;li&gt;then edit the _config.yml&lt;/li&gt;
-      &lt;li&gt;bundle install&lt;/li&gt;
-      &lt;li&gt;jekyll build
-        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;_config.yml 修改内容
-plugins:
-  ...
-  \- jekyll-mermaid
-mermaid:
-  src: /assets/js/vendor/mermaid.min.js
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;把mermaid集成到jekyll之中，不使用插件(github可用)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;download mermaid.min.js and mermaid.min.js.map to /assets/js/vendor/&lt;/li&gt;
-      &lt;li&gt;https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js&lt;/li&gt;
-      &lt;li&gt;https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js.map&lt;/li&gt;
-      &lt;li&gt;在文档中引入mermaid.min.js (或者全局引入用)&lt;/li&gt;
-      &lt;li&gt;&amp;lt;script src=”http://localhost:4000/assets/js/vendor/mermaid.min.js”&amp;gt;&amp;lt;/script&amp;gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;在md文档中，编写如下代码就可以实现mermaid流程图,previm也能正常显示&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;      &amp;lt;div class=&quot;mermid&quot; &amp;gt;
-          graph TB
-              A[text]
-              ....
-      &amp;lt;/div&amp;gt;
-      或者用一个mermaid的liquid包裹mermaid的代码
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><category term="flowcharts" /><category term="Meriad" /><category term="UML" /><category term="viso" /><summary type="html">不用点点点,编写一些代码，生成想要的流程图，可以提高工作效率。应该修改代码的效率，远远要高于鼠标点点点。</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/abstract-6.jpg" /></entry><entry><title type="html">Previm – a vim plugin preview the markdown file</title><link href="http://localhost:4000/vim-plugin-previm/" rel="alternate" type="text/html" title="Previm -- a vim plugin preview the markdown file" /><published>2019-01-13T00:00:00+08:00</published><updated>2019-01-13T00:00:00+08:00</updated><id>http://localhost:4000/vim-plugin-previm</id><content type="html" xml:base="http://localhost:4000/vim-plugin-previm/">&lt;p&gt;vim下有很多支持markdown文件预览的插件。今天找到了一个很简单而且功能相对强大的vim插件previm。
-是一个日本开发者的开源项目(https://github.com/previm/previm/blob/master/README-en.mkd)
-需要依赖的library和插件很少。准确说预览reStructuredText文档需要rst2html的一个python工具外。&lt;/p&gt;
-
-&lt;h3 id=&quot;安装previme&quot;&gt;安装previme&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;先安装依赖&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  pip install docutils  ## python2.7
-  rst2html --version    ## reStructuredText文档需要这个rst2html工具
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;修改~/.vimrc文件(我用的是vundle管理vim插件), 关于vim插件管理，我先在这里挖个坑，以后再填上&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  call vundle#begin()
-
-  ......
-
-  Plugin 'previm/previm'  &quot; 添加到vundle的调用之间
-
-  ......
-
-  call vundle#end()
-		
-  ......
-			
-  let g:previm_open_cmd = 'google-chrome -a' &quot; 用chrome预览
-  &quot; let g:previm_open_cmd = 'firefox -a'  &quot; 用firefox预览
-  &quot; 为了避免.md被理解为modula2文件，添加以下说明
-  augroup PrevimSettings
-      autocmd!
-      autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-  augroup END
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;一点小改动&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  文档上的previm_open_cmd不合适，需要改成如上
-  :h g:previm_open_cmd 
-  # open by FireFox
-  let g:previm_open_cmd = 'open -a Firefox'
-  # open with Google Chrome
-  let g:previm_open_cmd = 'open -a Google\ Chrome'
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;使用&quot;&gt;使用&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;编辑一个md文档，需要预览文件时，输入:PrevimOpen 打开浏览器预览&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;修改文件后，预览文件会动态更新&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;对mermaid的支持
-    &lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;sequenceDiagram
-  participant Alice
-  participant Bob
-  Alice-&amp;gt;&amp;gt;John: Hello John, how are you?
-  loop Healthcheck
-      John-&amp;gt;&amp;gt;John: Fight against hypochondria
-  end
-  Note right of John: Rational thoughts&amp;lt;br/&amp;gt;prevail...
-  John--&amp;gt;&amp;gt;Alice: Great!
-  John-&amp;gt;&amp;gt;Bob: How about you?
-  Bob--&amp;gt;&amp;gt;John: Jolly good!
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/li&gt;
-  &lt;li&gt;reStructuredText，编辑后，:PreviewOpen&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;预览效果图&quot;&gt;预览效果图&lt;/h3&gt;
-
-&lt;figure&gt;
-	&lt;img src=&quot;/images/previm-result.png&quot; alt=&quot;预览效果&quot; /&gt;
-&lt;/figure&gt;</content><author><name></name></author><category term="vim plugin" /><category term="markdown" /><category term="mermaid" /><category term="previm" /><summary type="html">vim下有很多支持markdown文件预览的插件。今天找到了一个很简单而且功能相对强大的vim插件previm。 是一个日本开发者的开源项目(https://github.com/previm/previm/blob/master/README-en.mkd) 需要依赖的library和插件很少。准确说预览reStructuredText文档需要rst2html的一个python工具外。</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/abstract-6.jpg" /></entry></feed>
+&lt;script src=&quot;http://localhost:4000/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;</content><author><name></name></author><category term="mermaid" /><category term="jekyll" /><category term="github pages" /><summary type="html">graph LR id1(Start)--&amp;gt;id2(Stop) style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5 linkStyle 0 stroke:#ff3,stroke-width:4px;</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/abstract-5.jpg" /></entry></feed>
