@@ -136,12 +136,12 @@
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
         
-Reading time ~4 minutes
+Reading time ~6 minutes
       </span><!-- /.entry-reading-time -->
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/vimscript-note-1/" rel="bookmark" title="Vimscript note 1" itemprop="url">Vimscript note 1</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/vimscript-note-1/" rel="bookmark" title="Some note about vimrc" itemprop="url">Some note about vimrc</a></h1>
     
   </header>
   <div class="entry-content">
@@ -249,7 +249,8 @@ local leader 这个leader只用于那些对某类文件(python,html)而设置的
 
 :let maplocalleader = "\\"  把loacalleader设置为\,以为\\会转意为\
 如果要设定一个只会用户特定缓冲区的映射，一般会使用 &lt;localleader&gt;,而不是&lt;leader&gt;
-使用&lt;leader&gt;和&lt;localleader&gt;按键就像设置了一种命名空间,用&lt;localleader&gt;来设置本地映射，会防止你爹插件覆盖别人的全局映射
+使用&lt;leader&gt;和&lt;localleader&gt;按键就像设置了一种命名空间,
+用&lt;localleader&gt;来设置本地映射，会防止你的插件覆盖别人的全局映射
 
 打开vimrc文件
 nnoremap &lt;leader&gt;ev :vsplit $MYVIMRC&lt;cr&gt;
@@ -297,7 +298,153 @@ vim脚本编程中，一般会同时使用BufRead和BufNewFile
 </code></pre></div></div>
 
 <ul>
-  <li>所有的事件</li>
+  <li>
+    <p>FileType 事件</p>
+
+    <p>针对不同的文件，设置一些有用的映射,比如注释
+  可以设置localleader为,,
+  :let maplocalleader=”,,”
+  :autocmd FileType erlang nnoremap <buffer> <localleader>c I%%<esc>
+  然后打开一个erlang文件，normal模式下，按下,,c 就可以注释一行</esc></localleader></buffer></p>
+  </li>
+  <li>
+    <p>本地缓冲区缩写</p>
+
+    <p>:iabbrev <buffer> --- test  对当前缓冲区生效，会覆盖如下的全局设置
+  :iabbrev  --- tes2   会话的所有缓冲区都生效，但是优先级没有<buffer>定义的缩写高</buffer></buffer></p>
+
+    <p>:autocmd FileType php :iabbrev <buffer> iff if () {<cr>}<cr><esc>kkA<left><left><left>
+  :sleep 10m 睡眠10ms</left></left></left></esc></cr></cr></buffer></p>
+  </li>
+</ul>
+
+<h3 id="自动命令组grouping-autocommands">自动命令组Grouping Autocommands</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:aug[roup] {name}  group name 大小写敏感
+	...
+:augroup end/END
+
+:augroup testgroup
+:autocmd BufWrite * : echom "foo"
+:autocmd BufWrite * : echom "bar"
+:augroup END
+
+定义两个名称相同的命令组，一般情况下，后面定义的不会覆盖前面的,除非把autocmd!放在组里
+:augroup testgroup
+:autocmd!
+:autocmd BufWrite * : echom "test"
+:augroup END
+
+更多详情： :help autocmd-groups
+</code></pre></div></div>
+
+<h3 id="operator-pending映射">Operator-Pending映射</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:help omap-info 	
+
+Operator-pending mappings can be used to define a movement command that can be
+used with any operator.  Simple example: ":omap { w" makes "y{" work like "yw"
+and "d{" like "dw".
+
+:onoremap { :&lt;c-u&gt;normal! 0f{vi{&lt;cr&gt;   "在包含{}的一行，执行d{、c{、y{  就可以删除/改变/复制{}之间的内容
+:onoremap ( :&lt;c-u&gt;normal! 0f(vi(&lt;cr&gt;  "在包含()的一行，执行d(、c(、y(  就可以删除/改变/复制()之间的内容 
+
+The CTRL-U (&lt;C-U&gt;) is used to remove the range that Vim may insert. 
+
+
+:onoremap ih :&lt;c-u&gt;execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"&lt;cr&gt;
+
+normal! 可以执行一些命令，但是遇到特殊字符就不行了，比如&lt;cr&gt;
+execute 把后面的字符串当作命令来执行。特殊字符需要转义,如\r代表回车 \\代表\
+
+g_: 移动到当前行的最后一个非空字符。$会选中最后一个换行符
+</code></pre></div></div>
+
+<h3 id="状态条statusline">状态条statusline</h3>
+
+<p>statusline可以展示一些当前buffer内文件的信息，比如文件名称%f,完整路径%F, %m如果缓冲区内容修改表示为[+]
+默认情况下，statusline是隐藏的。显示： <code>:set laststatus=2</code>,隐藏 <code>:set laststatus=0</code></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">定制项目</th>
+      <th style="text-align: left">参数意义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">%f</td>
+      <td style="text-align: left">文件名称</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">%F</td>
+      <td style="text-align: left">文件完整路径,我觉得这个完整路径有助于回答,我在哪里?</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">%m</td>
+      <td style="text-align: left">如果缓冲区内容发生改变表示为[+],有助于你提醒自己，你在做什么？</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">%n</td>
+      <td style="text-align: left">缓冲区号,</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">%y</td>
+      <td style="text-align: left">文件类型，不过我觉得如果输出了文件名，这个有点多余</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">%v</td>
+      <td style="text-align: left">虚列号</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">%l</td>
+      <td style="text-align: left">行号</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">%L</td>
+      <td style="text-align: left">总行数</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">%=</td>
+      <td style="text-align: left">之后的状态都是右对齐,在这个之前是左对齐</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">%{expr}</td>
+      <td style="text-align: left">表达式的结果，可以用这个定制很多特性的状态</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>我的statusline设置</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set statusline=buf%n\ %m
+set statusline+=\ %l,%v/%L
+set statusline+=\ %{&amp;fileencoding?&amp;fileencoding:&amp;encoding} "文件编码
+set statusline+=\ [%{&amp;fileformat}] "文件类型
+set statusline+=\ %{(exists(\"bomb\")\ &amp;&amp;\ &amp;bomb)?\"Bom\":\"\"} "如果有bomb头，就会显示Bom
+set statusline+=%{StatuslineGit()} "显示git分支名称,需要定义如下两个函数
+set statusline+=\ %F
+
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2&gt;/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) &gt; 0?'  '.l:branchname.' ':''
+endfunction
+
+
+\&lt;space&gt; 是空格
+最后的效果如下：
+buf1  223,5/365 utf-8 [unix]   master  ~/Documents/github.io/_posts/2019-01-23-vimscript-note-1.md
+</code></pre></div></div>
+
+<h3 id="autocmd-所有的事件">autocmd 所有的事件</h3>
+
+<ul>
+  <li>:help autocmd-events</li>
 </ul>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Name			triggered by ~

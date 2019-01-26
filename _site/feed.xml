@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-24T13:21:43+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">A devops flow</title><link href="http://localhost:4000/devops-flow/" rel="alternate" type="text/html" title="A devops flow" /><published>2019-01-23T00:00:00+08:00</published><updated>2019-01-23T00:00:00+08:00</updated><id>http://localhost:4000/devops-flow</id><content type="html" xml:base="http://localhost:4000/devops-flow/">&lt;div class=&quot;mermaid&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-26T13:31:21+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">A devops flow</title><link href="http://localhost:4000/devops-flow/" rel="alternate" type="text/html" title="A devops flow" /><published>2019-01-23T00:00:00+08:00</published><updated>2019-01-23T00:00:00+08:00</updated><id>http://localhost:4000/devops-flow</id><content type="html" xml:base="http://localhost:4000/devops-flow/">&lt;div class=&quot;mermaid&quot;&gt;
 graph TB
 	
 	subgraph devops
@@ -20,7 +20,7 @@ graph TB
      class sq,e green
      class di orange
 
-&lt;/div&gt;</content><author><name></name></author><summary type="html">graph TB subgraph devops test((&quot;fa:fa-users Test&quot;)) dev((&quot;fa:fa-user Dev&quot;)) ops((&quot;Ops&quot;)) branch(&quot;branch&quot;)</summary></entry><entry><title type="html">Vimscript note 1</title><link href="http://localhost:4000/vimscript-note-1/" rel="alternate" type="text/html" title="Vimscript note 1" /><published>2019-01-23T00:00:00+08:00</published><updated>2019-01-23T00:00:00+08:00</updated><id>http://localhost:4000/vimscript-note-1</id><content type="html" xml:base="http://localhost:4000/vimscript-note-1/">&lt;h3 id=&quot;启动vim不加载vimrc&quot;&gt;启动vim不加载.vimrc&lt;/h3&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">graph TB subgraph devops test((&quot;fa:fa-users Test&quot;)) dev((&quot;fa:fa-user Dev&quot;)) ops((&quot;Ops&quot;)) branch(&quot;branch&quot;)</summary></entry><entry><title type="html">Some note about vimrc</title><link href="http://localhost:4000/vimscript-note-1/" rel="alternate" type="text/html" title="Some note about vimrc" /><published>2019-01-23T00:00:00+08:00</published><updated>2019-01-23T00:00:00+08:00</updated><id>http://localhost:4000/vimscript-note-1</id><content type="html" xml:base="http://localhost:4000/vimscript-note-1/">&lt;h3 id=&quot;启动vim不加载vimrc&quot;&gt;启动vim不加载.vimrc&lt;/h3&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim -u NONE -N    -N 就是和vi不兼容
 -u &amp;lt;vimrc&amp;gt;		Use &amp;lt;vimrc&amp;gt; instead of any .vimrc
@@ -124,7 +124,8 @@ local leader 这个leader只用于那些对某类文件(python,html)而设置的
 
 :let maplocalleader = &quot;\\&quot;  把loacalleader设置为\,以为\\会转意为\
 如果要设定一个只会用户特定缓冲区的映射，一般会使用 &amp;lt;localleader&amp;gt;,而不是&amp;lt;leader&amp;gt;
-使用&amp;lt;leader&amp;gt;和&amp;lt;localleader&amp;gt;按键就像设置了一种命名空间,用&amp;lt;localleader&amp;gt;来设置本地映射，会防止你爹插件覆盖别人的全局映射
+使用&amp;lt;leader&amp;gt;和&amp;lt;localleader&amp;gt;按键就像设置了一种命名空间,
+用&amp;lt;localleader&amp;gt;来设置本地映射，会防止你的插件覆盖别人的全局映射
 
 打开vimrc文件
 nnoremap &amp;lt;leader&amp;gt;ev :vsplit $MYVIMRC&amp;lt;cr&amp;gt;
@@ -172,7 +173,153 @@ vim脚本编程中，一般会同时使用BufRead和BufNewFile
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;所有的事件&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;FileType 事件&lt;/p&gt;
+
+    &lt;p&gt;针对不同的文件，设置一些有用的映射,比如注释
+  可以设置localleader为,,
+  :let maplocalleader=”,,”
+  :autocmd FileType erlang nnoremap &lt;buffer&gt; &lt;localleader&gt;c I%%&lt;esc&gt;
+  然后打开一个erlang文件，normal模式下，按下,,c 就可以注释一行&lt;/esc&gt;&lt;/localleader&gt;&lt;/buffer&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;本地缓冲区缩写&lt;/p&gt;
+
+    &lt;p&gt;:iabbrev &lt;buffer&gt; --- test  对当前缓冲区生效，会覆盖如下的全局设置
+  :iabbrev  --- tes2   会话的所有缓冲区都生效，但是优先级没有&lt;buffer&gt;定义的缩写高&lt;/buffer&gt;&lt;/buffer&gt;&lt;/p&gt;
+
+    &lt;p&gt;:autocmd FileType php :iabbrev &lt;buffer&gt; iff if () {&lt;cr&gt;}&lt;cr&gt;&lt;esc&gt;kkA&lt;left&gt;&lt;left&gt;&lt;left&gt;
+  :sleep 10m 睡眠10ms&lt;/left&gt;&lt;/left&gt;&lt;/left&gt;&lt;/esc&gt;&lt;/cr&gt;&lt;/cr&gt;&lt;/buffer&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;自动命令组grouping-autocommands&quot;&gt;自动命令组Grouping Autocommands&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;:aug[roup] {name}  group name 大小写敏感
+	...
+:augroup end/END
+
+:augroup testgroup
+:autocmd BufWrite * : echom &quot;foo&quot;
+:autocmd BufWrite * : echom &quot;bar&quot;
+:augroup END
+
+定义两个名称相同的命令组，一般情况下，后面定义的不会覆盖前面的,除非把autocmd!放在组里
+:augroup testgroup
+:autocmd!
+:autocmd BufWrite * : echom &quot;test&quot;
+:augroup END
+
+更多详情： :help autocmd-groups
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;operator-pending映射&quot;&gt;Operator-Pending映射&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;:help omap-info 	
+
+Operator-pending mappings can be used to define a movement command that can be
+used with any operator.  Simple example: &quot;:omap { w&quot; makes &quot;y{&quot; work like &quot;yw&quot;
+and &quot;d{&quot; like &quot;dw&quot;.
+
+:onoremap { :&amp;lt;c-u&amp;gt;normal! 0f{vi{&amp;lt;cr&amp;gt;   &quot;在包含{}的一行，执行d{、c{、y{  就可以删除/改变/复制{}之间的内容
+:onoremap ( :&amp;lt;c-u&amp;gt;normal! 0f(vi(&amp;lt;cr&amp;gt;  &quot;在包含()的一行，执行d(、c(、y(  就可以删除/改变/复制()之间的内容 
+
+The CTRL-U (&amp;lt;C-U&amp;gt;) is used to remove the range that Vim may insert. 
+
+
+:onoremap ih :&amp;lt;c-u&amp;gt;execute &quot;normal! ?^==\\+$\r:nohlsearch\rkvg_&quot;&amp;lt;cr&amp;gt;
+
+normal! 可以执行一些命令，但是遇到特殊字符就不行了，比如&amp;lt;cr&amp;gt;
+execute 把后面的字符串当作命令来执行。特殊字符需要转义,如\r代表回车 \\代表\
+
+g_: 移动到当前行的最后一个非空字符。$会选中最后一个换行符
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;状态条statusline&quot;&gt;状态条statusline&lt;/h3&gt;
+
+&lt;p&gt;statusline可以展示一些当前buffer内文件的信息，比如文件名称%f,完整路径%F, %m如果缓冲区内容修改表示为[+]
+默认情况下，statusline是隐藏的。显示： &lt;code&gt;:set laststatus=2&lt;/code&gt;,隐藏 &lt;code&gt;:set laststatus=0&lt;/code&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;定制项目&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;参数意义&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;%f&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;文件名称&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;%F&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;文件完整路径,我觉得这个完整路径有助于回答,我在哪里?&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;%m&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;如果缓冲区内容发生改变表示为[+],有助于你提醒自己，你在做什么？&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;%n&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;缓冲区号,&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;%y&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;文件类型，不过我觉得如果输出了文件名，这个有点多余&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;%v&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;虚列号&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;%l&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;行号&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;%L&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;总行数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;%=&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;之后的状态都是右对齐,在这个之前是左对齐&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;%{expr}&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;表达式的结果，可以用这个定制很多特性的状态&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;我的statusline设置&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set statusline=buf%n\ %m
+set statusline+=\ %l,%v/%L
+set statusline+=\ %{&amp;amp;fileencoding?&amp;amp;fileencoding:&amp;amp;encoding} &quot;文件编码
+set statusline+=\ [%{&amp;amp;fileformat}] &quot;文件类型
+set statusline+=\ %{(exists(\&quot;bomb\&quot;)\ &amp;amp;&amp;amp;\ &amp;amp;bomb)?\&quot;Bom\&quot;:\&quot;\&quot;} &quot;如果有bomb头，就会显示Bom
+set statusline+=%{StatuslineGit()} &quot;显示git分支名称,需要定义如下两个函数
+set statusline+=\ %F
+
+function! GitBranch()
+  return system(&quot;git rev-parse --abbrev-ref HEAD 2&amp;gt;/dev/null | tr -d '\n'&quot;)
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) &amp;gt; 0?'  '.l:branchname.' ':''
+endfunction
+
+
+\&amp;lt;space&amp;gt; 是空格
+最后的效果如下：
+buf1  223,5/365 utf-8 [unix]   master  ~/Documents/github.io/_posts/2019-01-23-vimscript-note-1.md
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;autocmd-所有的事件&quot;&gt;autocmd 所有的事件&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;:help autocmd-events&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Name			triggered by ~
@@ -305,7 +452,7 @@ vim脚本编程中，一般会同时使用BufRead和BufNewFile
 |User|			to be used in combination with &quot;:doautocmd&quot;
 
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="vim" /><category term="vimscript" /><summary type="html">启动vim不加载.vimrc</summary></entry><entry><title type="html">The new git branch model(add G1)</title><link href="http://localhost:4000/new-git-branch/" rel="alternate" type="text/html" title="The new  git branch model(add G1)" /><published>2019-01-22T00:00:00+08:00</published><updated>2019-01-22T00:00:00+08:00</updated><id>http://localhost:4000/new-git-branch</id><content type="html" xml:base="http://localhost:4000/new-git-branch/">&lt;div class=&quot;mermaid&quot;&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="vim" /><category term="vimscript" /><category term="statusline" /><summary type="html">启动vim不加载.vimrc</summary></entry><entry><title type="html">The new git branch model(add G1)</title><link href="http://localhost:4000/new-git-branch/" rel="alternate" type="text/html" title="The new  git branch model(add G1)" /><published>2019-01-22T00:00:00+08:00</published><updated>2019-01-22T00:00:00+08:00</updated><id>http://localhost:4000/new-git-branch</id><content type="html" xml:base="http://localhost:4000/new-git-branch/">&lt;div class=&quot;mermaid&quot;&gt;
 	sequenceDiagram
 		participant MasterG2
 		participant Master

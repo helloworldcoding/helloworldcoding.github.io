@@ -1,9 +1,11 @@
 ---
 layout: post
-title: "Vimscript note 1"
-description: "something about the vimscript,my first note"
-tags: [vim,vimscript]
+title: "Some note about vimrc"
+description: "something about the vimscript --- fundamentals"
+tags: [vim,vimscript,statusline]
 ---
+
+
 
 ### 启动vim不加载.vimrc
 
@@ -92,7 +94,8 @@ tags: [vim,vimscript]
 	
 	:let maplocalleader = "\\"  把loacalleader设置为\,以为\\会转意为\
 	如果要设定一个只会用户特定缓冲区的映射，一般会使用 <localleader>,而不是<leader>
-	使用<leader>和<localleader>按键就像设置了一种命名空间,用<localleader>来设置本地映射，会防止你爹插件覆盖别人的全局映射
+	使用<leader>和<localleader>按键就像设置了一种命名空间,
+	用<localleader>来设置本地映射，会防止你的插件覆盖别人的全局映射
 	
 	打开vimrc文件
 	nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -135,7 +138,110 @@ not-keyword character指的是那些不在iskeyword选项中的字符(iskeyword=
 	vim脚本编程中，一般会同时使用BufRead和BufNewFile
 
 
-*  所有的事件
+- FileType 事件
+	
+	针对不同的文件，设置一些有用的映射,比如注释
+	可以设置localleader为,,
+	:let maplocalleader=",,"
+	:autocmd FileType erlang nnoremap <buffer> <localleader>c I%%<esc>
+	然后打开一个erlang文件，normal模式下，按下,,c 就可以注释一行
+	
+- 本地缓冲区缩写
+	
+	:iabbrev <buffer> --- test  对当前缓冲区生效，会覆盖如下的全局设置
+	:iabbrev  --- tes2   会话的所有缓冲区都生效，但是优先级没有<buffer>定义的缩写高
+
+	:autocmd FileType php :iabbrev <buffer> iff if () {<cr>}<cr><esc>kkA<left><left><left>
+	:sleep 10m 睡眠10ms
+
+### 自动命令组Grouping Autocommands
+
+	:aug[roup] {name}  group name 大小写敏感
+		...
+	:augroup end/END
+	
+	:augroup testgroup
+	:autocmd BufWrite * : echom "foo"
+	:autocmd BufWrite * : echom "bar"
+	:augroup END
+
+	定义两个名称相同的命令组，一般情况下，后面定义的不会覆盖前面的,除非把autocmd!放在组里
+	:augroup testgroup
+	:autocmd!
+	:autocmd BufWrite * : echom "test"
+	:augroup END
+
+	更多详情： :help autocmd-groups
+
+
+### Operator-Pending映射
+
+	:help omap-info 	
+
+	Operator-pending mappings can be used to define a movement command that can be
+	used with any operator.  Simple example: ":omap { w" makes "y{" work like "yw"
+	and "d{" like "dw".
+
+	:onoremap { :<c-u>normal! 0f{vi{<cr>   "在包含{}的一行，执行d{、c{、y{  就可以删除/改变/复制{}之间的内容
+	:onoremap ( :<c-u>normal! 0f(vi(<cr>  "在包含()的一行，执行d(、c(、y(  就可以删除/改变/复制()之间的内容 
+
+	The CTRL-U (<C-U>) is used to remove the range that Vim may insert. 
+
+
+	:onoremap ih :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<cr>
+
+	normal! 可以执行一些命令，但是遇到特殊字符就不行了，比如<cr>
+	execute 把后面的字符串当作命令来执行。特殊字符需要转义,如\r代表回车 \\代表\
+
+	g_: 移动到当前行的最后一个非空字符。$会选中最后一个换行符
+
+### 状态条statusline
+	
+statusline可以展示一些当前buffer内文件的信息，比如文件名称%f,完整路径%F, %m如果缓冲区内容修改表示为[+]
+默认情况下，statusline是隐藏的。显示： <code>:set laststatus=2</code>,隐藏 <code>:set laststatus=0</code>
+
+|定制项目|参数意义
+|:--|:--
+|%f|文件名称
+|%F|文件完整路径,我觉得这个完整路径有助于回答,我在哪里?
+|%m|如果缓冲区内容发生改变表示为[+],有助于你提醒自己，你在做什么？
+|%n|缓冲区号,
+|%y|文件类型，不过我觉得如果输出了文件名，这个有点多余
+|%v|虚列号	
+|%l|行号
+|%L|总行数
+|%=|之后的状态都是右对齐,在这个之前是左对齐
+|%{expr}|表达式的结果，可以用这个定制很多特性的状态
+
+我的statusline设置
+	
+	set statusline=buf%n\ %m
+	set statusline+=\ %l,%v/%L
+	set statusline+=\ %{&fileencoding?&fileencoding:&encoding} "文件编码
+	set statusline+=\ [%{&fileformat}] "文件类型
+	set statusline+=\ %{(exists(\"bomb\")\ &&\ &bomb)?\"Bom\":\"\"} "如果有bomb头，就会显示Bom
+	set statusline+=%{StatuslineGit()} "显示git分支名称,需要定义如下两个函数
+	set statusline+=\ %F
+
+	function! GitBranch()
+	  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+	endfunction
+
+	function! StatuslineGit()
+	  let l:branchname = GitBranch()
+	  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+	endfunction
+
+
+	\<space> 是空格
+	最后的效果如下：
+	buf1  223,5/365 utf-8 [unix]   master  ~/Documents/github.io/_posts/2019-01-23-vimscript-note-1.md
+	
+
+
+### autocmd 所有的事件
+
+* :help autocmd-events
 
 ```
 Name			triggered by ~
