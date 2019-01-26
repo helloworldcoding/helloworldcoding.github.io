@@ -82,7 +82,7 @@ description: "vimscript note 2"
 ===
 ### 条件语句
 
-* 多行命令，写成一行。用管道符(|)来隔开命令
+* 多行命令，写成一行。用管道符(\|)来隔开命令
 		
 		:echom "foo" | echom "bar"
 		:if 1 | :echom "one" | :else | :echom "not one" | :endif " 输出 one
