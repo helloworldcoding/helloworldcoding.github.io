@@ -1,4 +1,301 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-26T13:31:21+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">A devops flow</title><link href="http://localhost:4000/devops-flow/" rel="alternate" type="text/html" title="A devops flow" /><published>2019-01-23T00:00:00+08:00</published><updated>2019-01-23T00:00:00+08:00</updated><id>http://localhost:4000/devops-flow</id><content type="html" xml:base="http://localhost:4000/devops-flow/">&lt;div class=&quot;mermaid&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-26T23:22:17+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">Vimscript begin</title><link href="http://localhost:4000/vimscript-begin/" rel="alternate" type="text/html" title="Vimscript begin" /><published>2019-01-26T00:00:00+08:00</published><updated>2019-01-26T00:00:00+08:00</updated><id>http://localhost:4000/vimscript-begin</id><content type="html" xml:base="http://localhost:4000/vimscript-begin/">&lt;p&gt;既然把vimscript是一个脚本语言，那就会有脚本语言的一些共性，比如变量的定义,变量的类型，变量的作用域，分支循环结构,函数等等。&lt;/p&gt;
+
+&lt;h1 id=&quot;变量&quot;&gt;变量&lt;/h1&gt;
+
+&lt;h4 id=&quot;变量的定义&quot;&gt;变量的定义&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;一般的变量定义&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;变量名规范: 字母、数字、下划线，并且不能以数字开头&lt;/p&gt;
+
+        &lt;p&gt;:let foo = “bar”
+  :let num = 32
+  :echo foo num “ 显示foo和num
+  :unlet foo “ 销毁一个变量
+  以上好像看出vimscript是动态类型，其实,你们想错了。(党国的高官，怎么会有钱？)&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;配置选项也是变量&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  比如，我要看配置选项textwidth的值
+  :echo &amp;amp;textwidth &quot;需要在前面加上&amp;amp; ,这就告诉vim，你在引用这个选项;如果这个选项不存在，就会报错
+  :set textwidth=80
+  :echo textwidth &quot;直接输出，也会报错
+      E121: Undefined variable: textwidth
+      E15: Invalid expression: textwidth
+  :echo &amp;amp;textwidth &quot;输出 80
+
+  :set nowrap
+  :echo &amp;amp;wrap &quot; 0
+  :set wrap
+  :echo &amp;amp;wrap &quot; 1
+  在vimscript中0为false，非0值整数为true 
+
+  可以用let来设置选项的值，并且let比set更灵活	
+  :let &amp;amp;textwidth = &amp;amp;textwidth + 10
+  :echo &amp;amp;textwidth &quot; 输出 90
+  :set &amp;amp;textwidth = &amp;amp;textwidth + 10 &quot;set 只能给设置一个常量值
+      E518: Unknown option: &amp;amp;textwidth = 
+
+  本地选项，将某个选项作为变量来来设置它的本地值，而不是全局值,
+  本地变量的前缀:  &amp;lt;code&amp;gt;l:&amp;lt;/code&amp;gt;
+  :let &amp;amp;l:number = 0 &quot;只对当前buffer生效,当前buffer，行号消失
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;寄存器变量&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  :let @a=&quot;hello!&quot;
+  :echo @a &quot;输出 hello!
+  :echo @&quot; &quot;输出无名寄存器的值
+  :echo @/ &quot;输出，搜索寄存器的值
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;b:变量前缀(只在当前buffer生效的变量)&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  :let b:hello = &quot;world&quot;
+  :echo b:hello &quot; 输出world
+  切换到另一个buffer
+  :echo b:hello 
+      E121: Undefined variable: b:hello
+      E15: Invalid expression: b:hello
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;help internal-variables&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;变量前缀&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;名称&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;说明&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;b:&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;buffer-variable&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Local to the current buffer.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;w:&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;window-variable&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Local to the current window.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;t:&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;tabpage-variable&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Local to the current tab page.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;g:&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;global-variable&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Global.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;l:&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;local-variable&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Local to a function.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;s:&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;script-variable&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Local to a |:source|’ed Vim script.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;a:&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;function-argument&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Function argument (only inside a function).&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;v:&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;vim-variable&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Global, predefined by Vim.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;分支结构&quot;&gt;分支结构&lt;/h1&gt;
+&lt;h3 id=&quot;条件语句&quot;&gt;条件语句&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;多行命令，写成一行。用管道符(&lt;/td&gt;
+          &lt;td&gt;)来隔开命令&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  :echom &quot;foo&quot; | echom &quot;bar&quot;
+  :if 1 | :echom &quot;one&quot; | :else | :echom &quot;not one&quot; | :endif &quot; 输出 one
+  :if 0 | echom &quot;one&quot; | else | echom &quot;not one&quot; | endif &quot; 输出not one
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;if的用法&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;必要情况下(数学计算、条件表达式)，vim强制转换变量和字面量的类型。10+”20foo” 最后等于10+20 = 30&lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;以数字开头的字符串会转化为数字，否则会转化为0&lt;/p&gt;
+
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  :echo 0+&quot;12.64ab&quot; &quot;输出12
+  :echo 0+&quot;-12.34ab&quot; &quot;输出-12
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;if判断时，非零整数为true，0为false&lt;/p&gt;
+
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let a = 3
+  if a == 1
+      echom &quot;one&quot;
+  elseif  a == 2
+      echom &quot;two&quot;
+  else
+      echom &quot;not one or two&quot;
+  endif
+  &quot;最后输出 not one or two
+
+  if &quot;string&quot;  &quot;等价于 if 0
+      echom &quot;zero&quot;
+  endif
+
+  if &quot;12Ab&quot; ==# &quot;12ab&quot;
+      echom &quot;yeshi&quot;
+  else
+      echom &quot;no&quot;  &quot; 输出 no, 说明 ==# 没有进行强制转化
+  endif
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;比较运算符&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;说明&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&amp;gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;大于,如 10 &amp;gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&amp;lt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;小于,如 1 &amp;lt; 10&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;==&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;相等，如 10 == 11 ,”foo” == “bar”,会受用户设置noignorecase/ignorecase影响&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;==?&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;字符串比较，大小写不敏感(无论vim对大小写的设置是否敏感),”foo” ==? “FOO” is true&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;==#&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;字符串比较，大小写敏感(无论vim对大小写的设置是否敏感),”foo” ==# “FOO” is false&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&amp;gt;#&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;大于， 区分大小写的比较&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&amp;lt;#&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;小于， 区分大小写的比较&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&amp;gt;?&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;大于， 不区分大小写的比较&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&amp;lt;?&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;小于， 不区分大小写的比较&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;所以最好使用==#来比较字符串,统一自己的规范&lt;/p&gt;
+
+&lt;h1 id=&quot;函数&quot;&gt;函数&lt;/h1&gt;
+
+&lt;h4 id=&quot;没有作用域限制的vimscript函数必须以一个大写字母开头&quot;&gt;没有作用域限制的vimscript函数，必须以一个大写字母开头&lt;/h4&gt;
+
+&lt;div class=&quot;language-vimscript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; Hello&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;helloworld&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; Hello&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; SayHi&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;name&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt;# &lt;span class=&quot;s2&quot;&gt;&quot;Mark&quot;&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi,Mark&quot;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; SayHi&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &quot; 函数如果没有返回，默认是&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;&quot;可变参数&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; Multiargs&lt;span class=&quot;p&quot;&gt;(...)&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:0&lt;/span&gt; &quot;参数数量&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;可变参数的数量
+	&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:1&lt;/span&gt; &quot;第一个参数
+	&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:2&lt;/span&gt; &quot;第二个参数
+&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;&quot;可变参数和普通参数一起使用&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; Multiargs2&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;foo&lt;span class=&quot;p&quot;&gt;,...)&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:0&lt;/span&gt; 
+	&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:foo&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:1&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:2&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; s &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:000&lt;/span&gt; &quot;&lt;span class=&quot;nv&quot;&gt;a:000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;所有的可变参数
+		&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;' '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;s
+	&lt;span class=&quot;k&quot;&gt;endfor&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; Multiargs2&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;hh&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;jak&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;luc&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+输出：
+&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;
+hh
+jak
+luc
+ jak
+ luc
+可见&lt;span class=&quot;nv&quot;&gt;a:0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;只是代表可变参数的数量
+
+&lt;span class=&quot;c&quot;&gt;&quot;函数参数是只读的，不能在函数内部改变&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; Assign&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;foo&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:foo&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Nope&quot;&lt;/span&gt;  
+&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; Assign&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; 会报错，如下：
+E46&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; Cannot change &lt;span class=&quot;k&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;only&lt;/span&gt; variable &lt;span class=&quot;s2&quot;&gt;&quot;a:foo&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;数据类型&quot;&gt;数据类型&lt;/h1&gt;
+
+&lt;h4 id=&quot;数字&quot;&gt;数字&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;整数(Number,32位带符号整数)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;浮点
+对大部分命令和选项，vim支持他们的缩写。但是建议在vimrc或者自己编写的插件中使用全称，这样才会有更好的可读性。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="vimscript" /><summary type="html">既然把vimscript是一个脚本语言，那就会有脚本语言的一些共性，比如变量的定义,变量的类型，变量的作用域，分支循环结构,函数等等。</summary></entry><entry><title type="html">A devops flow</title><link href="http://localhost:4000/devops-flow/" rel="alternate" type="text/html" title="A devops flow" /><published>2019-01-23T00:00:00+08:00</published><updated>2019-01-23T00:00:00+08:00</updated><id>http://localhost:4000/devops-flow</id><content type="html" xml:base="http://localhost:4000/devops-flow/">&lt;div class=&quot;mermaid&quot;&gt;
 graph TB
 	
 	subgraph devops
@@ -1347,64 +1644,4 @@ OK (2 tests, 8 assertions)
 
 &lt;p&gt;昨日，国内的公司发了三个社交app，多闪、马桶MT、聊天宝。我觉得互联网应该是要去中心化的, 特别是社交类的app，颠覆者，应该是去中心化的产品。&lt;/p&gt;
 
-&lt;script src=&quot;http://localhost:4000/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;</content><author><name></name></author><summary type="html">时序图（Sequence Diagram），又名序列图、循序图，是一种UML交互图。它通过描述对象之间发送消息的时间顺序显示多个对象之间的动态协作。它可以表示用例的行为顺序，当执行一个用例行为时，其中的每条消息对应一个类操作或状态机中引起转换的触发事件。</summary></entry><entry><title type="html">some picture of mermaid</title><link href="http://localhost:4000/mermaid-picture/" rel="alternate" type="text/html" title="some picture of mermaid" /><published>2019-01-15T00:00:00+08:00</published><updated>2019-01-15T00:00:00+08:00</updated><id>http://localhost:4000/mermaid-picture</id><content type="html" xml:base="http://localhost:4000/mermaid-picture/">&lt;div class=&quot;mermaid&quot;&gt;
-	graph LR
-	    id1(Start)--&amp;gt;id2(Stop)
-	    style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
-		style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
-		linkStyle 0 stroke:#ff3,stroke-width:4px;
-
-&lt;/div&gt;
-
-&lt;div class=&quot;mermaid&quot;&gt;
-graph TB
-    c1--&amp;gt;a2
-    subgraph one
-    a1--&amp;gt;a2
-    end
-    subgraph two
-    b1--&amp;gt;b2
-    end
-    subgraph three
-    c1--&amp;gt;c2
-    end
-
-&lt;/div&gt;
-
-&lt;div class=&quot;mermaid&quot;&gt;
-	graph LR
-		A1 --&amp;gt; B1
-		A2 --- B2
-		C --text in the link --- B3
-		D ---|text_on_link| B4
-		E --&amp;gt;|text| B5
-		F -.-&amp;gt; B6
-		F -.-&amp;gt;|text in line| Te
-		H -.-&amp;gt;|text| Note
-		N1 ==&amp;gt;|text| N3
-		Node[&quot;dd#quot\;&quot;]
-		Node1[&quot;#quot;A dec char:#9829;&quot;]
-		Node === Node1
-&lt;/div&gt;
-&lt;div class=&quot;mermaid&quot;&gt;
-	graph TB
-		c1--&amp;gt;a2
-		subgraph one
-		a1--&amp;gt;a2
-		end
-		subgraph two
-		b1--&amp;gt;b2
-		end
-		subgraph three
-		c1--&amp;gt;c2
-		end
-&lt;/div&gt;
-&lt;div class=&quot;mermaid&quot;&gt;
-	graph LR
-	    id1(Start)--&amp;gt;id2(Stop)
-	    style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px
-		style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5
-		linkStyle 0 stroke:#ff3,stroke-width:4px;
-&lt;/div&gt;
-
-&lt;script src=&quot;http://localhost:4000/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;</content><author><name></name></author><category term="mermaid" /><category term="jekyll" /><category term="github pages" /><summary type="html">graph LR id1(Start)--&amp;gt;id2(Stop) style id1 fill:#f9f,stroke:#333,stroke-width:4px,width:70px,height:50px style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5 linkStyle 0 stroke:#ff3,stroke-width:4px;</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/abstract-5.jpg" /></entry></feed>
+&lt;script src=&quot;http://localhost:4000/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;</content><author><name></name></author><summary type="html">时序图（Sequence Diagram），又名序列图、循序图，是一种UML交互图。它通过描述对象之间发送消息的时间顺序显示多个对象之间的动态协作。它可以表示用例的行为顺序，当执行一个用例行为时，其中的每条消息对应一个类操作或状态机中引起转换的触发事件。</summary></entry></feed>

@@ -131,6 +131,327 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-01-26T00:00:00+08:00"><a href="http://localhost:4000/vimscript-begin/">January 26, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~2 minutes
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/vimscript-begin/" rel="bookmark" title="Vimscript begin" itemprop="url">Vimscript begin</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p>既然把vimscript是一个脚本语言，那就会有脚本语言的一些共性，比如变量的定义,变量的类型，变量的作用域，分支循环结构,函数等等。</p>
+
+<h1 id="变量">变量</h1>
+
+<h4 id="变量的定义">变量的定义</h4>
+
+<ul>
+  <li>
+    <p>一般的变量定义</p>
+
+    <ul>
+      <li>
+        <p>变量名规范: 字母、数字、下划线，并且不能以数字开头</p>
+
+        <p>:let foo = “bar”
+  :let num = 32
+  :echo foo num “ 显示foo和num
+  :unlet foo “ 销毁一个变量
+  以上好像看出vimscript是动态类型，其实,你们想错了。(党国的高官，怎么会有钱？)</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>配置选项也是变量</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  比如，我要看配置选项textwidth的值
+  :echo &amp;textwidth "需要在前面加上&amp; ,这就告诉vim，你在引用这个选项;如果这个选项不存在，就会报错
+  :set textwidth=80
+  :echo textwidth "直接输出，也会报错
+      E121: Undefined variable: textwidth
+      E15: Invalid expression: textwidth
+  :echo &amp;textwidth "输出 80
+
+  :set nowrap
+  :echo &amp;wrap " 0
+  :set wrap
+  :echo &amp;wrap " 1
+  在vimscript中0为false，非0值整数为true 
+
+  可以用let来设置选项的值，并且let比set更灵活	
+  :let &amp;textwidth = &amp;textwidth + 10
+  :echo &amp;textwidth " 输出 90
+  :set &amp;textwidth = &amp;textwidth + 10 "set 只能给设置一个常量值
+      E518: Unknown option: &amp;textwidth = 
+
+  本地选项，将某个选项作为变量来来设置它的本地值，而不是全局值,
+  本地变量的前缀:  &lt;code&gt;l:&lt;/code&gt;
+  :let &amp;l:number = 0 "只对当前buffer生效,当前buffer，行号消失
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>寄存器变量</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  :let @a="hello!"
+  :echo @a "输出 hello!
+  :echo @" "输出无名寄存器的值
+  :echo @/ "输出，搜索寄存器的值
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>b:变量前缀(只在当前buffer生效的变量)</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  :let b:hello = "world"
+  :echo b:hello " 输出world
+  切换到另一个buffer
+  :echo b:hello 
+      E121: Undefined variable: b:hello
+      E15: Invalid expression: b:hello
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>help internal-variables</p>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">变量前缀</th>
+      <th style="text-align: left">名称</th>
+      <th style="text-align: left">说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">b:</td>
+      <td style="text-align: left">buffer-variable</td>
+      <td style="text-align: left">Local to the current buffer.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">w:</td>
+      <td style="text-align: left">window-variable</td>
+      <td style="text-align: left">Local to the current window.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">t:</td>
+      <td style="text-align: left">tabpage-variable</td>
+      <td style="text-align: left">Local to the current tab page.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">g:</td>
+      <td style="text-align: left">global-variable</td>
+      <td style="text-align: left">Global.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">l:</td>
+      <td style="text-align: left">local-variable</td>
+      <td style="text-align: left">Local to a function.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">s:</td>
+      <td style="text-align: left">script-variable</td>
+      <td style="text-align: left">Local to a |:source|’ed Vim script.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">a:</td>
+      <td style="text-align: left">function-argument</td>
+      <td style="text-align: left">Function argument (only inside a function).</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">v:</td>
+      <td style="text-align: left">vim-variable</td>
+      <td style="text-align: left">Global, predefined by Vim.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="分支结构">分支结构</h1>
+<h3 id="条件语句">条件语句</h3>
+
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>多行命令，写成一行。用管道符(</td>
+          <td>)来隔开命令</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  :echom "foo" | echom "bar"
+  :if 1 | :echom "one" | :else | :echom "not one" | :endif " 输出 one
+  :if 0 | echom "one" | else | echom "not one" | endif " 输出not one
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>if的用法</p>
+
+    <ul>
+      <li>必要情况下(数学计算、条件表达式)，vim强制转换变量和字面量的类型。10+”20foo” 最后等于10+20 = 30</li>
+      <li>
+        <p>以数字开头的字符串会转化为数字，否则会转化为0</p>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  :echo 0+"12.64ab" "输出12
+  :echo 0+"-12.34ab" "输出-12
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>if判断时，非零整数为true，0为false</p>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let a = 3
+  if a == 1
+      echom "one"
+  elseif  a == 2
+      echom "two"
+  else
+      echom "not one or two"
+  endif
+  "最后输出 not one or two
+
+  if "string"  "等价于 if 0
+      echom "zero"
+  endif
+
+  if "12Ab" ==# "12ab"
+      echom "yeshi"
+  else
+      echom "no"  " 输出 no, 说明 ==# 没有进行强制转化
+  endif
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">比较运算符</th>
+      <th style="text-align: left">说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">&gt;</td>
+      <td style="text-align: left">大于,如 10 &gt;1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">&lt;</td>
+      <td style="text-align: left">小于,如 1 &lt; 10</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">==</td>
+      <td style="text-align: left">相等，如 10 == 11 ,”foo” == “bar”,会受用户设置noignorecase/ignorecase影响</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">==?</td>
+      <td style="text-align: left">字符串比较，大小写不敏感(无论vim对大小写的设置是否敏感),”foo” ==? “FOO” is true</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">==#</td>
+      <td style="text-align: left">字符串比较，大小写敏感(无论vim对大小写的设置是否敏感),”foo” ==# “FOO” is false</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">&gt;#</td>
+      <td style="text-align: left">大于， 区分大小写的比较</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">&lt;#</td>
+      <td style="text-align: left">小于， 区分大小写的比较</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">&gt;?</td>
+      <td style="text-align: left">大于， 不区分大小写的比较</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">&lt;?</td>
+      <td style="text-align: left">小于， 不区分大小写的比较</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>所以最好使用==#来比较字符串,统一自己的规范</p>
+
+<h1 id="函数">函数</h1>
+
+<h4 id="没有作用域限制的vimscript函数必须以一个大写字母开头">没有作用域限制的vimscript函数，必须以一个大写字母开头</h4>
+
+<div class="language-vimscript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function</span> Hello<span class="p">()</span>
+	<span class="k">echom</span> <span class="s2">"helloworld"</span>
+<span class="k">endfunction</span>
+<span class="k">call</span> Hello<span class="p">()</span>
+
+<span class="k">function</span> SayHi<span class="p">(</span>name<span class="p">)</span>
+	<span class="k">if</span> <span class="nv">a:name</span> <span class="p">==</span># <span class="s2">"Mark"</span>
+		<span class="k">return</span> <span class="s2">"Hi,Mark"</span>
+	<span class="k">endif</span>
+<span class="k">endfunction</span>
+<span class="k">echom</span> SayHi<span class="p">()</span> " 函数如果没有返回，默认是<span class="k">return</span> <span class="m">0</span>
+
+<span class="c">"可变参数</span>
+<span class="k">function</span> Multiargs<span class="p">(...)</span>
+	<span class="k">echom</span> <span class="nv">a:0</span> "参数数量<span class="p">,</span>可变参数的数量
+	<span class="k">echom</span> <span class="nv">a:1</span> "第一个参数
+	<span class="k">echom</span> <span class="nv">a:2</span> "第二个参数
+<span class="k">endfunction</span>
+<span class="c">"可变参数和普通参数一起使用</span>
+<span class="k">function</span> Multiargs2<span class="p">(</span>foo<span class="p">,...)</span>
+	<span class="k">echom</span> <span class="nv">a:0</span> 
+	<span class="k">echom</span> <span class="nv">a:foo</span>
+	<span class="k">echom</span> <span class="nv">a:1</span>
+	<span class="k">echom</span> <span class="nv">a:2</span>
+	<span class="k">for</span> s <span class="k">in</span> <span class="nv">a:000</span> "<span class="nv">a:000</span><span class="p">,</span>所有的可变参数
+		<span class="k">echom</span> <span class="s1">' '</span><span class="p">.</span>s
+	<span class="k">endfor</span>
+<span class="k">endfunction</span>
+<span class="k">call</span> Multiargs2<span class="p">(</span><span class="s2">"hh"</span><span class="p">,</span><span class="s2">"jak"</span><span class="p">,</span><span class="s2">"luc"</span><span class="p">)</span>
+输出：
+<span class="m">2</span>
+hh
+jak
+luc
+ jak
+ luc
+可见<span class="nv">a:0</span><span class="p">,</span>只是代表可变参数的数量
+
+<span class="c">"函数参数是只读的，不能在函数内部改变</span>
+<span class="k">function</span> Assign<span class="p">(</span>foo<span class="p">)</span>
+	<span class="k">let</span> <span class="nv">a:foo</span> <span class="p">=</span> <span class="s2">"Nope"</span>  
+<span class="k">endfunction</span>
+<span class="k">call</span> Assign<span class="p">()</span> 会报错，如下：
+E46<span class="p">:</span> Cannot change <span class="k">read</span><span class="p">-</span><span class="k">only</span> variable <span class="s2">"a:foo"</span>
+</code></pre></div></div>
+
+<h1 id="数据类型">数据类型</h1>
+
+<h4 id="数字">数字</h4>
+
+<ul>
+  <li>
+    <p>整数(Number,32位带符号整数)</p>
+  </li>
+  <li>
+    <p>浮点
+对大部分命令和选项，vim支持他们的缩写。但是建议在vimrc或者自己编写的插件中使用全称，这样才会有更好的可读性。</p>
+  </li>
+</ul>
+
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2019-01-23T00:00:00+08:00"><a href="http://localhost:4000/vimscript-note-1/">January 23, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
       
       <span class="entry-reading-time">
@@ -823,172 +1144,6 @@ Reading time ~1 minute
 	<span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-22T00:00:00+08:00"><a href="http://localhost:4000/new-git-branch/">January 22, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~2 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/new-git-branch/" rel="bookmark" title="The new  git branch model(add G1)" itemprop="url">The new  git branch model(add G1)</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <div class="mermaid">
-	sequenceDiagram
-		participant MasterG2
-		participant Master
-		participant Dev as F分支
-		participant Bg0
-		participant Bg2 as Bg2/F2
-		participant Test
-		participant Release
-		participant ReleaseG2
-
-		Note over Master,Release:特性分支(f分支)开发流程 
-		Master -&gt;&gt;+ Dev:开发拉f分支
-		Dev --&gt;&gt; Dev: 开发自测
-		loop 提测
-			Dev -&gt;&gt; Test:F分支合并到Test分支
-			Note over Test:是否有冲突
-			alt 没有有冲突
-				Note over Test :jenkins构建test环境
-				Note over Test:验证测试环境
-				alt 测试环境验证通过
-					Note over Dev :F分支能否合并到Release分支
-					alt 能合并
-						Dev -&gt;&gt; Release:F分支合并到Release
-						Note over Release :是否有冲突
-						alt 没有冲突
-							Note over Release :jenkins构建beta g0
-							Note over Release:验证beta g0环境
-							alt beta g0环境验证通过
-								Note over Release: 积累一天
-								Note over Release : jenkins构建prod g0
-								Note over Release : 验证prod g0
-								alt prod g0验证通过
-									Release -&gt;&gt;- Dev : 删除所有的合并到Relase的F分支
-									Release -&gt;&gt; Master : Release分支合并到Master
-								else prod g0没有验证通过
-									Release --&gt;&gt; Dev: prod g0验证没有通过，排查原因
-								end
-							else
-								Release --&gt;&gt; Dev: beta g0测试不通过, 排查问题
-							end
-						else  有冲突
-							Release --&gt;&gt; Dev : 开发同学先解决冲突,再次提测
-						end
-					else F分支不能合并到Release,原因：
-						Note over Dev: 过了14:00
-						Note over Dev: 距离灰度发布不足两天
-						Note over Dev: 灰度发布期间
-					end
-				else 测试环境验证不通过
-					Test --&gt;&gt; Dev:测试环境不通过,排查问题
-				end
-			else 有冲突
-				Test --&gt;&gt; Dev :先解决冲突，再提测
-			end
-		end
-
-		Note over Master,Release:Bg0分支开发流程(解决线上g0环境的bug)
-		Note over Release: 灰度前后验证prod G0环境
-		alt prod g0环境验证通过
-		else prod g0验证不通过
-			Master -&gt;&gt;+ Bg0 : 从Master拉取一个Bg0分支
-			Bg0 --&gt;&gt; Bg0 : 开发自测
-			Bg0 -&gt;&gt; Test : 合并到Test分支
-			alt Bg0合并到Test没有冲突
-				Note over Test:	jenkins 构建测试环境，并验证
-				alt 测试环境验证通过
-					Bg0 -&gt;&gt; Release: Bg0合并到Release分支 
-					alt 合并没有冲突
-						Note over Release :jenkins构建beta g0环境，并验证
-						alt beta g0验证通过
-							Note over Release:构建 prod g0,并验证
-							alt prod g0通过
-								Release -&gt;&gt; Master: 合并到Master分支,删除Bg0分支
-								deactivate Bg0
-							else  失败
-								Release --&gt;&gt; Bg0 : prod g0未通过，排查原因，再提测
-							end
-						else 失败
-							Release --&gt;&gt; Bg0: beta g0未通过，排查原因，再提测	
-						end
-					else Bg0合并Release发生冲突
-						Release --&gt;&gt; Bg0: 解决冲突，重新提测
-					end
-				else 测试环境验证不通过
-					Test --&gt;&gt; Bg0: 查找原因，重新提测
-				end
-			else Bg0合并到Test有冲突 
-				Test --&gt;&gt; Bg0:解决冲突，重新提测	
-			end
-		end
-
-		Note over MasterG2, ReleaseG2 : 全量发布
-		Note right of ReleaseG2:prod环境全量发布
-		Note over Release,ReleaseG2 :把prod g2的租户漂移到prod g0环境
-		Release -&gt;&gt; ReleaseG2: Release分支合并到RelaseG2
-		Note over ReleaseG2:jenkins构建prod g2环境
-		Note over Release,ReleaseG2 :把大部分prod g0租户漂移回prod g2环境
-
-		Note right of ReleaseG2:beta环境全量发布
-		Note over Release,ReleaseG2 :把beta g2的租户漂移到beta g0环境
-		Note over ReleaseG2:jenkins构建beta g2环境
-		Note over Release,ReleaseG2 :把大部分beta g0租户漂移回beta g2环境
-
-		ReleaseG2 -&gt;&gt; MasterG2 : 全量发布完成，ReleaseG2合并到MasterG2
-
-
-
-		Note over MasterG2,ReleaseG2:Bg2/F2分支开发流程(解决线上g2环境的bug(Bg2分支),或G2环境的需求(F2分支))
-		MasterG2 -&gt;&gt;+ Bg2: 拉取Bg2/F2分支	
-		Bg2 --&gt;&gt; Bg2: 开发自测
-		Bg2 -&gt;&gt; Test: 合并到test分支
-		Note over Test:jenkins构建测试环境，并验证
-		alt 测试环境验证通过
-			Bg2 -&gt;&gt; ReleaseG2 : 合并到ReleaseG2分支
-			alt 合并成功，没有冲突
-				Note over ReleaseG2:jenkins构建beta g2环境
-				Note over ReleaseG2:在beta g2环境验证
-				alt beta g2环境验证通过
-					Note over ReleaseG2: jenkins构建prod g1环境
-					Note right of  ReleaseG2: 从G2选取部分租户<br />漂移到prod g1
-					alt prod g1的租户验证通过
-						Note over ReleaseG2: 在prod g1等待	
-					else prod g1租户验证不通过
-						ReleaseG2 --&gt;&gt; Bg2:验证不通过，查原因，重新提测
-					end
-					Note right of  ReleaseG2: 租户在prod g1上<br />过了观察期(如1天)
-					Note right of  ReleaseG2: 把租户全部漂移<br />到prod g1
-					Note over ReleaseG2: jenkins构建prod g2环境
-					Note right of  ReleaseG2: 把prod g1租户<br />全部漂移到prod g2
-					ReleaseG2 -&gt;&gt; Release : 合并到Release
-					ReleaseG2 -&gt;&gt; MasterG2: 合并到MasterG2<br />并删除Bg2分支
-					deactivate Bg2
-				else beta g2环境验证不通过
-					ReleaseG2 --&gt;&gt; Bg2: beta g2验证不通过，查原因，重新提测
-				end
-			else Bg2/F2合并ReleaseG2,发生冲突 
-				ReleaseG2 --&gt;&gt; Bg2:解决冲突，重新接测	
-			end
-		else
-			Test --&gt;&gt; Bg2:测试环境不通过，查原因，重新提测
-		end
-</div>
-
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
