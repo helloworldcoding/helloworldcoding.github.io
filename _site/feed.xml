@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-26T23:24:31+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">Vimscript begin</title><link href="http://localhost:4000/vimscript-begin/" rel="alternate" type="text/html" title="Vimscript begin" /><published>2019-01-26T00:00:00+08:00</published><updated>2019-01-26T00:00:00+08:00</updated><id>http://localhost:4000/vimscript-begin</id><content type="html" xml:base="http://localhost:4000/vimscript-begin/">&lt;p&gt;既然把vimscript是一个脚本语言，那就会有脚本语言的一些共性，比如变量的定义,变量的类型，变量的作用域，分支循环结构,函数等等。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-27T23:31:46+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">Vimscript begin</title><link href="http://localhost:4000/vimscript-begin/" rel="alternate" type="text/html" title="Vimscript begin" /><published>2019-01-26T00:00:00+08:00</published><updated>2019-01-26T00:00:00+08:00</updated><id>http://localhost:4000/vimscript-begin</id><content type="html" xml:base="http://localhost:4000/vimscript-begin/">&lt;p&gt;既然把vimscript是一个脚本语言，那就会有脚本语言的一些共性，比如变量的定义,变量的类型，变量的作用域，分支循环结构,函数等等。&lt;/p&gt;
 
 &lt;h1 id=&quot;变量&quot;&gt;变量&lt;/h1&gt;
 
@@ -226,7 +226,42 @@
 
 &lt;p&gt;所以最好使用==#来比较字符串,统一自己的规范&lt;/p&gt;
 
-&lt;h1 id=&quot;函数&quot;&gt;函数&lt;/h1&gt;
+&lt;h1 id=&quot;循环&quot;&gt;循环&lt;/h1&gt;
+
+&lt;h4 id=&quot;for循环&quot;&gt;for循环&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;help for&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let c = 0
+  for i in [1,2,3,4]
+      let c += i
+  endfor
+  echom c
+
+  for [lnum, col] in [[1, 3], [2, 5], [3, 8]]
+     echo getline(lnum)[col]
+  endfor
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;while循环&quot;&gt;while循环&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;help while&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let c = 1
+  let total = 0 
+  while c &amp;lt;= 4
+      let total += c
+      let c += 1
+  ednwhile 函数 ====
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h4 id=&quot;没有作用域限制的vimscript函数必须以一个大写字母开头&quot;&gt;没有作用域限制的vimscript函数，必须以一个大写字母开头&lt;/h4&gt;
 
@@ -274,21 +309,279 @@ luc
 &lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; Assign&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; 会报错，如下：
 E46&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; Cannot change &lt;span class=&quot;k&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;only&lt;/span&gt; variable &lt;span class=&quot;s2&quot;&gt;&quot;a:foo&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;&quot;function! 如果出现重复函数名，感叹号不会报错。&lt;/span&gt;
+When &lt;span class=&quot;k&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; by this name already exists and &lt;span class=&quot;p&quot;&gt;[!]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;is&lt;/span&gt;
+not used an error message &lt;span class=&quot;k&quot;&gt;is&lt;/span&gt; given&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; Assign&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;suceess&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;msg&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;code&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; Assign&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &quot;返回一个数组
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h1 id=&quot;数据类型&quot;&gt;数据类型&lt;/h1&gt;
+
+&lt;h4 id=&quot;布尔&quot;&gt;布尔&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;0为false， 其他整数为true&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h4 id=&quot;数字&quot;&gt;数字&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;整数(Number,32位带符号整数)&lt;/p&gt;
+    &lt;p&gt;整数(Number,32位带符号整数(如果编译的时候+num64，就支持64位))&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  echom 100
+  echom 0xff 0X1f  &quot; 0x或0X前缀的来指定16进制
+  echom 010 017 &quot;0前缀，是八进制,8,15
+  echom 019 &quot;因为它不是一个八进制，所以输出19
+  echom 0b1010 &quot;0b前缀，是二进制 ,输出十进制10
+  &quot;尽量避免使用八进制
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;浮点
-对大部分命令和选项，vim支持他们的缩写。但是建议在vimrc或者自己编写的插件中使用全称，这样才会有更好的可读性。&lt;/p&gt;
+    &lt;p&gt;浮点(Float)&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  [-+]{N}.{M}
+  [-+]{N}.{M}[eE][-+]{exp}
+  N,M都是正整数，exp代表10的多少次方,exp也是一个正整数
+
+  echo 12.0 &quot;12.0
+  echo 5.45e+3 &quot; 5450.0
+  echo 5.3453e9 &quot; 5.3453e9
+  if 5.345e2 &amp;gt; 500  &quot; this is true
+      echom &quot;biger&quot;
+  endif
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><category term="vimscript" /><summary type="html">既然把vimscript是一个脚本语言，那就会有脚本语言的一些共性，比如变量的定义,变量的类型，变量的作用域，分支循环结构,函数等等。</summary></entry><entry><title type="html">A devops flow</title><link href="http://localhost:4000/devops-flow/" rel="alternate" type="text/html" title="A devops flow" /><published>2019-01-23T00:00:00+08:00</published><updated>2019-01-23T00:00:00+08:00</updated><id>http://localhost:4000/devops-flow</id><content type="html" xml:base="http://localhost:4000/devops-flow/">&lt;div class=&quot;mermaid&quot;&gt;
+  &lt;li&gt;
+    &lt;p&gt;强制转换&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  echo 3/2 &quot;1
+  echo 3.0/2 &quot;1.5 Number和Float混用时，会把Number转换为Float
+  echo 1/3.0 &quot;0.33333,默认是6位小数的精度
+  echo printf('%.15e',11/7.0)  &quot;1.571428571428571e+00
+  echo printf('%.15e',atan(1)) &quot;7.853981633974483e-01
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;字符串&quot;&gt;字符串&lt;/h4&gt;
+
+&lt;p&gt;用双引号或者单引号包围的字符。双引号会转义\n,\,&quot;等特殊字符，而单引号不会(除了’‘转义为’之外）。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;连接(concatenation)用点号. 和php一样&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  echom &quot;hello &quot;.&quot;world&quot; &quot;helloworld&quot;
+  echom 12.&quot;foo&quot; &quot;12foo
+  echom 12.&quot;123&quot; &quot;12123
+  echom 12.1. &quot;foo&quot; &quot;121foo
+  echom 12.1.&quot;foo&quot; &quot;121foo
+  浮点数连接字符串，报错：
+  echom 12.1 .&quot;foo&quot; &quot;E806: using Float as a String E15: Invalid expression: 12.1 .&quot;foo&quot;
+  echom 12.1 . &quot;foo&quot; &quot;E806: using Float as a String E15: Invalid expression: 12.1 .&quot;foo&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;特殊字符(双引号才能转义)&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  help expr-quote
+  echom &quot;foo \&quot;bar\&quot;&quot;   &quot;输出 foo &quot;bar&quot;
+  echom &quot;a\nb&quot; &quot;输出 a^@b
+  echo &quot;a\nb&quot; &quot;输出两行，a 和 b
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;字符串字面量(除了’‘会转义为’,其他的原样输出)&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  help literal-string
+  echom '\n\\' &quot;输出\n\\
+  echo '12''23' &quot;输出12'34
+  echo '12''''23' &quot;输出12''34
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;字符串函数&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  字符串字节数量
+  echom strlen(&quot;foo&quot;) &quot;3	
+  echom strlen(&quot;我的1&quot;) &quot;7
+  echom len(&quot;foo&quot;) &quot;3
+
+  字符串字符个数
+  echom strchars(&quot;hello&quot;) &quot;5
+  echom strchars(&quot;我的1&quot;) &quot;3
+
+  字符串截取
+  strcharpart({src}, {start} [, {len}])
+  echo strcharpart(&quot;我的123&quot;,0,2) &quot;我的
+  echo strcharpart(&quot;我的123&quot;,-1,2) &quot;我,start为负，就是从0开始，截取start+len个字符
+  echo strcharpart(&quot;我的123&quot;,-1,3) &quot;我的
+  echo strcharpart(&quot;我的123&quot;,-1,4) &quot;我的1
+
+  echo &quot;abcdef&quot;[1:3] &quot; bcd
+  echo &quot;abcdef&quot;[1:1] &quot; b
+  echo &quot;abcdef&quot;[1:] &quot; bcdef
+  echo &quot;我的123&quot;[3,6] &quot;的1
+
+	
+  分割,默认通过空格分割
+  split({expr} [, {pattern} [, {keepempty}]])			*split()*
+
+  echo split(&quot;one two three&quot;) &quot; [&quot;one&quot;,&quot;two&quot;,&quot;three&quot;] 不能用echom输出一个list
+  echo split(&quot;one,two,three,&quot;,&quot;) &quot; [&quot;one&quot;,&quot;two&quot;,&quot;three&quot;] 不能用echom输出一个list,最后一个,不会有用
+
+  连接,默认通过空格连接
+  echo join([&quot;hello&quot;,&quot;world&quot;]) &quot;  hello world
+  echo join([&quot;hello&quot;,&quot;world&quot;],&quot;,&quot;) &quot; hello,world
+  echo join([&quot;hello&quot;,&quot;world&quot;],&quot;&quot;) &quot; helloworld
+
+  大小写转换
+  echom tolower(&quot;FOo&quot;)
+  echom toupper(&quot;hello&quot;)
+	
+  字符串查找
+  stridx({haystack}, {needle} [, {start}])
+  :echo stridx(&quot;An Example&quot;, &quot;Example&quot;)	     3
+  :echo stridx(&quot;Starting point&quot;, &quot;Start&quot;)    0
+  :echo stridx(&quot;Starting point&quot;, &quot;start&quot;)   -1
+
+  string()强制转化为字符串
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;列表&quot;&gt;列表&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;help List		
+列表是有序的，元素的集合, 每一个item可以是任何type	
+echo ['foo',34,12.2]	
+echo ['foo',[3,'bar']]
+
+索引,从0开始
+echo [1,23,[1,34]][0] &quot; 1
+echo [1,23,[1,34]][2][1] &quot; 34
+echo [1,23,[1,34]][-1] &quot;[1,34]
+
+切割,和python相似，但不同
+echo [1,3,4,5][0:2] &quot;[1,3,4]
+echo [1,3,4,5][0:20000] &quot;[1,3,4,5] 超过列表索引也是安全的。
+echo [1,3,5,6][-2:-1] &quot; [5,6]
+echo [1,2,3,5][:1] &quot;[1,2]
+echo [1,2,3,5][2:] &quot;[3,5]
+字符串也可以切割
+
+连接+
+echo ['a','b'] + ['c']  &quot; ['a','b','c']
+
+函数列表
+1.add
+let foo = ['a']
+call add(foo,'b') &quot; 往foo后面加上'b'
+echo foo &quot; ['a','b']
+
+2.len
+echo len(foo) &quot; 2
+
+3.get,返回指定索引的值
+echo get(foo,0,'default') &quot; a
+echo get(foo,10,'default') &quot; default
+
+4.index
+echo index(foo,'b') &quot;1
+echo index(foo,'cet') &quot; -1  不存在返回-1
+
+5.join
+
+6.reverse ,转置
+echo reverse(['a','b']) &quot;['b','a']
+
+7.List unpack
+let [var1, var2; rest] = mylist &quot;等同于下面三个表达式
+let var1 = mylist[0]
+let var2 = mylist[1]
+let rest = mylist[2:]
+
+8.复制和深度复制
+let aa = [1,2,4]
+let bb = aa &quot;aa 和bb 指向同一个列表，改变其中一个，也对相应改变另一个
+
+let aa = [[1,'a'],3,4]
+let bb = copy(aa) &quot; 浅复制，改变已经有的元素(该元素也是一个列表），aa和bb都会变化，但是，往aa中追加元素，不会影响
+let aa[0][1] = 'aaa' &quot; 浅复制，所以 bb[0][1] == 'aaa'
+
+如果要做到完全独立，就用deepcopy()
+let cc = deepcopy(aa) &quot; 这样，cc和aa就是完全独立的变量,不会相会影响了。
+
+9.列表相等
+echo [1,3] == [1,3] &quot; 1 ,true 
+echo [3,1] == [1,3] &quot; 0 ,false
+echo 2 == &quot;2&quot; &quot; 1,true 
+echo [2] == [&quot;2&quot;] &quot; 0, false
+
+let a = [1,3]
+let b = [1,3]
+echo a is b &quot; 0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;字典&quot;&gt;字典&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;类似python中的dict，ruby中的hash, javascript中的object
+字典用花括号创建,索引是字符串（即便定义的时候是数字，也会被转化为字符串)
+
+:echo {'a':1,'100':'foo',} &quot; 字典最后可以留下一个逗号,js的愚蠢之处，在这里被修复了
+
+let dic = {'a':1,'100':'foo',}
+echo dic['a'] &quot; 1
+
+当键是字母数字下划线组成时，字典也支持&quot;点&quot;查找
+echo dic.a
+echo dic.100
+
+赋值和添加，移除项
+let dic.a = 222
+let dic.c = 'new val'
+
+let a = remove(dic,'a') &quot; 此方法移除a后，会返回a对应的值
+unlet dic.a &quot;直接移除a，不会返回
+
+字典函数
+echo get(dic,'a','default') &quot; 1 和list一样
+echo get(dic,'dd','not') &quot; not
+
+echo has_key(dic, &quot;a&quot;) &quot; 1
+
+echo items(dic) &quot; [['a',1],['100','foo']]
+echo  keys(dic) &quot;['a','100']
+echo values(dic) &quot;[1,'foo']
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;函数funcref&quot;&gt;函数(Funcref)&lt;/h4&gt;
+
+&lt;h4 id=&quot;特殊special&quot;&gt;特殊(Special)&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;v:false
+v:true
+v:none
+v:null
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;任务job&quot;&gt;任务(Job)&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;job_start()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;通道channel&quot;&gt;通道(channel)&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ch_open()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;对大部分命令和选项，vim支持他们的缩写。但是建议在vimrc或者自己编写的插件中使用全称，这样才会有更好的可读性。&lt;/p&gt;</content><author><name></name></author><category term="vimscript" /><summary type="html">既然把vimscript是一个脚本语言，那就会有脚本语言的一些共性，比如变量的定义,变量的类型，变量的作用域，分支循环结构,函数等等。</summary></entry><entry><title type="html">A devops flow</title><link href="http://localhost:4000/devops-flow/" rel="alternate" type="text/html" title="A devops flow" /><published>2019-01-23T00:00:00+08:00</published><updated>2019-01-23T00:00:00+08:00</updated><id>http://localhost:4000/devops-flow</id><content type="html" xml:base="http://localhost:4000/devops-flow/">&lt;div class=&quot;mermaid&quot;&gt;
 graph TB
 	
 	subgraph devops
