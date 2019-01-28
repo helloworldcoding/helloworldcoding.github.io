@@ -131,6 +131,134 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-01-28T00:00:00+08:00"><a href="http://localhost:4000/vimscript-regex/">January 28, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/vimscript-regex/" rel="bookmark" title="vimscript regex" itemprop="url">vimscript regex</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-01-28T00:00:00+08:00"><a href="http://localhost:4000/vimscript-execute-normal/">January 28, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/vimscript-execute-normal/" rel="bookmark" title="Execute & normal in Vimscript" itemprop="url">Execute & normal in Vimscript</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <h1 id="execute命令">Execute命令</h1>
+
+<p>execute命令，把字符串当作vimscript命令来执行.</p>
+
+<h4 id="基本用法">基本用法</h4>
+
+<p>:exe[cute] {expr1} ..	
+	把{expr1}当作一个Ex命令来执行，并返回结果。多个参数，用空格分隔。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>多个命令可以用| 连起来
+:execute '!ls' | echom "theend" 
+
+在execute后面的字符串中可以使用\&lt;esc&gt;这样的方式来使用\e,看上去跟明显
+\e	escape &lt;Esc&gt;
+\f	formfeed &lt;FF&gt;
+\n	newline &lt;NL&gt;
+\r	return &lt;CR&gt;
+\t	tab &lt;Tab&gt;
+
+当文件名中有特殊字符的时候，要小心了。
+:execute "e ".fnameescape(filename) " fnameescape()函数用在vim的命令中
+:execute "!ls " . shellescape(filename, 1) " shellescape()函数用在shell命令中
+
+当要执行多行的命令时，用|来 执行得了,|要放在引号之内
+:execute 'while i &lt; 5 | echo i | let i = i + 1 | endwhile'
+
+注释,|"之后的是注释
+execute "echo 'foo'" | " this is a comment
+</code></pre></div></div>
+
+<h1 id="normal命令">Normal命令</h1>
+
+<p>normal 命令简单地接受一串键值并当作是在normal模式下输入的</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:normal ggdd  "删除第一行
+:normal G "一般情况下，这个会把光标移到最后一行。
+"但是如果用户设置映射呢?比如nnoremap G dd ,这个时候，就会变成删除了。。。。惊不惊喜？
+:normal! G "这样就能确保光标移到最后，即便用户设置了G的映射，映射也不会生效。
+
+所以，在写vim脚本的时候，应该总是用normal!,因为你不确定用户在他的.vimrc文件中做了哪些映射
+
+:normal! /foo&lt;cr&gt; "这样不会起作用 ,这种情况，需要结合execute来进行
+
+:execute "normal! /foo\&lt;cr&gt;" " 这样就可以起到查找foo的作用了
+</code></pre></div></div>
+
+<h4 id="转义字符">转义字符</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"string"		string constant		*expr-quote*
+
+Note that double quotes are used.
+
+A string constant accepts these special characters:
+\...	three-digit octal number (e.g., "\316")
+\..	two-digit octal number (must be followed by non-digit)
+\.	one-digit octal number (must be followed by non-digit)
+\x..	byte specified with two hex numbers (e.g., "\x1f")
+\x.	byte specified with one hex number (must be followed by non-hex char)
+\X..	same as \x..
+\X.	same as \x.
+\u....	character specified with up to 4 hex numbers, stored according to the
+	current value of 'encoding' (e.g., "\u02a4")
+\U....	same as \u but allows up to 8 hex numbers.
+\b	backspace &lt;BS&gt;
+\e	escape &lt;Esc&gt;
+\f	formfeed &lt;FF&gt;
+\n	newline &lt;NL&gt;
+\r	return &lt;CR&gt;
+\t	tab &lt;Tab&gt;
+\\	backslash
+\"	double quote
+\&lt;xxx&gt;	Special key named "xxx".  e.g. "\&lt;C-W&gt;" for CTRL-W.  This is for use
+	in mappings, the 0x80 byte is escaped.
+	To use the double quote character it must be escaped: "&lt;M-\"&gt;".
+	Don't use &lt;Char-xxxx&gt; to get a utf-8 character, use \uxxxx as
+	mentioned above.
+
+Note that "\xff" is stored as the byte 255, which may be invalid in some
+encodings.  Use "\u00ff" to store character 255 according to the current value
+of 'encoding'.
+
+Note that "\000" and "\x00" force the end of the string.
+</code></pre></div></div>
+
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2019-01-26T00:00:00+08:00"><a href="http://localhost:4000/vimscript-begin/">January 26, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
       
       <span class="entry-reading-time">
@@ -706,6 +834,25 @@ echo has_key(dic, "a") " 1
 echo items(dic) " [['a',1],['100','foo']]
 echo  keys(dic) "['a','100']
 echo values(dic) "[1,'foo']
+
+遍历Dictionary
+for key in keys(dic)
+	echo key.":'.dic[key]
+endfor
+
+for v in values(dic)
+	echo "value:".v
+endfor
+
+for [k,v] in items(dic)
+	echo k.':'.v
+endfor
+
+合并数组
+call extend(adic, bdic) "把bdic的值，加到a中，如果有重复的key，a的会被b覆盖(默认)
+
+过滤元素
+call filter(dict, 'v:val =~ "x"') " 把value匹配"x"的元素都剔除掉。
 </code></pre></div></div>
 
 <h4 id="函数funcref">函数(Funcref)</h4>
@@ -1235,205 +1382,6 @@ graph TB
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-22T00:00:00+08:00"><a href="http://localhost:4000/vim-some-skills/">January 22, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/vim-some-skills/" rel="bookmark" title="Some Vim skills" itemprop="url">Some Vim skills</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <h4 id="编辑后发现需要root权限">编辑后，发现需要root权限</h4>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:w ! sudo tee %
-</code></pre></div></div>
-
-<h4 id="做计算">做计算</h4>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>insert模式，ctrl+r =3600*24*7
-</code></pre></div></div>
-
-<h4 id="查看字符ascii码16进制8进制">查看字符ascii码,16进制，8进制</h4>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>common模式，ga 查看光标下的字符的ascii码	
-</code></pre></div></div>
-
-<h4 id="插入unicode字符">插入unicode字符</h4>
-<h4 id="大小写转换">大小写转换</h4>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~          将光标下的字母改变大小写
-3m~         将光标位置开始的3个字母改变其大小写
-g~~        改变当前行字母的大小写
-U          将可视模式下选择的字母全改成大写字母
-u          将可视模式下选择的字母全改成小写
-gUU        将当前行的字母改成大写
-3gUU       将从光标开始到下面3行字母改成大写
-guu       将当前行的字母全改成小写
-gUw       将光标下的单词改成大写。
-guw       将光标下的单词改成小写。
-</code></pre></div></div>
-
-<h4 id="insert-mode-缩进">Insert mode 缩进</h4>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ctrl+t &gt;	
-crtl+d &lt;
-</code></pre></div></div>
-
-<h4 id="的作用">!的作用</h4>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- 切换布尔选项，:set number!
-- 执行shell命令 :! ls
-</code></pre></div></div>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-22T00:00:00+08:00"><a href="http://localhost:4000/php-unit-test-note2/">January 22, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/php-unit-test-note2/" rel="bookmark" title="Dependence and Data Provider in PHPUnit" itemprop="url">Dependence and Data Provider in PHPUnit</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <h3 id="牛人的话翻译后">牛人的话(翻译后)</h3>
-
-<p>Adrian Kuhn et.al:</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>写单元测试是一个非常好的做法，帮助开发定位和修复bug，重构代码并作为测试软件的一个单元的文档。
-为了能达到这个效果，单元测试要考虑到程序中所有路径。一个方法或函数通常只覆盖一个特殊的路径。
-然而，一个测试方法并不是一个封闭的，独立的实体。通常在测试方法之间的隐式依赖，就藏在某个测试场景的实现中。
-</code></pre></div></div>
-
-<h3 id="test-dependencies">Test Dependencies</h3>
-
-<ul>
-  <li>producer: 返回值给其他方法使用的方法</li>
-  <li>consumer: 依靠别的方法和它们的返回值的方法</li>
-  <li>一个方法，可以兼顾这个两个角色</li>
-  <li>consumer方法需要在方法注释中标注@depends testFunc</li>
-  <li>一个consumer方法可以一个或多个@depends,当有多个@depends时，@depends的声明顺序就是consumer参数顺序
-    <ul>
-      <li>参数的传递，默认是引用传参</li>
-      <li>@depends clone 就是深复制，传值传参</li>
-      <li>@depends shallowClone 浅复制</li>
-    </ul>
-  </li>
-  <li>consumer方法有多个@depends时，要确保这些producer方法要写在consumer的前面，不然就会出现skip</li>
-</ul>
-
-<p>代码如下：</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
-<span class="k">use</span> <span class="nx">PHPUnit\Framework\TestCase</span><span class="p">;</span>
-
-<span class="k">class</span> <span class="nc">MultipleDependenciesTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
-<span class="p">{</span>
-	<span class="k">public</span> <span class="k">function</span> <span class="nf">testProducerFirst</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertTrue</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-		<span class="k">return</span> <span class="s1">'first'</span><span class="p">;</span>
-	<span class="p">}</span>
-
-	<span class="k">public</span> <span class="k">function</span> <span class="nf">testProducerSecond</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertTrue</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-		<span class="k">return</span> <span class="s1">'second'</span><span class="p">;</span>
-	<span class="p">}</span>
-
-	<span class="sd">/**
-	 * @depends testProducerFirst
-	 * @depends testProducerSecond
-	 */</span>
-	<span class="k">public</span> <span class="k">function</span> <span class="nf">testConsumer</span><span class="p">(</span><span class="nv">$a</span><span class="p">,</span> <span class="nv">$b</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">'first'</span><span class="p">,</span> <span class="nv">$a</span><span class="p">);</span>
-		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">'second'</span><span class="p">,</span> <span class="nv">$b</span><span class="p">);</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h3 id="data-providers">Data Providers</h3>
-
-<ul>
-  <li>某个方法的注释中用 <code>@dataProvider </code>这个特殊注释 标识了某个方法，则这个方法就是data provider
-    <ul>
-      <li>如<code>@dataProvider testFunc</code> testFunc就是data provider</li>
-    </ul>
-  </li>
-  <li>data provider返回值必须要是n维数组(n&gt;=2),或可以迭代的对象(Iterator),并且这个对象每一次迭代都要返回一个数组</li>
-  <li>测试方法的参数可以由一个或多个data provider 提供</li>
-  <li>
-    <p>当测试方法同时有@dataProvider和@depends时，@dataProvider的参数要先于@depends</p>
-  </li>
-  <li>demo</li>
-</ul>
-
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
-<span class="k">use</span> <span class="nx">PHPUnit\Framework\TestCase</span><span class="p">;</span>
-
-<span class="k">class</span> <span class="nc">DependencyAndDataProviderComboTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
-<span class="p">{</span>
-	<span class="k">public</span> <span class="k">function</span> <span class="nf">provider</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="k">return</span> <span class="p">[[</span><span class="s1">'provider1'</span><span class="p">],</span> <span class="p">[</span><span class="s1">'provider2'</span><span class="p">]];</span>
-	<span class="p">}</span>
-
-	<span class="k">public</span> <span class="k">function</span> <span class="nf">testProducerFirst</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertTrue</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-		<span class="k">return</span> <span class="s1">'first'</span><span class="p">;</span>
-	<span class="p">}</span>
-
-	<span class="k">public</span> <span class="k">function</span> <span class="nf">testProducerSecond</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertTrue</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-		<span class="k">return</span> <span class="s1">'second'</span><span class="p">;</span>
-	<span class="p">}</span>
-
-	<span class="sd">/**
-	 * @depends testProducerFirst
-	 * @depends testProducerSecond
-	 * @dataProvider provider
-	 */</span>
-	<span class="k">public</span> <span class="k">function</span> <span class="nf">testConsumer</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span>
-			<span class="p">[</span><span class="s1">'provider1'</span><span class="p">,</span> <span class="s1">'first'</span><span class="p">,</span> <span class="s1">'second'</span><span class="p">],</span>
-			<span class="nb">func_get_args</span><span class="p">()</span>
-			<span class="sd">/**
-			func_get_args()依次是
-			['provider1', 'first', 'second'],
-			['provider2', 'first', 'second']
-			因为 provider迭代了两次，第一次返回['provider1'], 字符串'provider1'就传递给了testConsumer，作为第一个参数，
-			**/</span>
-		<span class="p">);</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 
 <div class="pagination">
@@ -1461,12 +1409,19 @@ Reading time ~1 minute
         <li><a href="http://localhost:4000/page2/">2</a></li>
       
     
+      
+        
+        
+        
+        <li><a href="http://localhost:4000/page3/">3</a></li>
+      
+    
 
     
     
 
     
-      <li><a href="http://localhost:4000/page3/">3</a></li>
+      <li><a href="http://localhost:4000/page4/">4</a></li>
     
 
     

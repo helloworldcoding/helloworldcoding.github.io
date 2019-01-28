@@ -1,4 +1,85 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-27T23:31:46+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">Vimscript begin</title><link href="http://localhost:4000/vimscript-begin/" rel="alternate" type="text/html" title="Vimscript begin" /><published>2019-01-26T00:00:00+08:00</published><updated>2019-01-26T00:00:00+08:00</updated><id>http://localhost:4000/vimscript-begin</id><content type="html" xml:base="http://localhost:4000/vimscript-begin/">&lt;p&gt;既然把vimscript是一个脚本语言，那就会有脚本语言的一些共性，比如变量的定义,变量的类型，变量的作用域，分支循环结构,函数等等。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-28T23:20:42+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">Execute &amp;amp; normal in Vimscript</title><link href="http://localhost:4000/vimscript-execute-normal/" rel="alternate" type="text/html" title="Execute &amp; normal in Vimscript" /><published>2019-01-28T00:00:00+08:00</published><updated>2019-01-28T00:00:00+08:00</updated><id>http://localhost:4000/vimscript-execute-normal</id><content type="html" xml:base="http://localhost:4000/vimscript-execute-normal/">&lt;h1 id=&quot;execute命令&quot;&gt;Execute命令&lt;/h1&gt;
+
+&lt;p&gt;execute命令，把字符串当作vimscript命令来执行.&lt;/p&gt;
+
+&lt;h4 id=&quot;基本用法&quot;&gt;基本用法&lt;/h4&gt;
+
+&lt;p&gt;:exe[cute] {expr1} ..	
+	把{expr1}当作一个Ex命令来执行，并返回结果。多个参数，用空格分隔。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;多个命令可以用| 连起来
+:execute '!ls' | echom &quot;theend&quot; 
+
+在execute后面的字符串中可以使用\&amp;lt;esc&amp;gt;这样的方式来使用\e,看上去跟明显
+\e	escape &amp;lt;Esc&amp;gt;
+\f	formfeed &amp;lt;FF&amp;gt;
+\n	newline &amp;lt;NL&amp;gt;
+\r	return &amp;lt;CR&amp;gt;
+\t	tab &amp;lt;Tab&amp;gt;
+
+当文件名中有特殊字符的时候，要小心了。
+:execute &quot;e &quot;.fnameescape(filename) &quot; fnameescape()函数用在vim的命令中
+:execute &quot;!ls &quot; . shellescape(filename, 1) &quot; shellescape()函数用在shell命令中
+
+当要执行多行的命令时，用|来 执行得了,|要放在引号之内
+:execute 'while i &amp;lt; 5 | echo i | let i = i + 1 | endwhile'
+
+注释,|&quot;之后的是注释
+execute &quot;echo 'foo'&quot; | &quot; this is a comment
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;normal命令&quot;&gt;Normal命令&lt;/h1&gt;
+
+&lt;p&gt;normal 命令简单地接受一串键值并当作是在normal模式下输入的&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;:normal ggdd  &quot;删除第一行
+:normal G &quot;一般情况下，这个会把光标移到最后一行。
+&quot;但是如果用户设置映射呢?比如nnoremap G dd ,这个时候，就会变成删除了。。。。惊不惊喜？
+:normal! G &quot;这样就能确保光标移到最后，即便用户设置了G的映射，映射也不会生效。
+
+所以，在写vim脚本的时候，应该总是用normal!,因为你不确定用户在他的.vimrc文件中做了哪些映射
+
+:normal! /foo&amp;lt;cr&amp;gt; &quot;这样不会起作用 ,这种情况，需要结合execute来进行
+
+:execute &quot;normal! /foo\&amp;lt;cr&amp;gt;&quot; &quot; 这样就可以起到查找foo的作用了
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;转义字符&quot;&gt;转义字符&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;string&quot;		string constant		*expr-quote*
+
+Note that double quotes are used.
+
+A string constant accepts these special characters:
+\...	three-digit octal number (e.g., &quot;\316&quot;)
+\..	two-digit octal number (must be followed by non-digit)
+\.	one-digit octal number (must be followed by non-digit)
+\x..	byte specified with two hex numbers (e.g., &quot;\x1f&quot;)
+\x.	byte specified with one hex number (must be followed by non-hex char)
+\X..	same as \x..
+\X.	same as \x.
+\u....	character specified with up to 4 hex numbers, stored according to the
+	current value of 'encoding' (e.g., &quot;\u02a4&quot;)
+\U....	same as \u but allows up to 8 hex numbers.
+\b	backspace &amp;lt;BS&amp;gt;
+\e	escape &amp;lt;Esc&amp;gt;
+\f	formfeed &amp;lt;FF&amp;gt;
+\n	newline &amp;lt;NL&amp;gt;
+\r	return &amp;lt;CR&amp;gt;
+\t	tab &amp;lt;Tab&amp;gt;
+\\	backslash
+\&quot;	double quote
+\&amp;lt;xxx&amp;gt;	Special key named &quot;xxx&quot;.  e.g. &quot;\&amp;lt;C-W&amp;gt;&quot; for CTRL-W.  This is for use
+	in mappings, the 0x80 byte is escaped.
+	To use the double quote character it must be escaped: &quot;&amp;lt;M-\&quot;&amp;gt;&quot;.
+	Don't use &amp;lt;Char-xxxx&amp;gt; to get a utf-8 character, use \uxxxx as
+	mentioned above.
+
+Note that &quot;\xff&quot; is stored as the byte 255, which may be invalid in some
+encodings.  Use &quot;\u00ff&quot; to store character 255 according to the current value
+of 'encoding'.
+
+Note that &quot;\000&quot; and &quot;\x00&quot; force the end of the string.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="execute" /><category term="normal" /><category term="vimscript" /><category term="vim" /><summary type="html">Execute命令</summary></entry><entry><title type="html">vimscript regex</title><link href="http://localhost:4000/vimscript-regex/" rel="alternate" type="text/html" title="vimscript regex" /><published>2019-01-28T00:00:00+08:00</published><updated>2019-01-28T00:00:00+08:00</updated><id>http://localhost:4000/vimscript-regex</id><content type="html" xml:base="http://localhost:4000/vimscript-regex/"></content><author><name></name></author><category term="vimscript" /><category term="regex" /><category term="vim" /><summary type="html"></summary></entry><entry><title type="html">Vimscript begin</title><link href="http://localhost:4000/vimscript-begin/" rel="alternate" type="text/html" title="Vimscript begin" /><published>2019-01-26T00:00:00+08:00</published><updated>2019-01-26T00:00:00+08:00</updated><id>http://localhost:4000/vimscript-begin</id><content type="html" xml:base="http://localhost:4000/vimscript-begin/">&lt;p&gt;既然把vimscript是一个脚本语言，那就会有脚本语言的一些共性，比如变量的定义,变量的类型，变量的作用域，分支循环结构,函数等等。&lt;/p&gt;
 
 &lt;h1 id=&quot;变量&quot;&gt;变量&lt;/h1&gt;
 
@@ -559,6 +640,25 @@ echo has_key(dic, &quot;a&quot;) &quot; 1
 echo items(dic) &quot; [['a',1],['100','foo']]
 echo  keys(dic) &quot;['a','100']
 echo values(dic) &quot;[1,'foo']
+
+遍历Dictionary
+for key in keys(dic)
+	echo key.&quot;:'.dic[key]
+endfor
+
+for v in values(dic)
+	echo &quot;value:&quot;.v
+endfor
+
+for [k,v] in items(dic)
+	echo k.':'.v
+endfor
+
+合并数组
+call extend(adic, bdic) &quot;把bdic的值，加到a中，如果有重复的key，a的会被b覆盖(默认)
+
+过滤元素
+call filter(dict, 'v:val =~ &quot;x&quot;') &quot; 把value匹配&quot;x&quot;的元素都剔除掉。
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;函数funcref&quot;&gt;函数(Funcref)&lt;/h4&gt;
@@ -1566,368 +1666,4 @@ OK (2 tests, 8 assertions)
 		else
 			Test --&amp;gt;&amp;gt; Bg2:测试环境不通过，查原因，重新提测
 		end
-&lt;/div&gt;</content><author><name></name></author><summary type="html">sequenceDiagram participant MasterG2 participant Master participant Dev as F分支 participant Bg0 participant Bg2 as Bg2/F2 participant Test participant Release participant ReleaseG2</summary></entry><entry><title type="html">Vim command mode–Ex(1)</title><link href="http://localhost:4000/vim-command-model_1/" rel="alternate" type="text/html" title="Vim command mode--Ex(1)" /><published>2019-01-17T00:00:00+08:00</published><updated>2019-01-17T00:00:00+08:00</updated><id>http://localhost:4000/vim-command-model_1</id><content type="html" xml:base="http://localhost:4000/vim-command-model_1/">&lt;p&gt;最早，现有ed，ed为ex之父，ex为vi之父，而vi为vim之父 —- The Old Testament of Unix&lt;/p&gt;
-
-&lt;p&gt;这些早期的Unix编辑器，依旧可以在vim中找到它们的影子，他们没有消失，只是换了一个方式存在。&lt;/p&gt;
-
-&lt;p&gt;我打算挖一坑，来說一下命令行模式，来看一下vim身体里流淌着多少它的祖先ex(行编辑器)的血液。&lt;/p&gt;
-
-&lt;p&gt;在普通模式下，按下&lt;code&gt;:&lt;/code&gt;就会进入命令行模式，和shell下的命令行很相似;输入一条命令，然后回车执行。按下&lt;code&gt;Esc&lt;/code&gt;键就可以回到普通模式。这些在命令行模式下执行的命令，又可以称为Ex命令。&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;常见命令&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;用途说明&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;:edit&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;编辑一个文件，editk可以简写为e&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;:write&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;写文件&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;:tabnew&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;创建一个tab&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;:prev/:next&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;当用vim一次打开多个文件(如：vim a.txt b.txt)后，可以用他们来回切换文件&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;:bprev/:bnext&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;当打开多个缓冲区后，可以用他们来回切换缓冲区，不过我习惯&lt;code&gt;ctrl&lt;/code&gt;+6来回切换最近两个缓冲区&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;:[range]delete [x]&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;删除指定范围的行到寄存器[x]中,delete可以简写为d&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;:[range]yank [x]&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;复制指定范围的行到寄存器[x]中,yank可以简写为y&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;:[line]put [x]&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;把寄存器x的内容，粘贴到指定行的后面,put不能简写&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;:[range]copy {address}&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;把指定范围的行复制到{address}指定的行之下,copy可以简写为co或t&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;:[range]move {address}&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;把指定范围的行移动到{address}指定的行之下,move可简写为m&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;:[range]join&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;把指定范围内的行连接起来，成为一行，&lt;code&gt;J&lt;/code&gt;也可以起连接行的作用(当前行和下一行）&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;:[range]normal {commands}&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;对指定范围内的每一行执行普通模式的命令{commands}&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;:[range]substitute/{pattern}/{string}/{flags}&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;把指定范围内的行出现的{pattern}匹配的地方替换为{string}，substitute 可以简写为s(vim的正则替换，我先挖个坑，后面再填上)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;:[range]global/{pattern}/[cmd]&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;把指定范围内的行匹配{pattern}的所有行之下Ex命令{cmd}，这个特性还要进一步挖掘&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;range的写法：
-	- 一个数字如23,34;代表指定的行
-	- 两个数字逗号分割: 2,5  代表从第2到第5行
-	- num,.  从第num行到当前行，比如我们要从第7行删除所有内容，我们先按G,光标会移动到最后一行，然后输入 :7,. d&lt;/p&gt;
-
-&lt;p&gt;总之，Ex命令可以一次执行，多处修改。&lt;/p&gt;</content><author><name></name></author><category term="vim" /><category term="command model" /><category term="Ex" /><summary type="html">最早，现有ed，ed为ex之父，ex为vi之父，而vi为vim之父 —- The Old Testament of Unix</summary></entry><entry><title type="html">Sequence diagrams in Mermaid</title><link href="http://localhost:4000/mermaid-notes-sequence-diagram/" rel="alternate" type="text/html" title="Sequence diagrams in Mermaid" /><published>2019-01-16T00:00:00+08:00</published><updated>2019-01-16T00:00:00+08:00</updated><id>http://localhost:4000/mermaid-notes-sequence-diagram</id><content type="html" xml:base="http://localhost:4000/mermaid-notes-sequence-diagram/">&lt;p&gt;时序图（Sequence Diagram），又名序列图、循序图，是一种UML交互图。它通过描述对象之间发送消息的时间顺序显示多个对象之间的动态协作。它可以表示用例的行为顺序，当执行一个用例行为时，其中的每条消息对应一个类操作或状态机中引起转换的触发事件。&lt;/p&gt;
-
-&lt;h2 id=&quot;一个小demo&quot;&gt;一个小demo&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;	sequenceDiagram
-		Alice -&amp;gt;&amp;gt; John: Hi John,nice day, Uh huh?
-		John  --&amp;gt;&amp;gt; Alice: Yeap
-&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&quot;mermaid&quot;&gt;
-	sequenceDiagram
-		Alice -&amp;gt;&amp;gt; John: Hi John,nice day, Uh huh?
-		John  --&amp;gt;&amp;gt; Alice: Yeap
-&lt;/div&gt;
-
-&lt;h2 id=&quot;基本概念&quot;&gt;基本概念&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;participant(参与者,先定义的会先现实出来)&lt;/li&gt;
-  &lt;li&gt;alice(别名，参与者可以起别名,定义别名后，就只能用别名了,如果混用，会是两个参与者）&lt;/li&gt;
-  &lt;li&gt;message(消息，[participant][arrow][participant]:Message text)&lt;/li&gt;
-  &lt;li&gt;activation(激活，可对参与者进行激活和去激活，可以重复进行）
-    &lt;ul&gt;
-      &lt;li&gt;activate/deactivate [participant] 激活或取消&lt;/li&gt;
-      &lt;li&gt;--&amp;gt;+  加号激活&lt;/li&gt;
-      &lt;li&gt;--&amp;gt;-  减号取消,通过+/-明显比较方便(但是，有时候会失效)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;note(便签, Note [right of | left of | over] [participant])
-    &lt;ul&gt;
-      &lt;li&gt;Note right of John: Foo12345&lt;/li&gt;
-      &lt;li&gt;Note left of Alice: An note&lt;/li&gt;
-      &lt;li&gt;Note over Alice,John: Cross the world&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;loop(循环)&lt;/li&gt;
-  &lt;li&gt;alt(分支，选择,相当于 if else )&lt;/li&gt;
-  &lt;li&gt;opt(可选，相当于 if)
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sequenceDiagram
-  participant John
-  participant A as  Alice
-  A -&amp;gt;&amp;gt; John : Hi,John
-  Note left of John: Foo12345
-  John  --&amp;gt;&amp;gt; A: Alice..I
-  Note right of A : An note
-  activate A
-  A -&amp;gt;&amp;gt;+ John :  1
-  John --&amp;gt;&amp;gt; A : 2
-  deactivate A
-  A -x- John : 3
-  John --x A :4 
-  loop Every 30 seconds
-      John --&amp;gt;&amp;gt; A : heart bits
-      A --&amp;gt;&amp;gt; John : ACK
-  end
-  A -&amp;gt;&amp;gt; John : Are you ok?
-  alt is ok
-      John --&amp;gt;&amp;gt;A: Ok啊
-  else so so 
-      John --&amp;gt;&amp;gt;A: 还活着
-  else
-      John --&amp;gt;&amp;gt;A: 还不错
-  end
-  Note over A, John: Over!
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;mermaid&quot;&gt;
-	sequenceDiagram
-		participant John
-		participant A as  Alice
-		A -&amp;gt;&amp;gt; John : Hi,John
-		Note left of John: Foo12345
-		John  --&amp;gt;&amp;gt; A: Alice..I
-		Note right of A : An note
-		activate A
-		A -&amp;gt;&amp;gt;+ John :  1
-		John --&amp;gt;&amp;gt; A : 2
-		deactivate A
-		A -x- John : 3
-		John --x A :4 
-		loop Every 30 seconds
-			John --&amp;gt;&amp;gt; A : 还在么？(heart bits)
-			alt is ok
-				A -&amp;gt;&amp;gt; John : 在呢，我还在，莫担心
-			else  没反应
-				John --&amp;gt;&amp;gt; John : Alice is lose,释放他的资源
-			end
-		end
-		A -&amp;gt;&amp;gt; John : Are you ok?
-		alt is ok
-			John --&amp;gt;&amp;gt;A: Ok啊
-		else so so 
-			John --&amp;gt;&amp;gt;A: 还活着
-		else
-			John --&amp;gt;&amp;gt;A: 还不错
-		end
-		opt 心情好
-			A --&amp;gt;&amp;gt; Tom : 出来撸串
-		end
-		Note over A, John: Over!
-&lt;/div&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;箭头类型&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;描述&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;-&amp;gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;实线无箭头&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;--&amp;gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;点线无箭头&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;-&amp;gt;&amp;gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;实线有箭头&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;--&amp;gt;&amp;gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;点线有箭头&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;-x&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;实线带叉和箭头&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;--x&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;点线带叉和箭头&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;微信jsapi支付流程&quot;&gt;微信JSAPI支付流程&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;文档：https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_4&lt;/li&gt;
-  &lt;li&gt;官方流程图：&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure&gt;
-	&lt;img src=&quot;/images/wechat_pay_uml.png&quot; alt=&quot;微信JSAPI支付流程&quot; /&gt;
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;用mermaid模仿上图&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;	sequenceDiagram
-		participant User
-		participant WechatApp
-		participant MB as MerchantBackend
-		participant WPS as WechatPaySystem
-		
-		MB -&amp;gt;&amp;gt; MB:1.生成图文信息链接或二维码
-		MB --&amp;gt;&amp;gt;+ User :展示给用户
-		User-&amp;gt;&amp;gt;+ WechatApp:2.点击链接或扫描二维码在微信浏览器打开商户H5网页
-		WechatApp -&amp;gt;&amp;gt;+ MB:网页内请求生成订单
-		MB -&amp;gt;&amp;gt;+ MB:4.生成商户订单
-		deactivate MB
-		MB -&amp;gt;&amp;gt;+ WPS:5.调用统一下单API
-		WPS -&amp;gt;&amp;gt;+ WPS:生成预付单
-		deactivate WPS
-		WPS --&amp;gt;&amp;gt; MB:返回预付单信息(prepay_id)
-		deactivate WPS
-		WPS --&amp;gt;&amp;gt; MB:返回预付单信息(prepay_id)
-		MB -&amp;gt;&amp;gt;+ MB:6.生成JSAPI页面调用的支付参数并签名	
-		deactivate MB
-		MB --&amp;gt;&amp;gt; WechatApp:返回支付参数(prepay_id.paySign等)
-		deactivate WechatApp
-		User -&amp;gt;&amp;gt;+ WechatApp:7.用户点击发起支付
-		WechatApp -&amp;gt;&amp;gt;+ WPS: JSAPI接口请求支付
-		WPS -&amp;gt;&amp;gt;+ WPS:8.检查参数合法性和授权权限
-		deactivate MB
-		WPS --&amp;gt;&amp;gt; WechatApp: 返回验证结果，并要求支付授权
-		deactivate WPS
-		WechatApp -&amp;gt;&amp;gt;+ WechatApp:提示输入密码
-		deactivate WechatApp
-		deactivate WechatApp
-		User -&amp;gt;&amp;gt;+ WechatApp:9.确认支付，输入密码
-		WechatApp -&amp;gt;&amp;gt;+ WPS:提交授权
-		WPS -&amp;gt;&amp;gt;+ WPS:验证授权
-		deactivate WPS
-		alt 并行处理
-			WPS -&amp;gt;&amp;gt;+ MB:10.异步通知支付结果			
-		else
-			MB --&amp;gt;&amp;gt; WPS:11.告知微信通知处理结果
-			deactivate MB
-		else
-			WPS --&amp;gt;&amp;gt; WechatApp:12.返回支付结果，并发微信消息提示
-			deactivate WPS
-		end
-		WechatApp --&amp;gt;&amp;gt; User:展示支付信息给用户
-		deactivate User
-		deactivate WechatApp
-		
-		WechatApp -&amp;gt;&amp;gt;+ WechatApp: 微信跳转回商户H5页面
-		activate WechatApp
-		WechatApp -&amp;gt;&amp;gt;+ MB:13.查询商户后台支付结果
-		alt 支付结果
-			else 未收到支付通知
-			MB -&amp;gt;&amp;gt;+ WPS:14.调用查询API，查询支付结果
-			WPS --&amp;gt;&amp;gt; MB:返回支付结果
-			deactivate WPS
-		end
-		MB --&amp;gt;&amp;gt; WechatApp:返回支付结果
-		WechatApp -&amp;gt;&amp;gt;+ WechatApp:15.商户发货及支付后个性化页面提示
-		deactivate WechatApp
-		deactivate WechatApp
-		deactivate WechatApp
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&quot;mermaid&quot;&gt;
-	sequenceDiagram
-		participant User
-		participant WechatApp
-		participant MB as MerchantBackend
-		participant WPS as WechatPaySystem
-		
-		MB -&amp;gt;&amp;gt; MB:1.生成图文信息链接或二维码
-		MB --&amp;gt;&amp;gt;+ User :展示给用户
-		User-&amp;gt;&amp;gt;+ WechatApp:2.点击链接或扫描二维码在微信浏览器打开商户H5网页
-		WechatApp -&amp;gt;+ MB:网页内请求生成订单
-		MB -&amp;gt;&amp;gt;+ MB:4.生成商户订单
-		deactivate MB
-		MB -&amp;gt;&amp;gt;+ WPS:5.调用统一下单API
-		WPS -&amp;gt;&amp;gt;+ WPS:生成预付单
-		deactivate WPS
-		WPS --&amp;gt;&amp;gt; MB:返回预付单信息(prepay_id)
-		deactivate WPS
-		WPS --&amp;gt;&amp;gt; MB:返回预付单信息(prepay_id)
-		MB -&amp;gt;&amp;gt;+ MB:6.生成JSAPI页面调用的支付参数并签名	
-		deactivate MB
-		MB --&amp;gt;&amp;gt; WechatApp:返回支付参数(prepay_id.paySign等)
-		deactivate WechatApp
-		User -&amp;gt;&amp;gt;+ WechatApp:7.用户点击发起支付
-		WechatApp -&amp;gt;&amp;gt;+ WPS: JSAPI接口请求支付
-		WPS -&amp;gt;&amp;gt;+ WPS:8.检查参数合法性和授权权限
-		deactivate MB
-		WPS --&amp;gt;&amp;gt; WechatApp: 返回验证结果，并要求支付授权
-		deactivate WPS
-		WechatApp -&amp;gt;&amp;gt;+ WechatApp:提示输入密码
-		deactivate WechatApp
-		deactivate WechatApp
-		User -&amp;gt;&amp;gt;+ WechatApp:9.确认支付，输入密码
-		WechatApp -&amp;gt;&amp;gt;+ WPS:提交授权
-		WPS -&amp;gt;&amp;gt;+ WPS:验证授权
-		deactivate WPS
-		alt 并行处理
-			WPS -&amp;gt;&amp;gt;+ MB:10.异步通知支付结果			
-		else
-			MB --&amp;gt;&amp;gt; WPS:11.告知微信通知处理结果
-			deactivate MB
-		else
-			WPS --&amp;gt;&amp;gt; WechatApp:12.返回支付结果，并发微信消息提示
-			deactivate WPS
-		end
-		WechatApp --&amp;gt;&amp;gt; User:展示支付信息给用户
-		deactivate User
-		deactivate WechatApp
-		
-		WechatApp -&amp;gt;&amp;gt;+ WechatApp: 微信跳转回商户H5页面
-		activate WechatApp
-		WechatApp -&amp;gt;&amp;gt;+ MB:13.查询商户后台支付结果
-		alt 支付结果
-			else 未收到支付通知
-			MB -&amp;gt;&amp;gt;+ WPS:14.调用查询API，查询支付结果
-			WPS --&amp;gt;&amp;gt; MB:返回支付结果
-			deactivate WPS
-		end
-		MB --&amp;gt;&amp;gt; WechatApp:返回支付结果
-		WechatApp -&amp;gt;&amp;gt;+ WechatApp:15.商户发货及支付后个性化页面提示
-		deactivate WechatApp
-		deactivate WechatApp
-		deactivate WechatApp
-&lt;/div&gt;
-
-&lt;p&gt;回头可以画很多协议的原理图，比如http，tcp等等，先挖一个坑，后续再填上。
-点击查看原文，图的预览效果应该更好一些。&lt;/p&gt;
-
-&lt;p&gt;昨日，国内的公司发了三个社交app，多闪、马桶MT、聊天宝。我觉得互联网应该是要去中心化的, 特别是社交类的app，颠覆者，应该是去中心化的产品。&lt;/p&gt;
-
-&lt;script src=&quot;http://localhost:4000/assets/js/vendor/mermaid.min.js&quot;&gt;&lt;/script&gt;</content><author><name></name></author><summary type="html">时序图（Sequence Diagram），又名序列图、循序图，是一种UML交互图。它通过描述对象之间发送消息的时间顺序显示多个对象之间的动态协作。它可以表示用例的行为顺序，当执行一个用例行为时，其中的每条消息对应一个类操作或状态机中引起转换的触发事件。</summary></entry></feed>
+&lt;/div&gt;</content><author><name></name></author><summary type="html">sequenceDiagram participant MasterG2 participant Master participant Dev as F分支 participant Bg0 participant Bg2 as Bg2/F2 participant Test participant Release participant ReleaseG2</summary></entry></feed>

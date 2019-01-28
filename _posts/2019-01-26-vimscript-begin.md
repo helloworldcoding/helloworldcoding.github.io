@@ -441,6 +441,24 @@ let [msg,code] = Assign() "返回一个数组
 	echo  keys(dic) "['a','100']
 	echo values(dic) "[1,'foo']
 
+	遍历Dictionary
+	for key in keys(dic)
+		echo key.":'.dic[key]
+	endfor
+
+	for v in values(dic)
+		echo "value:".v
+	endfor
+	
+	for [k,v] in items(dic)
+		echo k.':'.v
+	endfor
+
+	合并数组
+	call extend(adic, bdic) "把bdic的值，加到a中，如果有重复的key，a的会被b覆盖(默认)
+
+	过滤元素
+	call filter(dict, 'v:val =~ "x"') " 把value匹配"x"的元素都剔除掉。
 
 	
 #### 函数(Funcref)
