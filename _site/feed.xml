@@ -1,4 +1,109 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-28T23:20:42+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">Execute &amp;amp; normal in Vimscript</title><link href="http://localhost:4000/vimscript-execute-normal/" rel="alternate" type="text/html" title="Execute &amp; normal in Vimscript" /><published>2019-01-28T00:00:00+08:00</published><updated>2019-01-28T00:00:00+08:00</updated><id>http://localhost:4000/vimscript-execute-normal</id><content type="html" xml:base="http://localhost:4000/vimscript-execute-normal/">&lt;h1 id=&quot;execute命令&quot;&gt;Execute命令&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-30T00:10:13+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">Nodejs Async Await</title><link href="http://localhost:4000/nodejs-async-await/" rel="alternate" type="text/html" title="Nodejs Async Await" /><published>2019-01-31T00:00:00+08:00</published><updated>2019-01-31T00:00:00+08:00</updated><id>http://localhost:4000/nodejs-async-await</id><content type="html" xml:base="http://localhost:4000/nodejs-async-await/"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Nodejs Promise</title><link href="http://localhost:4000/nodejs-promise/" rel="alternate" type="text/html" title="Nodejs Promise" /><published>2019-01-30T00:00:00+08:00</published><updated>2019-01-30T00:00:00+08:00</updated><id>http://localhost:4000/nodejs-promise</id><content type="html" xml:base="http://localhost:4000/nodejs-promise/"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">My nodejs note</title><link href="http://localhost:4000/nodejs-note/" rel="alternate" type="text/html" title="My nodejs note" /><published>2019-01-29T00:00:00+08:00</published><updated>2019-01-29T00:00:00+08:00</updated><id>http://localhost:4000/nodejs-note</id><content type="html" xml:base="http://localhost:4000/nodejs-note/">&lt;p&gt;Nodejs is just a kind of of js..^_^&lt;/p&gt;
+
+&lt;h1 id=&quot;基本语法&quot;&gt;基本语法&lt;/h1&gt;
+
+&lt;p&gt;pass&lt;/p&gt;
+
+&lt;h1 id=&quot;工程相关&quot;&gt;工程相关&lt;/h1&gt;
+
+&lt;h3 id=&quot;模块&quot;&gt;模块&lt;/h3&gt;
+
+&lt;p&gt;在模块中，用require()方法来引入外部模块。用exports对象用于导出当前模块的方法或变量,只有导出的变量或方法才能被其他模块使用。就像是oop中的public。这点和erlang有点像，erlang是声明一个导出列表&lt;code&gt;-export([add/1,...])&lt;/code&gt;
+在模块中，module对象，代表自身，exports也是module的一个属性.
+在nodejs中，一个文件就是一个模块.(其他编程语言也差不多)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require()的参数就是模块标识。参数可以是小驼峰命名的字符串(模块名?),
+也可以是相对路径，或绝对路径。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;两种模块，Node提供的核心模块(fs,http,path…)，用户编写的称为文件模块。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;模块加载，优先从缓存加载，核心模块加载，路径形式的模块，自定义模块(加载最慢，一种特殊的文件模块)&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;自定义模块&lt;/p&gt;
+
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  文件内容：
+  console.log(module.paths);
+  node ./test.js,输出如下:
+  [ '/home/wm/code/nodejs/one_night/node_modules',
+    '/home/wm/code/nodejs/node_modules',
+    '/home/wm/code/node_modules',
+    '/home/wm/node_modules',
+    '/home/node_modules',
+    '/node_modules' ]
+  node查找自定义模块的规则：
+  当前文件目录的node_modules目录下查找
+  父目录的node_modules目录
+  ...
+  直到根目录下的node_modules目录
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;引用了不同的模块，如果他们有相同的导出方法或属性。后面引用的模块会覆盖先引用的模块&lt;/p&gt;
+
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ./node_modules/demo.js内容:
+  hello = function(){
+      console.log(&quot;hello world&quot;);
+  }
+  exports.hello;
+
+  ./node_modules/hi.js内容:
+  hello = function(){
+      console.log(&quot;hi world&quot;);
+  }
+  exports.hello;
+
+  ./test.js内容如下:
+  require('hi');
+  require(&quot;demo&quot;);
+  hello(); // 输出 hello world
+  console.log(module.paths);
+		
+  require(&quot;demo&quot;);
+  require('hi');
+  hello(); // 输出 hi world
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;文件扩展名.当标识符没有扩展名时 Node会按.js .json .node的顺序依次补充扩展名，以此尝试&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;目录分析和包&lt;/p&gt;
+
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  在node_modules/目录下的子目录，可以做成一个包，package
+  前提是，这个目录下要有一个package.json文件，并且文件能通过JSON.parse()解析出描述对象。
+  比如main属性，指定文件名进行定位。
+  如果没有package.json文件，node会依次查找index.js index.json index.node
+
+  ./test.js内容如下:
+  require(&quot;mypackage&quot;);
+  test(&quot;guogu0&quot;); // 输出 myname is guoguo
+
+  在当前./node_modules/下发现了子目录./node_modules/mypackage/
+  mypackage/目录下有package.json文件，内容如下
+  {
+      &quot;name&quot;:&quot;mypack&quot;,
+      &quot;version&quot;: &quot;0.0.1&quot;,
+      &quot;main&quot;: &quot;./src/bar.js&quot; // 先对package.json文件的路径
+  }
+  通过main属性可知，这个mypackage包 指定的是 ./node_modules/mypackage/src/bar.js文件
+  该bar.js文件内容如下：
+  test = function(name) {
+      console.log(&quot;myname is &quot;+name);
+  }
+  exports.test = test;
+
+  所以test.js在require(&quot;mypackage&quot;)的时候，其实是找到了一个目录，也就是一个包。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="nodjs" /><category term="tiny demo" /><summary type="html">Nodejs is just a kind of of js..^_^</summary></entry><entry><title type="html">Execute &amp;amp; normal in Vimscript</title><link href="http://localhost:4000/vimscript-execute-normal/" rel="alternate" type="text/html" title="Execute &amp; normal in Vimscript" /><published>2019-01-28T00:00:00+08:00</published><updated>2019-01-28T00:00:00+08:00</updated><id>http://localhost:4000/vimscript-execute-normal</id><content type="html" xml:base="http://localhost:4000/vimscript-execute-normal/">&lt;h1 id=&quot;execute命令&quot;&gt;Execute命令&lt;/h1&gt;
 
 &lt;p&gt;execute命令，把字符串当作vimscript命令来执行.&lt;/p&gt;
 
@@ -1391,279 +1496,4 @@ buf1  223,5/365 utf-8 [unix]   master  ~/Documents/github.io/_posts/2019-01-23-v
 		&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">牛人的话(翻译后)</summary></entry><entry><title type="html">Some Vim skills</title><link href="http://localhost:4000/vim-some-skills/" rel="alternate" type="text/html" title="Some Vim skills" /><published>2019-01-22T00:00:00+08:00</published><updated>2019-01-22T00:00:00+08:00</updated><id>http://localhost:4000/vim-some-skills</id><content type="html" xml:base="http://localhost:4000/vim-some-skills/">&lt;h4 id=&quot;编辑后发现需要root权限&quot;&gt;编辑后，发现需要root权限&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;:w ! sudo tee %
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;做计算&quot;&gt;做计算&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;insert模式，ctrl+r =3600*24*7
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;查看字符ascii码16进制8进制&quot;&gt;查看字符ascii码,16进制，8进制&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;common模式，ga 查看光标下的字符的ascii码	
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;插入unicode字符&quot;&gt;插入unicode字符&lt;/h4&gt;
-&lt;h4 id=&quot;大小写转换&quot;&gt;大小写转换&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~          将光标下的字母改变大小写
-3m~         将光标位置开始的3个字母改变其大小写
-g~~        改变当前行字母的大小写
-U          将可视模式下选择的字母全改成大写字母
-u          将可视模式下选择的字母全改成小写
-gUU        将当前行的字母改成大写
-3gUU       将从光标开始到下面3行字母改成大写
-guu       将当前行的字母全改成小写
-gUw       将光标下的单词改成大写。
-guw       将光标下的单词改成小写。
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;insert-mode-缩进&quot;&gt;Insert mode 缩进&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ctrl+t &amp;gt;	
-crtl+d &amp;lt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;的作用&quot;&gt;!的作用&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- 切换布尔选项，:set number!
-- 执行shell命令 :! ls
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">编辑后，发现需要root权限</summary></entry><entry><title type="html">PHP unit test demo</title><link href="http://localhost:4000/php-unit-test/" rel="alternate" type="text/html" title="PHP unit test demo" /><published>2019-01-20T00:00:00+08:00</published><updated>2019-01-20T00:00:00+08:00</updated><id>http://localhost:4000/php-unit-test</id><content type="html" xml:base="http://localhost:4000/php-unit-test/">&lt;h3 id=&quot;大牛的话翻译后&quot;&gt;大牛的话(翻译后)&lt;/h3&gt;
-
-&lt;p&gt;Martin Fowler:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;无论什么时候,当你试着在print或其他debugger表达式里输入内容时，你应该把它写成一个测试用例
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;单元测试是代码质量的第一道关口。做好了单元测试，有利于尽早发现问题，解决问题。对CI/CD来说也是很重要的一个环节。当然，写单元测试会增加编写代码的工作量，所以一些公司或项目为了赶工期，单元测试就被忽略了，尽管大家都知道这个很重要。出来混，迟早要还的。欠下的，会加倍偿还。特别是随着产品的迭代，这个问题会逐渐凸显出来。&lt;/p&gt;
-
-&lt;p&gt;先来說一下php的单元测试,使用的是PHPUnit&lt;/p&gt;
-&lt;h3 id=&quot;install&quot;&gt;Install&lt;/h3&gt;
-
-&lt;p&gt;参考文档：https://phpunit.readthedocs.io/en&lt;/p&gt;
-
-&lt;p&gt;linux下简单的几个步骤如下&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$wget https://phar.phpunit.de/phpunit-7.5.2.phar
-$chmod +x phpunit-7.5.2.phar
-$sudo mv phpunit-7.5.2.phar /usr/local/bin/phpunit
-$phpunit --version
-PHPUnit 7.5.2 by Sebastian Bergmann and contributors.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;小试牛刀&quot;&gt;小试牛刀&lt;/h3&gt;
-
-&lt;p&gt;创建一个文件比如test.php，内容如下&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PHPUnit\Framework\TestCase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;StackTest&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TestCase&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;testPushAndPop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;nv&quot;&gt;$stack&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[];&lt;/span&gt;
-		&lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertSame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-
-		&lt;span class=&quot;nb&quot;&gt;array_push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'foo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-		&lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertSame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'foo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
-		&lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertSame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-
-		&lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertSame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'foo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;array_pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-		&lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertSame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-	&lt;span class=&quot;sd&quot;&gt;/**
-	* @test
-	*/&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertSame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-		&lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertEquals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-		&lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertEquals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;执行测试phpunit ./test.php,返回结果如下&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PHPUnit 7.5.2 by Sebastian Bergmann and contributors.
-
-F.                                                                  2 / 2 (100%)
-
-Time: 183 ms, Memory: 10.00MB
-
-There was 1 failure:
-
-1) StackTest::testPushAndPop
-Failed asserting that 0 is identical to 1.
-
-/home/wm/code/php/phpunit/test.php:16
-
-FAILURES!
-Tests: 2, Assertions: 8, Failures: 1.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;测试结果告诉我们，有两个测试方法，有8处断言，有一处失败，失败的原因是断言0和1相等，在代码的第16行。&lt;/p&gt;
-
-&lt;p&gt;我们修改16行为: $this-&amp;gt;assertSame(0, count($stack));再执行测试&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PHPUnit 7.5.2 by Sebastian Bergmann and contributors.
-
-..                                                                  2 / 2 (100%)
-
-Time: 205 ms, Memory: 10.00MB
-
-OK (2 tests, 8 assertions)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;通过了测试^_^&lt;/p&gt;
-
-&lt;h3 id=&quot;几点说明&quot;&gt;几点说明&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.测试的类应该命名格式为ClassTest,大驼峰，而且以Test结尾,文件名和类名相同（我个人推测）
-2.测试的类要继承PHPUnit\Framework\TestCase(大多数情况下)
-3.测试的方法都要是public,声明一个方法是否是测试方法有如下两个方法
-	- 方法名称的格式：test*
-	- 或则在方法的注释中添加@test,来标识该方法是测试方法,如上
-4.在测试方法里有很多断言方法,如上assertSame(),assertEquals()
-5.出现失败后，就不会继续执行了。
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">大牛的话(翻译后)</summary></entry><entry><title type="html">A git branch model</title><link href="http://localhost:4000/git-branch-model/" rel="alternate" type="text/html" title="A git branch model" /><published>2019-01-18T00:00:00+08:00</published><updated>2019-01-18T00:00:00+08:00</updated><id>http://localhost:4000/git-branch-model</id><content type="html" xml:base="http://localhost:4000/git-branch-model/">&lt;div class=&quot;mermaid&quot;&gt;
-	sequenceDiagram
-		participant MasterG2
-		participant Master
-		participant Dev as F分支
-		participant Bg0
-		participant Bg2 as Bg2/F2
-		participant Test
-		participant Release
-		participant ReleaseG2
-
-		Note over Master,Release:特性分支(f分支)开发流程 
-		Master -&amp;gt;&amp;gt;+ Dev:开发拉f分支
-		Dev --&amp;gt;&amp;gt; Dev: 开发自测
-		loop 提测
-			Dev -&amp;gt;&amp;gt; Test:F分支合并到Test分支
-			Note over Test:是否有冲突
-			alt 没有有冲突
-				Note over Test :jenkins构建test环境
-				Note over Test:验证测试环境
-				alt 测试环境验证通过
-					Note over Dev :F分支能否合并到Release分支
-					alt 能合并
-						Dev -&amp;gt;&amp;gt; Release:F分支合并到Release
-						Note over Release :是否有冲突
-						alt 没有冲突
-							Note over Release :jenkins构建beta g0
-							Note over Release:验证beta g0环境
-							alt beta g0环境验证通过
-								Note over Release: 积累一天
-								Note over Release : jenkins构建prod g0
-								Note over Release : 验证prod g0
-								alt prod g0验证通过
-									Release -&amp;gt;&amp;gt;- Dev : 删除所有的合并到Relase的F分支
-									Release -&amp;gt;&amp;gt; Master : Release分支合并到Master
-								else prod g0没有验证通过
-									Release --&amp;gt;&amp;gt; Dev: prod g0验证没有通过，排查原因
-								end
-							else
-								Release --&amp;gt;&amp;gt; Dev: beta g0测试不通过, 排查问题
-							end
-						else  有冲突
-							Release --&amp;gt;&amp;gt; Dev : 开发同学先解决冲突,再次提测
-						end
-					else F分支不能合并到Release,原因：
-						Note over Dev: 过了14:00
-						Note over Dev: 距离灰度发布不足两天
-						Note over Dev: 灰度发布期间
-					end
-				else 测试环境验证不通过
-					Test --&amp;gt;&amp;gt; Dev:测试环境不通过,排查问题
-				end
-			else 有冲突
-				Test --&amp;gt;&amp;gt; Dev :先解决冲突，再提测
-			end
-		end
-
-		Note over Master,Release:Bg0分支开发流程(解决线上g0环境的bug)
-		Note over Release: 灰度前后验证prod G0环境
-		alt prod g0环境验证通过
-		else prod g0验证不通过
-			Master -&amp;gt;&amp;gt;+ Bg0 : 从Master拉取一个Bg0分支
-			Bg0 --&amp;gt;&amp;gt; Bg0 : 开发自测
-			Bg0 -&amp;gt;&amp;gt; Test : 合并到Test分支
-			alt Bg0合并到Test没有冲突
-				Note over Test:	jenkins 构建测试环境，并验证
-				alt 测试环境验证通过
-					Bg0 -&amp;gt;&amp;gt; Release: Bg0合并到Release分支 
-					alt 合并没有冲突
-						Note over Release :jenkins构建beta g0环境，并验证
-						alt beta g0验证通过
-							Note over Release:构建 prod g0,并验证
-							alt prod g0通过
-								Release -&amp;gt;&amp;gt; Master: 合并到Master分支,删除Bg0分支
-								deactivate Bg0
-							else  失败
-								Release --&amp;gt;&amp;gt; Bg0 : prod g0未通过，排查原因，再提测
-							end
-						else 失败
-							Release --&amp;gt;&amp;gt; Bg0: beta g0未通过，排查原因，再提测	
-						end
-					else Bg0合并Release发生冲突
-						Release --&amp;gt;&amp;gt; Bg0: 解决冲突，重新提测
-					end
-				else 测试环境验证不通过
-					Test --&amp;gt;&amp;gt; Bg0: 查找原因，重新提测
-				end
-			else Bg0合并到Test有冲突 
-				Test --&amp;gt;&amp;gt; Bg0:解决冲突，重新提测	
-			end
-		end
-
-		Note over MasterG2, ReleaseG2 : 全量发布
-		Note right of ReleaseG2:prod环境全量发布
-		Note over Release,ReleaseG2 :把prod g2的租户漂移到prod g0环境
-		Release -&amp;gt;&amp;gt; ReleaseG2: Release分支合并到RelaseG2
-		Note over ReleaseG2:jenkins构建prod g2环境
-		Note over Release,ReleaseG2 :把大部分prod g0租户漂移回prod g2环境
-
-		Note right of ReleaseG2:beta环境全量发布
-		Note over Release,ReleaseG2 :把beta g2的租户漂移到beta g0环境
-		Note over ReleaseG2:jenkins构建beta g2环境
-		Note over Release,ReleaseG2 :把大部分beta g0租户漂移回beta g2环境
-
-		ReleaseG2 -&amp;gt;&amp;gt; MasterG2 : 全量发布完成，ReleaseG2合并到MasterG2
-
-
-
-		Note over MasterG2,ReleaseG2:Bg2/F2分支开发流程(解决线上g2环境的bug(Bg2分支),或G2环境的需求(F2分支))
-		MasterG2 -&amp;gt;&amp;gt;+ Bg2: 拉取Bg2/F2分支	
-		Bg2 --&amp;gt;&amp;gt; Bg2: 开发自测
-		Bg2 -&amp;gt;&amp;gt; Test: 合并到test分支
-		Note over Test:jenkins构建测试环境，并验证
-		alt 测试环境验证通过
-			Bg2 -&amp;gt;&amp;gt; ReleaseG2 : 合并到ReleaseG2分支
-			alt 合并成功，没有冲突
-				Note over ReleaseG2:jenkins构建beta g2环境
-				Note over ReleaseG2:在beta g2环境验证
-				alt beta g2环境验证通过
-					Note over ReleaseG2: jenkins构建prod g2环境
-					alt prod g2验证通过
-						ReleaseG2 -&amp;gt;&amp;gt; Release : 合并到Release
-						ReleaseG2 -&amp;gt;&amp;gt; MasterG2: 合并到MasterG2,并删除Bg2分支
-						deactivate Bg2
-					else
-						ReleaseG2 --&amp;gt;&amp;gt; Bg2: prod g2验证没有通过
-					end 
-				else beta g2环境验证不通过
-					ReleaseG2 --&amp;gt;&amp;gt; Bg2: beta g2验证不通过，查原因，重新提测
-				end
-			else Bg2/F2合并ReleaseG2,发生冲突 
-				ReleaseG2 --&amp;gt;&amp;gt; Bg2:解决冲突，重新接测	
-			end
-		else
-			Test --&amp;gt;&amp;gt; Bg2:测试环境不通过，查原因，重新提测
-		end
-&lt;/div&gt;</content><author><name></name></author><summary type="html">sequenceDiagram participant MasterG2 participant Master participant Dev as F分支 participant Bg0 participant Bg2 as Bg2/F2 participant Test participant Release participant ReleaseG2</summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">牛人的话(翻译后)</summary></entry></feed>

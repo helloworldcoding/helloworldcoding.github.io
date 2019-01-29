@@ -131,6 +131,180 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-01-31T00:00:00+08:00"><a href="http://localhost:4000/nodejs-async-await/">January 31, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/nodejs-async-await/" rel="bookmark" title="Nodejs Async Await" itemprop="url">Nodejs Async Await</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-01-30T00:00:00+08:00"><a href="http://localhost:4000/nodejs-promise/">January 30, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/nodejs-promise/" rel="bookmark" title="Nodejs Promise" itemprop="url">Nodejs Promise</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-01-29T00:00:00+08:00"><a href="http://localhost:4000/nodejs-note/">January 29, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/nodejs-note/" rel="bookmark" title="My nodejs note" itemprop="url">My nodejs note</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p>Nodejs is just a kind of of js..^_^</p>
+
+<h1 id="基本语法">基本语法</h1>
+
+<p>pass</p>
+
+<h1 id="工程相关">工程相关</h1>
+
+<h3 id="模块">模块</h3>
+
+<p>在模块中，用require()方法来引入外部模块。用exports对象用于导出当前模块的方法或变量,只有导出的变量或方法才能被其他模块使用。就像是oop中的public。这点和erlang有点像，erlang是声明一个导出列表<code>-export([add/1,...])</code>
+在模块中，module对象，代表自身，exports也是module的一个属性.
+在nodejs中，一个文件就是一个模块.(其他编程语言也差不多)</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require()的参数就是模块标识。参数可以是小驼峰命名的字符串(模块名?),
+也可以是相对路径，或绝对路径。
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>两种模块，Node提供的核心模块(fs,http,path…)，用户编写的称为文件模块。</p>
+  </li>
+  <li>
+    <p>模块加载，优先从缓存加载，核心模块加载，路径形式的模块，自定义模块(加载最慢，一种特殊的文件模块)</p>
+
+    <ul>
+      <li>
+        <p>自定义模块</p>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  文件内容：
+  console.log(module.paths);
+  node ./test.js,输出如下:
+  [ '/home/wm/code/nodejs/one_night/node_modules',
+    '/home/wm/code/nodejs/node_modules',
+    '/home/wm/code/node_modules',
+    '/home/wm/node_modules',
+    '/home/node_modules',
+    '/node_modules' ]
+  node查找自定义模块的规则：
+  当前文件目录的node_modules目录下查找
+  父目录的node_modules目录
+  ...
+  直到根目录下的node_modules目录
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>引用了不同的模块，如果他们有相同的导出方法或属性。后面引用的模块会覆盖先引用的模块</p>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ./node_modules/demo.js内容:
+  hello = function(){
+      console.log("hello world");
+  }
+  exports.hello;
+
+  ./node_modules/hi.js内容:
+  hello = function(){
+      console.log("hi world");
+  }
+  exports.hello;
+
+  ./test.js内容如下:
+  require('hi');
+  require("demo");
+  hello(); // 输出 hello world
+  console.log(module.paths);
+		
+  require("demo");
+  require('hi');
+  hello(); // 输出 hi world
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>文件扩展名.当标识符没有扩展名时 Node会按.js .json .node的顺序依次补充扩展名，以此尝试</p>
+      </li>
+      <li>
+        <p>目录分析和包</p>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  在node_modules/目录下的子目录，可以做成一个包，package
+  前提是，这个目录下要有一个package.json文件，并且文件能通过JSON.parse()解析出描述对象。
+  比如main属性，指定文件名进行定位。
+  如果没有package.json文件，node会依次查找index.js index.json index.node
+
+  ./test.js内容如下:
+  require("mypackage");
+  test("guogu0"); // 输出 myname is guoguo
+
+  在当前./node_modules/下发现了子目录./node_modules/mypackage/
+  mypackage/目录下有package.json文件，内容如下
+  {
+      "name":"mypack",
+      "version": "0.0.1",
+      "main": "./src/bar.js" // 先对package.json文件的路径
+  }
+  通过main属性可知，这个mypackage包 指定的是 ./node_modules/mypackage/src/bar.js文件
+  该bar.js文件内容如下：
+  test = function(name) {
+      console.log("myname is "+name);
+  }
+  exports.test = test;
+
+  所以test.js在require("mypackage")的时候，其实是找到了一个目录，也就是一个包。
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2019-01-28T00:00:00+08:00"><a href="http://localhost:4000/vimscript-regex/">January 28, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
       
       <span class="entry-reading-time">
@@ -250,1133 +424,6 @@ of 'encoding'.
 
 Note that "\000" and "\x00" force the end of the string.
 </code></pre></div></div>
-
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-26T00:00:00+08:00"><a href="http://localhost:4000/vimscript-begin/">January 26, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~5 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/vimscript-begin/" rel="bookmark" title="Vimscript begin" itemprop="url">Vimscript begin</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>既然把vimscript是一个脚本语言，那就会有脚本语言的一些共性，比如变量的定义,变量的类型，变量的作用域，分支循环结构,函数等等。</p>
-
-<h1 id="变量">变量</h1>
-
-<h4 id="变量的定义">变量的定义</h4>
-
-<ul>
-  <li>
-    <p>一般的变量定义</p>
-
-    <ul>
-      <li>
-        <p>变量名规范: 字母、数字、下划线，并且不能以数字开头</p>
-
-        <p>:let foo = “bar”
-  :let num = 32
-  :echo foo num “ 显示foo和num
-  :unlet foo “ 销毁一个变量
-  以上好像看出vimscript是动态类型，其实,你们想错了。(党国的高官，怎么会有钱？)</p>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>配置选项也是变量</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  比如，我要看配置选项textwidth的值
-  :echo &amp;textwidth "需要在前面加上&amp; ,这就告诉vim，你在引用这个选项;如果这个选项不存在，就会报错
-  :set textwidth=80
-  :echo textwidth "直接输出，也会报错
-      E121: Undefined variable: textwidth
-      E15: Invalid expression: textwidth
-  :echo &amp;textwidth "输出 80
-
-  :set nowrap
-  :echo &amp;wrap " 0
-  :set wrap
-  :echo &amp;wrap " 1
-  在vimscript中0为false，非0值整数为true 
-
-  可以用let来设置选项的值，并且let比set更灵活	
-  :let &amp;textwidth = &amp;textwidth + 10
-  :echo &amp;textwidth " 输出 90
-  :set &amp;textwidth = &amp;textwidth + 10 "set 只能给设置一个常量值
-      E518: Unknown option: &amp;textwidth = 
-
-  本地选项，将某个选项作为变量来来设置它的本地值，而不是全局值,
-  本地变量的前缀:  &lt;code&gt;l:&lt;/code&gt;
-  :let &amp;l:number = 0 "只对当前buffer生效,当前buffer，行号消失
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>寄存器变量</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  :let @a="hello!"
-  :echo @a "输出 hello!
-  :echo @" "输出无名寄存器的值
-  :echo @/ "输出，搜索寄存器的值
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>b:变量前缀(只在当前buffer生效的变量)</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  :let b:hello = "world"
-  :echo b:hello " 输出world
-  切换到另一个buffer
-  :echo b:hello 
-      E121: Undefined variable: b:hello
-      E15: Invalid expression: b:hello
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>help internal-variables</p>
-  </li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">变量前缀</th>
-      <th style="text-align: left">名称</th>
-      <th style="text-align: left">说明</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">b:</td>
-      <td style="text-align: left">buffer-variable</td>
-      <td style="text-align: left">Local to the current buffer.</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">w:</td>
-      <td style="text-align: left">window-variable</td>
-      <td style="text-align: left">Local to the current window.</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">t:</td>
-      <td style="text-align: left">tabpage-variable</td>
-      <td style="text-align: left">Local to the current tab page.</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">g:</td>
-      <td style="text-align: left">global-variable</td>
-      <td style="text-align: left">Global.</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">l:</td>
-      <td style="text-align: left">local-variable</td>
-      <td style="text-align: left">Local to a function.</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">s:</td>
-      <td style="text-align: left">script-variable</td>
-      <td style="text-align: left">Local to a |:source|’ed Vim script.</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">a:</td>
-      <td style="text-align: left">function-argument</td>
-      <td style="text-align: left">Function argument (only inside a function).</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">v:</td>
-      <td style="text-align: left">vim-variable</td>
-      <td style="text-align: left">Global, predefined by Vim.</td>
-    </tr>
-  </tbody>
-</table>
-
-<h1 id="分支结构">分支结构</h1>
-<h3 id="条件语句">条件语句</h3>
-
-<ul>
-  <li>
-    <p>多行命令，写成一行。用管道符(|)来隔开命令</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  :echom "foo" | echom "bar"
-  :if 1 | :echom "one" | :else | :echom "not one" | :endif " 输出 one
-  :if 0 | echom "one" | else | echom "not one" | endif " 输出not one
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>if的用法</p>
-
-    <ul>
-      <li>必要情况下(数学计算、条件表达式)，vim强制转换变量和字面量的类型。10+”20foo” 最后等于10+20 = 30</li>
-      <li>
-        <p>以数字开头的字符串会转化为数字，否则会转化为0</p>
-
-        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  :echo 0+"12.64ab" "输出12
-  :echo 0+"-12.34ab" "输出-12
-</code></pre></div>        </div>
-      </li>
-      <li>
-        <p>if判断时，非零整数为true，0为false</p>
-
-        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let a = 3
-  if a == 1
-      echom "one"
-  elseif  a == 2
-      echom "two"
-  else
-      echom "not one or two"
-  endif
-  "最后输出 not one or two
-
-  if "string"  "等价于 if 0
-      echom "zero"
-  endif
-
-  if "12Ab" ==# "12ab"
-      echom "yeshi"
-  else
-      echom "no"  " 输出 no, 说明 ==# 没有进行强制转化
-  endif
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">比较运算符</th>
-      <th style="text-align: left">说明</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">&gt;</td>
-      <td style="text-align: left">大于,如 10 &gt;1</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">&lt;</td>
-      <td style="text-align: left">小于,如 1 &lt; 10</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">==</td>
-      <td style="text-align: left">相等，如 10 == 11 ,”foo” == “bar”,会受用户设置noignorecase/ignorecase影响</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">==?</td>
-      <td style="text-align: left">字符串比较，大小写不敏感(无论vim对大小写的设置是否敏感),”foo” ==? “FOO” is true</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">==#</td>
-      <td style="text-align: left">字符串比较，大小写敏感(无论vim对大小写的设置是否敏感),”foo” ==# “FOO” is false</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">&gt;#</td>
-      <td style="text-align: left">大于， 区分大小写的比较</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">&lt;#</td>
-      <td style="text-align: left">小于， 区分大小写的比较</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">&gt;?</td>
-      <td style="text-align: left">大于， 不区分大小写的比较</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">&lt;?</td>
-      <td style="text-align: left">小于， 不区分大小写的比较</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>所以最好使用==#来比较字符串,统一自己的规范</p>
-
-<h1 id="循环">循环</h1>
-
-<h4 id="for循环">for循环</h4>
-
-<ul>
-  <li>
-    <p>help for</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let c = 0
-  for i in [1,2,3,4]
-      let c += i
-  endfor
-  echom c
-
-  for [lnum, col] in [[1, 3], [2, 5], [3, 8]]
-     echo getline(lnum)[col]
-  endfor
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h4 id="while循环">while循环</h4>
-
-<ul>
-  <li>
-    <p>help while</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let c = 1
-  let total = 0 
-  while c &lt;= 4
-      let total += c
-      let c += 1
-  ednwhile 函数 ====
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h4 id="没有作用域限制的vimscript函数必须以一个大写字母开头">没有作用域限制的vimscript函数，必须以一个大写字母开头</h4>
-
-<div class="language-vimscript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function</span> Hello<span class="p">()</span>
-	<span class="k">echom</span> <span class="s2">"helloworld"</span>
-<span class="k">endfunction</span>
-<span class="k">call</span> Hello<span class="p">()</span>
-
-<span class="k">function</span> SayHi<span class="p">(</span>name<span class="p">)</span>
-	<span class="k">if</span> <span class="nv">a:name</span> <span class="p">==</span># <span class="s2">"Mark"</span>
-		<span class="k">return</span> <span class="s2">"Hi,Mark"</span>
-	<span class="k">endif</span>
-<span class="k">endfunction</span>
-<span class="k">echom</span> SayHi<span class="p">()</span> " 函数如果没有返回，默认是<span class="k">return</span> <span class="m">0</span>
-
-<span class="c">"可变参数</span>
-<span class="k">function</span> Multiargs<span class="p">(...)</span>
-	<span class="k">echom</span> <span class="nv">a:0</span> "参数数量<span class="p">,</span>可变参数的数量
-	<span class="k">echom</span> <span class="nv">a:1</span> "第一个参数
-	<span class="k">echom</span> <span class="nv">a:2</span> "第二个参数
-<span class="k">endfunction</span>
-<span class="c">"可变参数和普通参数一起使用</span>
-<span class="k">function</span> Multiargs2<span class="p">(</span>foo<span class="p">,...)</span>
-	<span class="k">echom</span> <span class="nv">a:0</span> 
-	<span class="k">echom</span> <span class="nv">a:foo</span>
-	<span class="k">echom</span> <span class="nv">a:1</span>
-	<span class="k">echom</span> <span class="nv">a:2</span>
-	<span class="k">for</span> s <span class="k">in</span> <span class="nv">a:000</span> "<span class="nv">a:000</span><span class="p">,</span>所有的可变参数
-		<span class="k">echom</span> <span class="s1">' '</span><span class="p">.</span>s
-	<span class="k">endfor</span>
-<span class="k">endfunction</span>
-<span class="k">call</span> Multiargs2<span class="p">(</span><span class="s2">"hh"</span><span class="p">,</span><span class="s2">"jak"</span><span class="p">,</span><span class="s2">"luc"</span><span class="p">)</span>
-输出：
-<span class="m">2</span>
-hh
-jak
-luc
- jak
- luc
-可见<span class="nv">a:0</span><span class="p">,</span>只是代表可变参数的数量
-
-<span class="c">"函数参数是只读的，不能在函数内部改变</span>
-<span class="k">function</span> Assign<span class="p">(</span>foo<span class="p">)</span>
-	<span class="k">let</span> <span class="nv">a:foo</span> <span class="p">=</span> <span class="s2">"Nope"</span>  
-<span class="k">endfunction</span>
-<span class="k">call</span> Assign<span class="p">()</span> 会报错，如下：
-E46<span class="p">:</span> Cannot change <span class="k">read</span><span class="p">-</span><span class="k">only</span> variable <span class="s2">"a:foo"</span>
-
-<span class="c">"function! 如果出现重复函数名，感叹号不会报错。</span>
-When <span class="k">a</span> <span class="k">function</span> by this name already exists and <span class="p">[!]</span> <span class="k">is</span>
-not used an error message <span class="k">is</span> given<span class="p">.</span> 
-<span class="k">function</span><span class="p">!</span> Assign<span class="p">()</span>
-	<span class="k">return</span> <span class="p">[</span><span class="s2">"suceess"</span><span class="p">,</span><span class="m">1</span><span class="p">]</span>
-<span class="k">endfunction</span>
-
-<span class="k">let</span> <span class="p">[</span>msg<span class="p">,</span>code<span class="p">]</span> <span class="p">=</span> Assign<span class="p">()</span> "返回一个数组
-</code></pre></div></div>
-
-<h1 id="数据类型">数据类型</h1>
-
-<h4 id="布尔">布尔</h4>
-
-<ul>
-  <li>0为false， 其他整数为true</li>
-</ul>
-
-<h4 id="数字">数字</h4>
-
-<ul>
-  <li>
-    <p>整数(Number,32位带符号整数(如果编译的时候+num64，就支持64位))</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  echom 100
-  echom 0xff 0X1f  " 0x或0X前缀的来指定16进制
-  echom 010 017 "0前缀，是八进制,8,15
-  echom 019 "因为它不是一个八进制，所以输出19
-  echom 0b1010 "0b前缀，是二进制 ,输出十进制10
-  "尽量避免使用八进制
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>浮点(Float)</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  [-+]{N}.{M}
-  [-+]{N}.{M}[eE][-+]{exp}
-  N,M都是正整数，exp代表10的多少次方,exp也是一个正整数
-
-  echo 12.0 "12.0
-  echo 5.45e+3 " 5450.0
-  echo 5.3453e9 " 5.3453e9
-  if 5.345e2 &gt; 500  " this is true
-      echom "biger"
-  endif
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>强制转换</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  echo 3/2 "1
-  echo 3.0/2 "1.5 Number和Float混用时，会把Number转换为Float
-  echo 1/3.0 "0.33333,默认是6位小数的精度
-  echo printf('%.15e',11/7.0)  "1.571428571428571e+00
-  echo printf('%.15e',atan(1)) "7.853981633974483e-01
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h4 id="字符串">字符串</h4>
-
-<p>用双引号或者单引号包围的字符。双引号会转义\n,\,"等特殊字符，而单引号不会(除了’‘转义为’之外）。</p>
-
-<ul>
-  <li>
-    <p>连接(concatenation)用点号. 和php一样</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  echom "hello "."world" "helloworld"
-  echom 12."foo" "12foo
-  echom 12."123" "12123
-  echom 12.1. "foo" "121foo
-  echom 12.1."foo" "121foo
-  浮点数连接字符串，报错：
-  echom 12.1 ."foo" "E806: using Float as a String E15: Invalid expression: 12.1 ."foo"
-  echom 12.1 . "foo" "E806: using Float as a String E15: Invalid expression: 12.1 ."foo"
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>特殊字符(双引号才能转义)</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  help expr-quote
-  echom "foo \"bar\""   "输出 foo "bar"
-  echom "a\nb" "输出 a^@b
-  echo "a\nb" "输出两行，a 和 b
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>字符串字面量(除了’‘会转义为’,其他的原样输出)</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  help literal-string
-  echom '\n\\' "输出\n\\
-  echo '12''23' "输出12'34
-  echo '12''''23' "输出12''34
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>字符串函数</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  字符串字节数量
-  echom strlen("foo") "3	
-  echom strlen("我的1") "7
-  echom len("foo") "3
-
-  字符串字符个数
-  echom strchars("hello") "5
-  echom strchars("我的1") "3
-
-  字符串截取
-  strcharpart({src}, {start} [, {len}])
-  echo strcharpart("我的123",0,2) "我的
-  echo strcharpart("我的123",-1,2) "我,start为负，就是从0开始，截取start+len个字符
-  echo strcharpart("我的123",-1,3) "我的
-  echo strcharpart("我的123",-1,4) "我的1
-
-  echo "abcdef"[1:3] " bcd
-  echo "abcdef"[1:1] " b
-  echo "abcdef"[1:] " bcdef
-  echo "我的123"[3,6] "的1
-
-	
-  分割,默认通过空格分割
-  split({expr} [, {pattern} [, {keepempty}]])			*split()*
-
-  echo split("one two three") " ["one","two","three"] 不能用echom输出一个list
-  echo split("one,two,three,",") " ["one","two","three"] 不能用echom输出一个list,最后一个,不会有用
-
-  连接,默认通过空格连接
-  echo join(["hello","world"]) "  hello world
-  echo join(["hello","world"],",") " hello,world
-  echo join(["hello","world"],"") " helloworld
-
-  大小写转换
-  echom tolower("FOo")
-  echom toupper("hello")
-	
-  字符串查找
-  stridx({haystack}, {needle} [, {start}])
-  :echo stridx("An Example", "Example")	     3
-  :echo stridx("Starting point", "Start")    0
-  :echo stridx("Starting point", "start")   -1
-
-  string()强制转化为字符串
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h4 id="列表">列表</h4>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>help List		
-列表是有序的，元素的集合, 每一个item可以是任何type	
-echo ['foo',34,12.2]	
-echo ['foo',[3,'bar']]
-
-索引,从0开始
-echo [1,23,[1,34]][0] " 1
-echo [1,23,[1,34]][2][1] " 34
-echo [1,23,[1,34]][-1] "[1,34]
-
-切割,和python相似，但不同
-echo [1,3,4,5][0:2] "[1,3,4]
-echo [1,3,4,5][0:20000] "[1,3,4,5] 超过列表索引也是安全的。
-echo [1,3,5,6][-2:-1] " [5,6]
-echo [1,2,3,5][:1] "[1,2]
-echo [1,2,3,5][2:] "[3,5]
-字符串也可以切割
-
-连接+
-echo ['a','b'] + ['c']  " ['a','b','c']
-
-函数列表
-1.add
-let foo = ['a']
-call add(foo,'b') " 往foo后面加上'b'
-echo foo " ['a','b']
-
-2.len
-echo len(foo) " 2
-
-3.get,返回指定索引的值
-echo get(foo,0,'default') " a
-echo get(foo,10,'default') " default
-
-4.index
-echo index(foo,'b') "1
-echo index(foo,'cet') " -1  不存在返回-1
-
-5.join
-
-6.reverse ,转置
-echo reverse(['a','b']) "['b','a']
-
-7.List unpack
-let [var1, var2; rest] = mylist "等同于下面三个表达式
-let var1 = mylist[0]
-let var2 = mylist[1]
-let rest = mylist[2:]
-
-8.复制和深度复制
-let aa = [1,2,4]
-let bb = aa "aa 和bb 指向同一个列表，改变其中一个，也对相应改变另一个
-
-let aa = [[1,'a'],3,4]
-let bb = copy(aa) " 浅复制，改变已经有的元素(该元素也是一个列表），aa和bb都会变化，但是，往aa中追加元素，不会影响
-let aa[0][1] = 'aaa' " 浅复制，所以 bb[0][1] == 'aaa'
-
-如果要做到完全独立，就用deepcopy()
-let cc = deepcopy(aa) " 这样，cc和aa就是完全独立的变量,不会相会影响了。
-
-9.列表相等
-echo [1,3] == [1,3] " 1 ,true 
-echo [3,1] == [1,3] " 0 ,false
-echo 2 == "2" " 1,true 
-echo [2] == ["2"] " 0, false
-
-let a = [1,3]
-let b = [1,3]
-echo a is b " 0
-</code></pre></div></div>
-
-<h4 id="字典">字典</h4>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>类似python中的dict，ruby中的hash, javascript中的object
-字典用花括号创建,索引是字符串（即便定义的时候是数字，也会被转化为字符串)
-
-:echo {'a':1,'100':'foo',} " 字典最后可以留下一个逗号,js的愚蠢之处，在这里被修复了
-
-let dic = {'a':1,'100':'foo',}
-echo dic['a'] " 1
-
-当键是字母数字下划线组成时，字典也支持"点"查找
-echo dic.a
-echo dic.100
-
-赋值和添加，移除项
-let dic.a = 222
-let dic.c = 'new val'
-
-let a = remove(dic,'a') " 此方法移除a后，会返回a对应的值
-unlet dic.a "直接移除a，不会返回
-
-字典函数
-echo get(dic,'a','default') " 1 和list一样
-echo get(dic,'dd','not') " not
-
-echo has_key(dic, "a") " 1
-
-echo items(dic) " [['a',1],['100','foo']]
-echo  keys(dic) "['a','100']
-echo values(dic) "[1,'foo']
-
-遍历Dictionary
-for key in keys(dic)
-	echo key.":'.dic[key]
-endfor
-
-for v in values(dic)
-	echo "value:".v
-endfor
-
-for [k,v] in items(dic)
-	echo k.':'.v
-endfor
-
-合并数组
-call extend(adic, bdic) "把bdic的值，加到a中，如果有重复的key，a的会被b覆盖(默认)
-
-过滤元素
-call filter(dict, 'v:val =~ "x"') " 把value匹配"x"的元素都剔除掉。
-</code></pre></div></div>
-
-<h4 id="函数funcref">函数(Funcref)</h4>
-
-<h4 id="特殊special">特殊(Special)</h4>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>v:false
-v:true
-v:none
-v:null
-</code></pre></div></div>
-
-<h4 id="任务job">任务(Job)</h4>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>job_start()
-</code></pre></div></div>
-
-<h4 id="通道channel">通道(channel)</h4>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ch_open()
-</code></pre></div></div>
-
-<p>对大部分命令和选项，vim支持他们的缩写。但是建议在vimrc或者自己编写的插件中使用全称，这样才会有更好的可读性。</p>
-
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-23T00:00:00+08:00"><a href="http://localhost:4000/vimscript-note-1/">January 23, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~6 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/vimscript-note-1/" rel="bookmark" title="Some note about vimrc" itemprop="url">Some note about vimrc</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <h3 id="启动vim不加载vimrc">启动vim不加载.vimrc</h3>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim -u NONE -N    -N 就是和vi不兼容
--u &lt;vimrc&gt;		Use &lt;vimrc&gt; instead of any .vimrc
--N			Not fully Vi compatible: 'nocompatible' ### 注释 
-
-"  这就是注释,双引号之后的就是注释内容
-但是下面的注释会失效。。
-:map &lt;space&gt; viw " 按下空格键高亮选中一个单词	
-
-所以vim的注释，最好不要行末添加
-</code></pre></div></div>
-
-<h3 id="切换布尔选项">!切换布尔选项</h3>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:set number!   或:set nu!
-</code></pre></div></div>
-
-<h3 id="查看配置的值">?查看配置的值</h3>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:set fileencoding? 返回fileencoding=utf-8
-:set number? 返回 number 或 nonumber
-</code></pre></div></div>
-
-<h3 id="键盘映射">键盘映射</h3>
-
-<ul>
-  <li>
-    <p>normal模式下的简单映射</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  :map - dd   按下 - 就相当于dd，会删除一行
-  也可以用&lt;keyname&gt;来告诉vim一个特殊的按键
-  :map &lt;space&gt; viw  按下空格，vim将高亮选中一个单词
-	
-  :unmap - 取消-的映射
-  :unmap &lt;space&gt;
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>nmap 在normal模式下的映射</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  :nmap - ddp
-  取消映射
-  :nunmap -
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>vmap 在visual模式下的映射</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  visual模式下，按下\,会把小写字母变大写
-  :vmap \ U 
-  取消映射
-  :vunmap \
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>imap 在insert模式下的映射</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  在insert模式下，ctrl+d 会删除一行
-  :imap &lt;c-d&gt; &lt;esc&gt;ddi   
-  取消映射
-  :iunmap &lt;c-d&gt;
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>映射可能会出现递归调用</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  :nmap - dd
-  :namp \ -
-  在normal模式下，按下\,vim会解释为-,而 -会继续被解析为 dd，最后就是删除了一行
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>非递归映射*noremap</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  :nmap x dd
-  :nnoremap \ x
-  当按下\ 就是x，删除一个字符，vim不会把x再解析为dd
-
-  ** 应该在所有的情况下使用 noremap **
-  " insert mode下jj --&gt; &lt;esc&gt;
-  inoremap jj &lt;esc&gt;
-  noremap/nnoremap , vnoremap, inoremap
-  取消非递归映射(和取消递归映射的方法一样)
-  :unnmap  \
-
-  :map x &lt;nop&gt; 就会让按键x失效
-
-  :nnoremap &lt;buffer&gt; Q x 只在当前缓冲区生效
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h3 id="leaders导航键">Leaders(导航键?)</h3>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim默认的leader是\
-
-:let mapleader = "-"  把leader键设置为-
-在配置文件的其他地方，就用&lt;leader&gt;,而不是"-"
-
-local leader 这个leader只用于那些对某类文件(python,html)而设置的映射
-
-:let maplocalleader = "\\"  把loacalleader设置为\,以为\\会转意为\
-如果要设定一个只会用户特定缓冲区的映射，一般会使用 &lt;localleader&gt;,而不是&lt;leader&gt;
-使用&lt;leader&gt;和&lt;localleader&gt;按键就像设置了一种命名空间,
-用&lt;localleader&gt;来设置本地映射，会防止你的插件覆盖别人的全局映射
-
-打开vimrc文件
-nnoremap &lt;leader&gt;ev :vsplit $MYVIMRC&lt;cr&gt;
-重新加载vimrc文件
-nnoremap &lt;leader&gt;sv :source $MYVIMRC&lt;cr&gt;
-</code></pre></div></div>
-
-<h3 id="abbreviations">Abbreviations</h3>
-
-<p>在一个abbrevivation后输入一个 non-keyword character后，vim会替换那个abbrevivation
-not-keyword character指的是那些不在iskeyword选项中的字符(iskeyword=@,48-57,_,192-255)</p>
-
-<ul>
-  <li>
-    <p>insert模式下的abbrevivations</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  :iabbrev adn and
-  :iabbrev ture true
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>replace模式下的abbrevivations</p>
-  </li>
-  <li>
-    <p>command模式下的abbrevivations</p>
-  </li>
-</ul>
-
-<h3 id="自动命令">自动命令</h3>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:autocmd BufNewFile * :write  "该命令会在打开一个文件后，自动自动保存
-         ^          ^ ^
-         |          | |
-         |          | 要执行的命令
-         |          | 
-         |          用于事件过滤的"模式pattern" 
-         |           
-         要监听的事件          
-
-:autocmd BufNewFile *.php :write  只会保存php文件
-:autocmd BufWritePre *.html :normal gg=G  在保存html文档之前，先格式化
-多个事件用逗号分隔
-:autocmd BufNewFile,BufRead *.html setlocal nowarp
-vim脚本编程中，一般会同时使用BufRead和BufNewFile
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>FileType 事件</p>
-
-    <p>针对不同的文件，设置一些有用的映射,比如注释
-  可以设置localleader为,,
-  :let maplocalleader=”,,”
-  :autocmd FileType erlang nnoremap <buffer> <localleader>c I%%<esc>
-  然后打开一个erlang文件，normal模式下，按下,,c 就可以注释一行</esc></localleader></buffer></p>
-  </li>
-  <li>
-    <p>本地缓冲区缩写</p>
-
-    <p>:iabbrev <buffer> --- test  对当前缓冲区生效，会覆盖如下的全局设置
-  :iabbrev  --- tes2   会话的所有缓冲区都生效，但是优先级没有<buffer>定义的缩写高</buffer></buffer></p>
-
-    <p>:autocmd FileType php :iabbrev <buffer> iff if () {<cr>}<cr><esc>kkA<left><left><left>
-  :sleep 10m 睡眠10ms</left></left></left></esc></cr></cr></buffer></p>
-  </li>
-</ul>
-
-<h3 id="自动命令组grouping-autocommands">自动命令组Grouping Autocommands</h3>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:aug[roup] {name}  group name 大小写敏感
-	...
-:augroup end/END
-
-:augroup testgroup
-:autocmd BufWrite * : echom "foo"
-:autocmd BufWrite * : echom "bar"
-:augroup END
-
-定义两个名称相同的命令组，一般情况下，后面定义的不会覆盖前面的,除非把autocmd!放在组里
-:augroup testgroup
-:autocmd!
-:autocmd BufWrite * : echom "test"
-:augroup END
-
-更多详情： :help autocmd-groups
-</code></pre></div></div>
-
-<h3 id="operator-pending映射">Operator-Pending映射</h3>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:help omap-info 	
-
-Operator-pending mappings can be used to define a movement command that can be
-used with any operator.  Simple example: ":omap { w" makes "y{" work like "yw"
-and "d{" like "dw".
-
-:onoremap { :&lt;c-u&gt;normal! 0f{vi{&lt;cr&gt;   "在包含{}的一行，执行d{、c{、y{  就可以删除/改变/复制{}之间的内容
-:onoremap ( :&lt;c-u&gt;normal! 0f(vi(&lt;cr&gt;  "在包含()的一行，执行d(、c(、y(  就可以删除/改变/复制()之间的内容 
-
-The CTRL-U (&lt;C-U&gt;) is used to remove the range that Vim may insert. 
-
-
-:onoremap ih :&lt;c-u&gt;execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"&lt;cr&gt;
-
-normal! 可以执行一些命令，但是遇到特殊字符就不行了，比如&lt;cr&gt;
-execute 把后面的字符串当作命令来执行。特殊字符需要转义,如\r代表回车 \\代表\
-
-g_: 移动到当前行的最后一个非空字符。$会选中最后一个换行符
-</code></pre></div></div>
-
-<h3 id="状态条statusline">状态条statusline</h3>
-
-<p>statusline可以展示一些当前buffer内文件的信息，比如文件名称%f,完整路径%F, %m如果缓冲区内容修改表示为[+]
-默认情况下，statusline是隐藏的。显示： <code>:set laststatus=2</code>,隐藏 <code>:set laststatus=0</code></p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">定制项目</th>
-      <th style="text-align: left">参数意义</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">%f</td>
-      <td style="text-align: left">文件名称</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">%F</td>
-      <td style="text-align: left">文件完整路径,我觉得这个完整路径有助于回答,我在哪里?</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">%m</td>
-      <td style="text-align: left">如果缓冲区内容发生改变表示为[+],有助于你提醒自己，你在做什么？</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">%n</td>
-      <td style="text-align: left">缓冲区号,</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">%y</td>
-      <td style="text-align: left">文件类型，不过我觉得如果输出了文件名，这个有点多余</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">%v</td>
-      <td style="text-align: left">虚列号</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">%l</td>
-      <td style="text-align: left">行号</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">%L</td>
-      <td style="text-align: left">总行数</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">%=</td>
-      <td style="text-align: left">之后的状态都是右对齐,在这个之前是左对齐</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">%{expr}</td>
-      <td style="text-align: left">表达式的结果，可以用这个定制很多特性的状态</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>我的statusline设置</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set statusline=buf%n\ %m
-set statusline+=\ %l,%v/%L
-set statusline+=\ %{&amp;fileencoding?&amp;fileencoding:&amp;encoding} "文件编码
-set statusline+=\ [%{&amp;fileformat}] "文件类型
-set statusline+=\ %{(exists(\"bomb\")\ &amp;&amp;\ &amp;bomb)?\"Bom\":\"\"} "如果有bomb头，就会显示Bom
-set statusline+=%{StatuslineGit()} "显示git分支名称,需要定义如下两个函数
-set statusline+=\ %F
-
-function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2&gt;/dev/null | tr -d '\n'")
-endfunction
-
-function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) &gt; 0?'  '.l:branchname.' ':''
-endfunction
-
-
-\&lt;space&gt; 是空格
-最后的效果如下：
-buf1  223,5/365 utf-8 [unix]   master  ~/Documents/github.io/_posts/2019-01-23-vimscript-note-1.md
-</code></pre></div></div>
-
-<h3 id="autocmd-所有的事件">autocmd 所有的事件</h3>
-
-<ul>
-  <li>:help autocmd-events</li>
-</ul>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Name			triggered by ~
-
-	Reading
-|BufNewFile|		starting to edit a file that doesn't exist
-|BufReadPre|		starting to edit a new buffer, before reading the file
-|BufRead|		starting to edit a new buffer, after reading the file
-|BufReadPost|		starting to edit a new buffer, after reading the file
-|BufReadCmd|		before starting to edit a new buffer |Cmd-event|
-
-|FileReadPre|		before reading a file with a ":read" command
-|FileReadPost|		after reading a file with a ":read" command
-|FileReadCmd|		before reading a file with a ":read" command |Cmd-event|
-
-|FilterReadPre|		before reading a file from a filter command
-|FilterReadPost|	after reading a file from a filter command
-
-|StdinReadPre|		before reading from stdin into the buffer
-|StdinReadPost|		After reading from the stdin into the buffer
-
-	Writing
-|BufWrite|		starting to write the whole buffer to a file
-|BufWritePre|		starting to write the whole buffer to a file
-|BufWritePost|		after writing the whole buffer to a file
-|BufWriteCmd|		before writing the whole buffer to a file |Cmd-event|
-
-|FileWritePre|		starting to write part of a buffer to a file
-|FileWritePost|		after writing part of a buffer to a file
-|FileWriteCmd|		before writing part of a buffer to a file |Cmd-event|
-
-|FileAppendPre|		starting to append to a file
-|FileAppendPost|	after appending to a file
-|FileAppendCmd|		before appending to a file |Cmd-event|
-
-|FilterWritePre|	starting to write a file for a filter command or diff
-|FilterWritePost|	after writing a file for a filter command or diff
-
-	Buffers
-|BufAdd|		just after adding a buffer to the buffer list
-|BufCreate|		just after adding a buffer to the buffer list
-|BufDelete|		before deleting a buffer from the buffer list
-|BufWipeout|		before completely deleting a buffer
-
-|BufFilePre|		before changing the name of the current buffer
-|BufFilePost|		after changing the name of the current buffer
-
-|BufEnter|		after entering a buffer
-|BufLeave|		before leaving to another buffer
-|BufWinEnter|		after a buffer is displayed in a window
-|BufWinLeave|		before a buffer is removed from a window
-
-|BufUnload|		before unloading a buffer
-|BufHidden|		just after a buffer has become hidden
-|BufNew|		just after creating a new buffer
-
-|SwapExists|		detected an existing swap file
-
-	Options
-|FileType|		when the 'filetype' option has been set
-|Syntax|		when the 'syntax' option has been set
-|EncodingChanged|	after the 'encoding' option has been changed
-|TermChanged|		after the value of 'term' has changed
-|OptionSet|		after setting any option
-
-	Startup and exit
-|VimEnter|		after doing all the startup stuff
-|GUIEnter|		after starting the GUI successfully
-|GUIFailed|		after starting the GUI failed
-|TermResponse|		after the terminal response to |t_RV| is received
-
-|QuitPre|		when using `:quit`, before deciding whether to quit
-|VimLeavePre|		before exiting Vim, before writing the viminfo file
-|VimLeave|		before exiting Vim, after writing the viminfo file
-
-	Various
-|FileChangedShell|	Vim notices that a file changed since editing started
-|FileChangedShellPost|	After handling a file changed since editing started
-|FileChangedRO|		before making the first change to a read-only file
-
-|ShellCmdPost|		after executing a shell command
-|ShellFilterPost|	after filtering with a shell command
-
-|CmdUndefined|		a user command is used but it isn't defined
-|FuncUndefined|		a user function is used but it isn't defined
-|SpellFileMissing|	a spell file is used but it can't be found
-|SourcePre|		before sourcing a Vim script
-|SourceCmd|		before sourcing a Vim script |Cmd-event|
-
-|VimResized|		after the Vim window size changed
-|FocusGained|		Vim got input focus
-|FocusLost|		Vim lost input focus
-|CursorHold|		the user doesn't press a key for a while
-|CursorHoldI|		the user doesn't press a key for a while in Insert mode
-|CursorMoved|		the cursor was moved in Normal mode
-|CursorMovedI|		the cursor was moved in Insert mode
-
-|WinNew|		after creating a new window
-|TabNew|		after creating a new tab page
-|TabClosed|		after closing a tab page
-|WinEnter|		after entering another window
-|WinLeave|		before leaving a window
-|TabEnter|		after entering another tab page
-|TabLeave|		before leaving a tab page
-|CmdwinEnter|		after entering the command-line window
-|CmdwinLeave|		before leaving the command-line window
-
-|InsertEnter|		starting Insert mode
-|InsertChange|		when typing &lt;Insert&gt; while in Insert or Replace mode
-|InsertLeave|		when leaving Insert mode
-|InsertCharPre|		when a character was typed in Insert mode, before
-			inserting it
-
-|TextChanged|		after a change was made to the text in Normal mode
-|TextChangedI|		after a change was made to the text in Insert mode
-|TextYankPost|		after text is yanked or deleted
-
-|ColorScheme|		after loading a color scheme
-
-|RemoteReply|		a reply from a server Vim was received
-
-|QuickFixCmdPre|	before a quickfix command is run
-|QuickFixCmdPost|	after a quickfix command is run
-
-|SessionLoadPost|	after loading a session file
-
-|MenuPopup|		just before showing the popup menu
-|CompleteDone|		after Insert mode completion is done
-
-|User|			to be used in combination with ":doautocmd"
-
-
-</code></pre></div></div>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-23T00:00:00+08:00"><a href="http://localhost:4000/devops-flow/">January 23, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/devops-flow/" rel="bookmark" title="A devops flow" itemprop="url">A devops flow</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <div class="mermaid">
-graph TB
-	
-	subgraph devops
-		test(("fa:fa-users Test"))
-		dev(("fa:fa-user Dev"))
-		ops(("Ops"))
-		branch("branch")
-
-		dev --&gt;|创建分支| branch
-		branch --&gt;|jenkins| jenkins["jenkins"]
-	end
-	
-	tes1t["fa:fa-camera-retro:5x Camera"]
-
-	jenkins["fa:fa-futbol:fa-5x Iggool"]
-
-     classDef green fill:#9f6,stroke:#333,stroke-width:2px;
-     classDef orange fill:#f96,stroke:#333,stroke-width:4px;
-     class sq,e green
-     class di orange
-
-</div>
 
 
   </div><!-- /.entry-content -->
