@@ -52,6 +52,7 @@ normal 命令简单地接受一串键值并当作是在normal模式下输入的
 
 	:execute "normal! /foo\<cr>" " 这样就可以起到查找foo的作用了
 	
+	:execute "normal! mqA;\<esc>`q" "在行尾添加一个;然后光标回到原来的位置
 
 #### 转义字符
 ```
