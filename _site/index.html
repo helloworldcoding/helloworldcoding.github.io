@@ -131,6 +131,69 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-02-17T00:00:00+08:00"><a href="http://localhost:4000/vimscript-delete-swp-swo-file/">February 17, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/vimscript-delete-swp-swo-file/" rel="bookmark" title="Vimscript Delete Swp Swo File" itemprop="url">Vimscript Delete Swp Swo File</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p>写了一个小函数，来删除vim的swp和swo文件。</p>
+
+<p>在normal模式下，输入\ds就可以删除该文件对应的swp和swo文件。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>" 删除当前文件对应的swp和swo文件
+function! DeleteSpaw()
+	let l:fname = fnameescape(expand('%:t'))
+	let l:swp = '.'.l:fname.'.swp'
+	let l:swo = '.'.l:fname.'.swo'
+	if CheckFile(l:swp)
+		echom DeleteFile(l:swp) == 1 ? l:swp.' delete successfully' : l:swp.' delete faild '
+	endif
+	if CheckFile(l:swo)
+		echom DeleteFile(l:swo) == 1 ? l:swo.' delete successfully' : l:swo.' delete faild '
+	endif
+endfunction
+
+function! DeleteFile(filename)
+	let l:del_result = delete(expand(a:filename))
+	return l:del_result == 0 ? 1 : 0
+endfunction
+
+function! CheckFile(filename)
+	" 对于不可以读取的文件，换成glob
+	if filereadable(expand(a:filename)) 
+		return 1
+	else
+		return 0
+	endif
+endfunction
+
+" 调用删除swp,swo文件函数
+nnoremap &lt;leader&gt;ds :call DeleteSpaw()&lt;cr&gt;
+</code></pre></div></div>
+
+<h4 id="小结">小结</h4>
+
+<ul>
+  <li>获取文件名expand(‘%:t’),参考<code class="highlighter-rouge">help filename-modifiers</code></li>
+  <li>文件相关的函数，<code class="highlighter-rouge">filereadable(), delete()</code></li>
+  <li>函数内部对参数使用，a:param</li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2019-01-31T00:00:00+08:00"><a href="http://localhost:4000/nodejs-async-await/">January 31, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
       
       <span class="entry-reading-time">
@@ -146,6 +209,36 @@ Reading time ~1 minute
   </header>
   <div class="entry-content">
     
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-01-31T00:00:00+08:00"><a href="http://localhost:4000/Vimscript-Magic-Regrex/">January 31, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/Vimscript-Magic-Regrex/" rel="bookmark" title="Magic Regrex In Vimscript" itemprop="url">Magic Regrex In Vimscript</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <h1 id="正则表达式">正则表达式</h1>
+
+<h3 id="magic">Magic</h3>
+<p>{test<a href="123">123</a>}</p>
+<ul>
+  <li>Vim有<strong>四种</strong>不同的解析正则表达式的模式！！！真让人蒙蔽。。。</li>
+</ul>
+
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -301,134 +394,6 @@ Reading time ~1 minute
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-28T00:00:00+08:00"><a href="http://localhost:4000/vimscript-regex/">January 28, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/vimscript-regex/" rel="bookmark" title="vimscript regex" itemprop="url">vimscript regex</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-28T00:00:00+08:00"><a href="http://localhost:4000/vimscript-execute-normal/">January 28, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/vimscript-execute-normal/" rel="bookmark" title="Execute & normal in Vimscript" itemprop="url">Execute & normal in Vimscript</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <h1 id="execute命令">Execute命令</h1>
-
-<p>execute命令，把字符串当作vimscript命令来执行.</p>
-
-<h4 id="基本用法">基本用法</h4>
-
-<p>:exe[cute] {expr1} ..	
-	把{expr1}当作一个Ex命令来执行，并返回结果。多个参数，用空格分隔。</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>多个命令可以用| 连起来
-:execute '!ls' | echom "theend" 
-
-在execute后面的字符串中可以使用\&lt;esc&gt;这样的方式来使用\e,看上去跟明显
-\e	escape &lt;Esc&gt;
-\f	formfeed &lt;FF&gt;
-\n	newline &lt;NL&gt;
-\r	return &lt;CR&gt;
-\t	tab &lt;Tab&gt;
-
-当文件名中有特殊字符的时候，要小心了。
-:execute "e ".fnameescape(filename) " fnameescape()函数用在vim的命令中
-:execute "!ls " . shellescape(filename, 1) " shellescape()函数用在shell命令中
-
-当要执行多行的命令时，用|来 执行得了,|要放在引号之内
-:execute 'while i &lt; 5 | echo i | let i = i + 1 | endwhile'
-
-注释,|"之后的是注释
-execute "echo 'foo'" | " this is a comment
-</code></pre></div></div>
-
-<h1 id="normal命令">Normal命令</h1>
-
-<p>normal 命令简单地接受一串键值并当作是在normal模式下输入的</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:normal ggdd  "删除第一行
-:normal G "一般情况下，这个会把光标移到最后一行。
-"但是如果用户设置映射呢?比如nnoremap G dd ,这个时候，就会变成删除了。。。。惊不惊喜？
-:normal! G "这样就能确保光标移到最后，即便用户设置了G的映射，映射也不会生效。
-
-所以，在写vim脚本的时候，应该总是用normal!,因为你不确定用户在他的.vimrc文件中做了哪些映射
-
-:normal! /foo&lt;cr&gt; "这样不会起作用 ,这种情况，需要结合execute来进行
-
-:execute "normal! /foo\&lt;cr&gt;" " 这样就可以起到查找foo的作用了
-</code></pre></div></div>
-
-<h4 id="转义字符">转义字符</h4>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"string"		string constant		*expr-quote*
-
-Note that double quotes are used.
-
-A string constant accepts these special characters:
-\...	three-digit octal number (e.g., "\316")
-\..	two-digit octal number (must be followed by non-digit)
-\.	one-digit octal number (must be followed by non-digit)
-\x..	byte specified with two hex numbers (e.g., "\x1f")
-\x.	byte specified with one hex number (must be followed by non-hex char)
-\X..	same as \x..
-\X.	same as \x.
-\u....	character specified with up to 4 hex numbers, stored according to the
-	current value of 'encoding' (e.g., "\u02a4")
-\U....	same as \u but allows up to 8 hex numbers.
-\b	backspace &lt;BS&gt;
-\e	escape &lt;Esc&gt;
-\f	formfeed &lt;FF&gt;
-\n	newline &lt;NL&gt;
-\r	return &lt;CR&gt;
-\t	tab &lt;Tab&gt;
-\\	backslash
-\"	double quote
-\&lt;xxx&gt;	Special key named "xxx".  e.g. "\&lt;C-W&gt;" for CTRL-W.  This is for use
-	in mappings, the 0x80 byte is escaped.
-	To use the double quote character it must be escaped: "&lt;M-\"&gt;".
-	Don't use &lt;Char-xxxx&gt; to get a utf-8 character, use \uxxxx as
-	mentioned above.
-
-Note that "\xff" is stored as the byte 255, which may be invalid in some
-encodings.  Use "\u00ff" to store character 255 according to the current value
-of 'encoding'.
-
-Note that "\000" and "\x00" force the end of the string.
-</code></pre></div></div>
-
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 
 <div class="pagination">
@@ -463,12 +428,21 @@ Note that "\000" and "\x00" force the end of the string.
         <li><a href="http://localhost:4000/page3/">3</a></li>
       
     
+      
+        
+        
+        
+        <li><a href="http://localhost:4000/page4/">4</a></li>
+      
+    
 
     
     
+      <li>…</li>
+    
 
     
-      <li><a href="http://localhost:4000/page4/">4</a></li>
+      <li><a href="http://localhost:4000/page5/">5</a></li>
     
 
     
