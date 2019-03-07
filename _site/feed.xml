@@ -1,4 +1,176 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-02-17T22:15:37+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">Vimscript Delete Swp Swo File</title><link href="http://localhost:4000/vimscript-delete-swp-swo-file/" rel="alternate" type="text/html" title="Vimscript Delete Swp Swo File" /><published>2019-02-17T00:00:00+08:00</published><updated>2019-02-17T00:00:00+08:00</updated><id>http://localhost:4000/vimscript-delete-swp-swo-file</id><content type="html" xml:base="http://localhost:4000/vimscript-delete-swp-swo-file/">&lt;p&gt;写了一个小函数，来删除vim的swp和swo文件。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-07T09:19:33+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">My tmux config</title><link href="http://localhost:4000/tmux-note/" rel="alternate" type="text/html" title="My tmux config" /><published>2019-03-08T00:00:00+08:00</published><updated>2019-03-08T00:00:00+08:00</updated><id>http://localhost:4000/tmux-note</id><content type="html" xml:base="http://localhost:4000/tmux-note/">&lt;h4 id=&quot;窗口window和分区span快速切换&quot;&gt;窗口(window)和分区span快速切换&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bind-key num
+在配置文件中加入`bind-key C-w last-window`就可以通过bind-key Ctrl+w来切换上次和当前的window了
+
+`bind-key C-a last-span`，就可以通过bind-key Ctrl+a来切换上次和和当前的span
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="tmux" /><summary type="html">窗口(window)和分区span快速切换</summary></entry><entry><title type="html">My tour of golang</title><link href="http://localhost:4000/golang-basic/" rel="alternate" type="text/html" title="My tour of golang" /><published>2019-03-07T00:00:00+08:00</published><updated>2019-03-07T00:00:00+08:00</updated><id>http://localhost:4000/golang-basic</id><content type="html" xml:base="http://localhost:4000/golang-basic/">&lt;h4 id=&quot;basic-types&quot;&gt;Basic types&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;bool   默认值false&lt;/li&gt;
+  &lt;li&gt;string 默认值””&lt;/li&gt;
+  &lt;li&gt;int  int8 int16 int32 int64 默认值0&lt;/li&gt;
+  &lt;li&gt;uint uint8 uint16 uint32 uint64 uintptr&lt;/li&gt;
+  &lt;li&gt;byte // int8的别名&lt;/li&gt;
+  &lt;li&gt;rune // int32的别名,代表unicode值&lt;/li&gt;
+  &lt;li&gt;float32 float64 默认值0&lt;/li&gt;
+  &lt;li&gt;complex64 complex128&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;类型转换&quot;&gt;类型转换&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;T(v) 显示类型转换，如int(12.4),string(11244)
+    &lt;ul&gt;
+      &lt;li&gt;不过整型转为string是按照ascii码或unicode码转为对应的字符，所以有可能得到乱码&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;原类型\转化后&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;bool&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;int&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;float&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;string&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;complex&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;bool&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;0&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;0&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;0&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;int&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;0&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;float&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;0&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;0&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;string&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;0&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;0&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;0&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;complex&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;0&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;0&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;0&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;0&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&quot;variables-with-initializers变量和初始化&quot;&gt;Variables with initializers(变量和初始化)&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 再函数内部以下三种写法都一样
+var i,j int = 1, 3  // 全局可以用
+var i, j = 1,3     // 全局可以用
+i,j := 1,3 // 只能在函数体内部使用
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="golang" /><summary type="html">Basic types</summary></entry><entry><title type="html">dbext an awesome database client</title><link href="http://localhost:4000/dbext-vim-db-explorer/" rel="alternate" type="text/html" title="dbext an awesome database client" /><published>2019-02-19T00:00:00+08:00</published><updated>2019-02-19T00:00:00+08:00</updated><id>http://localhost:4000/dbext-vim-db-explorer</id><content type="html" xml:base="http://localhost:4000/dbext-vim-db-explorer/">&lt;h1 id=&quot;可能是最适合开发的数据库客户端&quot;&gt;可能是最适合开发的数据库客户端&lt;/h1&gt;
+
+&lt;h4 id=&quot;支持的数据库类型&quot;&gt;支持的数据库类型:&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SAP Sybase SQL Anywhere (SA/ASA)
+SAP Sybase IQ
+SAP Sybase Adaptive Server Enterprise (ASE)
+SAP HANA
+SAP Sybase UltraLite (UL)
+Oracle
+Oracle RDB
+SQL Server
+MySQL
+PostgreSQL
+DB2
+Firebird
+Ingres
+Interbase
+SQLite
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;本文以MySQL为例，介绍一下该插件的功能。&lt;/p&gt;
+
+&lt;h3 id=&quot;安装配置&quot;&gt;安装&amp;amp;配置&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Lets test the connection, run the following command (Note the capital S): &amp;gt;
+`:Select * from customer`
+Select, Update, Insert, Delete, Call, Drop, Alter, Create
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;功能介绍&quot;&gt;功能介绍&lt;/h3&gt;
+
+&lt;h4 id=&quot;connect&quot;&gt;connect&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;使用快捷键 ：`&amp;lt;leader&amp;gt;sbp` leader键默认是`\`,  sbp(sql buffer prompt)
+使用ex命令：`:DBPromptForBufferParameters`
+然后选择要连接的数据库类型
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;execute&quot;&gt;execute&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;把光标置于sql语句中的任意位置（sql语句是一行）
+`&amp;lt;leader&amp;gt;sel`  sql execute line
+
+执行多行sql
+`&amp;lt;leader&amp;gt;se`  sql execute 
+`:DBExecSQLUnderCursor`
+
+执行选中的sql
+`:DBExecVisualSQL`
+&amp;lt;leader&amp;gt;se  和多行执行一样
+
+从表中查选,光标在表名称的单词上
+`&amp;lt;leader&amp;gt;st`  sql table
+`:DBSelectFromTable`
+执行的sql是：select * from table_name
+
+带条件的查询
+`&amp;lt;leader&amp;gt;stw`
+`:DBSelectFromTableWithWhere`
+会提示你输入where条件， 比如 id &amp;gt; 1 and name like &quot;zhangsan&quot;
+执行的sql：select * from table_name where id &amp;gt; 1 and name like &quot;zhangsan&quot;
+
+等待输入表名查询
+`&amp;lt;leader&amp;gt;sta`
+`:DBSelectFromTableAskName`
+会提示你输入你要查询的表名
+
+高亮选择表名查询
+`&amp;lt;leader&amp;gt;st`
+`:'&amp;lt;,'&amp;gt;DBSelectFromTable`
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;describing-objects&quot;&gt;Describing objects&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;表结构
+`:DBDescribeTable`
+`\sdt` sql describe table
+
+存储过程procedures
+`:DBDescribeProcedure`
+`\dp`  d (describe) p (procedure)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="vim" /><category term="database" /><category term="navicat" /><summary type="html">可能是最适合开发的数据库客户端</summary></entry><entry><title type="html">Vim delete swp&amp;amp;swo file</title><link href="http://localhost:4000/vimscript-delete-swp-swo-file/" rel="alternate" type="text/html" title="Vim delete swp&amp;swo file" /><published>2019-02-17T00:00:00+08:00</published><updated>2019-02-17T00:00:00+08:00</updated><id>http://localhost:4000/vimscript-delete-swp-swo-file</id><content type="html" xml:base="http://localhost:4000/vimscript-delete-swp-swo-file/">&lt;p&gt;写了一个小函数，来删除vim的swp和swo文件。&lt;/p&gt;
 
 &lt;p&gt;在normal模式下，输入\ds就可以删除该文件对应的swp和swo文件。&lt;/p&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot; 删除当前文件对应的swp和swo文件
@@ -38,7 +210,7 @@ nnoremap &amp;lt;leader&amp;gt;ds :call DeleteSpaw()&amp;lt;cr&amp;gt;
   &lt;li&gt;获取文件名expand(‘%:t’),参考&lt;code class=&quot;highlighter-rouge&quot;&gt;help filename-modifiers&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;文件相关的函数，&lt;code class=&quot;highlighter-rouge&quot;&gt;filereadable(), delete()&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;函数内部对参数使用，a:param&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">写了一个小函数，来删除vim的swp和swo文件。</summary></entry><entry><title type="html">Magic Regrex In Vimscript</title><link href="http://localhost:4000/Vimscript-Magic-Regrex/" rel="alternate" type="text/html" title="Magic Regrex In Vimscript" /><published>2019-01-31T00:00:00+08:00</published><updated>2019-01-31T00:00:00+08:00</updated><id>http://localhost:4000/Vimscript-Magic-Regrex</id><content type="html" xml:base="http://localhost:4000/Vimscript-Magic-Regrex/">&lt;h1 id=&quot;正则表达式&quot;&gt;正则表达式&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="vim" /><category term="swp" /><category term="swo" /><category term="delete" /><summary type="html">写了一个小函数，来删除vim的swp和swo文件。</summary></entry><entry><title type="html">Magic Regrex In Vimscript</title><link href="http://localhost:4000/Vimscript-Magic-Regrex/" rel="alternate" type="text/html" title="Magic Regrex In Vimscript" /><published>2019-01-31T00:00:00+08:00</published><updated>2019-01-31T00:00:00+08:00</updated><id>http://localhost:4000/Vimscript-Magic-Regrex</id><content type="html" xml:base="http://localhost:4000/Vimscript-Magic-Regrex/">&lt;h1 id=&quot;正则表达式&quot;&gt;正则表达式&lt;/h1&gt;
 
 &lt;h3 id=&quot;magic&quot;&gt;Magic&lt;/h3&gt;
 &lt;p&gt;{test&lt;a href=&quot;123&quot;&gt;123&lt;/a&gt;}&lt;/p&gt;
@@ -232,1060 +404,4 @@ encodings.  Use &quot;\u00ff&quot; to store character 255 according to the curre
 of 'encoding'.
 
 Note that &quot;\000&quot; and &quot;\x00&quot; force the end of the string.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="execute" /><category term="normal" /><category term="vimscript" /><category term="vim" /><summary type="html">Execute命令</summary></entry><entry><title type="html">vimscript regex</title><link href="http://localhost:4000/vimscript-regex/" rel="alternate" type="text/html" title="vimscript regex" /><published>2019-01-28T00:00:00+08:00</published><updated>2019-01-28T00:00:00+08:00</updated><id>http://localhost:4000/vimscript-regex</id><content type="html" xml:base="http://localhost:4000/vimscript-regex/"></content><author><name></name></author><category term="vimscript" /><category term="regex" /><category term="vim" /><summary type="html"></summary></entry><entry><title type="html">Vimscript begin</title><link href="http://localhost:4000/vimscript-begin/" rel="alternate" type="text/html" title="Vimscript begin" /><published>2019-01-26T00:00:00+08:00</published><updated>2019-01-26T00:00:00+08:00</updated><id>http://localhost:4000/vimscript-begin</id><content type="html" xml:base="http://localhost:4000/vimscript-begin/">&lt;p&gt;既然把vimscript是一个脚本语言，那就会有脚本语言的一些共性，比如变量的定义,变量的类型，变量的作用域，分支循环结构,函数等等。&lt;/p&gt;
-
-&lt;h1 id=&quot;变量&quot;&gt;变量&lt;/h1&gt;
-
-&lt;h4 id=&quot;变量的定义&quot;&gt;变量的定义&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;一般的变量定义&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;变量名规范: 字母、数字、下划线，并且不能以数字开头&lt;/p&gt;
-
-        &lt;p&gt;:let foo = “bar”
-  :let num = 32
-  :echo foo num “ 显示foo和num
-  :unlet foo “ 销毁一个变量
-  以上好像看出vimscript是动态类型，其实,你们想错了。(党国的高官，怎么会有钱？)&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;配置选项也是变量&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  比如，我要看配置选项textwidth的值
-  :echo &amp;amp;textwidth &quot;需要在前面加上&amp;amp; ,这就告诉vim，你在引用这个选项;如果这个选项不存在，就会报错
-  :set textwidth=80
-  :echo textwidth &quot;直接输出，也会报错
-      E121: Undefined variable: textwidth
-      E15: Invalid expression: textwidth
-  :echo &amp;amp;textwidth &quot;输出 80
-
-  :set nowrap
-  :echo &amp;amp;wrap &quot; 0
-  :set wrap
-  :echo &amp;amp;wrap &quot; 1
-  在vimscript中0为false，非0值整数为true 
-
-  可以用let来设置选项的值，并且let比set更灵活	
-  :let &amp;amp;textwidth = &amp;amp;textwidth + 10
-  :echo &amp;amp;textwidth &quot; 输出 90
-  :set &amp;amp;textwidth = &amp;amp;textwidth + 10 &quot;set 只能给设置一个常量值
-      E518: Unknown option: &amp;amp;textwidth = 
-
-  本地选项，将某个选项作为变量来来设置它的本地值，而不是全局值,
-  本地变量的前缀:  &amp;lt;code&amp;gt;l:&amp;lt;/code&amp;gt;
-  :let &amp;amp;l:number = 0 &quot;只对当前buffer生效,当前buffer，行号消失
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;寄存器变量&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  :let @a=&quot;hello!&quot;
-  :echo @a &quot;输出 hello!
-  :echo @&quot; &quot;输出无名寄存器的值
-  :echo @/ &quot;输出，搜索寄存器的值
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;b:变量前缀(只在当前buffer生效的变量)&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  :let b:hello = &quot;world&quot;
-  :echo b:hello &quot; 输出world
-  切换到另一个buffer
-  :echo b:hello 
-      E121: Undefined variable: b:hello
-      E15: Invalid expression: b:hello
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;help internal-variables&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;变量前缀&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;名称&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;说明&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;b:&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;buffer-variable&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Local to the current buffer.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;w:&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;window-variable&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Local to the current window.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;t:&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;tabpage-variable&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Local to the current tab page.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;g:&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;global-variable&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Global.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;l:&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;local-variable&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Local to a function.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;s:&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;script-variable&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Local to a |:source|’ed Vim script.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;a:&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;function-argument&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Function argument (only inside a function).&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;v:&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;vim-variable&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Global, predefined by Vim.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h1 id=&quot;分支结构&quot;&gt;分支结构&lt;/h1&gt;
-&lt;h3 id=&quot;条件语句&quot;&gt;条件语句&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;多行命令，写成一行。用管道符(|)来隔开命令&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  :echom &quot;foo&quot; | echom &quot;bar&quot;
-  :if 1 | :echom &quot;one&quot; | :else | :echom &quot;not one&quot; | :endif &quot; 输出 one
-  :if 0 | echom &quot;one&quot; | else | echom &quot;not one&quot; | endif &quot; 输出not one
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;if的用法&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;必要情况下(数学计算、条件表达式)，vim强制转换变量和字面量的类型。10+”20foo” 最后等于10+20 = 30&lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;以数字开头的字符串会转化为数字，否则会转化为0&lt;/p&gt;
-
-        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  :echo 0+&quot;12.64ab&quot; &quot;输出12
-  :echo 0+&quot;-12.34ab&quot; &quot;输出-12
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;if判断时，非零整数为true，0为false&lt;/p&gt;
-
-        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let a = 3
-  if a == 1
-      echom &quot;one&quot;
-  elseif  a == 2
-      echom &quot;two&quot;
-  else
-      echom &quot;not one or two&quot;
-  endif
-  &quot;最后输出 not one or two
-
-  if &quot;string&quot;  &quot;等价于 if 0
-      echom &quot;zero&quot;
-  endif
-
-  if &quot;12Ab&quot; ==# &quot;12ab&quot;
-      echom &quot;yeshi&quot;
-  else
-      echom &quot;no&quot;  &quot; 输出 no, 说明 ==# 没有进行强制转化
-  endif
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;比较运算符&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;说明&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&amp;gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;大于,如 10 &amp;gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&amp;lt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;小于,如 1 &amp;lt; 10&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;==&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;相等，如 10 == 11 ,”foo” == “bar”,会受用户设置noignorecase/ignorecase影响&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;==?&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;字符串比较，大小写不敏感(无论vim对大小写的设置是否敏感),”foo” ==? “FOO” is true&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;==#&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;字符串比较，大小写敏感(无论vim对大小写的设置是否敏感),”foo” ==# “FOO” is false&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&amp;gt;#&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;大于， 区分大小写的比较&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&amp;lt;#&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;小于， 区分大小写的比较&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&amp;gt;?&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;大于， 不区分大小写的比较&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&amp;lt;?&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;小于， 不区分大小写的比较&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;所以最好使用==#来比较字符串,统一自己的规范&lt;/p&gt;
-
-&lt;h1 id=&quot;循环&quot;&gt;循环&lt;/h1&gt;
-
-&lt;h4 id=&quot;for循环&quot;&gt;for循环&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;help for&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let c = 0
-  for i in [1,2,3,4]
-      let c += i
-  endfor
-  echom c
-
-  for [lnum, col] in [[1, 3], [2, 5], [3, 8]]
-     echo getline(lnum)[col]
-  endfor
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;while循环&quot;&gt;while循环&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;help while&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let c = 1
-  let total = 0 
-  while c &amp;lt;= 4
-      let total += c
-      let c += 1
-  ednwhile 函数 ====
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;没有作用域限制的vimscript函数必须以一个大写字母开头&quot;&gt;没有作用域限制的vimscript函数，必须以一个大写字母开头&lt;/h4&gt;
-
-&lt;div class=&quot;language-vimscript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; Hello&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;helloworld&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; Hello&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; SayHi&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;name&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt;# &lt;span class=&quot;s2&quot;&gt;&quot;Mark&quot;&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi,Mark&quot;&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; SayHi&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &quot; 函数如果没有返回，默认是&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;&quot;可变参数&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; Multiargs&lt;span class=&quot;p&quot;&gt;(...)&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:0&lt;/span&gt; &quot;参数数量&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;可变参数的数量
-	&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:1&lt;/span&gt; &quot;第一个参数
-	&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:2&lt;/span&gt; &quot;第二个参数
-&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;&quot;可变参数和普通参数一起使用&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; Multiargs2&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;foo&lt;span class=&quot;p&quot;&gt;,...)&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:0&lt;/span&gt; 
-	&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:foo&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:1&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:2&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; s &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:000&lt;/span&gt; &quot;&lt;span class=&quot;nv&quot;&gt;a:000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;所有的可变参数
-		&lt;span class=&quot;k&quot;&gt;echom&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;' '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;s
-	&lt;span class=&quot;k&quot;&gt;endfor&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; Multiargs2&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;hh&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;jak&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;luc&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-输出：
-&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;
-hh
-jak
-luc
- jak
- luc
-可见&lt;span class=&quot;nv&quot;&gt;a:0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;只是代表可变参数的数量
-
-&lt;span class=&quot;c&quot;&gt;&quot;函数参数是只读的，不能在函数内部改变&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; Assign&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;foo&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:foo&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Nope&quot;&lt;/span&gt;  
-&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; Assign&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; 会报错，如下：
-E46&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; Cannot change &lt;span class=&quot;k&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;only&lt;/span&gt; variable &lt;span class=&quot;s2&quot;&gt;&quot;a:foo&quot;&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;&quot;function! 如果出现重复函数名，感叹号不会报错。&lt;/span&gt;
-When &lt;span class=&quot;k&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; by this name already exists and &lt;span class=&quot;p&quot;&gt;[!]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;is&lt;/span&gt;
-not used an error message &lt;span class=&quot;k&quot;&gt;is&lt;/span&gt; given&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; 
-&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; Assign&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;suceess&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;msg&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;code&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; Assign&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &quot;返回一个数组
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h1 id=&quot;数据类型&quot;&gt;数据类型&lt;/h1&gt;
-
-&lt;h4 id=&quot;布尔&quot;&gt;布尔&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;0为false， 其他整数为true&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;数字&quot;&gt;数字&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;整数(Number,32位带符号整数(如果编译的时候+num64，就支持64位))&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  echom 100
-  echom 0xff 0X1f  &quot; 0x或0X前缀的来指定16进制
-  echom 010 017 &quot;0前缀，是八进制,8,15
-  echom 019 &quot;因为它不是一个八进制，所以输出19
-  echom 0b1010 &quot;0b前缀，是二进制 ,输出十进制10
-  &quot;尽量避免使用八进制
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;浮点(Float)&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  [-+]{N}.{M}
-  [-+]{N}.{M}[eE][-+]{exp}
-  N,M都是正整数，exp代表10的多少次方,exp也是一个正整数
-
-  echo 12.0 &quot;12.0
-  echo 5.45e+3 &quot; 5450.0
-  echo 5.3453e9 &quot; 5.3453e9
-  if 5.345e2 &amp;gt; 500  &quot; this is true
-      echom &quot;biger&quot;
-  endif
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;强制转换&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  echo 3/2 &quot;1
-  echo 3.0/2 &quot;1.5 Number和Float混用时，会把Number转换为Float
-  echo 1/3.0 &quot;0.33333,默认是6位小数的精度
-  echo printf('%.15e',11/7.0)  &quot;1.571428571428571e+00
-  echo printf('%.15e',atan(1)) &quot;7.853981633974483e-01
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;字符串&quot;&gt;字符串&lt;/h4&gt;
-
-&lt;p&gt;用双引号或者单引号包围的字符。双引号会转义\n,\,&quot;等特殊字符，而单引号不会(除了’‘转义为’之外）。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;连接(concatenation)用点号. 和php一样&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  echom &quot;hello &quot;.&quot;world&quot; &quot;helloworld&quot;
-  echom 12.&quot;foo&quot; &quot;12foo
-  echom 12.&quot;123&quot; &quot;12123
-  echom 12.1. &quot;foo&quot; &quot;121foo
-  echom 12.1.&quot;foo&quot; &quot;121foo
-  浮点数连接字符串，报错：
-  echom 12.1 .&quot;foo&quot; &quot;E806: using Float as a String E15: Invalid expression: 12.1 .&quot;foo&quot;
-  echom 12.1 . &quot;foo&quot; &quot;E806: using Float as a String E15: Invalid expression: 12.1 .&quot;foo&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;特殊字符(双引号才能转义)&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  help expr-quote
-  echom &quot;foo \&quot;bar\&quot;&quot;   &quot;输出 foo &quot;bar&quot;
-  echom &quot;a\nb&quot; &quot;输出 a^@b
-  echo &quot;a\nb&quot; &quot;输出两行，a 和 b
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;字符串字面量(除了’‘会转义为’,其他的原样输出)&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  help literal-string
-  echom '\n\\' &quot;输出\n\\
-  echo '12''23' &quot;输出12'34
-  echo '12''''23' &quot;输出12''34
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;字符串函数&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  字符串字节数量
-  echom strlen(&quot;foo&quot;) &quot;3	
-  echom strlen(&quot;我的1&quot;) &quot;7
-  echom len(&quot;foo&quot;) &quot;3
-
-  字符串字符个数
-  echom strchars(&quot;hello&quot;) &quot;5
-  echom strchars(&quot;我的1&quot;) &quot;3
-
-  字符串截取
-  strcharpart({src}, {start} [, {len}])
-  echo strcharpart(&quot;我的123&quot;,0,2) &quot;我的
-  echo strcharpart(&quot;我的123&quot;,-1,2) &quot;我,start为负，就是从0开始，截取start+len个字符
-  echo strcharpart(&quot;我的123&quot;,-1,3) &quot;我的
-  echo strcharpart(&quot;我的123&quot;,-1,4) &quot;我的1
-
-  echo &quot;abcdef&quot;[1:3] &quot; bcd
-  echo &quot;abcdef&quot;[1:1] &quot; b
-  echo &quot;abcdef&quot;[1:] &quot; bcdef
-  echo &quot;我的123&quot;[3,6] &quot;的1
-
-	
-  分割,默认通过空格分割
-  split({expr} [, {pattern} [, {keepempty}]])			*split()*
-
-  echo split(&quot;one two three&quot;) &quot; [&quot;one&quot;,&quot;two&quot;,&quot;three&quot;] 不能用echom输出一个list
-  echo split(&quot;one,two,three,&quot;,&quot;) &quot; [&quot;one&quot;,&quot;two&quot;,&quot;three&quot;] 不能用echom输出一个list,最后一个,不会有用
-
-  连接,默认通过空格连接
-  echo join([&quot;hello&quot;,&quot;world&quot;]) &quot;  hello world
-  echo join([&quot;hello&quot;,&quot;world&quot;],&quot;,&quot;) &quot; hello,world
-  echo join([&quot;hello&quot;,&quot;world&quot;],&quot;&quot;) &quot; helloworld
-
-  大小写转换
-  echom tolower(&quot;FOo&quot;)
-  echom toupper(&quot;hello&quot;)
-	
-  字符串查找
-  stridx({haystack}, {needle} [, {start}])
-  :echo stridx(&quot;An Example&quot;, &quot;Example&quot;)	     3
-  :echo stridx(&quot;Starting point&quot;, &quot;Start&quot;)    0
-  :echo stridx(&quot;Starting point&quot;, &quot;start&quot;)   -1
-
-  string()强制转化为字符串
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;列表&quot;&gt;列表&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;help List		
-列表是有序的，元素的集合, 每一个item可以是任何type	
-echo ['foo',34,12.2]	
-echo ['foo',[3,'bar']]
-
-索引,从0开始
-echo [1,23,[1,34]][0] &quot; 1
-echo [1,23,[1,34]][2][1] &quot; 34
-echo [1,23,[1,34]][-1] &quot;[1,34]
-
-切割,和python相似，但不同
-echo [1,3,4,5][0:2] &quot;[1,3,4]
-echo [1,3,4,5][0:20000] &quot;[1,3,4,5] 超过列表索引也是安全的。
-echo [1,3,5,6][-2:-1] &quot; [5,6]
-echo [1,2,3,5][:1] &quot;[1,2]
-echo [1,2,3,5][2:] &quot;[3,5]
-字符串也可以切割
-
-连接+
-echo ['a','b'] + ['c']  &quot; ['a','b','c']
-
-函数列表
-1.add
-let foo = ['a']
-call add(foo,'b') &quot; 往foo后面加上'b'
-echo foo &quot; ['a','b']
-
-2.len
-echo len(foo) &quot; 2
-
-3.get,返回指定索引的值
-echo get(foo,0,'default') &quot; a
-echo get(foo,10,'default') &quot; default
-
-4.index
-echo index(foo,'b') &quot;1
-echo index(foo,'cet') &quot; -1  不存在返回-1
-
-5.join
-
-6.reverse ,转置
-echo reverse(['a','b']) &quot;['b','a']
-
-7.List unpack
-let [var1, var2; rest] = mylist &quot;等同于下面三个表达式
-let var1 = mylist[0]
-let var2 = mylist[1]
-let rest = mylist[2:]
-
-8.复制和深度复制
-let aa = [1,2,4]
-let bb = aa &quot;aa 和bb 指向同一个列表，改变其中一个，也对相应改变另一个
-
-let aa = [[1,'a'],3,4]
-let bb = copy(aa) &quot; 浅复制，改变已经有的元素(该元素也是一个列表），aa和bb都会变化，但是，往aa中追加元素，不会影响
-let aa[0][1] = 'aaa' &quot; 浅复制，所以 bb[0][1] == 'aaa'
-
-如果要做到完全独立，就用deepcopy()
-let cc = deepcopy(aa) &quot; 这样，cc和aa就是完全独立的变量,不会相会影响了。
-
-9.列表相等
-echo [1,3] == [1,3] &quot; 1 ,true 
-echo [3,1] == [1,3] &quot; 0 ,false
-echo 2 == &quot;2&quot; &quot; 1,true 
-echo [2] == [&quot;2&quot;] &quot; 0, false
-
-let a = [1,3]
-let b = [1,3]
-echo a is b &quot; 0
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;字典&quot;&gt;字典&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;类似python中的dict，ruby中的hash, javascript中的object
-字典用花括号创建,索引是字符串（即便定义的时候是数字，也会被转化为字符串)
-
-:echo {'a':1,'100':'foo',} &quot; 字典最后可以留下一个逗号,js的愚蠢之处，在这里被修复了
-
-let dic = {'a':1,'100':'foo',}
-echo dic['a'] &quot; 1
-
-当键是字母数字下划线组成时，字典也支持&quot;点&quot;查找
-echo dic.a
-echo dic.100
-
-赋值和添加，移除项
-let dic.a = 222
-let dic.c = 'new val'
-
-let a = remove(dic,'a') &quot; 此方法移除a后，会返回a对应的值
-unlet dic.a &quot;直接移除a，不会返回
-
-字典函数
-echo get(dic,'a','default') &quot; 1 和list一样
-echo get(dic,'dd','not') &quot; not
-
-echo has_key(dic, &quot;a&quot;) &quot; 1
-
-echo items(dic) &quot; [['a',1],['100','foo']]
-echo  keys(dic) &quot;['a','100']
-echo values(dic) &quot;[1,'foo']
-
-遍历Dictionary
-for key in keys(dic)
-	echo key.&quot;:'.dic[key]
-endfor
-
-for v in values(dic)
-	echo &quot;value:&quot;.v
-endfor
-
-for [k,v] in items(dic)
-	echo k.':'.v
-endfor
-
-合并数组
-call extend(adic, bdic) &quot;把bdic的值，加到a中，如果有重复的key，a的会被b覆盖(默认)
-
-过滤元素
-call filter(dict, 'v:val =~ &quot;x&quot;') &quot; 把value匹配&quot;x&quot;的元素都剔除掉。
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;函数funcref&quot;&gt;函数(Funcref)&lt;/h4&gt;
-
-&lt;h4 id=&quot;特殊special&quot;&gt;特殊(Special)&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;v:false
-v:true
-v:none
-v:null
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;任务job&quot;&gt;任务(Job)&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;job_start()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;通道channel&quot;&gt;通道(channel)&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ch_open()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;对大部分命令和选项，vim支持他们的缩写。但是建议在vimrc或者自己编写的插件中使用全称，这样才会有更好的可读性。&lt;/p&gt;</content><author><name></name></author><category term="vimscript" /><summary type="html">既然把vimscript是一个脚本语言，那就会有脚本语言的一些共性，比如变量的定义,变量的类型，变量的作用域，分支循环结构,函数等等。</summary></entry><entry><title type="html">A devops flow</title><link href="http://localhost:4000/devops-flow/" rel="alternate" type="text/html" title="A devops flow" /><published>2019-01-23T00:00:00+08:00</published><updated>2019-01-23T00:00:00+08:00</updated><id>http://localhost:4000/devops-flow</id><content type="html" xml:base="http://localhost:4000/devops-flow/">&lt;div class=&quot;mermaid&quot;&gt;
-graph TB
-	
-	subgraph devops
-		test((&quot;fa:fa-users Test&quot;))
-		dev((&quot;fa:fa-user Dev&quot;))
-		ops((&quot;Ops&quot;))
-		branch(&quot;branch&quot;)
-
-		dev --&amp;gt;|创建分支| branch
-		branch --&amp;gt;|jenkins| jenkins[&quot;jenkins&quot;]
-	end
-	
-	tes1t[&quot;fa:fa-camera-retro:5x Camera&quot;]
-
-	jenkins[&quot;fa:fa-futbol:fa-5x Iggool&quot;]
-
-     classDef green fill:#9f6,stroke:#333,stroke-width:2px;
-     classDef orange fill:#f96,stroke:#333,stroke-width:4px;
-     class sq,e green
-     class di orange
-
-&lt;/div&gt;</content><author><name></name></author><summary type="html">graph TB subgraph devops test((&quot;fa:fa-users Test&quot;)) dev((&quot;fa:fa-user Dev&quot;)) ops((&quot;Ops&quot;)) branch(&quot;branch&quot;)</summary></entry><entry><title type="html">Some note about vimrc</title><link href="http://localhost:4000/vimscript-note-1/" rel="alternate" type="text/html" title="Some note about vimrc" /><published>2019-01-23T00:00:00+08:00</published><updated>2019-01-23T00:00:00+08:00</updated><id>http://localhost:4000/vimscript-note-1</id><content type="html" xml:base="http://localhost:4000/vimscript-note-1/">&lt;h3 id=&quot;启动vim不加载vimrc&quot;&gt;启动vim不加载.vimrc&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim -u NONE -N    -N 就是和vi不兼容
--u &amp;lt;vimrc&amp;gt;		Use &amp;lt;vimrc&amp;gt; instead of any .vimrc
--N			Not fully Vi compatible: 'nocompatible' ### 注释 
-
-&quot;  这就是注释,双引号之后的就是注释内容
-但是下面的注释会失效。。
-:map &amp;lt;space&amp;gt; viw &quot; 按下空格键高亮选中一个单词	
-
-所以vim的注释，最好不要行末添加
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;切换布尔选项&quot;&gt;!切换布尔选项&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;:set number!   或:set nu!
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;查看配置的值&quot;&gt;?查看配置的值&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;:set fileencoding? 返回fileencoding=utf-8
-:set number? 返回 number 或 nonumber
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;键盘映射&quot;&gt;键盘映射&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;normal模式下的简单映射&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  :map - dd   按下 - 就相当于dd，会删除一行
-  也可以用&amp;lt;keyname&amp;gt;来告诉vim一个特殊的按键
-  :map &amp;lt;space&amp;gt; viw  按下空格，vim将高亮选中一个单词
-	
-  :unmap - 取消-的映射
-  :unmap &amp;lt;space&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;nmap 在normal模式下的映射&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  :nmap - ddp
-  取消映射
-  :nunmap -
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;vmap 在visual模式下的映射&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  visual模式下，按下\,会把小写字母变大写
-  :vmap \ U 
-  取消映射
-  :vunmap \
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;imap 在insert模式下的映射&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  在insert模式下，ctrl+d 会删除一行
-  :imap &amp;lt;c-d&amp;gt; &amp;lt;esc&amp;gt;ddi   
-  取消映射
-  :iunmap &amp;lt;c-d&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;映射可能会出现递归调用&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  :nmap - dd
-  :namp \ -
-  在normal模式下，按下\,vim会解释为-,而 -会继续被解析为 dd，最后就是删除了一行
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;非递归映射*noremap&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  :nmap x dd
-  :nnoremap \ x
-  当按下\ 就是x，删除一个字符，vim不会把x再解析为dd
-
-  ** 应该在所有的情况下使用 noremap **
-  &quot; insert mode下jj --&amp;gt; &amp;lt;esc&amp;gt;
-  inoremap jj &amp;lt;esc&amp;gt;
-  noremap/nnoremap , vnoremap, inoremap
-  取消非递归映射(和取消递归映射的方法一样)
-  :unnmap  \
-
-  :map x &amp;lt;nop&amp;gt; 就会让按键x失效
-
-  :nnoremap &amp;lt;buffer&amp;gt; Q x 只在当前缓冲区生效
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;leaders导航键&quot;&gt;Leaders(导航键?)&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim默认的leader是\
-
-:let mapleader = &quot;-&quot;  把leader键设置为-
-在配置文件的其他地方，就用&amp;lt;leader&amp;gt;,而不是&quot;-&quot;
-
-local leader 这个leader只用于那些对某类文件(python,html)而设置的映射
-
-:let maplocalleader = &quot;\\&quot;  把loacalleader设置为\,以为\\会转意为\
-如果要设定一个只会用户特定缓冲区的映射，一般会使用 &amp;lt;localleader&amp;gt;,而不是&amp;lt;leader&amp;gt;
-使用&amp;lt;leader&amp;gt;和&amp;lt;localleader&amp;gt;按键就像设置了一种命名空间,
-用&amp;lt;localleader&amp;gt;来设置本地映射，会防止你的插件覆盖别人的全局映射
-
-打开vimrc文件
-nnoremap &amp;lt;leader&amp;gt;ev :vsplit $MYVIMRC&amp;lt;cr&amp;gt;
-重新加载vimrc文件
-nnoremap &amp;lt;leader&amp;gt;sv :source $MYVIMRC&amp;lt;cr&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;abbreviations&quot;&gt;Abbreviations&lt;/h3&gt;
-
-&lt;p&gt;在一个abbrevivation后输入一个 non-keyword character后，vim会替换那个abbrevivation
-not-keyword character指的是那些不在iskeyword选项中的字符(iskeyword=@,48-57,_,192-255)&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;insert模式下的abbrevivations&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  :iabbrev adn and
-  :iabbrev ture true
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;replace模式下的abbrevivations&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;command模式下的abbrevivations&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;自动命令&quot;&gt;自动命令&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;:autocmd BufNewFile * :write  &quot;该命令会在打开一个文件后，自动自动保存
-         ^          ^ ^
-         |          | |
-         |          | 要执行的命令
-         |          | 
-         |          用于事件过滤的&quot;模式pattern&quot; 
-         |           
-         要监听的事件          
-
-:autocmd BufNewFile *.php :write  只会保存php文件
-:autocmd BufWritePre *.html :normal gg=G  在保存html文档之前，先格式化
-多个事件用逗号分隔
-:autocmd BufNewFile,BufRead *.html setlocal nowarp
-vim脚本编程中，一般会同时使用BufRead和BufNewFile
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;FileType 事件&lt;/p&gt;
-
-    &lt;p&gt;针对不同的文件，设置一些有用的映射,比如注释
-  可以设置localleader为,,
-  :let maplocalleader=”,,”
-  :autocmd FileType erlang nnoremap &lt;buffer&gt; &lt;localleader&gt;c I%%&lt;esc&gt;
-  然后打开一个erlang文件，normal模式下，按下,,c 就可以注释一行&lt;/esc&gt;&lt;/localleader&gt;&lt;/buffer&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;本地缓冲区缩写&lt;/p&gt;
-
-    &lt;p&gt;:iabbrev &lt;buffer&gt; --- test  对当前缓冲区生效，会覆盖如下的全局设置
-  :iabbrev  --- tes2   会话的所有缓冲区都生效，但是优先级没有&lt;buffer&gt;定义的缩写高&lt;/buffer&gt;&lt;/buffer&gt;&lt;/p&gt;
-
-    &lt;p&gt;:autocmd FileType php :iabbrev &lt;buffer&gt; iff if () {&lt;cr&gt;}&lt;cr&gt;&lt;esc&gt;kkA&lt;left&gt;&lt;left&gt;&lt;left&gt;
-  :sleep 10m 睡眠10ms&lt;/left&gt;&lt;/left&gt;&lt;/left&gt;&lt;/esc&gt;&lt;/cr&gt;&lt;/cr&gt;&lt;/buffer&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;自动命令组grouping-autocommands&quot;&gt;自动命令组Grouping Autocommands&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;:aug[roup] {name}  group name 大小写敏感
-	...
-:augroup end/END
-
-:augroup testgroup
-:autocmd BufWrite * : echom &quot;foo&quot;
-:autocmd BufWrite * : echom &quot;bar&quot;
-:augroup END
-
-定义两个名称相同的命令组，一般情况下，后面定义的不会覆盖前面的,除非把autocmd!放在组里
-:augroup testgroup
-:autocmd!
-:autocmd BufWrite * : echom &quot;test&quot;
-:augroup END
-
-更多详情： :help autocmd-groups
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;operator-pending映射&quot;&gt;Operator-Pending映射&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;:help omap-info 	
-
-Operator-pending mappings can be used to define a movement command that can be
-used with any operator.  Simple example: &quot;:omap { w&quot; makes &quot;y{&quot; work like &quot;yw&quot;
-and &quot;d{&quot; like &quot;dw&quot;.
-
-:onoremap { :&amp;lt;c-u&amp;gt;normal! 0f{vi{&amp;lt;cr&amp;gt;   &quot;在包含{}的一行，执行d{、c{、y{  就可以删除/改变/复制{}之间的内容
-:onoremap ( :&amp;lt;c-u&amp;gt;normal! 0f(vi(&amp;lt;cr&amp;gt;  &quot;在包含()的一行，执行d(、c(、y(  就可以删除/改变/复制()之间的内容 
-
-The CTRL-U (&amp;lt;C-U&amp;gt;) is used to remove the range that Vim may insert. 
-
-
-:onoremap ih :&amp;lt;c-u&amp;gt;execute &quot;normal! ?^==\\+$\r:nohlsearch\rkvg_&quot;&amp;lt;cr&amp;gt;
-
-normal! 可以执行一些命令，但是遇到特殊字符就不行了，比如&amp;lt;cr&amp;gt;
-execute 把后面的字符串当作命令来执行。特殊字符需要转义,如\r代表回车 \\代表\
-
-g_: 移动到当前行的最后一个非空字符。$会选中最后一个换行符
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;状态条statusline&quot;&gt;状态条statusline&lt;/h3&gt;
-
-&lt;p&gt;statusline可以展示一些当前buffer内文件的信息，比如文件名称%f,完整路径%F, %m如果缓冲区内容修改表示为[+]
-默认情况下，statusline是隐藏的。显示： &lt;code&gt;:set laststatus=2&lt;/code&gt;,隐藏 &lt;code&gt;:set laststatus=0&lt;/code&gt;&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;定制项目&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;参数意义&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;%f&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;文件名称&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;%F&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;文件完整路径,我觉得这个完整路径有助于回答,我在哪里?&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;%m&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;如果缓冲区内容发生改变表示为[+],有助于你提醒自己，你在做什么？&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;%n&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;缓冲区号,&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;%y&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;文件类型，不过我觉得如果输出了文件名，这个有点多余&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;%v&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;虚列号&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;%l&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;行号&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;%L&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;总行数&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;%=&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;之后的状态都是右对齐,在这个之前是左对齐&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;%{expr}&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;表达式的结果，可以用这个定制很多特性的状态&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;我的statusline设置&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set statusline=buf%n\ %m
-set statusline+=\ %l,%v/%L
-set statusline+=\ %{&amp;amp;fileencoding?&amp;amp;fileencoding:&amp;amp;encoding} &quot;文件编码
-set statusline+=\ [%{&amp;amp;fileformat}] &quot;文件类型
-set statusline+=\ %{(exists(\&quot;bomb\&quot;)\ &amp;amp;&amp;amp;\ &amp;amp;bomb)?\&quot;Bom\&quot;:\&quot;\&quot;} &quot;如果有bomb头，就会显示Bom
-set statusline+=%{StatuslineGit()} &quot;显示git分支名称,需要定义如下两个函数
-set statusline+=\ %F
-
-function! GitBranch()
-  return system(&quot;git rev-parse --abbrev-ref HEAD 2&amp;gt;/dev/null | tr -d '\n'&quot;)
-endfunction
-
-function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) &amp;gt; 0?'  '.l:branchname.' ':''
-endfunction
-
-
-\&amp;lt;space&amp;gt; 是空格
-最后的效果如下：
-buf1  223,5/365 utf-8 [unix]   master  ~/Documents/github.io/_posts/2019-01-23-vimscript-note-1.md
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;autocmd-所有的事件&quot;&gt;autocmd 所有的事件&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;:help autocmd-events&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Name			triggered by ~
-
-	Reading
-|BufNewFile|		starting to edit a file that doesn't exist
-|BufReadPre|		starting to edit a new buffer, before reading the file
-|BufRead|		starting to edit a new buffer, after reading the file
-|BufReadPost|		starting to edit a new buffer, after reading the file
-|BufReadCmd|		before starting to edit a new buffer |Cmd-event|
-
-|FileReadPre|		before reading a file with a &quot;:read&quot; command
-|FileReadPost|		after reading a file with a &quot;:read&quot; command
-|FileReadCmd|		before reading a file with a &quot;:read&quot; command |Cmd-event|
-
-|FilterReadPre|		before reading a file from a filter command
-|FilterReadPost|	after reading a file from a filter command
-
-|StdinReadPre|		before reading from stdin into the buffer
-|StdinReadPost|		After reading from the stdin into the buffer
-
-	Writing
-|BufWrite|		starting to write the whole buffer to a file
-|BufWritePre|		starting to write the whole buffer to a file
-|BufWritePost|		after writing the whole buffer to a file
-|BufWriteCmd|		before writing the whole buffer to a file |Cmd-event|
-
-|FileWritePre|		starting to write part of a buffer to a file
-|FileWritePost|		after writing part of a buffer to a file
-|FileWriteCmd|		before writing part of a buffer to a file |Cmd-event|
-
-|FileAppendPre|		starting to append to a file
-|FileAppendPost|	after appending to a file
-|FileAppendCmd|		before appending to a file |Cmd-event|
-
-|FilterWritePre|	starting to write a file for a filter command or diff
-|FilterWritePost|	after writing a file for a filter command or diff
-
-	Buffers
-|BufAdd|		just after adding a buffer to the buffer list
-|BufCreate|		just after adding a buffer to the buffer list
-|BufDelete|		before deleting a buffer from the buffer list
-|BufWipeout|		before completely deleting a buffer
-
-|BufFilePre|		before changing the name of the current buffer
-|BufFilePost|		after changing the name of the current buffer
-
-|BufEnter|		after entering a buffer
-|BufLeave|		before leaving to another buffer
-|BufWinEnter|		after a buffer is displayed in a window
-|BufWinLeave|		before a buffer is removed from a window
-
-|BufUnload|		before unloading a buffer
-|BufHidden|		just after a buffer has become hidden
-|BufNew|		just after creating a new buffer
-
-|SwapExists|		detected an existing swap file
-
-	Options
-|FileType|		when the 'filetype' option has been set
-|Syntax|		when the 'syntax' option has been set
-|EncodingChanged|	after the 'encoding' option has been changed
-|TermChanged|		after the value of 'term' has changed
-|OptionSet|		after setting any option
-
-	Startup and exit
-|VimEnter|		after doing all the startup stuff
-|GUIEnter|		after starting the GUI successfully
-|GUIFailed|		after starting the GUI failed
-|TermResponse|		after the terminal response to |t_RV| is received
-
-|QuitPre|		when using `:quit`, before deciding whether to quit
-|VimLeavePre|		before exiting Vim, before writing the viminfo file
-|VimLeave|		before exiting Vim, after writing the viminfo file
-
-	Various
-|FileChangedShell|	Vim notices that a file changed since editing started
-|FileChangedShellPost|	After handling a file changed since editing started
-|FileChangedRO|		before making the first change to a read-only file
-
-|ShellCmdPost|		after executing a shell command
-|ShellFilterPost|	after filtering with a shell command
-
-|CmdUndefined|		a user command is used but it isn't defined
-|FuncUndefined|		a user function is used but it isn't defined
-|SpellFileMissing|	a spell file is used but it can't be found
-|SourcePre|		before sourcing a Vim script
-|SourceCmd|		before sourcing a Vim script |Cmd-event|
-
-|VimResized|		after the Vim window size changed
-|FocusGained|		Vim got input focus
-|FocusLost|		Vim lost input focus
-|CursorHold|		the user doesn't press a key for a while
-|CursorHoldI|		the user doesn't press a key for a while in Insert mode
-|CursorMoved|		the cursor was moved in Normal mode
-|CursorMovedI|		the cursor was moved in Insert mode
-
-|WinNew|		after creating a new window
-|TabNew|		after creating a new tab page
-|TabClosed|		after closing a tab page
-|WinEnter|		after entering another window
-|WinLeave|		before leaving a window
-|TabEnter|		after entering another tab page
-|TabLeave|		before leaving a tab page
-|CmdwinEnter|		after entering the command-line window
-|CmdwinLeave|		before leaving the command-line window
-
-|InsertEnter|		starting Insert mode
-|InsertChange|		when typing &amp;lt;Insert&amp;gt; while in Insert or Replace mode
-|InsertLeave|		when leaving Insert mode
-|InsertCharPre|		when a character was typed in Insert mode, before
-			inserting it
-
-|TextChanged|		after a change was made to the text in Normal mode
-|TextChangedI|		after a change was made to the text in Insert mode
-|TextYankPost|		after text is yanked or deleted
-
-|ColorScheme|		after loading a color scheme
-
-|RemoteReply|		a reply from a server Vim was received
-
-|QuickFixCmdPre|	before a quickfix command is run
-|QuickFixCmdPost|	after a quickfix command is run
-
-|SessionLoadPost|	after loading a session file
-
-|MenuPopup|		just before showing the popup menu
-|CompleteDone|		after Insert mode completion is done
-
-|User|			to be used in combination with &quot;:doautocmd&quot;
-
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="vim" /><category term="vimscript" /><category term="statusline" /><summary type="html">启动vim不加载.vimrc</summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="execute" /><category term="normal" /><category term="vimscript" /><category term="vim" /><summary type="html">Execute命令</summary></entry><entry><title type="html">vimscript regex</title><link href="http://localhost:4000/vimscript-regex/" rel="alternate" type="text/html" title="vimscript regex" /><published>2019-01-28T00:00:00+08:00</published><updated>2019-01-28T00:00:00+08:00</updated><id>http://localhost:4000/vimscript-regex</id><content type="html" xml:base="http://localhost:4000/vimscript-regex/"></content><author><name></name></author><category term="vimscript" /><category term="regex" /><category term="vim" /><summary type="html"></summary></entry></feed>

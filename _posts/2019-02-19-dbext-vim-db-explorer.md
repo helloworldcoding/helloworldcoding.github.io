@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "dbext an awesome database expolorer" 
+title: "dbext an awesome database client" 
 tags: [vim,database,navicat]
 description: "say goodbey to those bad database expolorer software" 
 ---

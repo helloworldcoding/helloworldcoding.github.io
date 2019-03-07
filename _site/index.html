@@ -131,6 +131,249 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-03-08T00:00:00+08:00"><a href="http://localhost:4000/tmux-note/">March 08, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/tmux-note/" rel="bookmark" title="My tmux config" itemprop="url">My tmux config</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <h4 id="窗口window和分区span快速切换">窗口(window)和分区span快速切换</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bind-key num
+在配置文件中加入`bind-key C-w last-window`就可以通过bind-key Ctrl+w来切换上次和当前的window了
+
+`bind-key C-a last-span`，就可以通过bind-key Ctrl+a来切换上次和和当前的span
+</code></pre></div></div>
+
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-03-07T00:00:00+08:00"><a href="http://localhost:4000/golang-basic/">March 07, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/golang-basic/" rel="bookmark" title="My tour of golang" itemprop="url">My tour of golang</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <h4 id="basic-types">Basic types</h4>
+
+<ul>
+  <li>bool   默认值false</li>
+  <li>string 默认值””</li>
+  <li>int  int8 int16 int32 int64 默认值0</li>
+  <li>uint uint8 uint16 uint32 uint64 uintptr</li>
+  <li>byte // int8的别名</li>
+  <li>rune // int32的别名,代表unicode值</li>
+  <li>float32 float64 默认值0</li>
+  <li>complex64 complex128</li>
+</ul>
+
+<h4 id="类型转换">类型转换</h4>
+
+<ul>
+  <li>T(v) 显示类型转换，如int(12.4),string(11244)
+    <ul>
+      <li>不过整型转为string是按照ascii码或unicode码转为对应的字符，所以有可能得到乱码</li>
+    </ul>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">原类型\转化后</th>
+      <th style="text-align: left">bool</th>
+      <th style="text-align: left">int</th>
+      <th style="text-align: left">float</th>
+      <th style="text-align: left">string</th>
+      <th style="text-align: left">complex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">bool</td>
+      <td style="text-align: left">1</td>
+      <td style="text-align: left">0</td>
+      <td style="text-align: left">0</td>
+      <td style="text-align: left">0</td>
+      <td style="text-align: left">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">int</td>
+      <td style="text-align: left">0</td>
+      <td style="text-align: left">1</td>
+      <td style="text-align: left">1</td>
+      <td style="text-align: left">1</td>
+      <td style="text-align: left">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">float</td>
+      <td style="text-align: left">0</td>
+      <td style="text-align: left">1</td>
+      <td style="text-align: left">1</td>
+      <td style="text-align: left">0</td>
+      <td style="text-align: left">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">string</td>
+      <td style="text-align: left">0</td>
+      <td style="text-align: left">0</td>
+      <td style="text-align: left">0</td>
+      <td style="text-align: left">1</td>
+      <td style="text-align: left">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">complex</td>
+      <td style="text-align: left">0</td>
+      <td style="text-align: left">0</td>
+      <td style="text-align: left">0</td>
+      <td style="text-align: left">0</td>
+      <td style="text-align: left">1</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="variables-with-initializers变量和初始化">Variables with initializers(变量和初始化)</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 再函数内部以下三种写法都一样
+var i,j int = 1, 3  // 全局可以用
+var i, j = 1,3     // 全局可以用
+i,j := 1,3 // 只能在函数体内部使用
+</code></pre></div></div>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-02-19T00:00:00+08:00"><a href="http://localhost:4000/dbext-vim-db-explorer/">February 19, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/dbext-vim-db-explorer/" rel="bookmark" title="dbext an awesome database client" itemprop="url">dbext an awesome database client</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <h1 id="可能是最适合开发的数据库客户端">可能是最适合开发的数据库客户端</h1>
+
+<h4 id="支持的数据库类型">支持的数据库类型:</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SAP Sybase SQL Anywhere (SA/ASA)
+SAP Sybase IQ
+SAP Sybase Adaptive Server Enterprise (ASE)
+SAP HANA
+SAP Sybase UltraLite (UL)
+Oracle
+Oracle RDB
+SQL Server
+MySQL
+PostgreSQL
+DB2
+Firebird
+Ingres
+Interbase
+SQLite
+</code></pre></div></div>
+
+<p>本文以MySQL为例，介绍一下该插件的功能。</p>
+
+<h3 id="安装配置">安装&amp;配置</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Lets test the connection, run the following command (Note the capital S): &gt;
+`:Select * from customer`
+Select, Update, Insert, Delete, Call, Drop, Alter, Create
+</code></pre></div></div>
+
+<h3 id="功能介绍">功能介绍</h3>
+
+<h4 id="connect">connect</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>使用快捷键 ：`&lt;leader&gt;sbp` leader键默认是`\`,  sbp(sql buffer prompt)
+使用ex命令：`:DBPromptForBufferParameters`
+然后选择要连接的数据库类型
+</code></pre></div></div>
+
+<h4 id="execute">execute</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>把光标置于sql语句中的任意位置（sql语句是一行）
+`&lt;leader&gt;sel`  sql execute line
+
+执行多行sql
+`&lt;leader&gt;se`  sql execute 
+`:DBExecSQLUnderCursor`
+
+执行选中的sql
+`:DBExecVisualSQL`
+&lt;leader&gt;se  和多行执行一样
+
+从表中查选,光标在表名称的单词上
+`&lt;leader&gt;st`  sql table
+`:DBSelectFromTable`
+执行的sql是：select * from table_name
+
+带条件的查询
+`&lt;leader&gt;stw`
+`:DBSelectFromTableWithWhere`
+会提示你输入where条件， 比如 id &gt; 1 and name like "zhangsan"
+执行的sql：select * from table_name where id &gt; 1 and name like "zhangsan"
+
+等待输入表名查询
+`&lt;leader&gt;sta`
+`:DBSelectFromTableAskName`
+会提示你输入你要查询的表名
+
+高亮选择表名查询
+`&lt;leader&gt;st`
+`:'&lt;,'&gt;DBSelectFromTable`
+</code></pre></div></div>
+
+<h4 id="describing-objects">Describing objects</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>表结构
+`:DBDescribeTable`
+`\sdt` sql describe table
+
+存储过程procedures
+`:DBDescribeProcedure`
+`\dp`  d (describe) p (procedure)
+</code></pre></div></div>
+
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2019-02-17T00:00:00+08:00"><a href="http://localhost:4000/vimscript-delete-swp-swo-file/">February 17, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
       
       <span class="entry-reading-time">
@@ -141,7 +384,7 @@ Reading time ~1 minute
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/vimscript-delete-swp-swo-file/" rel="bookmark" title="Vimscript Delete Swp Swo File" itemprop="url">Vimscript Delete Swp Swo File</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/vimscript-delete-swp-swo-file/" rel="bookmark" title="Vim delete swp&swo file" itemprop="url">Vim delete swp&swo file</a></h1>
     
   </header>
   <div class="entry-content">
@@ -209,187 +452,6 @@ Reading time ~1 minute
   </header>
   <div class="entry-content">
     
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-31T00:00:00+08:00"><a href="http://localhost:4000/Vimscript-Magic-Regrex/">January 31, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/Vimscript-Magic-Regrex/" rel="bookmark" title="Magic Regrex In Vimscript" itemprop="url">Magic Regrex In Vimscript</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <h1 id="正则表达式">正则表达式</h1>
-
-<h3 id="magic">Magic</h3>
-<p>{test<a href="123">123</a>}</p>
-<ul>
-  <li>Vim有<strong>四种</strong>不同的解析正则表达式的模式！！！真让人蒙蔽。。。</li>
-</ul>
-
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-30T00:00:00+08:00"><a href="http://localhost:4000/nodejs-promise/">January 30, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/nodejs-promise/" rel="bookmark" title="Nodejs Promise" itemprop="url">Nodejs Promise</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-29T00:00:00+08:00"><a href="http://localhost:4000/nodejs-note/">January 29, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/nodejs-note/" rel="bookmark" title="My nodejs note" itemprop="url">My nodejs note</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>Nodejs is just a kind of of js..^_^</p>
-
-<h1 id="基本语法">基本语法</h1>
-
-<p>pass</p>
-
-<h1 id="工程相关">工程相关</h1>
-
-<h3 id="模块">模块</h3>
-
-<p>在模块中，用require()方法来引入外部模块。用exports对象用于导出当前模块的方法或变量,只有导出的变量或方法才能被其他模块使用。就像是oop中的public。这点和erlang有点像，erlang是声明一个导出列表<code>-export([add/1,...])</code>
-在模块中，module对象，代表自身，exports也是module的一个属性.
-在nodejs中，一个文件就是一个模块.(其他编程语言也差不多)</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require()的参数就是模块标识。参数可以是小驼峰命名的字符串(模块名?),
-也可以是相对路径，或绝对路径。
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>两种模块，Node提供的核心模块(fs,http,path…)，用户编写的称为文件模块。</p>
-  </li>
-  <li>
-    <p>模块加载，优先从缓存加载，核心模块加载，路径形式的模块，自定义模块(加载最慢，一种特殊的文件模块)</p>
-
-    <ul>
-      <li>
-        <p>自定义模块</p>
-
-        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  文件内容：
-  console.log(module.paths);
-  node ./test.js,输出如下:
-  [ '/home/wm/code/nodejs/one_night/node_modules',
-    '/home/wm/code/nodejs/node_modules',
-    '/home/wm/code/node_modules',
-    '/home/wm/node_modules',
-    '/home/node_modules',
-    '/node_modules' ]
-  node查找自定义模块的规则：
-  当前文件目录的node_modules目录下查找
-  父目录的node_modules目录
-  ...
-  直到根目录下的node_modules目录
-</code></pre></div>        </div>
-      </li>
-      <li>
-        <p>引用了不同的模块，如果他们有相同的导出方法或属性。后面引用的模块会覆盖先引用的模块</p>
-
-        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ./node_modules/demo.js内容:
-  hello = function(){
-      console.log("hello world");
-  }
-  exports.hello;
-
-  ./node_modules/hi.js内容:
-  hello = function(){
-      console.log("hi world");
-  }
-  exports.hello;
-
-  ./test.js内容如下:
-  require('hi');
-  require("demo");
-  hello(); // 输出 hello world
-  console.log(module.paths);
-		
-  require("demo");
-  require('hi');
-  hello(); // 输出 hi world
-</code></pre></div>        </div>
-      </li>
-      <li>
-        <p>文件扩展名.当标识符没有扩展名时 Node会按.js .json .node的顺序依次补充扩展名，以此尝试</p>
-      </li>
-      <li>
-        <p>目录分析和包</p>
-
-        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  在node_modules/目录下的子目录，可以做成一个包，package
-  前提是，这个目录下要有一个package.json文件，并且文件能通过JSON.parse()解析出描述对象。
-  比如main属性，指定文件名进行定位。
-  如果没有package.json文件，node会依次查找index.js index.json index.node
-
-  ./test.js内容如下:
-  require("mypackage");
-  test("guogu0"); // 输出 myname is guoguo
-
-  在当前./node_modules/下发现了子目录./node_modules/mypackage/
-  mypackage/目录下有package.json文件，内容如下
-  {
-      "name":"mypack",
-      "version": "0.0.1",
-      "main": "./src/bar.js" // 先对package.json文件的路径
-  }
-  通过main属性可知，这个mypackage包 指定的是 ./node_modules/mypackage/src/bar.js文件
-  该bar.js文件内容如下：
-  test = function(name) {
-      console.log("myname is "+name);
-  }
-  exports.test = test;
-
-  所以test.js在require("mypackage")的时候，其实是找到了一个目录，也就是一个包。
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ul>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
