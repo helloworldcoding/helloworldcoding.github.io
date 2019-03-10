@@ -17,7 +17,16 @@ description: "python3生成中文不乱码的csv文件"
 excel的坑
 ===
 
-	在程序中能够正常输出中文，但是导出到文件后使用excel打开是出现中文乱码是因为excel能够正确识别用gb2312、gbk、gb18030或utf_8 with BOM 编码的中文，如果是utf_8 no BOM编码的中文文件，excel打开会乱码。
+
+> 在程序中能够正常输出中文，但是导出到文件后使用excel打开是出现中文乱码
+> 因为excel能够正确识别用gb2312、gbk、gb18030或utf_8 with BOM 编码的中文，
+> 如果是utf_8 no BOM编码的中文文件，excel打开会乱码。
+
+
+
+---
+
+### 代码如下：
 
 ```python3
 #!/usr/bin/python3
@@ -30,8 +39,8 @@ try:
     cursor = db.cursor()
     sql = "select org_code,command_return from upgrade_log where upgrade_id=1060 and stage_id=68"
     cursor.execute(sql)
-	# 关键是设置encoding="utf_8_sig",这样excel打开才不会出现中文乱码
-	# 这样生成的文件就是有BOM头，excel才能正常处理中文
+    # 关键是设置encoding="utf_8_sig",这样excel打开才不会出现中文乱码
+    # 这样生成的文件就是有BOM头，excel才能正常处理中文
     fh = open("400.csv","w",encoding="utf_8_sig") 
     for row in cursor:
         org_code = row[0]

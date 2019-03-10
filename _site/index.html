@@ -131,6 +131,104 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-03-09T00:00:00+08:00"><a href="http://localhost:4000/random-number/">March 09, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/random-number/" rel="bookmark" title="generate a random number" itemprop="url">generate a random number</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <h1 id="随机数定义">随机数定义</h1>
+
+<blockquote>
+  <p>根据密码学原理，随机数的随机性检验可以分为三个标准：</p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.统计学伪随机性。
+	统计学伪随机性指的是在给定的随机比特流样本中，1的数量大致等于0的数量，同理，“10”“01”“00”“11”四者数量大致相等。
+	类似的标准被称为统计学随机性。满足这类要求的数字在人类“一眼看上去”是随机的。
+2.密码学安全伪随机性。
+	其定义为，给定随机样本的一部分和随机算法，不能有效的演算出随机样本的剩余部分。
+3.真随机性。
+	其定义为随机样本不可重现。实际上只要给定边界条件，真随机数并不存在。
+	可是如果产生一个真随机数样本的边界条件十分复杂且难以捕捉（比如计算机当地的本底辐射波动值），可以认为用这个方法演算出来了真随机数。
+</code></pre></div></div>
+
+<blockquote>
+  <p>相应的，随机数也分为三类：</p>
+</blockquote>
+
+<ul>
+  <li>伪随机数：满足第一个条件的随机数。</li>
+  <li>密码学安全的伪随机数：同时满足前两个条件的随机数。可以通过密码学安全伪随机数生成器计算得出。</li>
+  <li>真随机数：同时满足三个条件的随机数。</li>
+</ul>
+
+<h1 id="生成伪随机数算法">生成伪随机数算法</h1>
+
+<blockquote>
+  <p>生成n个随机数 \(
+		x_1, x_2, …,  x_n
+		\)</p>
+</blockquote>
+
+<h3 id="linear-congruential-generator线性同余法">Linear congruential generator(线性同余法)</h3>
+
+<script type="math/tex; mode=display">x_n = (ax_{n-1} + b)mod(m)</script>
+
+<ol>
+  <li>a是乘数，b为增量，m为模数,\(x_0\)是种子数</li>
+  <li>一般而言，m是2的高次冪(\(2^{32}或2^{64}\)), \(0&lt;a&lt;m,0&lt;=b&lt;m,0&lt;x_0&lt;m\)</li>
+  <li>一般选取：\( 
+         a=4p+1, b=2q+1,其中p,q是正整数
+     \) <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></li>
+  <li>m越大，序列的周期越长, a和b越大产生的伪随机数越均匀</li>
+  <li>a和m互质，产生的随机数效果比不互质好</li>
+  <li>LCG不能用于随机数要求高的场合，例如不能用于Monte Carlo模拟，不能用于加密应用。</li>
+  <li>有些场合LCG有很好的应用，例如内存很紧张的嵌入式中，电子游戏控制台用的小整数，使用高位可以胜任。</li>
+</ol>
+
+<p>如下python实现</p>
+<pre><code class="language-python3">#!/usr/bin/python3
+#coding:utf-8
+
+a = 4*132+1
+
+</code></pre>
+
+<h3 id="blum-blum-shubbbs生成器">Blum Blum Shub(BBS生成器)</h3>
+
+<h3 id="mersenne-twister梅森旋转算法">Mersenne twister(梅森旋转算法)</h3>
+
+<h3 id="平法取中法">平法取中法</h3>
+<blockquote>
+  <p>a[i+1] = (10^(-m/2) * a[i] * a[i]) mod(10^m)
+<script type="math/tex">\sum_{n=1}^\infty 1/n^2 = \frac{\pi^2}{6}</script></p>
+</blockquote>
+
+<h4 id="参考资料">参考资料</h4>
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>https://www.cnblogs.com/forget406/p/5294143.html <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2019-03-08T00:00:00+08:00"><a href="http://localhost:4000/tmux-note/">March 08, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
       
       <span class="entry-reading-time">
@@ -153,6 +251,83 @@ Reading time ~1 minute
 `bind-key C-a last-span`，就可以通过bind-key Ctrl+a来切换上次和和当前的span
 </code></pre></div></div>
 
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-03-07T00:00:00+08:00"><a href="http://localhost:4000/python3-save-chinese-characters-to-csv-file/">March 07, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/python3-save-chinese-characters-to-csv-file/" rel="bookmark" title="Save  Chinese characters in csv files with Python3" itemprop="url">Save  Chinese characters in csv files with Python3</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <h1 id="导出一些数据给运营同学">导出一些数据给运营同学</h1>
+<h3 id="几点要求">几点要求</h3>
+
+<ul>
+  <li>一个脚本搞定，尽可能少地依赖其他包</li>
+  <li>可以用windows下的excel打开,中文不乱码</li>
+  <li>可以是csv文件，也可以用<code class="highlighter-rouge">\t</code>分割，生成xls文件</li>
+</ul>
+
+<h1 id="excel的坑">excel的坑</h1>
+
+<blockquote>
+  <p>在程序中能够正常输出中文，但是导出到文件后使用excel打开是出现中文乱码
+因为excel能够正确识别用gb2312、gbk、gb18030或utf_8 with BOM 编码的中文，
+如果是utf_8 no BOM编码的中文文件，excel打开会乱码。</p>
+</blockquote>
+
+<hr />
+
+<h3 id="代码如下">代码如下：</h3>
+
+<pre><code class="language-python3">#!/usr/bin/python3
+#coding:utf-8
+import pymysql
+import json
+
+try:
+    db = pymysql.connect("localhost","usrname","password","dbname",4040)
+    cursor = db.cursor()
+    sql = "select org_code,command_return from upgrade_log where upgrade_id=1060 and stage_id=68"
+    cursor.execute(sql)
+    # 关键是设置encoding="utf_8_sig",这样excel打开才不会出现中文乱码
+    # 这样生成的文件就是有BOM头，excel才能正常处理中文
+    fh = open("400.csv","w",encoding="utf_8_sig") 
+    for row in cursor:
+        org_code = row[0]
+        info =json.loads(row[1]) # row[1]是一段json
+        if len(info[2:]) &gt; 0:
+            for item in info[2:]:
+                line = item.replace("\t",',')
+                if line[-4:] != "NULL":
+                    line = line+", "
+                line = org_code+","+line +"\n"
+                fh.write(line)
+        else:
+            print(org_code)
+
+        
+except Exception as err:
+    print(err)
+
+fh.close()
+cursor.close()
+db.close()
+</code></pre>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -370,92 +545,6 @@ Select, Update, Insert, Delete, Call, Drop, Alter, Create
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-02-17T00:00:00+08:00"><a href="http://localhost:4000/vimscript-delete-swp-swo-file/">February 17, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/vimscript-delete-swp-swo-file/" rel="bookmark" title="Vim delete swp&swo file" itemprop="url">Vim delete swp&swo file</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>写了一个小函数，来删除vim的swp和swo文件。</p>
-
-<p>在normal模式下，输入\ds就可以删除该文件对应的swp和swo文件。</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>" 删除当前文件对应的swp和swo文件
-function! DeleteSpaw()
-	let l:fname = fnameescape(expand('%:t'))
-	let l:swp = '.'.l:fname.'.swp'
-	let l:swo = '.'.l:fname.'.swo'
-	if CheckFile(l:swp)
-		echom DeleteFile(l:swp) == 1 ? l:swp.' delete successfully' : l:swp.' delete faild '
-	endif
-	if CheckFile(l:swo)
-		echom DeleteFile(l:swo) == 1 ? l:swo.' delete successfully' : l:swo.' delete faild '
-	endif
-endfunction
-
-function! DeleteFile(filename)
-	let l:del_result = delete(expand(a:filename))
-	return l:del_result == 0 ? 1 : 0
-endfunction
-
-function! CheckFile(filename)
-	" 对于不可以读取的文件，换成glob
-	if filereadable(expand(a:filename)) 
-		return 1
-	else
-		return 0
-	endif
-endfunction
-
-" 调用删除swp,swo文件函数
-nnoremap &lt;leader&gt;ds :call DeleteSpaw()&lt;cr&gt;
-</code></pre></div></div>
-
-<h4 id="小结">小结</h4>
-
-<ul>
-  <li>获取文件名expand(‘%:t’),参考<code class="highlighter-rouge">help filename-modifiers</code></li>
-  <li>文件相关的函数，<code class="highlighter-rouge">filereadable(), delete()</code></li>
-  <li>函数内部对参数使用，a:param</li>
-</ul>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-31T00:00:00+08:00"><a href="http://localhost:4000/nodejs-async-await/">January 31, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/nodejs-async-await/" rel="bookmark" title="Nodejs Async Await" itemprop="url">Nodejs Async Await</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 
 <div class="pagination">
@@ -490,13 +579,6 @@ Reading time ~1 minute
         <li><a href="http://localhost:4000/page3/">3</a></li>
       
     
-      
-        
-        
-        
-        <li><a href="http://localhost:4000/page4/">4</a></li>
-      
-    
 
     
     
@@ -504,7 +586,7 @@ Reading time ~1 minute
     
 
     
-      <li><a href="http://localhost:4000/page5/">5</a></li>
+      <li><a href="http://localhost:4000/page6/">6</a></li>
     
 
     
@@ -526,6 +608,8 @@ Reading time ~1 minute
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 <script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
 
 
 

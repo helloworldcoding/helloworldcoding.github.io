@@ -7,6 +7,10 @@
 	<script src="{{ site.url }}/assets/js/vendor/mermaid.min.js"></script>
 {% endif %}
 
+{% if page.math == 1 %}
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+{% endif %}
+
 {% if site.google_analytics %}
 <!-- Asynchronous Google Analytics snippet -->
 <script>
