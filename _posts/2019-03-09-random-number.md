@@ -30,9 +30,25 @@ math: 1
 生成伪随机数算法
 ====
 
+
+> 伪随机数生成算法，也叫伪随机数生成器(Pseudo Random Number Generator，简称 PRNG)[^1]<br/>
+> 伪随机数序列，其实是确定的，只是看上去随机。比如在线性同余法中，当第一数确定后，
+> 后续的值也就确定了。<br/>
 > 生成n个随机数 \\(
 		x_1, x_2, ...,  x_n
 		\\)
+
+可以使用一个 4 元组\\( (Q, \sigma, \Sigma, f)\\) 定义一个伪随机数生成算法，
+其中:
+- \\(  Q  是有限状态集合， \\) 
+- \\(\sigma\\) 为状态转移函数， 
+- \\(\Sigma\\) 是有限输出集合， 
+- \\(f  是从 Q 到 \Sigma 的单射。\\) <br/>
+
+当需要一个伪随机数序列时，设定初始状态 \\( q_0 \in Q \\) ，每一次输出都由如下两个过程组成
+- \\( q_{n} = \sigma(q_{n-1}) \\)
+- \\( output_n = f(q_n), output_n \in \Sigma \\)
+
 
 ### Linear congruential generator(线性同余法)
 
@@ -42,32 +58,50 @@ $$ x_n = (ax_{n-1} + b)mod(m) $$
 2. 一般而言，m是2的高次冪(\\(2^{32}或2^{64}\\)), \\(0<a<m,0<=b<m,0<x_0<m\\)
 3. 一般选取：\\( 
 			a=4p+1, b=2q+1,其中p,q是正整数
-		\\) [^1]
+		\\) [^2]
 4. m越大，序列的周期越长, a和b越大产生的伪随机数越均匀
 5. a和m互质，产生的随机数效果比不互质好
-6. LCG不能用于随机数要求高的场合，例如不能用于Monte Carlo模拟，不能用于加密应用。
+6. LCG不能用于随机数要求高的场合，不能用于加密应用。
 7. 有些场合LCG有很好的应用，例如内存很紧张的嵌入式中，电子游戏控制台用的小整数，使用高位可以胜任。
 
-如下python实现
-```python3
-#!/usr/bin/python3
-#coding:utf-8
+```
+rand = 1
+def Lcg():
+	a = 69069
+	b = 1
+	m = 1<<22
+	global rand
+	rand = (a * rand + b) %m
+	return rand
 
-a = 4*132+1
+	
+```
 
+### 平法取中法
+>  1964年由冯.诺依曼提出。基本思路：将数列中\\(x_i\\)(假设有m位)平方，取得到2m位数(不足2m位，在最高位前面补0)
+>  取正中间m位数字，作为\\(x_{i+1}\\),由此产生一个伪随即数列。
+
+$$x_{i+1} =  (x_i^2 * 10^{-m/2}) mod (10^{m/2}) $$
+
+```
+rand = 1
+def middle_square():
+	global rand
+	m = 16
+	rand = rand ** 2
+	rand = (rand // 10**8) % 10**8
+	return rand
 ```
 
 ### Blum Blum Shub(BBS生成器)
 
 ### Mersenne twister(梅森旋转算法)
 
-### 平法取中法
->  a[i+1] = (10^(-m/2) * a[i] * a[i]) mod(10^m)
-$$\sum_{n=1}^\infty 1/n^2 = \frac{\pi^2}{6}$$
 
 
 
 
 
 #### 参考资料
-[^1]: https://www.cnblogs.com/forget406/p/5294143.html
+[^1]: https://zhuanlan.zhihu.com/p/33903430
+[^2]: https://www.cnblogs.com/forget406/p/5294143.html

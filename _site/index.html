@@ -174,10 +174,28 @@ Reading time ~1 minute
 <h1 id="生成伪随机数算法">生成伪随机数算法</h1>
 
 <blockquote>
-  <p>生成n个随机数 \(
+  <p>伪随机数生成算法，也叫伪随机数生成器(Pseudo Random Number Generator，简称 PRNG)<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup><br />
+伪随机数序列，其实是确定的，只是看上去随机。比如在线性同余法中，当第一数确定后，
+后续的值也就确定了。<br />
+生成n个随机数 \(
 		x_1, x_2, …,  x_n
 		\)</p>
 </blockquote>
+
+<p>可以使用一个 4 元组\( (Q, \sigma, \Sigma, f)\) 定义一个伪随机数生成算法，
+其中:</p>
+<ul>
+  <li>\(  Q  是有限状态集合， \)</li>
+  <li>\(\sigma\) 为状态转移函数，</li>
+  <li>\(\Sigma\) 是有限输出集合，</li>
+  <li>\(f  是从 Q 到 \Sigma 的单射。\) <br /></li>
+</ul>
+
+<p>当需要一个伪随机数序列时，设定初始状态 \( q_0 \in Q \) ，每一次输出都由如下两个过程组成</p>
+<ul>
+  <li>\( q_{n} = \sigma(q_{n-1}) \)</li>
+  <li>\( output_n = f(q_n), output_n \in \Sigma \)</li>
+</ul>
 
 <h3 id="linear-congruential-generator线性同余法">Linear congruential generator(线性同余法)</h3>
 
@@ -188,36 +206,54 @@ Reading time ~1 minute
   <li>一般而言，m是2的高次冪(\(2^{32}或2^{64}\)), \(0&lt;a&lt;m,0&lt;=b&lt;m,0&lt;x_0&lt;m\)</li>
   <li>一般选取：\( 
          a=4p+1, b=2q+1,其中p,q是正整数
-     \) <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></li>
+     \) <sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup></li>
   <li>m越大，序列的周期越长, a和b越大产生的伪随机数越均匀</li>
   <li>a和m互质，产生的随机数效果比不互质好</li>
-  <li>LCG不能用于随机数要求高的场合，例如不能用于Monte Carlo模拟，不能用于加密应用。</li>
+  <li>LCG不能用于随机数要求高的场合，不能用于加密应用。</li>
   <li>有些场合LCG有很好的应用，例如内存很紧张的嵌入式中，电子游戏控制台用的小整数，使用高位可以胜任。</li>
 </ol>
 
-<p>如下python实现</p>
-<pre><code class="language-python3">#!/usr/bin/python3
-#coding:utf-8
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rand = 1
+def Lcg():
+	a = 69069
+	b = 1
+	m = 1&lt;&lt;22
+	global rand
+	rand = (a * rand + b) %m
+	return rand
 
-a = 4*132+1
+	
+</code></pre></div></div>
 
-</code></pre>
+<h3 id="平法取中法">平法取中法</h3>
+<blockquote>
+  <p>1964年由冯.诺依曼提出。基本思路：将数列中\(x_i\)(假设有m位)平方，取得到2m位数(不足2m位，在最高位前面补0)
+ 取正中间m位数字，作为\(x_{i+1}\),由此产生一个伪随即数列。</p>
+</blockquote>
+
+<script type="math/tex; mode=display">x_{i+1} =  (x_i^2 * 10^{-m/2}) mod (10^{m/2})</script>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rand = 1
+def middle_square():
+	global rand
+	m = 16
+	rand = rand ** 2
+	rand = (rand // 10**8) % 10**8
+	return rand
+</code></pre></div></div>
 
 <h3 id="blum-blum-shubbbs生成器">Blum Blum Shub(BBS生成器)</h3>
 
 <h3 id="mersenne-twister梅森旋转算法">Mersenne twister(梅森旋转算法)</h3>
 
-<h3 id="平法取中法">平法取中法</h3>
-<blockquote>
-  <p>a[i+1] = (10^(-m/2) * a[i] * a[i]) mod(10^m)
-<script type="math/tex">\sum_{n=1}^\infty 1/n^2 = \frac{\pi^2}{6}</script></p>
-</blockquote>
-
 <h4 id="参考资料">参考资料</h4>
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>https://www.cnblogs.com/forget406/p/5294143.html <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+      <p>https://zhuanlan.zhihu.com/p/33903430 <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>https://www.cnblogs.com/forget406/p/5294143.html <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>

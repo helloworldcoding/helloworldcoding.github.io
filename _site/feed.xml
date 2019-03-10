@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-10T08:22:47+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">generate a random number</title><link href="http://localhost:4000/random-number/" rel="alternate" type="text/html" title="generate a random number" /><published>2019-03-09T00:00:00+08:00</published><updated>2019-03-09T00:00:00+08:00</updated><id>http://localhost:4000/random-number</id><content type="html" xml:base="http://localhost:4000/random-number/">&lt;h1 id=&quot;随机数定义&quot;&gt;随机数定义&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-11T00:00:53+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">generate a random number</title><link href="http://localhost:4000/random-number/" rel="alternate" type="text/html" title="generate a random number" /><published>2019-03-09T00:00:00+08:00</published><updated>2019-03-09T00:00:00+08:00</updated><id>http://localhost:4000/random-number</id><content type="html" xml:base="http://localhost:4000/random-number/">&lt;h1 id=&quot;随机数定义&quot;&gt;随机数定义&lt;/h1&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;根据密码学原理，随机数的随机性检验可以分为三个标准：&lt;/p&gt;
@@ -27,10 +27,28 @@
 &lt;h1 id=&quot;生成伪随机数算法&quot;&gt;生成伪随机数算法&lt;/h1&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;生成n个随机数 \(
+  &lt;p&gt;伪随机数生成算法，也叫伪随机数生成器(Pseudo Random Number Generator，简称 PRNG)&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;br /&gt;
+伪随机数序列，其实是确定的，只是看上去随机。比如在线性同余法中，当第一数确定后，
+后续的值也就确定了。&lt;br /&gt;
+生成n个随机数 \(
 		x_1, x_2, …,  x_n
 		\)&lt;/p&gt;
 &lt;/blockquote&gt;
+
+&lt;p&gt;可以使用一个 4 元组\( (Q, \sigma, \Sigma, f)\) 定义一个伪随机数生成算法，
+其中:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;\(  Q  是有限状态集合， \)&lt;/li&gt;
+  &lt;li&gt;\(\sigma\) 为状态转移函数，&lt;/li&gt;
+  &lt;li&gt;\(\Sigma\) 是有限输出集合，&lt;/li&gt;
+  &lt;li&gt;\(f  是从 Q 到 \Sigma 的单射。\) &lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;当需要一个伪随机数序列时，设定初始状态 \( q_0 \in Q \) ，每一次输出都由如下两个过程组成&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;\( q_{n} = \sigma(q_{n-1}) \)&lt;/li&gt;
+  &lt;li&gt;\( output_n = f(q_n), output_n \in \Sigma \)&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&quot;linear-congruential-generator线性同余法&quot;&gt;Linear congruential generator(线性同余法)&lt;/h3&gt;
 
@@ -41,36 +59,54 @@
   &lt;li&gt;一般而言，m是2的高次冪(\(2^{32}或2^{64}\)), \(0&amp;lt;a&amp;lt;m,0&amp;lt;=b&amp;lt;m,0&amp;lt;x_0&amp;lt;m\)&lt;/li&gt;
   &lt;li&gt;一般选取：\( 
          a=4p+1, b=2q+1,其中p,q是正整数
-     \) &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+     \) &lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
   &lt;li&gt;m越大，序列的周期越长, a和b越大产生的伪随机数越均匀&lt;/li&gt;
   &lt;li&gt;a和m互质，产生的随机数效果比不互质好&lt;/li&gt;
-  &lt;li&gt;LCG不能用于随机数要求高的场合，例如不能用于Monte Carlo模拟，不能用于加密应用。&lt;/li&gt;
+  &lt;li&gt;LCG不能用于随机数要求高的场合，不能用于加密应用。&lt;/li&gt;
   &lt;li&gt;有些场合LCG有很好的应用，例如内存很紧张的嵌入式中，电子游戏控制台用的小整数，使用高位可以胜任。&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;如下python实现&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python3&quot;&gt;#!/usr/bin/python3
-#coding:utf-8
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rand = 1
+def Lcg():
+	a = 69069
+	b = 1
+	m = 1&amp;lt;&amp;lt;22
+	global rand
+	rand = (a * rand + b) %m
+	return rand
 
-a = 4*132+1
+	
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;平法取中法&quot;&gt;平法取中法&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;1964年由冯.诺依曼提出。基本思路：将数列中\(x_i\)(假设有m位)平方，取得到2m位数(不足2m位，在最高位前面补0)
+ 取正中间m位数字，作为\(x_{i+1}\),由此产生一个伪随即数列。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x_{i+1} =  (x_i^2 * 10^{-m/2}) mod (10^{m/2})&lt;/script&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rand = 1
+def middle_square():
+	global rand
+	m = 16
+	rand = rand ** 2
+	rand = (rand // 10**8) % 10**8
+	return rand
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;blum-blum-shubbbs生成器&quot;&gt;Blum Blum Shub(BBS生成器)&lt;/h3&gt;
 
 &lt;h3 id=&quot;mersenne-twister梅森旋转算法&quot;&gt;Mersenne twister(梅森旋转算法)&lt;/h3&gt;
 
-&lt;h3 id=&quot;平法取中法&quot;&gt;平法取中法&lt;/h3&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;a[i+1] = (10^(-m/2) * a[i] * a[i]) mod(10^m)
-&lt;script type=&quot;math/tex&quot;&gt;\sum_{n=1}^\infty 1/n^2 = \frac{\pi^2}{6}&lt;/script&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
 &lt;h4 id=&quot;参考资料&quot;&gt;参考资料&lt;/h4&gt;
 &lt;div class=&quot;footnotes&quot;&gt;
   &lt;ol&gt;
     &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;https://www.cnblogs.com/forget406/p/5294143.html &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;https://zhuanlan.zhihu.com/p/33903430 &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;https://www.cnblogs.com/forget406/p/5294143.html &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;</content><author><name></name></author><category term="random number" /><category term="python" /><summary type="html">随机数定义</summary></entry><entry><title type="html">My tmux config</title><link href="http://localhost:4000/tmux-note/" rel="alternate" type="text/html" title="My tmux config" /><published>2019-03-08T00:00:00+08:00</published><updated>2019-03-08T00:00:00+08:00</updated><id>http://localhost:4000/tmux-note</id><content type="html" xml:base="http://localhost:4000/tmux-note/">&lt;h4 id=&quot;窗口window和分区span快速切换&quot;&gt;窗口(window)和分区span快速切换&lt;/h4&gt;
