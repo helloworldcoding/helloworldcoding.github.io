@@ -124,6 +124,7 @@ mermaid: 1
 				Note over ReleaseG2:jenkins构建beta g2环境
 				Note over ReleaseG2:在beta g2环境验证
 				alt beta g2环境验证通过
+					Note over ReleaseG2: 如果还有别的bg2/f2分支<br/>在prodg1验证中，就要等待
 					Note over ReleaseG2: jenkins构建prod g1环境
 					Note right of  ReleaseG2: 从G2选取部分租户<br/>漂移到prod g1
 					alt prod g1租户验证不通过
@@ -133,6 +134,7 @@ mermaid: 1
 						ReleaseG2 ->> Release : 合并到Release
 						ReleaseG2 ->> MasterG2: 合并到MasterG2<br/>并删除Bg2分支
 						deactivate Bg2
+						Note over ReleaseG2: 别的bg2/f2分支<br/>可以合并到ReleaseG2分支<br/>进行验证了
 					end
 					Note right of  ReleaseG2: 租户在prod g1上<br/>过了观察期(如1天)
 					Note right of  ReleaseG2: 把租户全部漂移<br/>到prod g1
