@@ -1,4 +1,127 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-15T14:23:57+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">generate a random number</title><link href="http://localhost:4000/random-number/" rel="alternate" type="text/html" title="generate a random number" /><published>2019-03-09T00:00:00+08:00</published><updated>2019-03-09T00:00:00+08:00</updated><id>http://localhost:4000/random-number</id><content type="html" xml:base="http://localhost:4000/random-number/">&lt;h1 id=&quot;随机数定义&quot;&gt;随机数定义&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-15T18:58:52+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">A brief intraduction to Plantuml</title><link href="http://localhost:4000/plantuml/" rel="alternate" type="text/html" title="A brief intraduction to Plantuml" /><published>2019-03-15T00:00:00+08:00</published><updated>2019-03-15T00:00:00+08:00</updated><id>http://localhost:4000/plantuml</id><content type="html" xml:base="http://localhost:4000/plantuml/">&lt;div&gt;
+&lt;img src=&quot;https://g.gravizo.com/svg?
+ digraph G {
+   main -&amp;gt; parse -&amp;gt; execute;
+   main -&amp;gt; init;
+   main -&amp;gt; cleanup;
+   execute -&amp;gt; make_string;
+   execute -&amp;gt; printf
+   init -&amp;gt; make_string;
+   main -&amp;gt; printf;
+   execute -&amp;gt; compare;
+ }
+&quot; /&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;img src=&quot;https://g.gravizo.com/svg?
+@startuml;
+
+actor User;
+participant &amp;quot;First Class&amp;quot; as A;
+participant &amp;quot;Second Class&amp;quot; as B;
+participant &amp;quot;Last Class&amp;quot; as C;
+
+User -&amp;gt; A: DoWork;
+activate A;
+
+A -&amp;gt; B: Create Request;
+activate B;
+
+B -&amp;gt; C: DoWork;
+activate C;
+
+C --&amp;gt; B: WorkDone;
+destroy C;
+
+B --&amp;gt; A: Request Created;
+deactivate B;
+
+A --&amp;gt; User: Done;
+deactivate A;
+
+@enduml
+&quot; /&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+
+&lt;img src=&quot;https://g.gravizo.com/svg?
+  digraph G {
+    aize =&amp;quot;4,4&amp;quot;;
+    main [shape=box];
+    main -&amp;gt; parse [weight=8];
+    parse -&amp;gt; execute;
+    main -&amp;gt; init [style=dotted];
+    main -&amp;gt; cleanup;
+    execute -&amp;gt; { make_string; printf}
+    init -&amp;gt; make_string;
+    edge [color=red];
+    main -&amp;gt; printf [style=bold,label=&amp;quot;100 times&amp;quot;];
+    make_string [label=&amp;quot;make a string&amp;quot;];
+    node [shape=box,style=filled,color=&amp;quot;.7 .3 1.0&amp;quot;];
+    execute -&amp;gt; compare;
+  }
+)&quot; /&gt;
+
+
+&lt;div&gt;
+&lt;img src=&quot;https://g.gravizo.com/source/svg/thiisthemark?http%3A%2F%2Fwww.gravizo.com&quot; /&gt;
+
+&lt;img src=&quot;http://www.gravizo.com/img/1x1.png#
+
+thiisthemark        
+@startuml
+object Object01
+object Object02
+object Object03
+object Object04
+object Object05
+object Object06
+object Object07
+object Object08
+
+Object01 &amp;lt;|-- Object02
+Object03 *-- Object04
+Object05 o-- &amp;quot;4&amp;quot; Object06
+Object07 .. Object08 : some labels
+@enduml
+thiisthemark        
+&quot; /&gt;
+&lt;/div&gt;
+
+&lt;img src=&quot;https://g.gravizo.com/svg?
+@startuml;
+
+(*) --&amp;gt; if &amp;quot;Some Test&amp;quot; then;
+
+  --&amp;gt;[true] &amp;quot;activity 1&amp;quot;;
+
+  if &amp;quot;&amp;quot; then;
+    -&amp;gt; &amp;quot;activity 3&amp;quot; as a3;
+  else;
+    if &amp;quot;Other test&amp;quot; then;
+      -left-&amp;gt; &amp;quot;activity 5&amp;quot;;
+    else;
+      --&amp;gt; &amp;quot;activity 6&amp;quot;;
+    endif;
+  endif;
+
+else;
+
+  -&amp;gt;[false] &amp;quot;activity 2&amp;quot;;
+
+endif;
+
+a3 --&amp;gt; if &amp;quot;last test&amp;quot; then;
+  --&amp;gt; &amp;quot;activity 7&amp;quot;;
+else;
+  -&amp;gt; &amp;quot;activity 8&amp;quot;;
+endif;
+
+@enduml 
+&quot; /&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="uml" /><category term="plantuml" /><summary type="html"></summary></entry><entry><title type="html">generate a random number</title><link href="http://localhost:4000/random-number/" rel="alternate" type="text/html" title="generate a random number" /><published>2019-03-09T00:00:00+08:00</published><updated>2019-03-09T00:00:00+08:00</updated><id>http://localhost:4000/random-number</id><content type="html" xml:base="http://localhost:4000/random-number/">&lt;h1 id=&quot;随机数定义&quot;&gt;随机数定义&lt;/h1&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;根据密码学原理，随机数的随机性检验可以分为三个标准：&lt;/p&gt;
@@ -381,109 +504,4 @@ nnoremap &amp;lt;leader&amp;gt;ds :call DeleteSpaw()&amp;lt;cr&amp;gt;
 &lt;p&gt;{test&lt;a href=&quot;123&quot;&gt;123&lt;/a&gt;}&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Vim有&lt;strong&gt;四种&lt;/strong&gt;不同的解析正则表达式的模式！！！真让人蒙蔽。。。&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><category term="vim" /><category term="vimscript" /><category term="regrex" /><summary type="html">正则表达式</summary></entry><entry><title type="html">Nodejs Async Await</title><link href="http://localhost:4000/nodejs-async-await/" rel="alternate" type="text/html" title="Nodejs Async Await" /><published>2019-01-31T00:00:00+08:00</published><updated>2019-01-31T00:00:00+08:00</updated><id>http://localhost:4000/nodejs-async-await</id><content type="html" xml:base="http://localhost:4000/nodejs-async-await/"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Nodejs Promise</title><link href="http://localhost:4000/nodejs-promise/" rel="alternate" type="text/html" title="Nodejs Promise" /><published>2019-01-30T00:00:00+08:00</published><updated>2019-01-30T00:00:00+08:00</updated><id>http://localhost:4000/nodejs-promise</id><content type="html" xml:base="http://localhost:4000/nodejs-promise/"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">My nodejs note</title><link href="http://localhost:4000/nodejs-note/" rel="alternate" type="text/html" title="My nodejs note" /><published>2019-01-29T00:00:00+08:00</published><updated>2019-01-29T00:00:00+08:00</updated><id>http://localhost:4000/nodejs-note</id><content type="html" xml:base="http://localhost:4000/nodejs-note/">&lt;p&gt;Nodejs is just a kind of of js..^_^&lt;/p&gt;
-
-&lt;h1 id=&quot;基本语法&quot;&gt;基本语法&lt;/h1&gt;
-
-&lt;p&gt;pass&lt;/p&gt;
-
-&lt;h1 id=&quot;工程相关&quot;&gt;工程相关&lt;/h1&gt;
-
-&lt;h3 id=&quot;模块&quot;&gt;模块&lt;/h3&gt;
-
-&lt;p&gt;在模块中，用require()方法来引入外部模块。用exports对象用于导出当前模块的方法或变量,只有导出的变量或方法才能被其他模块使用。就像是oop中的public。这点和erlang有点像，erlang是声明一个导出列表&lt;code&gt;-export([add/1,...])&lt;/code&gt;
-在模块中，module对象，代表自身，exports也是module的一个属性.
-在nodejs中，一个文件就是一个模块.(其他编程语言也差不多)&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require()的参数就是模块标识。参数可以是小驼峰命名的字符串(模块名?),
-也可以是相对路径，或绝对路径。
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;两种模块，Node提供的核心模块(fs,http,path…)，用户编写的称为文件模块。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;模块加载，优先从缓存加载，核心模块加载，路径形式的模块，自定义模块(加载最慢，一种特殊的文件模块)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;自定义模块&lt;/p&gt;
-
-        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  文件内容：
-  console.log(module.paths);
-  node ./test.js,输出如下:
-  [ '/home/wm/code/nodejs/one_night/node_modules',
-    '/home/wm/code/nodejs/node_modules',
-    '/home/wm/code/node_modules',
-    '/home/wm/node_modules',
-    '/home/node_modules',
-    '/node_modules' ]
-  node查找自定义模块的规则：
-  当前文件目录的node_modules目录下查找
-  父目录的node_modules目录
-  ...
-  直到根目录下的node_modules目录
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;引用了不同的模块，如果他们有相同的导出方法或属性。后面引用的模块会覆盖先引用的模块&lt;/p&gt;
-
-        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ./node_modules/demo.js内容:
-  hello = function(){
-      console.log(&quot;hello world&quot;);
-  }
-  exports.hello;
-
-  ./node_modules/hi.js内容:
-  hello = function(){
-      console.log(&quot;hi world&quot;);
-  }
-  exports.hello;
-
-  ./test.js内容如下:
-  require('hi');
-  require(&quot;demo&quot;);
-  hello(); // 输出 hello world
-  console.log(module.paths);
-		
-  require(&quot;demo&quot;);
-  require('hi');
-  hello(); // 输出 hi world
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;文件扩展名.当标识符没有扩展名时 Node会按.js .json .node的顺序依次补充扩展名，以此尝试&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;目录分析和包&lt;/p&gt;
-
-        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  在node_modules/目录下的子目录，可以做成一个包，package
-  前提是，这个目录下要有一个package.json文件，并且文件能通过JSON.parse()解析出描述对象。
-  比如main属性，指定文件名进行定位。
-  如果没有package.json文件，node会依次查找index.js index.json index.node
-
-  ./test.js内容如下:
-  require(&quot;mypackage&quot;);
-  test(&quot;guogu0&quot;); // 输出 myname is guoguo
-
-  在当前./node_modules/下发现了子目录./node_modules/mypackage/
-  mypackage/目录下有package.json文件，内容如下
-  {
-      &quot;name&quot;:&quot;mypack&quot;,
-      &quot;version&quot;: &quot;0.0.1&quot;,
-      &quot;main&quot;: &quot;./src/bar.js&quot; // 先对package.json文件的路径
-  }
-  通过main属性可知，这个mypackage包 指定的是 ./node_modules/mypackage/src/bar.js文件
-  该bar.js文件内容如下：
-  test = function(name) {
-      console.log(&quot;myname is &quot;+name);
-  }
-  exports.test = test;
-
-  所以test.js在require(&quot;mypackage&quot;)的时候，其实是找到了一个目录，也就是一个包。
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><category term="nodjs" /><category term="tiny demo" /><summary type="html">Nodejs is just a kind of of js..^_^</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><category term="vim" /><category term="vimscript" /><category term="regrex" /><summary type="html">正则表达式</summary></entry><entry><title type="html">Nodejs Async Await</title><link href="http://localhost:4000/nodejs-async-await/" rel="alternate" type="text/html" title="Nodejs Async Await" /><published>2019-01-31T00:00:00+08:00</published><updated>2019-01-31T00:00:00+08:00</updated><id>http://localhost:4000/nodejs-async-await</id><content type="html" xml:base="http://localhost:4000/nodejs-async-await/"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Nodejs Promise</title><link href="http://localhost:4000/nodejs-promise/" rel="alternate" type="text/html" title="Nodejs Promise" /><published>2019-01-30T00:00:00+08:00</published><updated>2019-01-30T00:00:00+08:00</updated><id>http://localhost:4000/nodejs-promise</id><content type="html" xml:base="http://localhost:4000/nodejs-promise/"></content><author><name></name></author><summary type="html"></summary></entry></feed>

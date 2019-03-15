@@ -45,6 +45,7 @@ plugins:
   - jekyll-gist
   - jekyll-feed
   - jekyll-mermaid
+  - jekyll-plantuml
 sass:
   sass_dir: _sass
   style: compressed

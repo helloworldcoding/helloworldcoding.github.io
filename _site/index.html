@@ -131,6 +131,152 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-03-15T00:00:00+08:00"><a href="http://localhost:4000/plantuml/">March 15, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/plantuml/" rel="bookmark" title="A brief intraduction to Plantuml" itemprop="url">A brief intraduction to Plantuml</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <div>
+<img src="https://g.gravizo.com/svg?
+ digraph G {
+   main -&gt; parse -&gt; execute;
+   main -&gt; init;
+   main -&gt; cleanup;
+   execute -&gt; make_string;
+   execute -&gt; printf
+   init -&gt; make_string;
+   main -&gt; printf;
+   execute -&gt; compare;
+ }
+" />
+</div>
+
+<div>
+<img src="https://g.gravizo.com/svg?
+@startuml;
+
+actor User;
+participant &quot;First Class&quot; as A;
+participant &quot;Second Class&quot; as B;
+participant &quot;Last Class&quot; as C;
+
+User -&gt; A: DoWork;
+activate A;
+
+A -&gt; B: Create Request;
+activate B;
+
+B -&gt; C: DoWork;
+activate C;
+
+C --&gt; B: WorkDone;
+destroy C;
+
+B --&gt; A: Request Created;
+deactivate B;
+
+A --&gt; User: Done;
+deactivate A;
+
+@enduml
+" />
+</div>
+
+<div>
+
+<img src="https://g.gravizo.com/svg?
+  digraph G {
+    aize =&quot;4,4&quot;;
+    main [shape=box];
+    main -&gt; parse [weight=8];
+    parse -&gt; execute;
+    main -&gt; init [style=dotted];
+    main -&gt; cleanup;
+    execute -&gt; { make_string; printf}
+    init -&gt; make_string;
+    edge [color=red];
+    main -&gt; printf [style=bold,label=&quot;100 times&quot;];
+    make_string [label=&quot;make a string&quot;];
+    node [shape=box,style=filled,color=&quot;.7 .3 1.0&quot;];
+    execute -&gt; compare;
+  }
+)" />
+
+
+<div>
+<img src="https://g.gravizo.com/source/svg/thiisthemark?http%3A%2F%2Fwww.gravizo.com" />
+
+<img src="http://www.gravizo.com/img/1x1.png#
+
+thiisthemark        
+@startuml
+object Object01
+object Object02
+object Object03
+object Object04
+object Object05
+object Object06
+object Object07
+object Object08
+
+Object01 &lt;|-- Object02
+Object03 *-- Object04
+Object05 o-- &quot;4&quot; Object06
+Object07 .. Object08 : some labels
+@enduml
+thiisthemark        
+" />
+</div>
+
+<img src="https://g.gravizo.com/svg?
+@startuml;
+
+(*) --&gt; if &quot;Some Test&quot; then;
+
+  --&gt;[true] &quot;activity 1&quot;;
+
+  if &quot;&quot; then;
+    -&gt; &quot;activity 3&quot; as a3;
+  else;
+    if &quot;Other test&quot; then;
+      -left-&gt; &quot;activity 5&quot;;
+    else;
+      --&gt; &quot;activity 6&quot;;
+    endif;
+  endif;
+
+else;
+
+  -&gt;[false] &quot;activity 2&quot;;
+
+endif;
+
+a3 --&gt; if &quot;last test&quot; then;
+  --&gt; &quot;activity 7&quot;;
+else;
+  -&gt; &quot;activity 8&quot;;
+endif;
+
+@enduml 
+" />
+</div>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2019-03-09T00:00:00+08:00"><a href="http://localhost:4000/random-number/">March 09, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
       
       <span class="entry-reading-time">
@@ -475,112 +621,6 @@ i,j := 1,3 // 只能在函数体内部使用
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-02-19T00:00:00+08:00"><a href="http://localhost:4000/dbext-vim-db-explorer/">February 19, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/dbext-vim-db-explorer/" rel="bookmark" title="dbext an awesome database client" itemprop="url">dbext an awesome database client</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <h1 id="可能是最适合开发的数据库客户端">可能是最适合开发的数据库客户端</h1>
-
-<h4 id="支持的数据库类型">支持的数据库类型:</h4>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SAP Sybase SQL Anywhere (SA/ASA)
-SAP Sybase IQ
-SAP Sybase Adaptive Server Enterprise (ASE)
-SAP HANA
-SAP Sybase UltraLite (UL)
-Oracle
-Oracle RDB
-SQL Server
-MySQL
-PostgreSQL
-DB2
-Firebird
-Ingres
-Interbase
-SQLite
-</code></pre></div></div>
-
-<p>本文以MySQL为例，介绍一下该插件的功能。</p>
-
-<h3 id="安装配置">安装&amp;配置</h3>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Lets test the connection, run the following command (Note the capital S): &gt;
-`:Select * from customer`
-Select, Update, Insert, Delete, Call, Drop, Alter, Create
-</code></pre></div></div>
-
-<h3 id="功能介绍">功能介绍</h3>
-
-<h4 id="connect">connect</h4>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>使用快捷键 ：`&lt;leader&gt;sbp` leader键默认是`\`,  sbp(sql buffer prompt)
-使用ex命令：`:DBPromptForBufferParameters`
-然后选择要连接的数据库类型
-</code></pre></div></div>
-
-<h4 id="execute">execute</h4>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>把光标置于sql语句中的任意位置（sql语句是一行）
-`&lt;leader&gt;sel`  sql execute line
-
-执行多行sql
-`&lt;leader&gt;se`  sql execute 
-`:DBExecSQLUnderCursor`
-
-执行选中的sql
-`:DBExecVisualSQL`
-&lt;leader&gt;se  和多行执行一样
-
-从表中查选,光标在表名称的单词上
-`&lt;leader&gt;st`  sql table
-`:DBSelectFromTable`
-执行的sql是：select * from table_name
-
-带条件的查询
-`&lt;leader&gt;stw`
-`:DBSelectFromTableWithWhere`
-会提示你输入where条件， 比如 id &gt; 1 and name like "zhangsan"
-执行的sql：select * from table_name where id &gt; 1 and name like "zhangsan"
-
-等待输入表名查询
-`&lt;leader&gt;sta`
-`:DBSelectFromTableAskName`
-会提示你输入你要查询的表名
-
-高亮选择表名查询
-`&lt;leader&gt;st`
-`:'&lt;,'&gt;DBSelectFromTable`
-</code></pre></div></div>
-
-<h4 id="describing-objects">Describing objects</h4>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>表结构
-`:DBDescribeTable`
-`\sdt` sql describe table
-
-存储过程procedures
-`:DBDescribeProcedure`
-`\dp`  d (describe) p (procedure)
-</code></pre></div></div>
-
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 
 <div class="pagination">
@@ -644,6 +684,9 @@ Select, Update, Insert, Delete, Call, Drop, Alter, Create
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 <script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
+
 
 
 

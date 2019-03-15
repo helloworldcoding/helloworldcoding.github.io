@@ -7,6 +7,12 @@
 	<script src="{{ site.url }}/assets/js/vendor/mermaid.min.js"></script>
 {% endif %}
 
+{% if page.plantuml== 1 %}
+	<script src="{{ site.url }}/assets/js/vendor/plantuml/jquery_plantuml.js"></script>
+	<script src="{{ site.url }}/assets/js/vendor/plantuml/rawdeflate.js"></script>
+{% endif %}
+
+
 {% if page.math == 1 %}
 	<!--
 	<script type="text/javascript" src="{{ site.url }}/assets/js/vendor/MathJax.js"></script>
