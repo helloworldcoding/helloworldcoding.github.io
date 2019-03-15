@@ -119,12 +119,11 @@ mermaid: 1
 		Bg2 ->> Test: 合并到test分支
 		Note over Test:jenkins构建测试环境，并验证
 		alt 测试环境验证通过
-			Bg2 ->> ReleaseG2 : 合并到ReleaseG2分支
+			Bg2 ->> ReleaseG2 : 合并到ReleaseG2分支<br/>如果还有别的bg2/f2分支<br/>在betag2/prodg1验证中，就要等待
 			alt 合并成功，没有冲突
 				Note over ReleaseG2:jenkins构建beta g2环境
 				Note over ReleaseG2:在beta g2环境验证
 				alt beta g2环境验证通过
-					Note over ReleaseG2: 如果还有别的bg2/f2分支<br/>在prodg1验证中，就要等待
 					Note over ReleaseG2: jenkins构建prod g1环境
 					Note right of  ReleaseG2: 从G2选取部分租户<br/>漂移到prod g1
 					alt prod g1租户验证不通过
@@ -132,7 +131,7 @@ mermaid: 1
 					else prod g1的租户验证通过
 						Note over ReleaseG2: 在prod g1等待
 						ReleaseG2 ->> Release : 合并到Release
-						ReleaseG2 ->> MasterG2: 合并到MasterG2<br/>并删除Bg2分支
+						ReleaseG2 ->> MasterG2: 合并到MasterG2 <br/>并删除Bg2分支
 						deactivate Bg2
 						Note over ReleaseG2: 别的bg2/f2分支<br/>可以合并到ReleaseG2分支<br/>进行验证了
 					end
