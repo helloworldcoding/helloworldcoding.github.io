@@ -127,7 +127,10 @@ mermaid: 1
 					Note over ReleaseG2: jenkins构建prod g1环境
 					Note right of  ReleaseG2: 从G2选取部分租户<br/>漂移到prod g1
 					alt prod g1的租户验证通过
-						Note over ReleaseG2: 在prod g1等待	
+						Note over ReleaseG2: 在prod g1等待
+						ReleaseG2 ->> Release : 合并到Release
+						ReleaseG2 ->> MasterG2: 合并到MasterG2<br/>并删除Bg2分支
+						deactivate Bg2
 					else prod g1租户验证不通过
 						ReleaseG2 -->> Bg2:验证不通过，查原因，重新提测
 					end
@@ -135,9 +138,6 @@ mermaid: 1
 					Note right of  ReleaseG2: 把租户全部漂移<br/>到prod g1
 					Note over ReleaseG2: jenkins构建prod g2环境
 					Note right of  ReleaseG2: 把prod g1租户<br/>全部漂移到prod g2
-					ReleaseG2 ->> Release : 合并到Release
-					ReleaseG2 ->> MasterG2: 合并到MasterG2<br/>并删除Bg2分支
-					deactivate Bg2
 				else beta g2环境验证不通过
 					ReleaseG2 -->> Bg2: beta g2验证不通过，查原因，重新提测
 				end
