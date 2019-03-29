@@ -131,6 +131,144 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-03-29T00:00:00+08:00"><a href="http://localhost:4000/summary/">March 29, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/summary/" rel="bookmark" title="Job summary" itemprop="url">Job summary</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <div class="mermaid">
+	graph LR
+		ykupgrader[ykupgrader]
+		stage(步骤管理)
+		flow(流程管理)
+		upgrade(更新管理)
+		gray(灰度管理)
+		private(私有化管理)
+		role(角色管理)
+		ykupgrader --&gt; stage
+		ykupgrader --&gt; flow
+		ykupgrader --&gt; upgrade
+		ykupgrader --&gt; gray
+		ykupgrader --&gt; private
+		ykupgrader --&gt; role
+
+		stage --&gt; stage_note[如何定义步骤]
+		flow  --&gt; flow_note[如何创建流程]
+</div>
+
+<h3 id="步骤stage">步骤stage</h3>
+
+<ol>
+  <li>步骤名称规范(用下划线分割单词)</li>
+</ol>
+
+<ul>
+  <li>
+    <p>脚本步骤: 环境_script_git仓库,因为租户漂移时要判断</p>
+  </li>
+  <li>
+    <p>sql步骤: 环境_数据库_sql  // 要以_sql结尾</p>
+  </li>
+  <li>crontab步骤: 环境_crontab</li>
+  <li>
+    <p>config步骤: 环境_config</p>
+  </li>
+  <li>jenkins步骤: 环境_私有化租户_jenkins //要以_jenkins结尾</li>
+</ul>
+
+<ol>
+  <li>步骤的定义</li>
+</ol>
+
+<h3 id="流程flow">流程flow</h3>
+
+<ol>
+  <li>
+    <p>流程名称</p>
+  </li>
+  <li>
+    <p>创建流程</p>
+
+    <ul>
+      <li>灰度流程f分支</li>
+      <li>f2/bg2分支流程</li>
+      <li>其他流程</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="更新upgrade">更新upgrade</h3>
+
+<ol>
+  <li>
+    <p>更新类型</p>
+  </li>
+  <li>
+    <p>创建更新</p>
+  </li>
+  <li>
+    <p>审核更新</p>
+  </li>
+  <li>
+    <p>执行更新</p>
+  </li>
+  <li>
+    <p>其他说明</p>
+  </li>
+</ol>
+
+<h3 id="灰度漂移">灰度漂移</h3>
+
+<h3 id="私有化更新">私有化更新</h3>
+
+<h3 id="用户和权限管理">用户和权限管理</h3>
+
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-03-25T00:00:00+08:00"><a href="http://localhost:4000/rabbitmq-basic/">March 25, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/rabbitmq-basic/" rel="bookmark" title="Note of Rabbitmq basic" itemprop="url">Note of Rabbitmq basic</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <h1 id="rabbitmq-兔子消息队列">Rabbitmq 兔子消息队列</h1>
+
+<h3 id="查看队列长度">查看队列长度</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rabbitmqctl  list_queues | grep _some_keyword | awk -F' ' '{print $2}' // 默认是/这个vhosts
+rabbitmqctl -p ykupgrader_vhost list_queues | grep _some_keyword | awk -F' ' '{print $2}' // -p 指定vhost
+</code></pre></div></div>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2019-03-17T00:00:00+08:00"><a href="http://localhost:4000/thread-basic/">March 17, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
       
       <span class="entry-reading-time">
@@ -601,113 +739,6 @@ def middle_square():
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-03-08T00:00:00+08:00"><a href="http://localhost:4000/tmux-note/">March 08, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/tmux-note/" rel="bookmark" title="My tmux config" itemprop="url">My tmux config</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <h4 id="窗口window和分区span快速切换">窗口(window)和分区span快速切换</h4>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bind-key num
-在配置文件中加入`bind-key C-w last-window`就可以通过bind-key Ctrl+w来切换上次和当前的window了
-
-`bind-key C-a last-span`，就可以通过bind-key Ctrl+a来切换上次和和当前的span
-</code></pre></div></div>
-
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-03-07T00:00:00+08:00"><a href="http://localhost:4000/python3-save-chinese-characters-to-csv-file/">March 07, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/python3-save-chinese-characters-to-csv-file/" rel="bookmark" title="Save  Chinese characters in csv files with Python3" itemprop="url">Save  Chinese characters in csv files with Python3</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <h1 id="导出一些数据给运营同学">导出一些数据给运营同学</h1>
-<h3 id="几点要求">几点要求</h3>
-
-<ul>
-  <li>一个脚本搞定，尽可能少地依赖其他包</li>
-  <li>可以用windows下的excel打开,中文不乱码</li>
-  <li>可以是csv文件，也可以用<code class="highlighter-rouge">\t</code>分割，生成xls文件</li>
-</ul>
-
-<h1 id="excel的坑">excel的坑</h1>
-
-<blockquote>
-  <p>在程序中能够正常输出中文，但是导出到文件后使用excel打开是出现中文乱码
-因为excel能够正确识别用gb2312、gbk、gb18030或utf_8 with BOM 编码的中文，
-如果是utf_8 no BOM编码的中文文件，excel打开会乱码。</p>
-</blockquote>
-
-<hr />
-
-<h3 id="代码如下">代码如下：</h3>
-
-<pre><code class="language-python3">#!/usr/bin/python3
-#coding:utf-8
-import pymysql
-import json
-
-try:
-    db = pymysql.connect("localhost","usrname","password","dbname",4040)
-    cursor = db.cursor()
-    sql = "select org_code,command_return from upgrade_log where upgrade_id=1060 and stage_id=68"
-    cursor.execute(sql)
-    # 关键是设置encoding="utf_8_sig",这样excel打开才不会出现中文乱码
-    # 这样生成的文件就是有BOM头，excel才能正常处理中文
-    fh = open("400.csv","w",encoding="utf_8_sig") 
-    for row in cursor:
-        org_code = row[0]
-        info =json.loads(row[1]) # row[1]是一段json
-        if len(info[2:]) &gt; 0:
-            for item in info[2:]:
-                line = item.replace("\t",',')
-                if line[-4:] != "NULL":
-                    line = line+", "
-                line = org_code+","+line +"\n"
-                fh.write(line)
-        else:
-            print(org_code)
-
-        
-except Exception as err:
-    print(err)
-
-fh.close()
-cursor.close()
-db.close()
-</code></pre>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 
 <div class="pagination">
@@ -749,7 +780,7 @@ db.close()
     
 
     
-      <li><a href="http://localhost:4000/page6/">6</a></li>
+      <li><a href="http://localhost:4000/page7/">7</a></li>
     
 
     
