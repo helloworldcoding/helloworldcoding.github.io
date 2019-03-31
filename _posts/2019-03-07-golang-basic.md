@@ -207,6 +207,8 @@ func main() {
 
 #### 数组
 
+> 数组的大小在定义之后就固定了，所以在golang代码中，数组用得不是很多，而切片(可以简单理解为长度可变的数组）用得很多
+
 - 数组申明: `var variable [SIZE] variable_type`
 	var arr [10] int
 	var variable_name [SIZE1][SIZE2]...[SIZEN] variable_type  //多维数组
@@ -332,10 +334,19 @@ func main() {
 
 #### Slice切片
 
-> slice是对数组的抽象。数组的长度固定,有时不发方便使用。切片的长度不固定，可以追加元素，容量增大
+** A slice is a descriptor of an array segment. It consists of a pointer to the array, the length of the segment, and its capacity (the maximum length of the segment).  **
+
+> slice是对数组的抽象。数组的长度固定,有时不发方便使用。切片的长度不固定([]中没内容)，可以追加元素，容量增大<br>
+> An array variable denotes the entire array; it is not a pointer to the first array element (as would be the case in C).
+<br>
+
 
 - 定义和初始化
 	
+	letters := []string{'a','b','c'} // 定义一个切片,注意中括号中没内容
+	letters2 := [10]string{'a','b','c'} // 定义一个数组,注意中括号中有整数
+	letters3 := [...]string{'a','b','c'} // 定义一个数组,注意中括号中有...
+
 	var identifier []type //声明一个切片,没有指定大小,此时值为nil
 	var identifier []type = make([]type,len) // 声明一个切片，指定大小
 	identifier := make([]type,len) // 同上
@@ -367,6 +378,19 @@ func main() {
 
 	s2 := make([]int,len(s),cap(s)*2)
 	copy(s2,s) // 把s的内容复制到s1
+
+- 切片作为函数参数(其实是引用传参)
+
+	func deal(x []int) {
+		x[0] = 66
+	}
+	
+	func main() {
+		a := make([]int,5) // 创建一个切片
+		fmt.Println(a) // [0,0,0,0,0]
+		deal(a) // 实际a就是一个引用传参，不是传值。这点和数组不同。
+		fmt.Println(a) // [1,0,0,0,0]
+	}
 
 #### Range
 

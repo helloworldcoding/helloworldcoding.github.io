@@ -131,6 +131,64 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-03-31T00:00:00+08:00"><a href="http://localhost:4000/vim-tmux-hotkeys/">March 31, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/vim-tmux-hotkeys/" rel="bookmark" title="vim and tmux" itemprop="url">vim and tmux</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <h1 id="learn-some-skills">Learn some skills</h1>
+
+<h3 id="open-two-or--more-files-with-vim">open two or  more files with vim</h3>
+
+<p>vim 1.py 2.py -O</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-O split the window left/right
+-o split the window up/down
+</code></pre></div></div>
+
+<p>:windo difft</p>
+
+<p>// check the difference between the two files, just like <code class="highlighter-rouge">git diff</code></p>
+
+<h3 id="edit-the-last-modified-file">edit the last modified file</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim $(ls -t | head -1)
+
+or you can set an alias,update your ~/.bashrc
+`alias vim1='vim $(ls -t | head -1)'`
+</code></pre></div></div>
+
+<h3 id="jumplist--changelist">Jumplist &amp; Changelist</h3>
+
+<p>change jump through buffers</p>
+
+<p><code class="highlighter-rouge">Ctrl+o</code>/<code class="highlighter-rouge">Ctrl+i</code>  cycel through: jumps<br />
+<code class="highlighter-rouge">g;</code>/<code class="highlighter-rouge">g,</code>  cycel through:changes</p>
+
+<p><code class="highlighter-rouge">gf</code> goto the file when the cursor is on the filepath</p>
+
+<h3 id="window-routing">window routing</h3>
+
+<p>:vert sf file
+<code class="highlighter-rouge">ctrl+x</code> routing the window</p>
+
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2019-03-29T00:00:00+08:00"><a href="http://localhost:4000/summary/">March 29, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
       
       <span class="entry-reading-time">
@@ -600,140 +658,6 @@ usecase usecase
 @enduml
 " />
 </div>
-</div>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-03-09T00:00:00+08:00"><a href="http://localhost:4000/random-number/">March 09, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/random-number/" rel="bookmark" title="generate a random number" itemprop="url">generate a random number</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <h1 id="随机数定义">随机数定义</h1>
-
-<blockquote>
-  <p>根据密码学原理，随机数的随机性检验可以分为三个标准：</p>
-</blockquote>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.统计学伪随机性。
-	统计学伪随机性指的是在给定的随机比特流样本中，1的数量大致等于0的数量，同理，“10”“01”“00”“11”四者数量大致相等。
-	类似的标准被称为统计学随机性。满足这类要求的数字在人类“一眼看上去”是随机的。
-2.密码学安全伪随机性。
-	其定义为，给定随机样本的一部分和随机算法，不能有效的演算出随机样本的剩余部分。
-3.真随机性。
-	其定义为随机样本不可重现。实际上只要给定边界条件，真随机数并不存在。
-	可是如果产生一个真随机数样本的边界条件十分复杂且难以捕捉（比如计算机当地的本底辐射波动值），可以认为用这个方法演算出来了真随机数。
-</code></pre></div></div>
-
-<blockquote>
-  <p>相应的，随机数也分为三类：</p>
-</blockquote>
-
-<ul>
-  <li>伪随机数：满足第一个条件的随机数。</li>
-  <li>密码学安全的伪随机数：同时满足前两个条件的随机数。可以通过密码学安全伪随机数生成器计算得出。</li>
-  <li>真随机数：同时满足三个条件的随机数。</li>
-</ul>
-
-<h1 id="生成伪随机数算法">生成伪随机数算法</h1>
-
-<blockquote>
-  <p>伪随机数生成算法，也叫伪随机数生成器(Pseudo Random Number Generator，简称 PRNG)<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup><br />
-伪随机数序列，其实是确定的，只是看上去随机。比如在线性同余法中，当第一数确定后，
-后续的值也就确定了。<br />
-生成n个随机数 \(
-		x_1, x_2, …,  x_n
-		\)</p>
-</blockquote>
-
-<p>可以使用一个 4 元组\( (Q, \sigma, \Sigma, f)\) 定义一个伪随机数生成算法，
-其中:</p>
-<ul>
-  <li>\(  Q  是有限状态集合， \)</li>
-  <li>\(\sigma\) 为状态转移函数，</li>
-  <li>\(\Sigma\) 是有限输出集合，</li>
-  <li>\(f  是从 Q 到 \Sigma 的单射。\) <br /></li>
-</ul>
-
-<p>当需要一个伪随机数序列时，设定初始状态 \( q_0 \in Q \) ，每一次输出都由如下两个过程组成</p>
-<ul>
-  <li>\( q_{n} = \sigma(q_{n-1}) \)</li>
-  <li>\( output_n = f(q_n), output_n \in \Sigma \)</li>
-</ul>
-
-<h3 id="linear-congruential-generator线性同余法">Linear congruential generator(线性同余法)</h3>
-
-<script type="math/tex; mode=display">x_n = (ax_{n-1} + b)mod(m)</script>
-
-<ol>
-  <li>a是乘数，b为增量，m为模数,\(x_0\)是种子数</li>
-  <li>一般而言，m是2的高次冪(\(2^{32}或2^{64}\)), \(0&lt;a&lt;m,0&lt;=b&lt;m,0&lt;x_0&lt;m\)</li>
-  <li>一般选取：\( 
-         a=4p+1, b=2q+1,其中p,q是正整数
-     \) <sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup></li>
-  <li>m越大，序列的周期越长, a和b越大产生的伪随机数越均匀</li>
-  <li>a和m互质，产生的随机数效果比不互质好</li>
-  <li>LCG不能用于随机数要求高的场合，不能用于加密应用。</li>
-  <li>有些场合LCG有很好的应用，例如内存很紧张的嵌入式中，电子游戏控制台用的小整数，使用高位可以胜任。</li>
-</ol>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rand = 1
-def Lcg():
-	a = 69069
-	b = 1
-	m = 1&lt;&lt;22
-	global rand
-	rand = (a * rand + b) %m
-	return rand
-
-	
-</code></pre></div></div>
-
-<h3 id="平法取中法">平法取中法</h3>
-<blockquote>
-  <p>1964年由冯.诺依曼提出。基本思路：将数列中\(x_i\)(假设有m位)平方，取得到2m位数(不足2m位，在最高位前面补0)
- 取正中间m位数字，作为\(x_{i+1}\),由此产生一个伪随即数列。</p>
-</blockquote>
-
-<script type="math/tex; mode=display">x_{i+1} =  (x_i^2 * 10^{-m/2}) mod (10^{m/2})</script>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rand = 1
-def middle_square():
-	global rand
-	m = 16
-	rand = rand ** 2
-	rand = (rand // 10**8) % 10**8
-	return rand
-</code></pre></div></div>
-
-<h3 id="blum-blum-shubbbs生成器">Blum Blum Shub(BBS生成器)</h3>
-
-<h3 id="mersenne-twister梅森旋转算法">Mersenne twister(梅森旋转算法)</h3>
-
-<h4 id="参考资料">参考资料</h4>
-<div class="footnotes">
-  <ol>
-    <li id="fn:1">
-      <p>https://zhuanlan.zhihu.com/p/33903430 <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:2">
-      <p>https://www.cnblogs.com/forget406/p/5294143.html <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
 </div>
 
   </div><!-- /.entry-content -->

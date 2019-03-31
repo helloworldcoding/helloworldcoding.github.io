@@ -1,4 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-29T18:16:55+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">Job summary</title><link href="http://localhost:4000/summary/" rel="alternate" type="text/html" title="Job summary" /><published>2019-03-29T00:00:00+08:00</published><updated>2019-03-29T00:00:00+08:00</updated><id>http://localhost:4000/summary</id><content type="html" xml:base="http://localhost:4000/summary/">&lt;div class=&quot;mermaid&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-31T23:17:03+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">vim and tmux</title><link href="http://localhost:4000/vim-tmux-hotkeys/" rel="alternate" type="text/html" title="vim and tmux" /><published>2019-03-31T00:00:00+08:00</published><updated>2019-03-31T00:00:00+08:00</updated><id>http://localhost:4000/vim-tmux-hotkeys</id><content type="html" xml:base="http://localhost:4000/vim-tmux-hotkeys/">&lt;h1 id=&quot;learn-some-skills&quot;&gt;Learn some skills&lt;/h1&gt;
+
+&lt;h3 id=&quot;open-two-or--more-files-with-vim&quot;&gt;open two or  more files with vim&lt;/h3&gt;
+
+&lt;p&gt;vim 1.py 2.py -O&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;-O split the window left/right
+-o split the window up/down
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;:windo difft&lt;/p&gt;
+
+&lt;p&gt;// check the difference between the two files, just like &lt;code class=&quot;highlighter-rouge&quot;&gt;git diff&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;edit-the-last-modified-file&quot;&gt;edit the last modified file&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim $(ls -t | head -1)
+
+or you can set an alias,update your ~/.bashrc
+`alias vim1='vim $(ls -t | head -1)'`
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;jumplist--changelist&quot;&gt;Jumplist &amp;amp; Changelist&lt;/h3&gt;
+
+&lt;p&gt;change jump through buffers&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl+o&lt;/code&gt;/&lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl+i&lt;/code&gt;  cycel through: jumps&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;g;&lt;/code&gt;/&lt;code class=&quot;highlighter-rouge&quot;&gt;g,&lt;/code&gt;  cycel through:changes&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;gf&lt;/code&gt; goto the file when the cursor is on the filepath&lt;/p&gt;
+
+&lt;h3 id=&quot;window-routing&quot;&gt;window routing&lt;/h3&gt;
+
+&lt;p&gt;:vert sf file
+&lt;code class=&quot;highlighter-rouge&quot;&gt;ctrl+x&lt;/code&gt; routing the window&lt;/p&gt;</content><author><name></name></author><category term="vim" /><category term="tmux" /><summary type="html">Learn some skills</summary></entry><entry><title type="html">Job summary</title><link href="http://localhost:4000/summary/" rel="alternate" type="text/html" title="Job summary" /><published>2019-03-29T00:00:00+08:00</published><updated>2019-03-29T00:00:00+08:00</updated><id>http://localhost:4000/summary</id><content type="html" xml:base="http://localhost:4000/summary/">&lt;div class=&quot;mermaid&quot;&gt;
 	graph LR
 		ykupgrader[ykupgrader]
 		stage(步骤管理)
@@ -766,6 +800,10 @@ i,j := 1,3 // 只能在函数体内部使用
 
 &lt;h4 id=&quot;数组&quot;&gt;数组&lt;/h4&gt;
 
+&lt;blockquote&gt;
+  &lt;p&gt;数组的大小在定义之后就固定了，所以在golang代码中，数组用得不是很多，而切片(可以简单理解为长度可变的数组）用得很多&lt;/p&gt;
+&lt;/blockquote&gt;
+
 &lt;ul&gt;
   &lt;li&gt;
     &lt;p&gt;数组申明: &lt;code class=&quot;highlighter-rouge&quot;&gt;var variable [SIZE] variable_type&lt;/code&gt;
@@ -909,13 +947,21 @@ fmt.Printf(&quot;a的内存地址:%x\n&quot;,&amp;amp;a)  // 输出十六进制 
 
 &lt;h4 id=&quot;slice切片&quot;&gt;Slice切片&lt;/h4&gt;
 
+&lt;p&gt;** A slice is a descriptor of an array segment. It consists of a pointer to the array, the length of the segment, and its capacity (the maximum length of the segment).  **&lt;/p&gt;
+
 &lt;blockquote&gt;
-  &lt;p&gt;slice是对数组的抽象。数组的长度固定,有时不发方便使用。切片的长度不固定，可以追加元素，容量增大&lt;/p&gt;
+  &lt;p&gt;slice是对数组的抽象。数组的长度固定,有时不发方便使用。切片的长度不固定([]中没内容)，可以追加元素，容量增大&lt;br /&gt;
+An array variable denotes the entire array; it is not a pointer to the first array element (as would be the case in C).
+&lt;br /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
     &lt;p&gt;定义和初始化&lt;/p&gt;
+
+    &lt;p&gt;letters := []string{‘a’,’b’,’c’} // 定义一个切片,注意中括号中没内容
+  letters2 := [10]string{‘a’,’b’,’c’} // 定义一个数组,注意中括号中有整数
+  letters3 := […]string{‘a’,’b’,’c’} // 定义一个数组,注意中括号中有…&lt;/p&gt;
 
     &lt;p&gt;var identifier []type //声明一个切片,没有指定大小,此时值为nil
   var identifier []type = make([]type,len) // 声明一个切片，指定大小
@@ -950,6 +996,20 @@ fmt.Printf(&quot;a的内存地址:%x\n&quot;,&amp;amp;a)  // 输出十六进制 
 
     &lt;p&gt;s2 := make([]int,len(s),cap(s)*2)
   copy(s2,s) // 把s的内容复制到s1&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;切片作为函数参数(其实是引用传参)&lt;/p&gt;
+
+    &lt;p&gt;func deal(x []int) {
+      x[0] = 66
+  }&lt;/p&gt;
+
+    &lt;p&gt;func main() {
+      a := make([]int,5) // 创建一个切片
+      fmt.Println(a) // [0,0,0,0,0]
+      deal(a) // 实际a就是一个引用传参，不是传值。这点和数组不同。
+      fmt.Println(a) // [1,0,0,0,0]
+  }&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -1181,44 +1241,4 @@ Select, Update, Insert, Delete, Call, Drop, Alter, Create
 存储过程procedures
 `:DBDescribeProcedure`
 `\dp`  d (describe) p (procedure)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="vim" /><category term="database" /><category term="navicat" /><summary type="html">可能是最适合开发的数据库客户端</summary></entry><entry><title type="html">Vim delete swp&amp;amp;swo file</title><link href="http://localhost:4000/vimscript-delete-swp-swo-file/" rel="alternate" type="text/html" title="Vim delete swp&amp;swo file" /><published>2019-02-17T00:00:00+08:00</published><updated>2019-02-17T00:00:00+08:00</updated><id>http://localhost:4000/vimscript-delete-swp-swo-file</id><content type="html" xml:base="http://localhost:4000/vimscript-delete-swp-swo-file/">&lt;p&gt;写了一个小函数，来删除vim的swp和swo文件。&lt;/p&gt;
-
-&lt;p&gt;在normal模式下，输入\ds就可以删除该文件对应的swp和swo文件。&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot; 删除当前文件对应的swp和swo文件
-function! DeleteSpaw()
-	let l:fname = fnameescape(expand('%:t'))
-	let l:swp = '.'.l:fname.'.swp'
-	let l:swo = '.'.l:fname.'.swo'
-	if CheckFile(l:swp)
-		echom DeleteFile(l:swp) == 1 ? l:swp.' delete successfully' : l:swp.' delete faild '
-	endif
-	if CheckFile(l:swo)
-		echom DeleteFile(l:swo) == 1 ? l:swo.' delete successfully' : l:swo.' delete faild '
-	endif
-endfunction
-
-function! DeleteFile(filename)
-	let l:del_result = delete(expand(a:filename))
-	return l:del_result == 0 ? 1 : 0
-endfunction
-
-function! CheckFile(filename)
-	&quot; 对于不可以读取的文件，换成glob
-	if filereadable(expand(a:filename)) 
-		return 1
-	else
-		return 0
-	endif
-endfunction
-
-&quot; 调用删除swp,swo文件函数
-nnoremap &amp;lt;leader&amp;gt;ds :call DeleteSpaw()&amp;lt;cr&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;小结&quot;&gt;小结&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;获取文件名expand(‘%:t’),参考&lt;code class=&quot;highlighter-rouge&quot;&gt;help filename-modifiers&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;文件相关的函数，&lt;code class=&quot;highlighter-rouge&quot;&gt;filereadable(), delete()&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;函数内部对参数使用，a:param&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><category term="vim" /><category term="swp" /><category term="swo" /><category term="delete" /><summary type="html">写了一个小函数，来删除vim的swp和swo文件。</summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="vim" /><category term="database" /><category term="navicat" /><summary type="html">可能是最适合开发的数据库客户端</summary></entry></feed>
