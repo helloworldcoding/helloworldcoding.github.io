@@ -39,6 +39,7 @@ change jump through buffers
 
 ### window routing
 
-:vert sf file
+:vert sf file 
+:sf {FIILE} // spilt window and :find {FILE}
 `ctrl+x` routing the window
 	

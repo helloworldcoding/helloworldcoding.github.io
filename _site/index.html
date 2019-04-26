@@ -131,6 +131,149 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-04-26T00:00:00+08:00"><a href="http://localhost:4000/new-job/">April 26, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/new-job/" rel="bookmark" title="New Job" itemprop="url">New Job</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <h1 id="新人报到">新人报到</h1>
+
+<h3 id="个人简介">个人简介</h3>
+
+<ul>
+  <li>业余爱好： 遛娃，跑步，羽毛球，游泳</li>
+  <li>身份标签： 奶爸，IT从业者，毕业大学生，退役军人</li>
+  <li>座右铭：学无止境</li>
+</ul>
+
+<h3 id="vim之抛砖引玉">Vim之抛砖引玉</h3>
+
+<p><strong>两句玩笑</strong></p>
+
+<blockquote>
+  <p>世界上有三种编辑器:Vim,Emacs和其他。
+Vim是编辑器之神，Emacs是神之编辑器。</p>
+</blockquote>
+
+<p><strong>一个重点</strong></p>
+<blockquote>
+  <p>不要使用方向键,不要使用方向键，不要使用方向键</p>
+</blockquote>
+
+<h4 id="vim使用场景">vim使用场景</h4>
+
+<ol>
+  <li>ssh登陆服务器,查看文件</li>
+  <li>coding?</li>
+  <li>数据处理</li>
+</ol>
+
+<p>常用的三种模式： normal // insert // visual
+模式间的切换</p>
+
+<p>移动光标(hjkl) <br />
+w	往后移动一个单词
+b	往前移动一个单词
+gg	到第一行
+G	到最后一行
+gj/gk	屏幕行的移动
+ctrl+u	光标向上移动半个屏幕
+ctrl+d	光标向下移动半个屏幕
+I	光标移动到行首，并进入插入模式
+A	光标移动到行尾，并进入插入模式
+^(shift+6)	移动到行首非空字符处
+0	光标移动到行首	
+$	光标移动到行尾
+:num	跳转到指定行，比如:12 就是跳转到12行</p>
+
+<p>屏幕滚动 <br />
+zz	把光标所在行设置在屏幕中间
+zt	把光标所在行定位到屏幕顶部
+zb	把光标所在行定位到屏幕底部</p>
+
+<p>括号匹配 <br />
+	把光标放在括号上，然后按下%,就跳到闭合的括号上</p>
+
+<p>输入补全</p>
+<ol>
+  <li>补全单词 ctrl+x  ctrl+n/ctrl+p</li>
+  <li>补全路径 ctrl+x  ctrl+f</li>
+</ol>
+
+<p>查找字符</p>
+<ol>
+  <li>单行查找 <br />
+ f 字符   向后查找某字符，<code class="highlighter-rouge">;</code>可以重复该查找
+ F 字符   向前查找某字符，<code class="highlighter-rouge">;</code>可以重复该查找</li>
+  <li>全文查找
+ /search_string	从光标所在位置，往下查找，N/n跳转
+ ?search_string	从光标所在位置，往上查找，N/n跳转
+ *查找	把光标移动到某个单词上，然后按下*,就可以查到所有的单词	
+ :noh	关闭高亮</li>
+</ol>
+
+<p>位置标记(即使关闭了文件，再打开，位置信息也存在)</p>
+
+<p>``	当前文件上次跳转的地方
+`.		上次修改的地方; 比比如第二天，你再打开文件。
+`^		上次插入的地方; 比如开了个会或者和同事沟通了一些事情之后</p>
+
+<p>编辑后，发现需要root权限<br />
+	:w ! sudo tee %</p>
+
+<p>做计算<br />
+	insert模式，ctrl+r =3600<em>24</em>7</p>
+
+<p>查看字符ascii码,16进制，8进制 <br />
+	normal模式，ga 查看光标下的字符的ascii码</p>
+
+<p>一些配置</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set nocompatible
+set nu
+set relativenumber
+syntax on
+set tabstop=4
+set shiftwidth=4 "自动对齐空格数
+set softtabstop=4 "退格键一次可以删除4个空格
+set autoindent
+filetype indent on
+
+iabbrev adn and
+iabbrev ture true
+
+" 去掉高亮
+nnoremap ,, :noh&lt;cr&gt;
+</code></pre></div></div>
+
+<p><strong>一个问题</strong> <br />
+vim会上瘾……</p>
+
+<p><strong>一些图片</strong></p>
+
+<figure>
+	<a href=""><img src="/images/guoguo.jpg" alt="" /></a>
+	<a href=""><img src="/images/new_solider.jpg" alt="" /></a>
+	<a href=""><img src="/images/tank.jpg" alt="" /></a>
+	<a href=""><img src="/images/cover.jpg" alt="" /></a>
+</figure>
+
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2019-03-31T00:00:00+08:00"><a href="http://localhost:4000/vim-tmux-hotkeys/">March 31, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
       
       <span class="entry-reading-time">
@@ -178,7 +321,8 @@ or you can set an alias,update your ~/.bashrc
 
 <h3 id="window-routing">window routing</h3>
 
-<p>:vert sf file
+<p>:vert sf file 
+:sf {FIILE} // spilt window and :find {FILE}
 <code class="highlighter-rouge">ctrl+x</code> routing the window</p>
 
 
@@ -225,27 +369,23 @@ Reading time ~1 minute
 
 <h3 id="步骤stage">步骤stage</h3>
 
-<ol>
-  <li>步骤名称规范(用下划线分割单词)</li>
-</ol>
+<p><strong>1. 步骤名称规范(用下划线分割单词)</strong></p>
 
 <ul>
-  <li>
-    <p>脚本步骤: 环境_script_git仓库,因为租户漂移时要判断</p>
-  </li>
-  <li>
-    <p>sql步骤: 环境_数据库_sql  // 要以_sql结尾</p>
-  </li>
+  <li>脚本步骤: 环境_script_git仓库(因为租户漂移时要判断,stage_name ‘like 环境_script_%’)</li>
+  <li>sql步骤: 环境_数据库_sql  // 要以_sql结尾</li>
   <li>crontab步骤: 环境_crontab</li>
-  <li>
-    <p>config步骤: 环境_config</p>
-  </li>
+  <li>config步骤: 环境_config</li>
   <li>jenkins步骤: 环境_私有化租户_jenkins //要以_jenkins结尾</li>
 </ul>
 
-<ol>
-  <li>步骤的定义</li>
-</ol>
+<p><strong>2. 步骤定义</strong></p>
+
+<ul>
+  <li>脚本步骤:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div>    </div>
+  </li>
+</ul>
 
 <h3 id="流程flow">流程flow</h3>
 
@@ -485,180 +625,6 @@ pthread_mutex_lock方法可以对代码快进行加锁</p>
 
 <p>当多个线程对内存中存储位置很接近的变量进行修改时，容易导致false sharing<br />
 比如thread1修改arr[0]d的值，thread2修改arr[1]的值。</p>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-03-15T00:00:00+08:00"><a href="http://localhost:4000/plantuml/">March 15, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Helloworldcoding">Helloworldcoding</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/plantuml/" rel="bookmark" title="A brief intraduction to Plantuml" itemprop="url">A brief intraduction to Plantuml</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <div>
-<img src="https://g.gravizo.com/svg?
- digraph G {
-   main -&gt; parse -&gt; execute;
-   main -&gt; init;
-   main -&gt; cleanup;
-   execute -&gt; make_string;
-   execute -&gt; printf
-   init -&gt; make_string;
-   main -&gt; printf;
-   execute -&gt; compare;
- }
-" />
-</div>
-
-<div>
-<img src="https://g.gravizo.com/svg?
-@startuml;
-
-actor User;
-participant &quot;First Class&quot; as A;
-participant &quot;Second Class&quot; as B;
-participant &quot;Last Class&quot; as C;
-
-User -&gt; A: DoWork;
-activate A;
-
-A -&gt; B: Create Request;
-activate B;
-
-B -&gt; C: DoWork;
-activate C;
-
-C --&gt; B: WorkDone;
-destroy C;
-
-B --&gt; A: Request Created;
-deactivate B;
-
-A --&gt; User: Done;
-deactivate A;
-
-@enduml
-" />
-</div>
-
-<div>
-
-<img src="https://g.gravizo.com/svg?
-  digraph G {
-    aize =&quot;4,4&quot;;
-    main [shape=box];
-    main -&gt; parse [weight=8];
-    parse -&gt; execute;
-    main -&gt; init [style=dotted];
-    main -&gt; cleanup;
-    execute -&gt; { make_string; printf}
-    init -&gt; make_string;
-    edge [color=red];
-    main -&gt; printf [style=bold,label=&quot;100 times&quot;];
-    make_string [label=&quot;make a string&quot;];
-    node [shape=box,style=filled,color=&quot;.7 .3 1.0&quot;];
-    execute -&gt; compare;
-  }
-)" />
-
-
-<div>
-<img src="https://g.gravizo.com/source/svg/thiisthemark?http%3A%2F%2Fwww.gravizo.com" />
-
-<img src="http://www.gravizo.com/img/1x1.png#
-
-thiisthemark        
-@startuml
-object Object01
-object Object02
-object Object03
-object Object04
-object Object05
-object Object06
-object Object07
-object Object08
-
-Object01 &lt;|-- Object02
-Object03 *-- Object04
-Object05 o-- &quot;4&quot; Object06
-Object07 .. Object08 : some labels
-@enduml
-thiisthemark        
-" />
-</div>
-
-<img src="https://g.gravizo.com/svg?
-@startuml;
-
-(*) --&gt; if &quot;Some Test&quot; then;
-
-  --&gt;[true] &quot;activity 1&quot;;
-
-  if &quot;&quot; then;
-    -&gt; &quot;activity 3&quot; as a3;
-  else;
-    if &quot;Other test&quot; then;
-      -left-&gt; &quot;activity 5&quot;;
-    else;
-      --&gt; &quot;activity 6&quot;;
-    endif;
-  endif;
-
-else;
-
-  -&gt;[false] &quot;activity 2&quot;;
-
-endif;
-
-a3 --&gt; if &quot;last test&quot; then;
-  --&gt; &quot;activity 7&quot;;
-else;
-  -&gt; &quot;activity 8&quot;;
-endif;
-
-@enduml 
-" />
-
-<div>
-<img src="https://g.gravizo.com/svg?
-@startuml
-actor actor
-agent agent
-artifact artifact
-boundary boundary
-card card
-cloud cloud
-component component
-control control
-database database
-entity entity
-file file
-folder folder
-frame frame
-interface  interface
-node node
-package package
-queue queue
-stack stack
-rectangle rectangle
-storage storage
-usecase usecase
-@enduml
-" />
-</div>
-</div>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->

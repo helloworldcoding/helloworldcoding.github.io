@@ -1,4 +1,123 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-31T23:17:03+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">vim and tmux</title><link href="http://localhost:4000/vim-tmux-hotkeys/" rel="alternate" type="text/html" title="vim and tmux" /><published>2019-03-31T00:00:00+08:00</published><updated>2019-03-31T00:00:00+08:00</updated><id>http://localhost:4000/vim-tmux-hotkeys</id><content type="html" xml:base="http://localhost:4000/vim-tmux-hotkeys/">&lt;h1 id=&quot;learn-some-skills&quot;&gt;Learn some skills&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-27T01:34:03+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hello world, Let’s Coding!</title><subtitle>Keeping looking,don't settle.</subtitle><entry><title type="html">New Job</title><link href="http://localhost:4000/new-job/" rel="alternate" type="text/html" title="New Job" /><published>2019-04-26T00:00:00+08:00</published><updated>2019-04-26T00:00:00+08:00</updated><id>http://localhost:4000/new-job</id><content type="html" xml:base="http://localhost:4000/new-job/">&lt;h1 id=&quot;新人报到&quot;&gt;新人报到&lt;/h1&gt;
+
+&lt;h3 id=&quot;个人简介&quot;&gt;个人简介&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;业余爱好： 遛娃，跑步，羽毛球，游泳&lt;/li&gt;
+  &lt;li&gt;身份标签： 奶爸，IT从业者，毕业大学生，退役军人&lt;/li&gt;
+  &lt;li&gt;座右铭：学无止境&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;vim之抛砖引玉&quot;&gt;Vim之抛砖引玉&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;两句玩笑&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;世界上有三种编辑器:Vim,Emacs和其他。
+Vim是编辑器之神，Emacs是神之编辑器。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;一个重点&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;不要使用方向键,不要使用方向键，不要使用方向键&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;vim使用场景&quot;&gt;vim使用场景&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;ssh登陆服务器,查看文件&lt;/li&gt;
+  &lt;li&gt;coding?&lt;/li&gt;
+  &lt;li&gt;数据处理&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;常用的三种模式： normal // insert // visual
+模式间的切换&lt;/p&gt;
+
+&lt;p&gt;移动光标(hjkl) &lt;br /&gt;
+w	往后移动一个单词
+b	往前移动一个单词
+gg	到第一行
+G	到最后一行
+gj/gk	屏幕行的移动
+ctrl+u	光标向上移动半个屏幕
+ctrl+d	光标向下移动半个屏幕
+I	光标移动到行首，并进入插入模式
+A	光标移动到行尾，并进入插入模式
+^(shift+6)	移动到行首非空字符处
+0	光标移动到行首	
+$	光标移动到行尾
+:num	跳转到指定行，比如:12 就是跳转到12行&lt;/p&gt;
+
+&lt;p&gt;屏幕滚动 &lt;br /&gt;
+zz	把光标所在行设置在屏幕中间
+zt	把光标所在行定位到屏幕顶部
+zb	把光标所在行定位到屏幕底部&lt;/p&gt;
+
+&lt;p&gt;括号匹配 &lt;br /&gt;
+	把光标放在括号上，然后按下%,就跳到闭合的括号上&lt;/p&gt;
+
+&lt;p&gt;输入补全&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;补全单词 ctrl+x  ctrl+n/ctrl+p&lt;/li&gt;
+  &lt;li&gt;补全路径 ctrl+x  ctrl+f&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;查找字符&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;单行查找 &lt;br /&gt;
+ f 字符   向后查找某字符，&lt;code class=&quot;highlighter-rouge&quot;&gt;;&lt;/code&gt;可以重复该查找
+ F 字符   向前查找某字符，&lt;code class=&quot;highlighter-rouge&quot;&gt;;&lt;/code&gt;可以重复该查找&lt;/li&gt;
+  &lt;li&gt;全文查找
+ /search_string	从光标所在位置，往下查找，N/n跳转
+ ?search_string	从光标所在位置，往上查找，N/n跳转
+ *查找	把光标移动到某个单词上，然后按下*,就可以查到所有的单词	
+ :noh	关闭高亮&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;位置标记(即使关闭了文件，再打开，位置信息也存在)&lt;/p&gt;
+
+&lt;p&gt;``	当前文件上次跳转的地方
+`.		上次修改的地方; 比比如第二天，你再打开文件。
+`^		上次插入的地方; 比如开了个会或者和同事沟通了一些事情之后&lt;/p&gt;
+
+&lt;p&gt;编辑后，发现需要root权限&lt;br /&gt;
+	:w ! sudo tee %&lt;/p&gt;
+
+&lt;p&gt;做计算&lt;br /&gt;
+	insert模式，ctrl+r =3600&lt;em&gt;24&lt;/em&gt;7&lt;/p&gt;
+
+&lt;p&gt;查看字符ascii码,16进制，8进制 &lt;br /&gt;
+	normal模式，ga 查看光标下的字符的ascii码&lt;/p&gt;
+
+&lt;p&gt;一些配置&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set nocompatible
+set nu
+set relativenumber
+syntax on
+set tabstop=4
+set shiftwidth=4 &quot;自动对齐空格数
+set softtabstop=4 &quot;退格键一次可以删除4个空格
+set autoindent
+filetype indent on
+
+iabbrev adn and
+iabbrev ture true
+
+&quot; 去掉高亮
+nnoremap ,, :noh&amp;lt;cr&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;一个问题&lt;/strong&gt; &lt;br /&gt;
+vim会上瘾……&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;一些图片&lt;/strong&gt;&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;a href=&quot;&quot;&gt;&lt;img src=&quot;/images/guoguo.jpg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
+	&lt;a href=&quot;&quot;&gt;&lt;img src=&quot;/images/new_solider.jpg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
+	&lt;a href=&quot;&quot;&gt;&lt;img src=&quot;/images/tank.jpg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
+	&lt;a href=&quot;&quot;&gt;&lt;img src=&quot;/images/cover.jpg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
+&lt;/figure&gt;</content><author><name></name></author><summary type="html">新人报到</summary></entry><entry><title type="html">vim and tmux</title><link href="http://localhost:4000/vim-tmux-hotkeys/" rel="alternate" type="text/html" title="vim and tmux" /><published>2019-03-31T00:00:00+08:00</published><updated>2019-03-31T00:00:00+08:00</updated><id>http://localhost:4000/vim-tmux-hotkeys</id><content type="html" xml:base="http://localhost:4000/vim-tmux-hotkeys/">&lt;h1 id=&quot;learn-some-skills&quot;&gt;Learn some skills&lt;/h1&gt;
 
 &lt;h3 id=&quot;open-two-or--more-files-with-vim&quot;&gt;open two or  more files with vim&lt;/h3&gt;
 
@@ -31,7 +150,8 @@ or you can set an alias,update your ~/.bashrc
 
 &lt;h3 id=&quot;window-routing&quot;&gt;window routing&lt;/h3&gt;
 
-&lt;p&gt;:vert sf file
+&lt;p&gt;:vert sf file 
+:sf {FIILE} // spilt window and :find {FILE}
 &lt;code class=&quot;highlighter-rouge&quot;&gt;ctrl+x&lt;/code&gt; routing the window&lt;/p&gt;</content><author><name></name></author><category term="vim" /><category term="tmux" /><summary type="html">Learn some skills</summary></entry><entry><title type="html">Job summary</title><link href="http://localhost:4000/summary/" rel="alternate" type="text/html" title="Job summary" /><published>2019-03-29T00:00:00+08:00</published><updated>2019-03-29T00:00:00+08:00</updated><id>http://localhost:4000/summary</id><content type="html" xml:base="http://localhost:4000/summary/">&lt;div class=&quot;mermaid&quot;&gt;
 	graph LR
 		ykupgrader[ykupgrader]
@@ -54,27 +174,23 @@ or you can set an alias,update your ~/.bashrc
 
 &lt;h3 id=&quot;步骤stage&quot;&gt;步骤stage&lt;/h3&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;步骤名称规范(用下划线分割单词)&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;1. 步骤名称规范(用下划线分割单词)&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;脚本步骤: 环境_script_git仓库,因为租户漂移时要判断&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;sql步骤: 环境_数据库_sql  // 要以_sql结尾&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;脚本步骤: 环境_script_git仓库(因为租户漂移时要判断,stage_name ‘like 环境_script_%’)&lt;/li&gt;
+  &lt;li&gt;sql步骤: 环境_数据库_sql  // 要以_sql结尾&lt;/li&gt;
   &lt;li&gt;crontab步骤: 环境_crontab&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;config步骤: 环境_config&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;config步骤: 环境_config&lt;/li&gt;
   &lt;li&gt;jenkins步骤: 环境_私有化租户_jenkins //要以_jenkins结尾&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;步骤的定义&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;2. 步骤定义&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;脚本步骤:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&quot;流程flow&quot;&gt;流程flow&lt;/h3&gt;
 
@@ -1159,86 +1275,4 @@ except Exception as err:
 fh.close()
 cursor.close()
 db.close()
-&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="csv" /><category term="中文乱码" /><category term="python3" /><category term="utf-8" /><category term="utf-8" /><summary type="html">导出一些数据给运营同学 几点要求</summary></entry><entry><title type="html">dbext an awesome database client</title><link href="http://localhost:4000/dbext-vim-db-explorer/" rel="alternate" type="text/html" title="dbext an awesome database client" /><published>2019-02-19T00:00:00+08:00</published><updated>2019-02-19T00:00:00+08:00</updated><id>http://localhost:4000/dbext-vim-db-explorer</id><content type="html" xml:base="http://localhost:4000/dbext-vim-db-explorer/">&lt;h1 id=&quot;可能是最适合开发的数据库客户端&quot;&gt;可能是最适合开发的数据库客户端&lt;/h1&gt;
-
-&lt;h4 id=&quot;支持的数据库类型&quot;&gt;支持的数据库类型:&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SAP Sybase SQL Anywhere (SA/ASA)
-SAP Sybase IQ
-SAP Sybase Adaptive Server Enterprise (ASE)
-SAP HANA
-SAP Sybase UltraLite (UL)
-Oracle
-Oracle RDB
-SQL Server
-MySQL
-PostgreSQL
-DB2
-Firebird
-Ingres
-Interbase
-SQLite
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;本文以MySQL为例，介绍一下该插件的功能。&lt;/p&gt;
-
-&lt;h3 id=&quot;安装配置&quot;&gt;安装&amp;amp;配置&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Lets test the connection, run the following command (Note the capital S): &amp;gt;
-`:Select * from customer`
-Select, Update, Insert, Delete, Call, Drop, Alter, Create
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;功能介绍&quot;&gt;功能介绍&lt;/h3&gt;
-
-&lt;h4 id=&quot;connect&quot;&gt;connect&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;使用快捷键 ：`&amp;lt;leader&amp;gt;sbp` leader键默认是`\`,  sbp(sql buffer prompt)
-使用ex命令：`:DBPromptForBufferParameters`
-然后选择要连接的数据库类型
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;execute&quot;&gt;execute&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;把光标置于sql语句中的任意位置（sql语句是一行）
-`&amp;lt;leader&amp;gt;sel`  sql execute line
-
-执行多行sql
-`&amp;lt;leader&amp;gt;se`  sql execute 
-`:DBExecSQLUnderCursor`
-
-执行选中的sql
-`:DBExecVisualSQL`
-&amp;lt;leader&amp;gt;se  和多行执行一样
-
-从表中查选,光标在表名称的单词上
-`&amp;lt;leader&amp;gt;st`  sql table
-`:DBSelectFromTable`
-执行的sql是：select * from table_name
-
-带条件的查询
-`&amp;lt;leader&amp;gt;stw`
-`:DBSelectFromTableWithWhere`
-会提示你输入where条件， 比如 id &amp;gt; 1 and name like &quot;zhangsan&quot;
-执行的sql：select * from table_name where id &amp;gt; 1 and name like &quot;zhangsan&quot;
-
-等待输入表名查询
-`&amp;lt;leader&amp;gt;sta`
-`:DBSelectFromTableAskName`
-会提示你输入你要查询的表名
-
-高亮选择表名查询
-`&amp;lt;leader&amp;gt;st`
-`:'&amp;lt;,'&amp;gt;DBSelectFromTable`
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;describing-objects&quot;&gt;Describing objects&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;表结构
-`:DBDescribeTable`
-`\sdt` sql describe table
-
-存储过程procedures
-`:DBDescribeProcedure`
-`\dp`  d (describe) p (procedure)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="vim" /><category term="database" /><category term="navicat" /><summary type="html">可能是最适合开发的数据库客户端</summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="csv" /><category term="中文乱码" /><category term="python3" /><category term="utf-8" /><category term="utf-8" /><summary type="html">导出一些数据给运营同学 几点要求</summary></entry></feed>
