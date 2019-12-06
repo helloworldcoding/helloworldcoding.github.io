@@ -1,0 +1,19 @@
+
+@startuml
+client->server: syn=1 seq=x
+note left
+    客户端发送syn报文,
+    发送序列号为x
+end note
+client<-server: syn=1 ack=x+1 seq=y
+note right
+    服务端接受请求， 回复syn+ack报文，
+    并置发送序列号为y,确认序列号为x+1
+end note
+client->server: ack=y+1 seq=z
+note left
+    客户端发送ack报文,并置发送序列号为z
+    确认序列号为y+1
+end note
+@enduml
+
