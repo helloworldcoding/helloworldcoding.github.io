@@ -28,7 +28,7 @@ image:
 比如：
 
 1.创建一个demo.uml的文件,用你习惯的编辑器，编写如下内容：
-    ```
+```
     @startuml
     client->server: syn=1 seq=x
     note left
@@ -46,20 +46,20 @@ image:
         确认序列号为y+1
     end note
     @enduml
-    ```
+```
 2.下载plantuml.jar包
-    ```
+```
     http://sourceforge.net/projects/plantuml/files/plantuml.jar/download
-    ```
+```
 3.把`plantuml.jar`移动到你乐意的路径下,并创建一个可执行文件plantuml文件
-    ```
+```
     linux下参考如下操作:
     mv ./plantuml.jar   /usr/local/bin/plantuml.jar
     touch /usr/local/bin/plantuml
     echo "#!/bin/bash" >> /usr/local/bin/plantuml
     echo "jar -jar /usr/local/bin/plantuml.jar $@" >> /usr/local/bin/plantuml
     chmod +x  /usr/local/bin/plantuml 
-    ```
+```
 4.查看plantuml的帮助`plantuml -h`,结果如下
 ```
 Usage: java -jar plantuml.jar [options] -gui
@@ -140,14 +140,16 @@ where options include:
 If needed, you can setup the environment variable GRAPHVIZ_DOT.
 ```
 
-    5.把刚才写的uml文件输出为png或其他格式
-    `plantuml -tpng test.uml`
-   图片如下：
+5.把刚才写的uml文件输出为png或其他格式
+    `plantuml -tpng test.uml` 图片如下：
 <figure>
     <a href=''><img src="/images/tcp_demo.png"></a>
 </figure>
-    `plantuml -tutxt test.uml`
+
+输出一个文本的图`plantuml -tutxt test.uml`
+
 ```
+
 
 
                                       ┌──────┐             ┌──────┐                                    
