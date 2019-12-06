@@ -22,10 +22,12 @@ image:
     你反而不能集中精力去思考逻辑。还有一个原因，不利于复用和修改。
 
 #### plantuml
-    [plantuml](https://plantuml.com/index "plantuml")是一个开源的工具，你可以用它来画流程图，用例图
-    类图等等。最令人满意的是，你可以用写代码的模式来“画”uml图。
-    比如：
-    1.创建一个demo.uml的文件,用你习惯的编辑器，编写如下内容：
+
+[plantuml](https://plantuml.com/index "plantuml")是一个开源的工具，你可以用它来画流程图，用例图
+类图等等。最令人满意的是，你可以用写代码的模式来“画”uml图。
+比如：
+
+1.创建一个demo.uml的文件,用你习惯的编辑器，编写如下内容：
     ```
     @startuml
     client->server: syn=1 seq=x
@@ -45,11 +47,11 @@ image:
     end note
     @enduml
     ```
-    2.下载plantuml.jar包
+2.下载plantuml.jar包
     ```
     http://sourceforge.net/projects/plantuml/files/plantuml.jar/download
     ```
-    3.把`plantuml.jar`移动到你乐意的路径下,并创建一个可执行文件plantuml文件
+3.把`plantuml.jar`移动到你乐意的路径下,并创建一个可执行文件plantuml文件
     ```
     linux下参考如下操作:
     mv ./plantuml.jar   /usr/local/bin/plantuml.jar
@@ -58,8 +60,8 @@ image:
     echo "jar -jar /usr/local/bin/plantuml.jar $@" >> /usr/local/bin/plantuml
     chmod +x  /usr/local/bin/plantuml 
     ```
-    4.查看plantuml的帮助`plantuml -h`,结果如下
-    ```
+4.查看plantuml的帮助`plantuml -h`,结果如下
+```
 Usage: java -jar plantuml.jar [options] -gui
 	(to execute the GUI)
     or java -jar plantuml.jar [options] [file/dir] [file/dir] [file/dir]
@@ -136,7 +138,7 @@ where options include:
     -cypher		To cypher texts of diagrams so that you can share them
 
 If needed, you can setup the environment variable GRAPHVIZ_DOT.
-    ```
+```
 
     5.把刚才写的uml文件输出为png或其他格式
     `plantuml -tpng test.uml`
@@ -145,7 +147,7 @@ If needed, you can setup the environment variable GRAPHVIZ_DOT.
     <a href=''><img src="/images/tcp_demo.png"></a>
 </figure>
     `plantuml -tutxt test.uml`
-
+```
 
 
                                       ┌──────┐             ┌──────┐                                    
@@ -165,3 +167,4 @@ If needed, you can setup the environment variable GRAPHVIZ_DOT.
   ╚═════════════════════════════════════╝┴───┐             ┌──┴───┐                                    
                                       │client│             │server│                                    
                                       └──────┘             └──────┘                                    
+```
