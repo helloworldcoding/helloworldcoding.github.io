@@ -35,7 +35,7 @@ True
 
 套接字把复杂的TCP/IP协议族隐藏在Socket接口后面，对用户来说，一组简单的接口就是全部，让Socket去组织数据，以符合指定的协议。所以，我们无需深入理解tcp/udp协议，socket已经为我们封装好了，我们只需要遵循socket的规定去编程，写出的程序自然就是遵循tcp/udp标准的
 
-简直是一把利器(书架上的《Unix网络编程》卷一：套接字联网API在召唤我
+简直是一把利器(书架上的《Unix网络编程》卷一：套接字联网API在召唤我)
 
 ## socket基础使用方法
 
@@ -85,27 +85,27 @@ print (msg.decode('utf-8'))
 
 **服务端套接字函数**
 
-> s.bind()    #绑定(主机,端口号)到套接字
-> s.listen()  #开始TCP监听
-> s.accept()  #被动接受TCP客户的连接,(阻塞式)等待连接的到来
+> s.bind()    #绑定(主机,端口号)到套接字   
+> s.listen()  #开始TCP监听   
+> s.accept()  #被动接受TCP客户的连接,(阻塞式)等待连接的到来   
  
 
 **客户端套接字函数** 
-> s.connect()     #主动初始化TCP服务器连接
-> s.connect_ex()  #connect()函数的扩展版本,出错时返回出错码,而不是抛出异常
+> s.connect()     #主动初始化TCP服务器连接   
+> s.connect_ex()  #connect()函数的扩展版本,出错时返回出错码,而不是抛出异常   
  
 
 **公共用途的套接字函数(客户端和服务端都能使用)**
-> s.recv()            #接收TCP数据
-> s.send()            #发送TCP数据(send在待发送数据量大于己端缓存区剩余空间时,数据丢失,不会发完)
-> s.sendall()         #发送完整的TCP数据(本质就是循环调用send,sendall在待发送数据量大于己端缓存区剩余空间时,数据不丢失,循环调用send直到发完)
-> s.recvfrom()        #接收UDP数据
-> s.sendto()          #发送UDP数据
-> s.getpeername()     #连接到当前套接字的远端的地址
-> s.getsockname()     #当前套接字的地址
-> s.getsockopt()      #返回指定套接字的参数
-> s.setsockopt()      #设置指定套接字的参数
-> s.close()           #关闭套接字
+> s.recv()            #接收TCP数据   
+> s.send()            #发送TCP数据(send在待发送数据量大于己端缓存区剩余空间时,数据丢失,不会发完)   
+> s.sendall()         #发送完整的TCP数据(本质就是循环调用send,sendall在待发送数据量大于己端缓存区剩余空间时,数据不丢失,循环调用send直到发完)  
+> s.recvfrom()        #接收UDP数据  
+> s.sendto()          #发送UDP数据  
+> s.getpeername()     #连接到当前套接字的远端的地址  
+> s.getsockname()     #当前套接字的地址   
+> s.getsockopt()      #返回指定套接字的参数   
+> s.setsockopt()      #设置指定套接字的参数   
+> s.close()           #关闭套接字   
 
 
 所以？如何连接到redis呢?
