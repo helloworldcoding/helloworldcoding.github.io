@@ -39,7 +39,8 @@ True
 
 ## socket基础使用方法
 
-- **服务端**
+**服务端**
+
 ```
 import socket
 import sys
@@ -62,7 +63,9 @@ while True:
     clientsocket.send(msg.encode('utf-8'))
     clientsocket.close()
 ```
-- **客户端**
+
+**客户端**
+
 ```
 import socket
 import sys
@@ -108,6 +111,7 @@ print (msg.decode('utf-8'))
 所以？如何连接到redis呢?
 
 ## my-socket-connect-to-redis 
+
 ```
 #!/usr/bin/python3
 
@@ -135,7 +139,9 @@ while True:
         break
 conn.close()
 ```
+
 执行一下`python3 ./redis_client.py`,就可以得到如下返回。
+
 ```
 b'+'
 b'O'
@@ -150,6 +156,7 @@ b'G'
 b'\r'
 b'\n'
 ```
+
 我们连接到第二个数据库，然后`ping`了一下，看到redis返回了`PONG` ^_^
 
 
