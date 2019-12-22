@@ -52,7 +52,7 @@ main()->
 
 ## 我的解决方法
 
-1. 在`/usr/local/bin/`下创建一个可执行的bash脚本,假设名称是`exec_erl`，内容如下
+1. 在`/usr/local/bin/`下创建一个可执行的bash脚本,假设名称是`exec_erl`，内容如下    
 ```
 #!/bin/bash
 
@@ -68,7 +68,7 @@ erlc ${erl_file_name}
 erl -noshell -s $erl_mode $fun $@ -s init stop
 
 ```
-2. 修改vim配置文件
+2. 修改vim配置文件    
 ```
 augroup filetype_erlang
     autocmd!
