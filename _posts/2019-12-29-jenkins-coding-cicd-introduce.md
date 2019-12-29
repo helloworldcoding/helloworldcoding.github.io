@@ -33,21 +33,21 @@ ssh-keygen -t rsa -b 4096 -C your_email@example.com
 先说安装,当然是怎么简单，怎么来, 不过要先安装jdk`sudo apt install openjdk`
 
 1. 简单安装
-    a. sudo apt install jenkins   
-    b. 按照提示操作，比如输入 /var/lib/jenkins/secret.key 的内容，安装常规插件   
-    c. 安装coding插件   
-    安装过程有点慢，可以在这个过程中去做别的事情
+    a. sudo apt install jenkins     
+    b. 按照提示操作，比如输入 /var/lib/jenkins/secret.key 的内容，安装常规插件     
+    c. 安装coding插件     
+    安装过程有点慢，可以在这个过程中去做别的事情     
 2. 配置
-    a. add credentials  把当前用户(codinggirl)的ssh private_key 添加到jenkins 中，这样jenkins就可以正常从coding拉取代码到 /var/lib/jenkins/workspace/ 下面
-    b. 生成jenkins用户的ssh public_key, 并添加到远程服务器authorized_keys下
-        ⅰ. sudo su jenkins
-        ⅱ. cd ~  # /var/lib/jenkins
-        ⅲ. ssh-keygen   一路回车
-        ⅳ. ssh-copy-id  -i .ssh/id_rsa.pub   www@blog或者直接复制id_rsa.pub的内容到服务器www用户的authorized_keys中 这样jenkins执行shell命令如rsync，就可以同步数据到远程服务器
-    c. 创建一个Freestyle的project,项目名不要随便改动
-    d. Source Code Management 选择git, 然后填入项目的仓库url,如git@git.coding.net:xxxx/xxx.git, Credentials就选择步骤a创建的credentials
-    e. 上面这步成功后，就可以选择分支了，一般会选者默认的master分支, */master 
-    f. build Execute Shell  `rsync -rv --exclude=.git/ --exclude=.git*  $WORKSPACE www@blog:~`
+    a. add credentials  把当前用户(codinggirl)的ssh private_key 添加到jenkins 中，这样jenkins就可以正常从coding拉取代码到 /var/lib/jenkins/workspace/ 下面     
+    b. 生成jenkins用户的ssh public_key, 并添加到远程服务器authorized_keys下    
+        ⅰ. sudo su jenkins    
+        ⅱ. cd ~  # /var/lib/jenkins    
+        ⅲ. ssh-keygen   一路回车   
+        ⅳ. ssh-copy-id  -i .ssh/id_rsa.pub   www@blog或者直接复制id_rsa.pub的内容到服务器www用户的authorized_keys中 这样jenkins执行shell命令如rsync，就可以同步数据到远程服务器    
+    c. 创建一个Freestyle的project,项目名不要随便改动   
+    d. Source Code Management 选择git, 然后填入项目的仓库url,如git@git.coding.net:xxxx/xxx.git, Credentials就选择步骤a创建的credentials  
+    e. 上面这步成功后，就可以选择分支了，一般会选者默认的master分支, */master     
+    f. build Execute Shell  `rsync -rv --exclude=.git/ --exclude=.git*  $WORKSPACE www@blog:~`    
 
 
 ### 猜过的坑
